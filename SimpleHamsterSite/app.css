@@ -1,0 +1,15 @@
+h1 {
+  text-align: center;
+  font-weight: 400;
+  text-decoration: gray dotted underline;
+  font-size: 72px;
+}
+
+p {
+  text-align: left;
+  line-height: 2;
+}
+
+a {
+  text-decoration: none;
+}
