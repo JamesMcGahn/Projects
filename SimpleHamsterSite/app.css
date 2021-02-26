@@ -3,6 +3,7 @@ h1 {
   font-weight: 400;
   text-decoration: gray dotted underline;
   font-size: 72px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 p {
