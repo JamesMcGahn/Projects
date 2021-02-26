@@ -1,0 +1,36 @@
+body {
+  background-color: #f1faee;
+}
+
+button {
+  font-size: 20px;
+  background-color: #a8dadc;
+}
+
+h1,
+h2 {
+  color: darkslateblue;
+}
+
+#signup {
+  background-color: #1d3557;
+  color: #f1faee;
+}
+
+.tag {
+  color: #f1faee;
+  background-color: #e63946;
+  font-size: 16;
+}
+
+.post a {
+  color: #457b9d;
+}
+
+footer a {
+  color: #e63946;
+}
+
+input[type="password"] {
+  color: grey;
+}
