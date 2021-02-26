@@ -25,6 +25,8 @@ h2 {
 
 .post a {
   color: #457b9d;
+  font-weight: 700;
+  text-decoration: none;
 }
 
 footer a {
@@ -33,4 +35,24 @@ footer a {
 
 input[type="password"] {
   color: grey;
+}
+
+button:hover {
+  color: #f1faee;
+  background-color: #e63946;
+}
+.post a:hover {
+  text-decoration: underline;
+}
+
+.post button:active {
+  background-color: rgb(0, 248, 165);
+}
+
+.post:nth-of-type(2n) {
+  background-color: #dfe8dc;
+}
+
+h1::first-letter {
+  font-size: 40px;
 }
