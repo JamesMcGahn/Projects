@@ -11,6 +11,9 @@
     },
     {
       "path": "SimpleBoxModel"
+    },
+    {
+      "path": "SimpleButtonEffect"
     }
   ],
   "settings": {}
