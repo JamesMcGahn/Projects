@@ -69,3 +69,28 @@ footer {
   text-align: center;
   font-size: 1.2em;
 }
+
+@media (max-width: 800px) {
+  #img-div {
+    display: flex;
+    flex-direction: column;
+    margin: 1% 0% 1% 0%;
+    padding: 1% 0% 0.3% 0%;
+    justify-self: center;
+    background-color: white;
+  }
+
+  #tribute-info {
+    padding: 1% 5% 0.3% 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 0;
+  }
+
+  blockquote {
+    margin-top: 0;
+    padding: 1% 5% 1% 5%;
+    font-style: italic;
+  }
+}
