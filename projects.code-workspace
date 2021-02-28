@@ -1,22 +1,8 @@
 {
   "folders": [
     {
+      "name": "Projects",
       "path": "."
-    },
-    {
-      "path": "SimpleHamsterSite"
-    },
-    {
-      "path": "SimpleSelectorSite"
-    },
-    {
-      "path": "SimpleBoxModel"
-    },
-    {
-      "path": "SimpleButtonEffect"
-    },
-    {
-      "path": "SimplePricingPanel"
     }
   ],
   "settings": {}
