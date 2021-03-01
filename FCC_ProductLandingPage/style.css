@@ -1,0 +1,28 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+nav {
+  flex-direction: row;
+}
+
+.feat-table {
+  padding: 2% 20% 2% 20%;
+  display: grid;
+  grid-template-columns: 10% 90%;
+  grid-template-rows: 1fr 1fr 1fr;
+  border: 1px solid black;
+
+  grid-gap: 5px;
+}
+
+.feature-left {
+  align-self: center;
+}
+
+.feature-right {
+  align-self: center;
+}
