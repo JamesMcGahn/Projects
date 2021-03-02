@@ -18,5 +18,37 @@
       crossorigin="anonymous"
     ></script>
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+      <h1 class="h1">Boot Form</h1>
+      <form action="#">
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="enter email" />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="password">password</label>
+            <input type="password" class="form-control" id="password" placeholder="enter password" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="state">Pick State</label>
+          <select class="form-control" name="state" id="state">
+            <option value="NJ">New Jersey</option>
+            <option value="AK">Alaska</option>
+            <option value="DE">Delaware</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="thumb" id="checkybox" />
+            <label class="form-check-label" for="checkybox">Lets do it</label>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-success">Submit</button>
+      </form>
+    </div>
+  </body>
 </html>
