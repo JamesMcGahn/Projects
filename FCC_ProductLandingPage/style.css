@@ -11,7 +11,29 @@ body {
 }
 
 nav {
+  display: flex;
   flex-direction: row;
+  justify-content: space-between;
+}
+
+nav img {
+  max-width: 300px;
+}
+
+.nav-links {
+  flex-basis: 35%;
+}
+
+.nav-links ul {
+  list-style-type: none;
+  margin-bottom: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.nav-links ul li {
+  margin: 4%;
 }
 
 .feat-table {
@@ -120,5 +142,7 @@ footer {
 }
 
 .copyright {
-  padding-right: 1%;
+  padding-right: 3%;
+  color: rgb(109, 107, 107);
+  font-size: 0.8em;
 }
