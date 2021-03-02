@@ -19,9 +19,29 @@
     ></script>
   </head>
   <body>
-    <div class="container">
-      <h1>Simple Bootstrap Site</h1>
-      <p>
+    <div class="container-fluid">
+      <h1 class="display-1 text-center">Simple Bootstrap Site</h1>
+
+      <h2 class="h2">Some Buttons</h2>
+      <button type="button" class="btn btn-primary">Primary</button>
+      <button type="button" class="btn btn-success">Success</button>
+      <button type="button" class="btn btn-danger">Danger</button>
+      <button type="button" class="btn btn-outline-info">Info</button>
+      <button type="button" class="btn btn-outline-warning">Warning</button>
+      <h3 class="h3">Button Groups</h3>
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-primary">Left</button>
+        <button type="button" class="btn btn-primary">Middle</button>
+        <button type="button" class="btn btn-primary">Right</button>
+      </div>
+      <h3 class="h3">Alerts</h3>
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Wow!</strong> You should check in on some of those fields below.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      <h2 class="h2">Typography</h2>
+
+      <p class="lead">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit fuga ea magni aliquam magnam fugit dignissimos quidem corrupti, reprehenderit
         inventore exercitationem non tempora laudantium veritatis quos neque laborum omnis quod. Earum unde quaerat soluta itaque commodi adipisci
         fugiat odit, dolorem dolorum laudantium praesentium accusantium architecto, sapiente atque quod, delectus suscipit cumque dignissimos aperiam
@@ -29,6 +49,15 @@
         necessitatibus est itaque nobis labore distinctio animi ex reiciendis laudantium totam! Autem nam commodi inventore a nulla aspernatur
         voluptatibus?
       </p>
+
+      <blockquote class="blockquote">
+        <p>
+          <span class="badge bg-success">Blockquotes</span>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse eveniet architecto minus reiciendis molestiae asperiores totam laudantium
+          sunt praesentium natus. Laborum eum dolore facilis natus atque quis in, voluptates velit.
+        </p>
+        <figcaption class="blockquote-footer">Mr. Bootstrap <cite title="Source Title">in the book of Boot</cite></figcaption>
+      </blockquote>
     </div>
   </body>
 </html>
