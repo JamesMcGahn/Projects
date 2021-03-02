@@ -18,6 +18,7 @@ nav {
 
 nav img {
   max-width: 300px;
+  width: 100%;
 }
 
 .nav-links {
@@ -39,7 +40,7 @@ nav img {
 .feat-table {
   padding: 2% 20% 2% 20%;
   display: grid;
-  grid-template-columns: 10% 90%;
+  grid-template-columns: 15% 85%;
   grid-template-rows: 1fr 1fr 1fr;
   /* border: 1px solid black; */
 
@@ -146,3 +147,61 @@ footer {
   color: rgb(109, 107, 107);
   font-size: 0.8em;
 }
+
+
+@media (max-width: 900px) {
+  .feat-table {
+    padding: 2% 20% 2% 20%;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    /* border: 1px solid black; */
+    grid-gap: 0px;
+    justify-items: center;
+
+  }
+
+  .pricing-panel {
+    display: flex;
+    flex-direction: column;
+}
+
+}
+
+
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-content: center;
+  }
+  .nav img {
+    flex-basis: 100%;
+    align-items: center;
+  }
+  .nav-links {
+    align-content: center;
+    justify-content: center;
+    border: 1px solid black;
+    flex-basis: 100%;
+
+  }
+
+  .nav-links ul {
+    flex-direction: column;
+    justify-self: flex-end;
+    padding-left: 0;
+    margin-top: 0;
+  }
+  .nav-links ul li {
+    flex-direction: column;
+    border: 1px solid black;
+    padding-left: 33%;
+    margin: 0;
+    font-size: 1.5em;
+  } 
+
+
+
+  
