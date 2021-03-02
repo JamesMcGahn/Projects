@@ -10,26 +10,32 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
-    <nav>
-      <img src='assets/original_trombones.png'> 
-      <div class="nav-links">                       
-        <ul>
-        <li>Features</li>
-        <li>How it Works</li>
-        <li>Pricing</li>
-    </ul>
-  </div>
 
-</nav>
-    <header>
-      <h1>Handcrafted, home-made masterpieces</h1>
-      <form>
-        <input type="email" placeholder="Enter your email address" />
-        <button>Get Started</button>
-      </form>
-    </header>
+    <header id="header">
+    <div id="nav-wrapper">
+      <nav id="nav-bar">
+        <img id="header-img" src='assets/original_trombones.png'> 
+        <div class="nav-links">                       
+          <ul>
+          <li><a class="nav-link" href='#item-features'>Features</a></li>
+          <li><a class="nav-link" href='#howitworks'>How it Works</a></li>
+          <li><a class="nav-link" href='#item-price-panel'>Pricing</a></li>
+      </ul>
+    </div>
+  </nav></div>
+  </nav>
+      
+  <div class="header-info">  
+    <h1>Handcrafted, home-made masterpieces</h1>
+    <form action="https://www.freecodecamp.com/email-submit" id="form">
+      <input type="email" id="email" name="email" placeholder="Enter your email address" />
+      <button type="submit" id="submit">Get Started</button>
+    </form>
+  </div>
+  </header>
+
     <main>
-      <section class="feat-table">
+      <section class="feat-table" id="item-features">
         <div class="feature-left">
           <i class="fa fa-3x fa-fire"></i>
         </div>
@@ -50,9 +56,9 @@
         </div>
       </section>
       <section id="howitworks">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/y8Yv4pnO7qc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/y8Yv4pnO7qc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </section>
-<div class="pricing-panel">
+<div class="pricing-panel" id="item-price-panel">
 <div class="tenor-value">
   <div class="price-header"><h3>Tenor Trombone</h3></div>
   <span class="item-price">$600</span>

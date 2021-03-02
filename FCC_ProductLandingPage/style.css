@@ -9,12 +9,24 @@ body {
   display: flex;
   flex-direction: column;
   font-family: "Noto Sans JP", sans-serif;
+  width: 100%;
+}
+
+#nav-wrapper {
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  left: 0px;
+  background-color: white;
+  margin-bottom: 100%;
 }
 
 nav {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  width: 100%;
+  border: 1px solid black;
 }
 
 nav img {
@@ -33,43 +45,52 @@ nav img {
   flex-direction: row;
   justify-content: space-evenly;
 }
+.nav-links a {
+  text-decoration: none;
+  color: black;
+}
 
 .nav-links ul li {
   margin: 4%;
 }
 
-header {
-  align-self: center;
+.header-info {
+  margin-top: 8%;
+  display: flex;
+  direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-evenly;
 }
 
-headeer h1 {
+.header-info h1 {
   font-family: "Roboto", sans-serif;
+  flex-basis: 100%;
+  text-align: center;
 }
 
 header input {
   margin-top: 1%;
-  display: block;
-  width: 80%;
+  margin-bottom: 2%;
+  width: 100%;
   text-align: center;
-  padding: 1.2% 6% 1.2% 6%;
   background-color: white;
   font-size: 1.2em;
-  margin-left: 3.5%;
 }
 
-header button {
+#submit {
   margin-top: 2%;
-  display: block;
   padding: 1.2% 7% 1.2% 7%;
   background-color: #f1c40f;
   font-size: 1.2em;
-  margin-left: 33.3%;
+  margin-left: 28%;
 }
 
-header button:hover {
+#submit:hover {
   background-color: #c9a61b;
   cursor: pointer;
 }
+
 .feat-table {
   padding: 2% 20% 2% 20%;
   display: grid;
@@ -78,23 +99,24 @@ header button:hover {
   /* border: 1px solid black; */
 
   grid-gap: 5px;
+  margin-bottom: 7%;
 }
 
 .feature-left {
   align-self: center;
+  color: darkorange;
 }
 
 .feature-right {
   align-self: center;
 }
 
-section#howitworks {
-  /* border: 1px solid black; */
+#howitworks {
   display: flex;
+  width: 100%;
   flex-direction: row;
-  padding: 1% 20% 1% 20%;
   justify-content: center;
-  margin-bottom: 7%;
+  margin-bottom: 10%;
 }
 
 .pricing-panel {
@@ -146,6 +168,15 @@ section#howitworks {
   background-color: #f1c40f;
   border: 0px;
   font-size: 1.1em;
+  box-shadow: 0 0.3em 0.4em -0.3em;
+  cursor: pointer;
+}
+
+.btn-price:hover {
+  border: 2px solid black;
+  cursor: pointer;
+  background-color: #eecd4c;
+  font-weight: 800;
 }
 
 footer {
@@ -205,13 +236,12 @@ footer {
     justify-content: center;
     align-content: center;
   }
-  .nav img {
-    flex-basis: 100%;
+  nav img {
+    flex-basis: 50%;
     align-items: center;
+    margin-left: 15%;
   }
   .nav-links {
-    align-content: center;
-    justify-content: center;
     border: 1px solid black;
     flex-basis: 100%;
   }
@@ -225,8 +255,14 @@ footer {
   .nav-links ul li {
     flex-direction: column;
     border: 1px solid black;
-    padding-left: 33%;
-    margin: 0;
-    font-size: 1.5em;
+    border-bottom: 1px solid white;
+    box-shadow: 0 0.5em 0.5em -0.4em;
+    margin: 1px;
+    font-size: 1.3em;
+    text-align: center;
+  }
+
+  .header-info {
+    margin-top: 35%;
   }
 }
