@@ -19,9 +19,35 @@
     ></script>
   </head>
   <body>
-    <div class="container-fluid">
-      <h1 class="display-1 text-center">Simple Bootstrap Site</h1>
-
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.html">Bootstrap Demo</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#expand"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="expand">
+            <div class="navbar-nav">
+              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+              <a class="nav-link" href="bootgrid.html">Grids</a>
+              <a class="nav-link" href="bootnav.html">Navs</a>
+              <a class="nav-link" href="bootforms.html">Forms</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <div></div>
+    <div class="container-fluid mt-5">
+      <h1 class="h1 text-center">Simple Bootstrap Site</h1>
       <h2 class="h2">Some Buttons</h2>
       <button type="button" class="btn btn-primary">Primary</button>
       <button type="button" class="btn btn-success">Success</button>

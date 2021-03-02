@@ -19,7 +19,23 @@
     ></script>
   </head>
   <body>
-    <div class="container-fluid"></div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.html">Bootstrap Demo</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#expand" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="expand">
+            <div class="navbar-nav">
+                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link active"  aria-current="page" href="bootgrid.html">Grids</a>
+              <a class="nav-link" href="bootnav.html">Navs</a>
+              <a class="nav-link" href="bootforms.html">Forms</a>
+            </div>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid" mt-5></div>
     <h1 class="h1">Bootstrap Grid</h1>
     <div class="row">
       <div class="col-6 bg-success">6 units</div>
