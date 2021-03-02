@@ -55,11 +55,14 @@ section#howitworks {
   min-width: 300px;
   margin-right: 10px;
   text-align: center;
+  border-radius: 10px;
 }
 
 .price-header {
   border: 1px solid rgb(201, 199, 199);
   background-color: rgb(201, 199, 199);
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
   text-align: center;
   margin-bottom: 10%;
   text-transform: uppercase;
@@ -87,4 +90,35 @@ section#howitworks {
   background-color: #f1c40f;
   border: 0px;
   font-size: 1.1em;
+}
+
+footer {
+  border: 1px solid rgb(201, 199, 199);
+  background-color: rgb(201, 199, 199);
+}
+
+.footer-container {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.footer-nav {
+  flex-basis: 100%;
+}
+.footer-nav ul {
+  list-style-type: none;
+  margin-bottom: 0px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.footer-nav ul li {
+  margin-right: 3%;
+}
+
+.copyright {
+  padding-right: 1%;
 }
