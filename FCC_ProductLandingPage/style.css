@@ -8,6 +8,7 @@ body {
   padding: 0px;
   display: flex;
   flex-direction: column;
+  font-family: "Noto Sans JP", sans-serif;
 }
 
 nav {
@@ -37,6 +38,38 @@ nav img {
   margin: 4%;
 }
 
+header {
+  align-self: center;
+}
+
+headeer h1 {
+  font-family: "Roboto", sans-serif;
+}
+
+header input {
+  margin-top: 1%;
+  display: block;
+  width: 80%;
+  text-align: center;
+  padding: 1.2% 6% 1.2% 6%;
+  background-color: white;
+  font-size: 1.2em;
+  margin-left: 3.5%;
+}
+
+header button {
+  margin-top: 2%;
+  display: block;
+  padding: 1.2% 7% 1.2% 7%;
+  background-color: #f1c40f;
+  font-size: 1.2em;
+  margin-left: 33.3%;
+}
+
+header button:hover {
+  background-color: #c9a61b;
+  cursor: pointer;
+}
 .feat-table {
   padding: 2% 20% 2% 20%;
   display: grid;
@@ -148,7 +181,6 @@ footer {
   font-size: 0.8em;
 }
 
-
 @media (max-width: 900px) {
   .feat-table {
     padding: 2% 20% 2% 20%;
@@ -158,16 +190,13 @@ footer {
     /* border: 1px solid black; */
     grid-gap: 0px;
     justify-items: center;
-
   }
 
   .pricing-panel {
     display: flex;
     flex-direction: column;
+  }
 }
-
-}
-
 
 @media (max-width: 600px) {
   nav {
@@ -185,7 +214,6 @@ footer {
     justify-content: center;
     border: 1px solid black;
     flex-basis: 100%;
-
   }
 
   .nav-links ul {
@@ -200,8 +228,5 @@ footer {
     padding-left: 33%;
     margin: 0;
     font-size: 1.5em;
-  } 
-
-
-
-  
+  }
+}
