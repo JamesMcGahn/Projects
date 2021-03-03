@@ -3,6 +3,11 @@ body {
   font-family: "nunito", sans-serif;
 }
 
+.navbar.scrolled {
+  background-color: #f5d9d5;
+  transition: background 500ms;
+}
+
 #mainNavbar {
   size: 1.5rem;
   font-weight: 100;
@@ -21,4 +26,36 @@ body {
 #mainNavbar .navbar-brand {
   color: #ea1c2c;
   font-size: 1.5rem;
+}
+
+.redslash {
+  color: #ea1c2c;
+}
+
+.headtext {
+  font-size: 4rem;
+  font-weight: 100;
+}
+
+.lolli h2 {
+  color: #ea1c2c;
+  font-weight: 100;
+  font-size: 2.4rem;
+}
+
+.lolli p {
+  color: #f498b8;
+  font-weight: 100;
+  font-size: 1.125rem;
+  line-height: 2;
+}
+
+.rframe {
+  margin-bottom: 100px;
+}
+
+@media (max-width: 1200px) {
+  .headtext {
+    font-size: 3rem;
+  }
 }

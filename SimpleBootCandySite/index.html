@@ -20,9 +20,9 @@
     ></script>
   </head>
   <body>
-    <nav id="mainNavbar" class="navbar navbar-dark navbar-expand-md">
+    <nav id="mainNavbar" class="navbar navbar-dark navbar-expand-md py-0 fixed-top">
       <a href="#" class="navbar-brand">CANDY</a>
-      <botton class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#expand" aria-label="toggle navbar">
+      <botton class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#expand" aria-label="toggle navbar">
         <span class="navbar-toggler-icon"></span>
       </botton>
       <div class="collapse navbar-collapse" id="expand">
@@ -33,5 +33,94 @@
         </ul>
       </div>
     </nav>
+    <section class="container-fluid px-0 rframe">
+      <div class="row align-items-center">
+        <div class="col-6">
+          <div class="text-white text-center d-none d-lg-block mt-5">
+            <h1 class="headtext text-center">MUSEUM<span class="redslash">/</span>OF<span class="redslash">/</span>CANDY</h1>
+            <h1 class="headtext text-center">MUSEUM<span class="redslash">/</span>OF<span class="redslash">/</span>CANDY</h1>
+            <h1 class="headtext text-center">MUSEUM<span class="redslash">/</span>OF<span class="redslash">/</span>CANDY</h1>
+            <h1 class="headtext text-center">MUSEUM<span class="redslash">/</span>OF<span class="redslash">/</span>CANDY</h1>
+            <h1 class="headtext text-center">MUSEUM<span class="redslash">/</span>OF<span class="redslash">/</span>CANDY</h1>
+            <h1 class="headtext text-center">MUSEUM<span class="redslash">/</span>OF<span class="redslash">/</span>CANDY</h1>
+            <h1 class="headtext text-center">MUSEUM<span class="redslash">/</span>OF<span class="redslash">/</span>CANDY</h1>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <img class="img-fluid" src="assets/hand2.png" alt="" />
+        </div>
+      </div>
+    </section>
+    <section class="container-fluid px-0 rframe">
+      <div class="row align-items-center">
+        <div class="col-md-6 order-2 order-md-1">
+          <img class="img-fluid" src="assets/milk.png" alt="" />
+        </div>
+        <div class="col-md-6 text-center order-1 order-md-2">
+          <div class="row justify-content-center">
+            <div class="col-10 col-lg-8 lolli mb-5 mb-md-0">
+              <h2>MUSEUM OF CANDY</h2>
+              <img src="assets/lolli_icon.png" alt="" class="d-none d-lg-inline" />
+              <p class="lead">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione corrupti quia praesentium velit minima. Placeat iusto ipsa, error,
+                alias dolorem odit quisquam libero soluta harum optio incidunt rem. Quis, autem. Dolorem, doloremque quos odio amet modi possimus
+                magni voluptas aut eveniet ab reiciendis nihil, debitis quidem explicabo! Placeat, quas labore iste a et ipsa, maiores voluptas, sit
+                eum veritatis voluptatibus.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="container-fluid px-0 rframe">
+      <div class="row align-items-center">
+        <div class="col-md-6 text-center">
+          <div class="row justify-content-center">
+            <div class="col-10 col-lg-8 lolli mb-5 mb-md-0">
+              <h2>MUSEUM OF CANDY</h2>
+              <img src="assets/lolli_icon.png" alt="" class="d-none d-lg-inline" />
+              <p class="lead">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione corrupti quia praesentium velit minima. Placeat iusto ipsa, error,
+                alias dolorem odit quisquam libero soluta harum optio incidunt rem. Quis, autem. Dolorem, doloremque quos odio amet modi possimus
+                magni voluptas aut eveniet ab reiciendis nihil, debitis quidem explicabo! Placeat, quas labore iste a et ipsa, maiores voluptas, sit
+                eum veritatis voluptatibus.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <img class="img-fluid" src="assets/gumball.png" alt="" />
+        </div>
+      </div>
+    </section>
+    <section class="container-fluid px-0 rframe">
+      <div class="row align-items-center">
+        <div class="col-md-6 order-2 order-md-1">
+          <img class="img-fluid" src="assets/sprinkles.png" alt="" />
+        </div>
+        <div class="col-md-6 text-center order-1 order-md-2">
+          <div class="row justify-content-center">
+            <div class="col-10 col-lg-8 lolli mb-5 mb-md-0">
+              <h2>MUSEUM OF CANDY</h2>
+              <img src="assets/lolli_icon.png" alt="" class="d-none d-lg-inline" />
+              <p class="lead">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione corrupti quia praesentium velit minima. Placeat iusto ipsa, error,
+                alias dolorem odit quisquam libero soluta harum optio incidunt rem. Quis, autem. Dolorem, doloremque quos odio amet modi possimus
+                magni voluptas aut eveniet ab reiciendis nihil, debitis quidem explicabo! Placeat, quas labore iste a et ipsa, maiores voluptas, sit
+                eum veritatis voluptatibus.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      $(function () {
+        $(document).scroll(function () {
+          var $nav = $("#mainNavbar");
+          $nav.toggleClass("scrolled", $(this).scrollTop() > $nav.height());
+        });
+      });
+    </script>
   </body>
 </html>
