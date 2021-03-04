@@ -1,0 +1,16 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.page-container {
+  display: flex;
+}
+
+.left-container {
+  flex-basis: 20%;
+}
+
+.right-container {
+  flex-basis: 80%;
+}
