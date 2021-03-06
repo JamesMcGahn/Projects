@@ -9,7 +9,7 @@ while (input !== 'quit') {
     } else if (input === 'list') {
         console.log("Your todos:");
         console.log("=================================");
-        for (let i = 0; i <= (todoList.length - 1); i++) {
+        for (let i = 0; i < todoList.length; i++) {
             console.log(`${i}:  ${todoList[i]}`);
         }
         console.log("=================================");
