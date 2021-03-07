@@ -9,8 +9,74 @@ body {
 
 .left-container {
   flex-basis: 20%;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid black;
 }
 
 .right-container {
   flex-basis: 80%;
+  background-color: lightgray;
+}
+
+.left-container h1 {
+  padding: 0.5%;
+  text-align: center;
+  position: fixed;
+  font-size: 1.5em;
+}
+
+nav {
+  padding-top: 5%;
+  position: fixed;
+  text-align: center;
+  width: 20%;
+  height: 100%;
+}
+
+nav ul {
+  list-style-type: none;
+  padding-left: 0;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+nav li {
+  border-top: 1px solid black;
+  padding: 4% 2% 4% 2%;
+  font-size: 1.2em;
+}
+
+main {
+  z-index: 1;
+}
+section {
+  border: 1px solid rgb(78, 78, 78);
+  margin: 1.5%;
+  background-color: white;
+  padding: 2%;
+  box-shadow: 10px 5px 15px rgb(78, 78, 78);
+}
+
+section header {
+  text-align: center;
+}
+
+.content {
+}
+
+@media (max-width: 700px) {
+  .page-container {
+    flex-direction: column;
+  }
+
+  .left-container {
+    width: 100%;
+  }
+  .left-container h1 {
+    position: initial;
+  }
+  nav {
+    position: initial;
+  }
 }
