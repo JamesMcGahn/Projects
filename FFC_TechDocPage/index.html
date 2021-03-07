@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>JavaScript Documentation</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -15,7 +15,7 @@
               <ul class="nav-list">
                   <li><a class="nav-link" href="#Introduction">Introduction</a></li>
                   <li><a class="nav-link" href="#What_you_should_already_know">What you should already know</a></li>
-                  <li><a class="nav-link" href="#JavaScript_and_Java">JavaScript and Java</a></li>
+                  <li><a class="nav-link" href="#JavaScript_&_Java">JavaScript and Java</a></li>
                   <li><a class="nav-link" href="#Hello_world">Hello world</a></li>
                   <li><a class="nav-link" href="#Variables">Variables</a></li>
                   <li><a class="nav-link" href="#Declaring_variables">Declaring variables</a></li>
@@ -23,7 +23,7 @@
                   <li><a class="nav-link" href="#Global_variables">Global variables</a></li>
                   <li><a class="nav-link" href="#Constants">Constants</a></li>
                   <li><a class="nav-link" href="#Data_types">Data types</a></li>
-                  <li><a class="nav-link" href="#if_else_statement">if...else statement</a></li>
+                  <li><a class="nav-link" href="#if...else_statement">if...else statement</a></li>
                   <li><a class="nav-link" href="#While_statement">While statement</a></li>
                   <li><a class="nav-link" href="#Function_declarations">Function declarations</a></li>
                   <li><a class="nav-link" href="#Reference">Reference</a></li>
@@ -31,9 +31,9 @@
           </nav>
       </div>
       <div class="right-container">
-        <main>
-          <section class=".main-section" id="Introduction">
-            <div class="content">
+        <main id="main-doc">
+          <section class="main-section" id="Introduction">
+
             <header>
               <h2>Introduction</h2>
             </header>
@@ -50,10 +50,8 @@
                   <li>Server-side JavaScript extends the core language by supplying objects relevant to running JavaScript on a server. For example, server-side extensions allow an application to communicate with a database, provide continuity of information from one invocation to another of the application, or perform file manipulations on a server.</li>
             </ul>
             </p>
-          </div>
           </section>
-          <section class=".main-section" id="What_you_should_already_know">
-            <div class="content">
+          <section class="main-section" id="What_you_should_already_know">
             <header>
               <h2>What you should already know</h2>
               </header>
@@ -64,10 +62,10 @@
                   <li>Some programming experience. If you are new to programming, try one of the tutorials linked on the main page about JavaScript.</li>
                 </ul>
               </p>
-          </div>
+
           </section>
-          <section class=".main-section" id="JavaScript_and_Java">
-            <div class="content">
+          <section class="main-section" id="JavaScript_&_Java">
+          
             <header>
               <h2>JavaScript and Java
               </h2>
@@ -77,10 +75,10 @@
               In contrast to Java's compile-time system of classes built by declarations, JavaScript supports a runtime system based on a small number of data types representing numeric, Boolean, and string values. JavaScript has a prototype-based object model instead of the more common class-based object model. The prototype-based model provides dynamic inheritance; that is, what is inherited can vary for individual objects. JavaScript also supports functions without any special declarative requirements. Functions can be properties of objects, executing as loosely typed methods.</p>
               <p>
               JavaScript is a very free-form language compared to Java. You do not have to declare all variables, classes, and methods. You do not have to be concerned with whether methods are public, private, or protected, and you do not have to implement interfaces. Variables, parameters, and function return types are not explicitly typed.</p>
-          </div>
+
           </section>
-          <section class=".main-section" id="Hello_world">
-            <div class="content">
+          <section class="main-section" id="Hello_world">
+          
             <header>
               <h2>Hello world</h2>
             </header>
@@ -94,10 +92,10 @@
             <p>With the keyword let. For example,</p>
             <code>let y = 13.</code>
             <p>This syntax can be used to declare a block scope local variable. See Variable scope below.</p>
-          </div>
+
           </section>
-          <section class=".main-section" id="Variables">
-            <div class="content">
+          <section class="main-section" id="Variables">
+          
             <header>
               <h2>Variables</h2>
             </header>
@@ -105,10 +103,10 @@
             </p>
             <p>A JavaScript identifier must start with a letter, underscore (_), or dollar sign ($); subsequent characters can also be digits (0-9). Because JavaScript is case sensitive, letters include the characters "A" through "Z" (uppercase) and the characters "a" through "z" (lowercase).</p>
             <p>You can use ISO 8859-1 or Unicode letters such as å and ü in identifiers. You can also use the Unicode escape sequences as characters in identifiers. Some examples of legal names are Number_hits, temp99, and _name.</p>
-          </div>
+
           </section>
-          <section class=".main-section" id="Declaring_variables">
-            <div class="content">
+          <section class="main-section" id="Declaring_variables">
+          
             <header>
               <h2>Declaring variables</h2>
             </header>
@@ -122,10 +120,10 @@
             <p>With the keyword let. For example,</p>
             <code>let y = 13.</code>
             <p>This syntax can be used to declare a block scope local variable. See Variable scope below.</p>
-          </div>
+
           </section>
-          <section class=".main-section" id="Variable_scope">
-            <div class="content">
+          <section class="main-section" id="Variable_scope">
+          
             <header>
               <h2>Variable scope</h2>
             </header>
@@ -135,19 +133,19 @@
             <code>if (true) { var x = 5; } console.log(x); // 5</code>
             <p>This behavior changes, when using the let declaration introduced in ECMAScript 2015.</p>
             <code>if (true) { let y = 5; } console.log(y); // ReferenceError: y is not defined</code>
-            </div>
+  
           </section>
-          <section class=".main-section" id="Global_variables">
-            <div class="content">
+          <section class="main-section" id="Global_variables">
+          
             <header>
               <h2>Global variables</h2>
             </header>
             <p>Global variables are in fact properties of the global object. In web pages the global object is window, so you can set and access global variables using the window.variable syntax.</p>
               <p>Consequently, you can access global variables declared in one window or frame from another window or frame by specifying the window or frame name. For example, if a variable called phoneNumber is declared in a document, you can refer to this variable from an iframe as parent.phoneNumber.</p>
-            </div>
+  
             </section>
-          <section class=".main-section" id="Constants">
-            <div class="content">
+          <section class="main-section" id="Constants">
+          
             <header>
               <h2>Constants</h2>
             </header>
@@ -160,10 +158,10 @@
                 <code> // THIS WILL CAUSE AN ERROR ALSO function f() { const g = 5; var g; //statements }</code>
                 <p>However, object attributes are not protected, so the following statement is executed without problems.</p>
                   <code>const MY_OBJECT = {"key": "value"}; MY_OBJECT.key = "otherValue";</code>
-            </div>
+  
                 </section>
-          <section class=".main-section" id="Data_types">
-            <div class="content">
+          <section class="main-section" id="Data_types">
+          
             <header>
               <h2>Data types</h2>
             </header>
@@ -179,10 +177,10 @@
               <li>and Object</li>
             </ul>
             <p>Although these data types are a relatively small amount, they enable you to perform useful functions with your applications. Objects and functions are the other fundamental elements in the language. You can think of objects as named containers for values, and functions as procedures that your application can perform.</p>          
-            </div>
+  
             </section>
-            <section class=".main-section" id="if_else_statement">
-              <div class="content">
+            <section class="main-section" id="if...else_statement">
+            
               <header>
                 <h2>if...else statement</h2>
               </header>
@@ -201,10 +199,10 @@
               <code>if (x = y) { /* statements here */ }</code>
               <p>If you need to use an assignment in a conditional expression, a common practice is to put additional parentheses around the assignment. For example:</p>
               <code>if ((x = y)) { /* statements here */ }</code>
-              </div>
+    
                   </section>
-            <section class=".main-section" id="While_statement">
-              <div class="content">
+            <section class="main-section" id="While_statement">
+            
               <header>
                 <h2>While statement</h2>
               </header>
@@ -223,10 +221,10 @@
               <li>After the third pass: n = 3 and x = 6</li>
               </ul>
               <p>After completing the third pass, the condition n < 3 is no longer true, so the loop terminates.</p>
-              </div>
+    
                   </section>
-            <section class=".main-section" id="Function_declarations">
-              <div class="content">
+            <section class="main-section" id="Function_declarations">
+            
               <header>
                 <h2>Function declarations</h2>
               </header>
@@ -242,15 +240,15 @@
               <p>The function square takes one argument, called number. The function consists of one statement that says to return the argument of the function (that is, number) multiplied by itself. The return statement specifies the value returned by the function.</p>
               <code>return number * number;</code>
               <p>Primitive parameters (such as a number) are passed to functions by value; the value is passed to the function, but if the function changes the value of the parameter, this change is not reflected globally or in the calling function.</p>
-              </div>
+    
                   </section>
-                  <section class=".main-section" id="Reference">
-                    <div class="content">
+                  <section class="main-section" id="Reference">
+                  
                     <header>
                       <h2>Reference</h2>
                     </header>
                     <p>All the documentation in this page is taken from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide">MDN</a></p>
-                  </div>
+        
                         </section>
         </div>
         </main>
