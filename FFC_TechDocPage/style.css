@@ -47,9 +47,6 @@ nav li {
   font-size: 1.2em;
 }
 
-main {
-  z-index: 1;
-}
 section {
   border: 1px solid rgb(78, 78, 78);
   margin: 1.5%;
@@ -62,9 +59,24 @@ section header {
   text-align: center;
 }
 
-.content {
+section p {
+  padding-left: 1%;
+  padding-right: 1%;
 }
 
+section ul {
+  padding-right: 5%;
+}
+section code {
+  background-color: black;
+  color: lawngreen;
+  display: inline-block;
+  line-height: 1em;
+  padding: 0.4%;
+  margin-left: 5%;
+  width: 80%;
+  text-align: left;
+}
 @media (max-width: 700px) {
   .page-container {
     flex-direction: column;
