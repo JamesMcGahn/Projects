@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="chickens.html">Home</a></li>
+        <li><a href="heaviestbirds.html">Heavy Chickens Attack! Table</a></li>
+        <li><a href="forms.html">Chickens Forms</a></li>
+        <li>
+          <a href="chickenraceform.html">Race Chickens, Chickens, Chickens</a>
+        </li>
+      </ul>
+    </nav>
+    <h1>Forms</h1>
+    <form action="/tacos">
+      <p>
+        <label for="username">Enter a Username</label>
+        <input type="text" placeholder="username" id="username" name="chickenman" />
+      </p>
+      <p>
+        <label for="password">Enter Password</label>
+        <input type="password" placeholder="enter password" id="password" name="password" />
+      </p>
+      <p>
+        <label for="color">Enter a Color</label>
+        <input type="color" id="color" />
+      </p>
+      <p>
+        <label for="number">Enter Number</label>
+        <input type="number" id="number" />
+      </p>
+      <button>Submit</button>
+    </form>
+    <h2>Search</h2>
+    <h3>Search Google</h3>
+    <form action="https://www.google.com/search">
+      <label for="search">Search Google</label>
+      <input type="text" name="q" id="search" />
+      <button>Search</button>
+    </form>
+
+    <h2>More Inputs</h2>
+    <form>
+      <input type="checkbox" name="agree" id="agree" checked />
+      <label for="agree">Do you agree?</label>
+      <p>
+        <label for="xs"> XS:</label>
+        <input type="radio" name="size" id="xs" value="xsmall" />
+        <label for="S"> S:</label>
+        <input type="radio" name="size" id="s" value="small" />
+        <label for="M"> M:</label>
+        <input type="radio" name="size" id="m" value="medium" />
+      </p>
+      <p>
+        <label for="">Select You Lunch</label>
+        <select name="meal" id="meal">
+          <option value="Fish">Fish</option>
+          <option value="Meat" selected>Meat</option>
+          <option value="Veg">Veggie</option>
+        </select>
+      </p>
+
+      <button>Submit</button>
+    </form>
+    <h2>Validations</h2>
+    <form>
+      <label for="first">First Name</label>
+      <input type="text" id="first" name="first" required />
+      <p>
+        <label for="user">USer Name</label>
+        <input type="text" id="user" name="user" minlength="5" maxlength="10" required />
+      </p>
+
+      <button>Submit</button>
+    </form>
+  </body>
+</html>
