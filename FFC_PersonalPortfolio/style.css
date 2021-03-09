@@ -1,0 +1,42 @@
+body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 1px solid white;
+}
+
+section#projects {
+  background-color: #45567d;
+  flex-basis: 100%;
+  border: 1px solid white;
+  padding: 1% 5% 1% 5%;
+}
+
+.project-grid-container {
+  border: 3px solid orange;
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  grid-template-rows: 80px 80px;
+  column-gap: 10px;
+  row-gap: 15px;
+}
+
+div.project-grid {
+  border: 3px solid rgb(255, 2, 141);
+  text-align: center;
+}
+
+.projectgrid img {
+  width: 50px;
+}
+/* display: grid;
+max-height: 100vh;
+width: 100%;
+grid-template-columns: 1fr 1fr 1fr;
+grid-template-rows: 1fr 1fr;
+column-gap: 15px;
+row-gap: 15px;
+grid-template-areas:
+  "box box box"
+  "box box box";
+border: 1px solid white; */
