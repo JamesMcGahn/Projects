@@ -43,11 +43,18 @@ div.project-grid {
 }
 .link-hover {
   display: none;
+  color: #ff7f50;
 }
 
 .project-tile:hover span.link-hover {
   display: inline;
+  color: #ff7f50;
+  font-weight: 400;
+}
+
+.project-tile a {
   color: white;
+  text-decoration: none;
 }
 
 .project-btn {
