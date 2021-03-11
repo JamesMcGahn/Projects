@@ -1,0 +1,10 @@
+#container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  flex-flow: wrap;
+}
+
+.pokeBox {
+  flex-basis: 20%;
+}
