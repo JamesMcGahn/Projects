@@ -1,3 +1,6 @@
+body {
+  text-align: center;
+}
 #container {
   display: flex;
   flex-direction: row;
@@ -6,5 +9,11 @@
 }
 
 .pokeBox {
-  flex-basis: 20%;
+  flex-basis: 16.66%;
+  text-align: center;
+}
+
+.pokeBox label {
+  font-weight: 700;
+  display: block;
 }
