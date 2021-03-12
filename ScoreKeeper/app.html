@@ -16,13 +16,21 @@
         <div class="board">
           <span id="play1board"></span>
         </div>
-        <div class="middle"><span id="msg">Select Match length below and lets get started!</span></div>
+        <div class="middle">
+          <div>
+            <div id="matchcount"></div>
+            <div id="player1match"></div>
+            <div></div>
+            <div id="player1match"></div>
+          </div>
+          <div id="msg"><p>Select Match length below and lets get started!</p></div>
+        </div>
         <div class="board">
           <span id="play2board"></span>
         </div>
       </div>
       <div class="btn-group">
-        <div class="scorebtn"><button id="player1">+1 Player 1</button></div>
+        <div class="scorebtn"><button id="player1" disabled>+1 Player 1</button></div>
         <div class="scorebtn">
           <select name="playTill" id="playTill">
             <option value="" disabled selected hidden>Play Till</option>
@@ -35,7 +43,7 @@
             <option value="7">7</option>
           </select>
         </div>
-        <div class="scorebtn"><button id="player2">+1 Player 2</button></div>
+        <div class="scorebtn"><button id="player2" disabled>+1 Player 2</button></div>
       </div>
       <div id="newGame-container"></div>
     </div>
