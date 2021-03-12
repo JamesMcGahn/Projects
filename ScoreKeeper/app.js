@@ -5,13 +5,19 @@ let game = 0;
 const scoreKeeper = {
     scoreCard: function (e) {
         e.target.id === "player1" ? player1Total++ : player2Total++;
-        console.log(player1Total, player2Total);
-        scoreKeeper.isWinner();
+
         scoreKeeper.updateBoard();
+        scoreKeeper.isWinner();
     },
     updateBoard: function () {
         player1Board.innerText = `${player1Total}`;
         player2Board.innerText = `${player2Total}`;
+        if (player1Total - player2Total > 4 || player2Total - player1Total > 4) {
+            msgBoard.innerText = "Lets Go!!!"
+        } else {
+            msgBoard.innerText = "VS."
+        }
+
     },
     gameTotal: function gameTotal(e) {
         game = parseInt(e.target.value);
@@ -24,6 +30,7 @@ const scoreKeeper = {
                 player1.style.backgroundColor = "green";
                 player2.style.backgroundColor = "red";
                 player2.disabled = true;
+                msgBoard.innerText = "Player 1 Wins...Maybe next Year?"
                 scoreKeeper.newGameBtn();
             } else {
                 console.log('player 2 wins');
@@ -31,6 +38,7 @@ const scoreKeeper = {
                 player2.disabled = true;
                 player2.style.backgroundColor = "green";
                 player1.style.backgroundColor = "red";
+                msgBoard.innerText = "Player 2 Wins .....You really want to try again?"
                 scoreKeeper.newGameBtn();
             }
         }
@@ -57,6 +65,8 @@ const scoreKeeper = {
         removeNewGameBtn = document.querySelector('#newgame');
         removeNewGameBtn.remove();
         scoreKeeper.updateBoard();
+        player2.style.backgroundColor = "rgb(116, 116, 255)";
+        player1.style.backgroundColor = "rgb(116, 116, 255)";
     }
 
 }
@@ -65,6 +75,7 @@ const player2 = document.querySelector('#player2');
 const playUntil = document.querySelector('#playTill');
 const player1Board = document.querySelector('#play1board');
 const player2Board = document.querySelector('#play2board');
+const msgBoard = document.querySelector('#msg');
 
 
 player1.addEventListener('click', scoreKeeper.scoreCard)
