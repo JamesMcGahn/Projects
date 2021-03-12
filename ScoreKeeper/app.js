@@ -33,10 +33,11 @@ const scoreKeeper = {
 
     },
     newGameBtn: function () {
-        const gameContainer = document.querySelector("#container");
+        const gameContainer = document.querySelector("#newGame-container");
         const newGameBtn = document.createElement('button');
         newGameBtn.innerText = "New Game?";
         newGameBtn.id = "newgame";
+        newGameBtn.classList.add('newGamebtn');
         gameContainer.appendChild(newGameBtn);
         const anotherGame = document.querySelector('#newgame');
         anotherGame.addEventListener('click', scoreKeeper.gameReset);
@@ -51,6 +52,7 @@ const scoreKeeper = {
         player1Total = 0;
         removeNewGameBtn = document.querySelector('#newgame');
         removeNewGameBtn.remove();
+        scoreKeeper.updateBoard();
     }
 
 }
