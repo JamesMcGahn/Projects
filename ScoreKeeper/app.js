@@ -7,6 +7,11 @@ const scoreKeeper = {
         e.target.id === "player1" ? player1Total++ : player2Total++;
         console.log(player1Total, player2Total);
         scoreKeeper.isWinner();
+        scoreKeeper.updateBoard();
+    },
+    updateBoard: function () {
+        player1Board.innerText = `${player1Total}`;
+        player2Board.innerText = `${player2Total}`;
     },
     gameTotal: function gameTotal(e) {
         game = parseInt(e.target.value);
@@ -52,6 +57,8 @@ const scoreKeeper = {
 const player1 = document.querySelector('#player1');
 const player2 = document.querySelector('#player2');
 const playUntil = document.querySelector('#playTill');
+const player1Board = document.querySelector('#play1board');
+const player2Board = document.querySelector('#play2board');
 
 
 player1.addEventListener('click', scoreKeeper.scoreCard)
