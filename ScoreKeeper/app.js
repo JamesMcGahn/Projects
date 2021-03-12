@@ -18,7 +18,11 @@ const scoreKeeper = {
         if (player1Total + player2Total !== game) {
             msgBoard.innerText = "VS."
         }
-        matchBoard.innerHTML = `<div> <h2> Match ${match}</h2> <p>Player 1 -- ${player1Wins} -- Player 2 ${player2Wins}</p> </div>`
+        if (match > 1) {
+            matchBoard.innerHTML = `<h2> Match ${match}</h2>`
+            ply1MatchBoard.innerHTML = `<h3>Player 1</h3><h4>${player1Wins}</4>`
+            ply2MatchBoard.innerHTML = `<h3>Player 2</h3><h4>${player2Wins}</4>`
+        }
     },
     gameTotal: function gameTotal(e) {
         game = parseInt(e.target.value);
@@ -88,6 +92,8 @@ const player1Board = document.querySelector('#play1board');
 const player2Board = document.querySelector('#play2board');
 const msgBoard = document.querySelector('#msg');
 const matchBoard = document.querySelector('#matchcount');
+const ply1MatchBoard = document.querySelector('#player1match');
+const ply2MatchBoard = document.querySelector('#player2match');
 
 
 player1.addEventListener('click', scoreKeeper.scoreCard)
