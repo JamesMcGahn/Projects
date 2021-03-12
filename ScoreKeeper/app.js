@@ -21,12 +21,16 @@ const scoreKeeper = {
             if (player1Total > player2Total) {
                 console.log('player 1 wins');
                 player1.disabled = true;
+                player1.style.backgroundColor = "green";
+                player2.style.backgroundColor = "red";
                 player2.disabled = true;
                 scoreKeeper.newGameBtn();
             } else {
                 console.log('player 2 wins');
                 player1.disabled = true;
                 player2.disabled = true;
+                player2.style.backgroundColor = "green";
+                player1.style.backgroundColor = "red";
                 scoreKeeper.newGameBtn();
             }
         }

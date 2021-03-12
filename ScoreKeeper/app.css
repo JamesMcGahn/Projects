@@ -1,5 +1,5 @@
 body {
-  background-color: lightgray;
+  background-color: rgba(211, 211, 211, 0.671);
   display: flex;
   width: 100%;
   justify-content: center;
@@ -9,10 +9,11 @@ body {
 
 #container {
   flex-basis: 60%;
-  border: 3px solid white;
+  border: 3px solid rgb(0, 0, 0);
   display: flex;
   flex-direction: column;
   justify-content: center;
+  box-shadow: 1px 2px 50px 0px rgb(24, 24, 24);
 }
 
 #scoreboard {
@@ -27,7 +28,7 @@ body {
   min-height: 250px;
   max-width: 300px;
   border: 1px solid black;
-  flex-basis: 33%;
+  flex-basis: 33.3%;
 }
 
 .board {
@@ -41,12 +42,24 @@ body {
   display: flex;
   flex-direction: row;
   text-align: center;
+  box-shadow: inset 1px 2px 50px 0px rgb(24, 24, 24);
 }
 
 .scorebtn {
   max-width: 300px;
   flex-basis: 33%;
   border: 1px solid black;
+  padding: 1% 2.4% 1% 2.4%;
+}
+
+#player1,
+#player2 {
+  padding: 2% 5% 2% 5%;
+  background-color: rgb(116, 116, 255);
+  color: white;
+  font-family: monospace;
+  font-size: 1.3em;
+  box-shadow: 1px 2px 5px 0px rgb(24, 24, 24);
 }
 
 #newGame-container {
