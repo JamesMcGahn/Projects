@@ -1,0 +1,43 @@
+body {
+  background-color: lightgray;
+}
+
+#container {
+  width: 100%;
+  border: 3px solid white;
+  display: flex;
+  flex-direction: column;
+  /* align-content: center; */
+  /* justify-content: center; */
+  padding: 5% 0% 5% 15%;
+}
+
+#scoreboard {
+  flex-basis: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.board,
+.middle {
+  min-height: 250px;
+  max-width: 300px;
+  border: 1px solid black;
+  flex-basis: 33%;
+}
+
+.board {
+  font-family: "Raleway Dots", cursive;
+}
+.btn-group {
+  flex-basis: 100%;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+}
+
+.scorebtn {
+  max-width: 300px;
+  flex-basis: 33%;
+  border: 1px solid black;
+}
