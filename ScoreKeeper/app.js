@@ -30,7 +30,7 @@ const scoreKeeper = {
                 player1.style.backgroundColor = "green";
                 player2.style.backgroundColor = "red";
                 player2.disabled = true;
-                msgBoard.innerText = "Player 1 Wins...Maybe next Year?"
+                msgBoard.innerText = "Player 1 Wins .......Maybe next try or next Year?"
                 scoreKeeper.newGameBtn();
             } else {
                 console.log('player 2 wins');
