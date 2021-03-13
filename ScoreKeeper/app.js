@@ -18,7 +18,7 @@ const scoreKeeper = {
         if (player1Total + player2Total !== game) {
             msgBoard.innerText = "VS."
         }
-        if (match > 1) {
+        if (match > 0) {
             matchBoard.innerHTML = `<h2> Match ${match}</h2>`
             ply1MatchBoard.innerHTML = `<h3>Player 1</h3><h4>${player1Wins}</4>`
             ply2MatchBoard.innerHTML = `<h3>Player 2</h3><h4>${player2Wins}</4>`
@@ -42,7 +42,6 @@ const scoreKeeper = {
                 msgBoard.innerText = "Player 1 Wins"
                 scoreKeeper.newGameBtn();
                 player1Wins++;
-                match++
             } else {
                 console.log('player 2 wins');
                 player1.disabled = true;
@@ -52,7 +51,6 @@ const scoreKeeper = {
                 msgBoard.innerText = "Player 2 Wins"
                 scoreKeeper.newGameBtn();
                 player2Wins++;
-                match++
             }
         }
 
@@ -80,7 +78,7 @@ const scoreKeeper = {
 
         player2.style.backgroundColor = "rgb(116, 116, 255)";
         player1.style.backgroundColor = "rgb(116, 116, 255)";
-
+        match++;
         scoreKeeper.updateBoard();
     }
 
