@@ -9,6 +9,14 @@ app.set('views', path.join(__dirname, '/views'));
 app.get('/', (req, res) => {
     res.render("index.ejs");
 })
+app.get('/random', (req, res) => {
+    const num = Math.floor(Math.random() * 10) + 1;
+    res.render("random.ejs", { rand: num });
+})
+app.get('/r/:subreddit', (req, res) => {
+    const { subreddit } = req.params;
+    res.render("subreddit.ejs", { subreddit });
+})
 
 app.listen('3000', () => {
     console.log("Listening on port 3000");
