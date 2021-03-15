@@ -21,7 +21,7 @@ app.get('/random', (req, res) => {
 app.get('/r/:subreddit', (req, res) => {
     const { subreddit } = req.params;
     const data = redditData[subreddit];
-    console.log(data);
+    //console.log(data);
     if (data) {
         res.render("subreddit.ejs", { ...data });
     } else {
@@ -35,6 +35,6 @@ app.get('/cats', (req, res) => {
     res.render("cats.ejs", { cats });
 })
 
-app.listen('3001', () => {
-    console.log("Listening on port 3001");
+app.listen('3000', () => {
+    console.log("Listening on port 3000");
 })
