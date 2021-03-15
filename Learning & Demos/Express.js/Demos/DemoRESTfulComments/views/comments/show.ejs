@@ -7,9 +7,10 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>Comment <%= id %></h1>
+    <h1>Comment <%= comment.id %></h1>
     <%= comment.comment %> - <b><%= comment.user %></b>
 
     <a href="/comments">Back to Comments</a>
+    <a href="/comments/<%= comment.id %>/edit">Edit Comments</a>
   </body>
 </html>
