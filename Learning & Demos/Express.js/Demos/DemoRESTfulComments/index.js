@@ -8,10 +8,31 @@ app.use(express.json());
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));
 
+const comments = [
+    {
+        user: "Bob",
+        comment: "i have a turkey for sale"
+    },
+    {
+        user: "Joe",
+        comment: "i have a pigeon for sale"
+    },
+    {
+        user: "hank",
+        comment: "i have a raven for sale"
+    },
+    {
+        user: "frank",
+        comment: "i have a beetle for sale"
+    },
 
+]
+app.get('/comments', (req, res) => {
+    res.render('comments/index.ejs', { comments });
+})
 
-app.get('/', (req, res) => {
-    res.render("home.ejs");
+app.get('/comments/new', (req, res) => {
+    res.render('comments/new.ejs')
 })
 
 // app.get('/tacos', (req, res) => {

@@ -8,6 +8,10 @@
   </head>
   <body>
     <h1>Home</h1>
-    <h2>cheese</h2>
+    <ul>
+      <% for(let c of comments) { %>
+      <li><%=c.comment%> - <b><%= c.user %></b></li>
+      <%} %>
+    </ul>
   </body>
 </html>
