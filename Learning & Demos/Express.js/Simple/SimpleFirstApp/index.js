@@ -24,6 +24,10 @@ app.get('/about', (req, res) => {
 app.get('/cheese', (req, res) => {
     res.send('This is cheese')
 })
+app.get('/search', (req, res) => {
+    const { q } = req.query;
+    res.send(`This is search results for: ${q} `)
+})
 app.get('*', (req, res) => {
     res.send('IDK what you are looking for')
 })
