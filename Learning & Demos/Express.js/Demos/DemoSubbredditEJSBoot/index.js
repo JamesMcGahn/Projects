@@ -12,11 +12,11 @@ app.set('public', path.join(__dirname, '/public'));
 
 
 app.get('/', (req, res) => {
-    res.render("index.ejs");
+    res.render("index.ejs", { name: "Home" });
 })
 app.get('/random', (req, res) => {
     const num = Math.floor(Math.random() * 10) + 1;
-    res.render("random.ejs", { rand: num });
+    res.render("random.ejs", { rand: num, name: "Random" });
 })
 app.get('/r/:subreddit', (req, res) => {
     const { subreddit } = req.params;
