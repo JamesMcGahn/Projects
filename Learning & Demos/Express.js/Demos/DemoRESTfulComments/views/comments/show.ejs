@@ -7,12 +7,9 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>Home</h1>
-    <ul>
-      <% for(let c of comments) { %>
-      <li><%=c.comment%> - <b><%= c.user %></b> <a href="/comments/<%= c.id %>">Details</a></li>
-      <%} %>
-    </ul>
-    <a href="comments/new"> Add New Comment</a>
+    <h1>Comment <%= id %></h1>
+    <%= comment.comment %> - <b><%= comment.user %></b>
+
+    <a href="/comments">Back to Comments</a>
   </body>
 </html>
