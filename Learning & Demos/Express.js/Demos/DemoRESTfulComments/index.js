@@ -53,6 +53,13 @@ app.get('/comments/:id', (req, res) => {
     res.render('comments/show', { id, comment })
 })
 
+app.patch('/comments/:id', (req, res) => {
+    const { id } = req.params;
+    const newCommentText = req.body.comment;
+    const foundComment = comments.find(c => c.id === id);
+    foundComment.comment = newCommentText;
+})
+
 app.listen('3015', () => {
     console.log("Listening on port 3015");
 })
