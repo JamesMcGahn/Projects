@@ -35,14 +35,11 @@ app.get('/comments/new', (req, res) => {
     res.render('comments/new.ejs')
 })
 
-// app.get('/tacos', (req, res) => {
-//     res.send('GET /tacos response');
-// })
-// app.post('/tacos', (req, res) => {
-//     console.log(req.body);
-//     const { meat, qty } = req.body;
-//     res.send(`You Ordered ${qty} ${meat} tacos`);
-// })
+app.post('/comments', (req, res) => {
+    const { username: user, comment } = req.body;
+    comments.push({ user, comment });
+    res.redirect('/comments');
+})
 
 
 
