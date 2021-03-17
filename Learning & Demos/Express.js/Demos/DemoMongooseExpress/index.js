@@ -20,21 +20,22 @@ app.use(methodOverride('_method'));
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 
+const categories = ['fruit', 'vegetable', 'dairy'];
 
 app.get('/products', async (req, res) => {
     const products = await Product.find({});
-    console.log(products);
+    // console.log(products);
     res.render('products/index', { products });
 })
 
 app.get('/products/new', (req, res) => {
 
-    res.render('products/new');
+    res.render('products/new', { categories });
 })
 
 app.post('/products', async (req, res) => {
     const newProduct = new Product(req.body)
-    console.log(newProduct);
+    //console.log(newProduct);
     await newProduct.save();
     res.redirect(`/products/${newProduct._id}`);
 })
@@ -48,7 +49,7 @@ app.get('/products/:id', async (req, res) => {
 app.get('/products/:id/edit', async (req, res) => {
     const { id } = req.params;
     const product = await Product.findById(id);
-    res.render('products/edit', { product });
+    res.render('products/edit', { product, categories });
 })
 
 app.put('/products/:id', async (req, res) => {
