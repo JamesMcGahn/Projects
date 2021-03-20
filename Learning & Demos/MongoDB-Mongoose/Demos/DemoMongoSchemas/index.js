@@ -4,6 +4,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const Product = require('./models/product');
+const { render } = require('ejs');
 
 mongoose.connect('mongodb://localhost:27017/farmStand', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
@@ -20,6 +21,19 @@ app.use(methodOverride('_method'));
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 
+
+//farms
+app.get('/farms/new', (req, res) => {
+    res.render('farms/new')
+})
+
+
+
+
+
+
+
+// products
 const categories = ['fruit', 'vegetable', 'dairy'];
 
 app.get('/products', async (req, res) => {
