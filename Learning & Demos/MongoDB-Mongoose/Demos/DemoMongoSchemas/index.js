@@ -4,9 +4,10 @@ const path = require('path');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const Product = require('./models/product');
+const Farm = require('./models/farm');
 const { render } = require('ejs');
 
-mongoose.connect('mongodb://localhost:27017/farmStand', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://localhost:27017/farmStand2', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log("Connection Open")
     })
@@ -23,12 +24,44 @@ mongoose.set('useFindAndModify', false);
 
 
 //farms
+app.get('/farms', async (req, res) => {
+    const farms = await Farm.find({});
+    res.render('farms/index', { farms });
+})
+
 app.get('/farms/new', (req, res) => {
     res.render('farms/new')
 })
 
 
+app.post('/farms', async (req, res) => {
+    const farm = new Farm(req.body);
+    await farm.save()
+    res.redirect('/farms');
+})
 
+app.get('/farms/:id', async (req, res) => {
+    const farm = await Farm.findById(req.params.id).populate('products');
+    res.render('farms/show', { farm });
+})
+
+app.get('/farms/:id/products/new', async (req, res) => {
+    const { id } = req.params;
+    const farm = await Farm.findById(id);
+    res.render('products/new', { categories, id, farm })
+
+})
+
+app.post('/farms/:id/products', async (req, res) => {
+    const { id } = req.params;
+    const farm = await Farm.findById(id);
+    const newFarmProduct = new Product(req.body);
+    farm.products.push(newFarmProduct);
+    newFarmProduct.farm = farm;
+    await farm.save();
+    await newFarmProduct.save();
+    res.redirect(`/farms/${farm._id}`);
+});
 
 
 
@@ -87,6 +120,6 @@ app.delete('/products/:id', async (req, res) => {
     res.redirect('/products');
 })
 
-app.listen(3012, () => {
+app.listen(3000, () => {
     console.log("listening on port 3012");
 })
