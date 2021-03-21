@@ -21,6 +21,18 @@ app.set('views', 'views');
 app.use(express.urlencoded({ extended: true }));
 app.use(session({ secret: 'needabettersecret', resave: false, saveUninitialized: false }))
 
+
+//adding middleware to check for login
+const requireLogin = (req, res, next) => {
+    if (!req.session.user_id) {
+        return res.redirect('/login')
+    }
+    next();
+}
+
+
+
+
 app.get('/register', (req, res) => {
     res.render('register');
 })
@@ -37,14 +49,10 @@ app.post('/register', async (req, res) => {
     res.redirect('/secret');
 })
 
-app.get('/secret', (req, res) => {
-    if (!req.session.user_id) {
-        res.redirect('/login');
-    }
-    else {
-        res.render('secret');
-    }
+app.get('/secret', requireLogin, (req, res) => {
+    res.render('secret');
 })
+
 app.get('/login', (req, res) => {
     res.render('login');
 })
