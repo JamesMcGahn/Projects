@@ -1,11 +1,15 @@
-
 mapboxgl.accessToken = mapToken;
-var map = new mapboxgl.Map({
-    container: 'map',
+const map = new mapboxgl.Map({
+    container: 'cluster-map',
     style: 'mapbox://styles/mapbox/light-v10',
     center: [-103.59179687498357, 40.66995747013945],
     zoom: 3
 });
+
+map.addControl(new mapboxgl.NavigationControl());
+
+
+
 
 map.on('load', function () {
     // Add a new source from our GeoJSON data and
@@ -13,10 +17,9 @@ map.on('load', function () {
     // add the point_count property to your source data.
     map.addSource('campgrounds', {
         type: 'geojson',
-        // Point to GeoJSON data. This example visualizes all M1.0+ campgrounds
+        // Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
         // from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
-        data:
-            campgrounds,
+        data: campgrounds,
         cluster: true,
         clusterMaxZoom: 14, // Max zoom to cluster points on
         clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
@@ -36,18 +39,18 @@ map.on('load', function () {
             'circle-color': [
                 'step',
                 ['get', 'point_count'],
-                '#03a9f4',
+                '#00BCD4',
                 10,
-                '#2196f3',
+                '#2196F3',
                 30,
-                '#3f51b5'
+                '#3F51B5'
             ],
             'circle-radius': [
                 'step',
                 ['get', 'point_count'],
-                17,
+                15,
                 10,
-                22,
+                20,
                 30,
                 25
             ]
@@ -81,10 +84,10 @@ map.on('load', function () {
 
     // inspect a cluster on click
     map.on('click', 'clusters', function (e) {
-        var features = map.queryRenderedFeatures(e.point, {
+        const features = map.queryRenderedFeatures(e.point, {
             layers: ['clusters']
         });
-        var clusterId = features[0].properties.cluster_id;
+        const clusterId = features[0].properties.cluster_id;
         map.getSource('campgrounds').getClusterExpansionZoom(
             clusterId,
             function (err, zoom) {
