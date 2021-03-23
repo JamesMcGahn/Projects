@@ -142,7 +142,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
-    res.locals.currentUser = req.user;
+    res.locals.currentUser = req.user || false;
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
     next();
@@ -166,7 +166,7 @@ app.use((err, req, res, next) => {
     if (!err.message) err.message = "Something Went Wrong";
     res.status(statusCode).render('error', { err });
 })
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3020;
 app.listen(port, (req, res) => {
     console.log("App firing on 3020");
 })
