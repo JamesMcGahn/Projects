@@ -8,4 +8,5 @@ Simple vanilla JS timer that allows user to enter duration for the timer. User c
 
 ## Tech Stack
 
+Html/CSS
 Vanilla JS
