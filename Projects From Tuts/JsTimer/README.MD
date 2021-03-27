@@ -1,4 +1,4 @@
-#JS Timer
+# JS Timer
 
 Project was done with Colt Steele/Stephen Grider JS Course
 
