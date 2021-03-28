@@ -59,6 +59,7 @@ const onInput = async (event) => {
         option.addEventListener('click', () => {
             dropdown.classList.remove('is-active');
             input.value = movie.Title;
+            onMovieSelect(movie);
         })
         resultsWrapper.appendChild(option);
     }
@@ -71,3 +72,54 @@ document.addEventListener('click', event => {
         dropdown.classList.remove('is-active');
     }
 });
+
+const onMovieSelect = async movie => {
+    const res = await axios.get('http://www.omdbapi.com/', {
+        params: {
+            apikey: keys.API_KEY,
+            i: movie.imdbID,
+        }
+
+    })
+    const summary = document.querySelector('#summary');
+    summary.innerHTML = movieTemplate(res.data);
+
+}
+
+const movieTemplate = (movieDetail) => {
+    return `
+    <article class="media">
+    <figure class="media-left">
+      <p class="image">
+        <img src="${movieDetail.Poster}" />
+      </p>
+    </figure>
+    <div class="media-content">
+      <div class="content">
+        <h1>${movieDetail.Title}</h1>
+        <h4>${movieDetail.Genre}</h4>
+        <p>${movieDetail.Plot}</p>
+      </div>
+    </div>
+    <article  class="notification is-primary">
+    <p class="title">${movieDetail.Awards}</p>
+    <p class="subtitle">Awards</p>
+  </article>
+  <article  class="notification is-primary">
+    <p class="title">${movieDetail.BoxOffice}</p>
+    <p class="subtitle">Box Office</p>
+  </article>
+  <article  class="notification is-primary">
+    <p class="title">${movieDetail.Metascore}</p>
+    <p class="subtitle">Metascore</p>
+  </article>
+  <article  class="notification is-primary">
+    <p class="title">${movieDetail.imdbRating}</p>
+    <p class="subtitle">IMDB Rating</p>
+  </article>
+  <article  class="notification is-primary">
+    <p class="title">${movieDetail.imdbVotes}</p>
+    <p class="subtitle">IMDB Votes</p>
+  </article
+    `;
+}
