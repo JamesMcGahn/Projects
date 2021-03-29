@@ -47,6 +47,7 @@ const ticketSearch = async (companyId) => {
     params.append('query', `organization:${companyId} type:ticket status<solved`);
     results = await fetchData(params);
     console.log(results)
+    renderTable(results)
 }
 
 function renderDropdown(results) {
@@ -61,6 +62,27 @@ function renderDropdown(results) {
         })
         searchDropdown.appendChild(companyResult);
     }
+}
+
+function renderTable(results) {
+    const tableContainer = document.querySelector('#tableContainer');
+
+    ticketData = results.results;
+    for (let i = 0; i < ticketData.length; i++) {
+        const tableRow = document.createElement('tr')
+        let fields = results.results[i].fields;
+        let ticketType = fields[fields.findIndex(x => x.id == 360039468853)].value;
+        let ticketSummary = fields[fields.findIndex(x => x.id == 360041558474)].value;
+
+        tableRow.innerHTML = `
+        <td>${ticketData[i].id}</td>
+        <td>${ticketType}</td>
+        <td>${ticketSummary === null ? results.results[i].raw_subject : ticketSummary}</td>
+        <td>${ticketData[i].status}</td>
+        `
+        tableContainer.appendChild(tableRow);
+    }
+
 }
 
 
