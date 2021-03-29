@@ -1,3 +1,51 @@
+body {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-family: "Montserrat", sans-serif;
+}
+
+#container {
+  flex-basis: 100%;
+}
+
 .dropDown-item {
   border: 1px solid black;
+}
+
+.hidden {
+  display: none;
+}
+
+#tableContainer {
+  width: 80vw;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 10px;
+  box-shadow: 1px 3px 15px 0px rgb(24, 24, 24);
+  border-radius: 01%;
+  width: 100%;
+}
+
+th,
+td {
+  /* border: 1px solid black; */
+  padding: 15px;
+}
+
+th {
+  text-align: center;
+}
+tr:nth-of-type(even) {
+  background-color: #eee;
+}
+
+.pending {
+  background-color: rgba(0, 0, 255, 0.699);
+  border-radius: 10%;
+  padding: 0.3rem 1rem 0.3rem 1rem;
+  color: white;
+  box-shadow: 1px 2px 5px 0px rgba(24, 24, 24, 0.7);
 }

@@ -66,7 +66,16 @@ function renderDropdown(results) {
 
 function renderTable(results) {
     const tableContainer = document.querySelector('#tableContainer');
-
+    const table = document.createElement('table');
+    tableContainer.appendChild(table);
+    const tableHeader = document.createElement('tr');
+    tableHeader.innerHTML = `
+    <th>Ticket #</th>
+    <th>Ticket Type</th>
+    <th>Ticket Summary</th>
+    <th>Status</th>
+    `
+    table.appendChild(tableHeader);
     ticketData = results.results;
     for (let i = 0; i < ticketData.length; i++) {
         const tableRow = document.createElement('tr')
@@ -75,12 +84,12 @@ function renderTable(results) {
         let ticketSummary = fields[fields.findIndex(x => x.id == 360041558474)].value;
 
         tableRow.innerHTML = `
-        <td>${ticketData[i].id}</td>
+        <td><a href="${keys.DOMAIN}/agent/tickets/${ticketData[i].id}">${ticketData[i].id}</a></td>
         <td>${ticketType}</td>
         <td>${ticketSummary === null ? results.results[i].raw_subject : ticketSummary}</td>
-        <td>${ticketData[i].status}</td>
+        <td><span class="${ticketData[i].status}"> ${ticketData[i].status}</span></td>
         `
-        tableContainer.appendChild(tableRow);
+        table.appendChild(tableRow);
     }
 
 }
