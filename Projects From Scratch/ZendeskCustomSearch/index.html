@@ -14,10 +14,13 @@
   <body>
     <div class="left"></div>
     <div id="container">
-      <input type="text" />
+      <label id="searchLabel" for="search">Search By Account Code or Company Name:</label>
+      <input id="search" type="text" />
       <div id="searchOptions"></div>
     </div>
-    <div id="tableContainer"></div>
+    <div id="tableContainer">
+      <table id="results-table"></table>
+    </div>
     <div class="right"></div>
     <script src="app.js"></script>
   </body>

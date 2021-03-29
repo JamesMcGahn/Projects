@@ -5,6 +5,8 @@ body {
   flex-wrap: wrap;
   font-family: "Montserrat", sans-serif;
   margin: 0 auto;
+  background: linear-gradient(#dce1e3, #e6ecec);
+  height: 100vh;
 }
 
 .left,
@@ -17,7 +19,6 @@ body {
   width: 100%;
   margin-top: 1%;
   margin-bottom: 20px;
-  border: 1px solid black;
 }
 
 #container input {
@@ -28,14 +29,20 @@ body {
   font-size: 1.5em;
   border-radius: 5px;
 }
+#searchLabel {
+  margin-left: 20vw;
+}
 
 #searchOptions {
   margin-left: 20vw;
   width: 50.5%;
   margin-bottom: 0px;
   text-align: left;
+  background-color: white;
 }
-
+#searchOptions:hover {
+  cursor: pointer;
+}
 .dropDown-item {
   border: 1px solid black;
   font-family: "Montserrat", sans-serif;
@@ -54,14 +61,17 @@ body {
 
 #tableContainer {
   width: 80vw;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
+  text-align: center;
 }
 table {
   border-collapse: collapse;
   border-spacing: 10px;
   box-shadow: 1px 3px 15px 0px rgb(24, 24, 24);
-  border-radius: 01%;
+  border-radius: 10px;
   width: 100%;
+  background: white;
+  margin-bottom: 20px;
 }
 
 th,
@@ -72,13 +82,17 @@ td {
 
 th {
   text-align: center;
+  background-color: #203647;
+  color: white;
 }
 tr:nth-of-type(even) {
   background-color: #eee;
 }
-
+#td-summary {
+  text-align: left;
+}
 .pending {
-  background-color: rgba(0, 0, 255, 0.699);
+  background-color: #007cc7;
   border-radius: 10%;
   padding: 0.3rem 1rem 0.3rem 1rem;
   color: white;
@@ -86,7 +100,7 @@ tr:nth-of-type(even) {
 }
 
 .hold {
-  background-color: rgba(0, 0, 0, 0.699);
+  background-color: #12232e;
   border-radius: 10%;
   padding: 0.3rem 2rem 0.3rem 2rem;
   color: white;
@@ -104,7 +118,6 @@ tr:nth-of-type(even) {
 
 .hidden {
   display: none;
-  background-color: blue;
 }
 
 a {
@@ -115,4 +128,12 @@ a {
 
 a:hover {
   cursor: pointer;
+}
+
+.no-results {
+  box-shadow: 1px 3px 15px 0px rgb(24, 24, 24, 0.6);
+  border-radius: 10px;
+  margin-left: 30vw;
+  width: 35vw;
+  padding: 2vh;
 }
