@@ -28,6 +28,7 @@ body {
   font-family: "Montserrat", sans-serif;
   font-size: 1.5em;
   border-radius: 5px;
+  border: #203647 2px solid;
 }
 #searchLabel {
   margin-left: 20vw;
@@ -51,6 +52,10 @@ body {
   height: 7vh;
   padding-top: 0;
   margin: 0;
+  box-shadow: 4px 0px 4px 0px rgba(24, 24, 24, 0.7);
+}
+.dropDown-item:last-child {
+  box-shadow: 4px 4px 4px 0px rgba(24, 24, 24, 0.7);
 }
 
 .dropDown-item h6 {
@@ -60,11 +65,14 @@ body {
 }
 
 #tableContainer {
+  margin-left: 0.5vw;
   width: 80vw;
+  /* height: 80vh; */
   margin-bottom: 30px;
   text-align: center;
 }
-table {
+
+#results-table {
   border-collapse: collapse;
   border-spacing: 10px;
   box-shadow: 1px 3px 15px 0px rgb(24, 24, 24);
@@ -133,7 +141,8 @@ a:hover {
 .no-results {
   box-shadow: 1px 3px 15px 0px rgb(24, 24, 24, 0.6);
   border-radius: 10px;
-  margin-left: 30vw;
+  margin-left: 19vw;
   width: 35vw;
   padding: 2vh;
+  background-color: white;
 }

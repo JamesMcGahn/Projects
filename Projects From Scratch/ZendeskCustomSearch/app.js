@@ -55,10 +55,13 @@ function renderDropdown(results) {
     for (let i = 0; i < results.results.length; i++) {
         companyResult = document.createElement('div');
         companyResult.classList.add('dropDown-item');
-        companyResult.innerHTML = `<h6> ${results.results[i].organization_fields.lingo_account_code} ${results.results[i].name}</h6> `
+        let companyName = results.results[i].name;
+        companyName = companyName.length > 43 ? `${companyName.substring(0, 43)}...` : companyName;
+        companyResult.innerHTML = `<h6> ${results.results[i].organization_fields.lingo_account_code} ${companyName}</h6> `
         searchOptions.classList.remove('hidden');
         companyResult.addEventListener('click', () => {
             console.log(results.results[i].id)
+            search.value = results.results[i].name;
             ticketSearch(results.results[i].id);
             searchOptions.classList.add('hidden');
             while (searchOptions.hasChildNodes()) {
