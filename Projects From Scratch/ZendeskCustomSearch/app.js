@@ -63,10 +63,7 @@ function renderDropdown(results) {
             console.log(results.results[i].id)
             search.value = results.results[i].name;
             ticketSearch(results.results[i].id);
-            searchOptions.classList.add('hidden');
-            while (searchOptions.hasChildNodes()) {
-                searchOptions.removeChild(searchOptions.firstChild);
-            }
+            clearSearchOptions();
         })
         searchOptions.appendChild(companyResult);
     }
@@ -98,8 +95,8 @@ function renderTable(results) {
             let ticketAcctCode = fields[fields.findIndex(x => x.id == 360042338954)].value;
             tableRow.innerHTML = `
         <td><a href="${keys.DOMAIN}/agent/tickets/${ticketData[i].id}">${ticketData[i].id}</a></td>
-        <td>${ticketAcctCode.toUpperCase()}</td>
-        <td>${ticketType}</td>
+        <td>${ticketAcctCode === null ? ticketAcctCode : ticketAcctCode.toUpperCase()}</td>
+        <td>${ticketType === null ? 'Not Entered' : ticketType}</td>
         <td id="td-summary">${ticketSummary === null ? results.results[i].raw_subject : ticketSummary}</td>
         <td><span class="${ticketData[i].status}"> ${ticketData[i].status}</span></td>
         `
@@ -115,6 +112,21 @@ function renderTable(results) {
     }
 
 }
+
+const clearSearchOptions = () => {
+    searchOptions.classList.add('hidden');
+    while (searchOptions.hasChildNodes()) {
+        searchOptions.removeChild(searchOptions.firstChild);
+    }
+}
+
+
+document.addEventListener('click', event => {
+    if (!searchOptions.contains(event.target)) {
+        clearSearchOptions();
+    }
+});
+
 
 
 const search = document.querySelector('input');
