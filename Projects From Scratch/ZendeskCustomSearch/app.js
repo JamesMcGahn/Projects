@@ -55,12 +55,13 @@ function renderDropdown(results) {
     for (let i = 0; i < results.results.length; i++) {
         companyResult = document.createElement('div');
         companyResult.classList.add('dropDown-item');
-        companyResult.innerHTML = `<h1> ${results.results[i].organization_fields.lingo_account_code} ${results.results[i].name} `
+        companyResult.innerHTML = `<h6> ${results.results[i].organization_fields.lingo_account_code} ${results.results[i].name}</h6> `
         companyResult.addEventListener('click', () => {
             console.log(results.results[i].id)
             ticketSearch(results.results[i].id);
+            searchOptions.classList.add('hidden');
         })
-        searchDropdown.appendChild(companyResult);
+        searchOptions.appendChild(companyResult);
     }
 }
 
@@ -98,3 +99,4 @@ function renderTable(results) {
 const search = document.querySelector('input');
 search.addEventListener('input', debounce(companySearch));
 const searchDropdown = document.querySelector('#container');
+const searchOptions = document.querySelector('#searchOptions');
