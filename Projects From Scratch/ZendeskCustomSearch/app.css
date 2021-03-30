@@ -4,7 +4,7 @@ html {
 body {
   font-family: "Montserrat", sans-serif;
   background: rgb(18, 35, 46);
-  background: linear-gradient(0deg, rgba(18, 35, 46, 0.89) 0%, rgba(32, 54, 71, 0.3) 3%, rgba(255, 255, 255, 1) 100%);
+  background: linear-gradient(0deg, rgba(18, 35, 46, 0.4) 0%, rgba(32, 54, 71, 0.1) 65%, rgba(255, 255, 255, 1) 100%);
   background-repeat: no-repeat;
   background-size: cover;
   height: 100%;
