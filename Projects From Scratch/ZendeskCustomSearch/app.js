@@ -52,6 +52,7 @@ const ticketSearch = async (companyId) => {
 
 function renderDropdown(results) {
     console.log(results);
+    if (results.results.length === 0) renderTable(results);
     for (let i = 0; i < results.results.length; i++) {
         companyResult = document.createElement('div');
         companyResult.classList.add('dropDown-item');
