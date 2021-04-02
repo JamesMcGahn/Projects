@@ -30,16 +30,21 @@ renderNotes(notes, filters);
 document.querySelector('#create-note').addEventListener('click', (e) => {
 
 })
-document.querySelector('#remove-all').addEventListener('click', (e) => {
 
-})
 
 document.querySelector('#search-text').addEventListener('change', (e) => {
     filters.searchText = e.target.value;
     renderNotes(notes, filters);
 })
 
-
+document.querySelector('#name-form').addEventListener('submit', (e) => {
+    e.preventDefault()
+    e.target.elements.firstName.value
+})
+document.querySelector('#filter-by').addEventListener('change', (e) => {
+    e.preventDefault()
+    e.target.elements.firstName.value
+})
 
 
 

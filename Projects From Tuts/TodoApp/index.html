@@ -8,11 +8,14 @@
   </head>
   <body>
     <h1>Todo App</h1>
-    <input id="new-todo-text" type="text" placeholder="Enter a Todo" />
 
-    <button id="create-todo">Add Todo</button>
     <input id="filter-todo" type="text" placeholder="Filter" />
+    <input id="hide-completed" type="checkbox" />
     <div id="todo-list"></div>
+    <form id="create-todo">
+      <input type="text" placeholder="Enter a Todo" name="firstName" />
+      <button>submit</button>
+    </form>
     <script src="index.js"></script>
   </body>
 </html>
