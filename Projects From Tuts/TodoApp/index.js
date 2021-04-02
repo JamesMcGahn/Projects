@@ -33,3 +33,12 @@ const sortNotes = function (todos) {
         }
     })
 }
+
+p = document.querySelectorAll('p');
+
+p.forEach(x => {
+    if (x.textContent.includes('the')) {
+        x.remove();
+    }
+});
+
