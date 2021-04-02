@@ -1,16 +1,14 @@
-const notes = [{
-    title: 'trip',
-    body: 'ham'
-}, {
-    title: 'trip 1',
-    body: 'ham 2'
-}, {
-    title: 'trip 2',
-    body: 'ham 2'
-}];
+let notes = [];
 
 const filters = {
     searchText: ''
+}
+
+//check for existing data
+const notesJSON = localStorage.getItem('notes');
+
+if (notesJSON !== null) {
+    notes = JSON.parse(notesJSON)
 }
 
 const renderNotes = function (notes, filters) {
@@ -21,14 +19,25 @@ const renderNotes = function (notes, filters) {
     document.querySelector('#notes').innerHTML = ``;
     filteredNotes.forEach((note) => {
         const noteEl = document.createElement('p');
-        noteEl.textContent = note.title;
+
+        if (note.title.length > 0) {
+            noteEl.textContent = note.title;
+        } else {
+            noteEl.textContent = 'Unamed Note';
+        }
+
         document.querySelector('#notes').appendChild(noteEl);
     })
 }
 renderNotes(notes, filters);
 
 document.querySelector('#create-note').addEventListener('click', (e) => {
-
+    notes.push({
+        title: '',
+        body: ''
+    })
+    localStorage.setItem('notes', JSON.stringify(notes))
+    renderNotes(notes, filters);
 })
 
 
@@ -42,8 +51,7 @@ document.querySelector('#name-form').addEventListener('submit', (e) => {
     e.target.elements.firstName.value
 })
 document.querySelector('#filter-by').addEventListener('change', (e) => {
-    e.preventDefault()
-    e.target.elements.firstName.value
+    console.log();
 })
 
 

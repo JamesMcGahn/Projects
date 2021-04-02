@@ -1,9 +1,10 @@
-const todos = [
-    { text: 'todo 1', completed: false },
-    { text: 'todo 2', completed: false },
-    { text: 'todo 3', completed: true },
-    { text: 'todo 4', completed: false }
-];
+let todos = [];
+
+todosJSON = localStorage.getItem('todos');
+
+if (todosJSON !== null) {
+    todos = JSON.parse(todosJSON)
+}
 
 filter = {
     searchText: '',
@@ -12,6 +13,7 @@ filter = {
 todolist = document.querySelector('#todo-list');
 
 function renderTodos(todos, filter) {
+
     let filteredTodos = todos.filter(todos => {
         const searchTextMatch = todos.text.toLowerCase().includes(filter.searchText.toLowerCase());
         const hideCompletedMatch = !filter.hideCompleted || !todos.completed
@@ -19,13 +21,10 @@ function renderTodos(todos, filter) {
 
     })
 
-
     todolist.innerHTML = ``;
     const incompleteTodos = todos.filter(todo => {
         return !todo.completed
     })
-
-
     let tasksLeft = document.createElement('p');
     tasksLeft.innerText = `You have ${incompleteTodos.length} left`;
     todolist.appendChild(tasksLeft);
@@ -43,6 +42,7 @@ function renderTodos(todos, filter) {
 
 function createTodo(newTodo) {
     todos.push({ text: newTodo, completed: false })
+    localStorage.setItem('todos', JSON.stringify(todos))
     renderTodos(todos, filter)
 }
 
