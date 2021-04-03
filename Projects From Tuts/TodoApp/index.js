@@ -38,8 +38,6 @@ function renderTodos(todos, filter) {
 
 }
 
-
-
 function createTodo(newTodo) {
     todos.push({ text: newTodo, completed: false })
     localStorage.setItem('todos', JSON.stringify(todos))
