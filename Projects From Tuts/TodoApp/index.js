@@ -1,48 +1,10 @@
-let todos = [];
-
-todosJSON = localStorage.getItem('todos');
-
-if (todosJSON !== null) {
-    todos = JSON.parse(todosJSON)
-}
+let todos = getSavedTodos();
 
 filter = {
     searchText: '',
     hideCompleted: false,
 }
 todolist = document.querySelector('#todo-list');
-
-function renderTodos(todos, filter) {
-
-    let filteredTodos = todos.filter(todos => {
-        const searchTextMatch = todos.text.toLowerCase().includes(filter.searchText.toLowerCase());
-        const hideCompletedMatch = !filter.hideCompleted || !todos.completed
-        return searchTextMatch && hideCompletedMatch
-
-    })
-
-    todolist.innerHTML = ``;
-    const incompleteTodos = todos.filter(todo => {
-        return !todo.completed
-    })
-    let tasksLeft = document.createElement('p');
-    tasksLeft.innerText = `You have ${incompleteTodos.length} left`;
-    todolist.appendChild(tasksLeft);
-
-
-    filteredTodos.forEach(todo => {
-        newTodo = document.createElement('p');
-        newTodo.innerText = todo.text;
-        todolist.appendChild(newTodo);
-    })
-
-}
-
-function createTodo(newTodo) {
-    todos.push({ text: newTodo, completed: false })
-    localStorage.setItem('todos', JSON.stringify(todos))
-    renderTodos(todos, filter)
-}
 
 renderTodos(todos, filter)
 
