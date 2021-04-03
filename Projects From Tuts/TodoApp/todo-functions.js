@@ -31,8 +31,21 @@ const renderTodos = function (todos, filter) {
 
 const generateTodoDOM = function (todos) {
     todos.forEach(todo => {
-        newTodo = document.createElement('p');
-        newTodo.innerText = todo.text;
+        newTodo = document.createElement('div');
+        // add todo completed check box 
+        completedCheckbox = document.createElement('input');
+        completedCheckbox.setAttribute('type', 'checkbox')
+        newTodo.appendChild(completedCheckbox);
+        // add todo text 
+        newTodoText = document.createElement('span');
+        newTodoText.innerText = todo.text;
+        newTodo.appendChild(newTodoText);
+        // add todo delete button
+        deleteButton = document.createElement('button');
+        deleteButton.innerText = 'X';
+        newTodo.appendChild(deleteButton);
+
+
         todolist.appendChild(newTodo);
     })
 }
