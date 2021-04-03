@@ -1,33 +1,33 @@
-let todos = getSavedTodos();
+let todos = getSavedTodos()
 
-filter = {
+const filters = {
     searchText: '',
-    hideCompleted: false,
+    hideCompleted: false
 }
-todolist = document.querySelector('#todo-list');
 
-renderTodos(todos, filter)
+renderTodos(todos, filters)
 
-document.querySelector('#filter-todo').addEventListener('input', (e) => {
-    filter.searchText = e.target.value;
-    renderTodos(todos, filter)
+document.querySelector('#search-text').addEventListener('input', function (e) {
+    filters.searchText = e.target.value
+    renderTodos(todos, filters)
 })
 
-const createTodoInput = document.querySelector('#create-todo input');
-document.querySelector('#create-todo').addEventListener('submit', (e) => {
+document.querySelector('#new-todo').addEventListener('submit', function (e) {
     e.preventDefault()
-    createTodo(e.target.elements.firstName.value)
-    createTodoInput.value = ''
+    todos.push({
+        id: uuidv4(),
+        text: e.target.elements.text.value,
+        completed: false
+    })
+    saveTodos(todos)
+    renderTodos(todos, filters)
+    e.target.elements.text.value = ''
 })
 
-document.querySelector('#hide-completed').addEventListener('change', (e) => {
-    filter.hideCompleted = e.target.checked;
-    renderTodos(todos, filter)
+document.querySelector('#hide-completed').addEventListener('change', function (e) {
+    filters.hideCompleted = e.target.checked
+    renderTodos(todos, filters)
 })
-
-
-
-
 
 
 
