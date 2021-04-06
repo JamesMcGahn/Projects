@@ -2,8 +2,7 @@ const fetchData = async (params) => {
     try {
         const res = await axios.get(`${keys.DOMAIN}/api/v2/search.json`, {
             headers: {
-                Authorization: `${keys.API_KEY}`,
-                'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
+                Authorization: `${keys.API_KEY}`
             },
             params,
         })
