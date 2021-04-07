@@ -53,9 +53,9 @@ const generateNoteDOM = function (note) {
 }
 
 // sort your notes by 
-const sortNotes = function (notes, sortBy) {
+const sortNotes = (notes, sortBy) => {
     if (sortBy === 'byEdited') {
-        return notes.sort(function (a, b) {
+        return notes.sort((a, b) => {
             if (a.updatedAt > b.updatedAt) {
                 return -1
             } else if (a.updatedAt < b.updatedAt) {
@@ -65,7 +65,7 @@ const sortNotes = function (notes, sortBy) {
             }
         })
     } else if (sortBy === 'byCreated') {
-        return notes.sort(function (a, b) {
+        return notes.sort((a, b) => {
             if (a.createdAt > b.createdAt) {
                 return -1
             } else if (a.createdAt < b.createdAt) {
@@ -75,7 +75,7 @@ const sortNotes = function (notes, sortBy) {
             }
         })
     } else if (sortBy === 'alphabetical') {
-        return notes.sort(function (a, b) {
+        return notes.sort((a, b) => {
             if (a.title.toLowerCase() < b.title.toLowerCase()) {
                 return -1
             } else if (a.title.toLowerCase() > b.title.toLowerCase()) {
@@ -84,8 +84,11 @@ const sortNotes = function (notes, sortBy) {
                 return 0
             }
         })
+    } else {
+        return notes
     }
 }
+
 
 
 // render app notes

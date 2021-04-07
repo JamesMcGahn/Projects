@@ -28,10 +28,6 @@ document.querySelector('#search-text').addEventListener('change', (e) => {
     renderNotes(notes, filters);
 })
 
-document.querySelector('#name-form').addEventListener('submit', (e) => {
-    e.preventDefault()
-    e.target.elements.firstName.value
-})
 document.querySelector('#filter-by').addEventListener('change', (e) => {
     filters.sortBy = e.target.value
     renderNotes(notes, filters);
