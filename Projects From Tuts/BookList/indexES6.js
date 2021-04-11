@@ -39,9 +39,51 @@ class UI {
     deleteBook(target) {
         if (target.className === 'delete') {
             target.parentElement.parentElement.remove()
+            Store.removeBook(target.parentElement.previousElementSibling.textContent);
         }
     }
 }
+
+class Store {
+    static getBooks() {
+        let books;
+        if (!localStorage.books) {
+            books = [];
+        } else {
+            books = JSON.parse(localStorage.getItem('books'));
+        }
+        return books
+    }
+
+    static displayBooks() {
+        const books = Store.getBooks();
+        books.forEach(book => {
+            const ui = new UI;
+
+            ui.addBookToList(book)
+        });
+    }
+
+    static addBook(book) {
+        const books = Store.getBooks();
+        books.push(book);
+        localStorage.setItem('books', JSON.stringify(books))
+    }
+    static removeBook(isbn) {
+        console.log(isbn)
+        const books = Store.getBooks();
+        books.forEach((book, index) => {
+            if (book.isbn === isbn) {
+                books.splice(index, 1)
+            }
+
+        });
+        localStorage.setItem('books', JSON.stringify(books))
+
+    }
+}
+
+
 
 //event listners
 document.getElementById('book-form').addEventListener('submit', (e) => {
@@ -56,6 +98,7 @@ document.getElementById('book-form').addEventListener('submit', (e) => {
         ui.showAlert('Please fill in all fields', 'error')
     } else {
         ui.addBookToList(book)
+        Store.addBook(book);
         ui.showAlert('Book Added!', 'success')
         ui.clearFields()
     }
@@ -72,3 +115,5 @@ document.getElementById('book-list').addEventListener('click', (e) => {
     ui.showAlert('Book Removed', 'success')
     e.preventDefault()
 })
+
+document.addEventListener('DOMContentLoaded', Store.displayBooks)
