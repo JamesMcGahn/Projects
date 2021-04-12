@@ -15,7 +15,7 @@ class UI {
         this.location.textContent = `${weather.name}`
         this.desc.textContent = `${weather.weather[0].description.replace(/\b\w/g, l => l.toUpperCase())}`
         this.string.textContent = `${weather.main.temp}° F`;
-        this.icon.setAttribute('src', `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`);
+        this.icon.setAttribute('src', `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`);
         this.humidity.textContent = `Relative Humidity: ${weather.main.humidity}`
         this.feelsLike.textContent = `Feels Like: ${weather.main.feels_like}`
         this.dewpoint.textContent = `Min: ${weather.main.temp_min}° F, Max: ${weather.main.temp_max}° F`
