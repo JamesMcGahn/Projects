@@ -12,4 +12,9 @@ class Weather {
 
         return responseData
     }
+
+    changeLocation(city, state) {
+        this.city = city;
+        this.state = state;
+    }
 }
