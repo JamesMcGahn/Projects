@@ -26,6 +26,25 @@ class UI {
         })
         this.post.innerHTML = output;
     }
+    showAlert(msg, className) {
+        this.clearAlert()
+        const div = document.createElement('div')
+        div.className = className
+        div.appendChild(document.createTextNode(msg))
+        const container = document.querySelector('.postsContainer')
+        const posts = document.querySelector('#posts')
+        container.insertBefore(div, posts)
+        setTimeout(() => {
+            this.clearAlert()
+        }, 2000)
+    }
+
+    clearAlert() {
+        const currentAlert = document.querySelector('.alert')
+        if (currentAlert) {
+            currentAlert.remove()
+        }
+    }
 }
 
 export const ui = new UI()
