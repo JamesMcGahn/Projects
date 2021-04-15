@@ -1,12 +1,12 @@
 class EasyHTTP {
-    get(url) {
+    async get(url) {
         const response = await fetch(url);
 
         const resData = await response.json()
-        return res.data
+        return resData
     }
 
-    post(url, data) {
+    async post(url, data) {
         const response = await fetch(url, {
             method: 'POST',
             headers: {
@@ -15,9 +15,9 @@ class EasyHTTP {
             body: JSON.stringify(data)
         })
         const resData = await response.json()
-        return res.data
+        return resData
     }
-    put(url, data) {
+    async put(url, data) {
         const response = await fetch(url, {
             method: 'PUT',
             headers: {
@@ -27,11 +27,11 @@ class EasyHTTP {
         })
 
         const resData = await response.json()
-        return res.data
+        return resData
     }
 
 
-    delete(url, data) {
+    async delete(url, data) {
         const response = await fetch(url, {
             method: 'DELETE',
             headers: {
@@ -39,10 +39,6 @@ class EasyHTTP {
             }
         })
         const resData = await 'Resource Deleted'
-        return res.data
+        return resData
     }
-
-
-
-
 }
