@@ -87,7 +87,13 @@ const displayMovementDate = function (date, locale) {
   return Intl.DateTimeFormat(locale).format(date)
 }
 
+const formatCurrency = function (value, locale, currCode) {
+  return new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency: currCode,
+  }).format(value);
 
+}
 
 const displayMovements = function (acc, sort) {
   containerMovements.innerHTML = ''
@@ -100,11 +106,12 @@ const displayMovements = function (acc, sort) {
 
     const date = new Date(acc.movementsDates[i])
     const displayDate = displayMovementDate(date, acc.locale);
+    const formattedCur = formatCurrency(mov, acc.locale, acc.currency);
     const html = `
     <div class="movements__row">
       <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
       <div class="movements__date">${displayDate}</div>
-      <div class="movements__value">${mov.toFixed(2)}€</div>
+      <div class="movements__value">${formattedCur}</div>
   </div>
     `
 
@@ -117,7 +124,7 @@ const calcDisplayBalance = function (acc) {
     return acc + curr
   }, 0)
 
-  labelBalance.textContent = `${acc.balance}€`
+  labelBalance.textContent = formatCurrency(acc.balance, acc.locale, acc.currency)
 }
 
 const createUserNames = function (accs) {
@@ -132,11 +139,31 @@ const updateUI = function (acc) {
   calcDisplaySummary(currentAccount)
 }
 
+const startLogOutTimer = function () {
+  const tick = () => {
+    const min = String(Math.trunc(time / 60)).padStart(2, '0');
+    const sec = String(Math.trunc(time % 60)).padStart(2, '0')
+    labelTimer.textContent = `${min}:${sec}`
 
-let currentAccount;
+    if (time === 0) {
+      clearInterval(timer)
+      labelWelcome.textContent = `Log in to get started`
+      containerApp.style.opacity = 0;
+    }
+    time--
+  }
+
+
+  let time = 120
+  tick();
+  const timer = setInterval(tick, 1000)
+  return timer
+}
+
+let currentAccount, timer;
 btnLogin.addEventListener('click', (e) => {
   e.preventDefault()
-
+  startLogOutTimer();
   currentAccount = accounts.find(acc => acc.username === inputLoginUsername.value)
   if (currentAccount?.pin === Number(inputLoginPin.value)) {
     labelWelcome.textContent = `Welcome back, ${currentAccount.owner.split(' ')[0]}`
@@ -169,6 +196,9 @@ btnLogin.addEventListener('click', (e) => {
   updateUI()
   inputLoginUsername.value = inputLoginPin.value = ''
   inputLoginPin.blur()
+
+  if (timer) clearInterval(timer)
+  timer = startLogOutTimer();
 })
 
 btnTransfer.addEventListener('click', (e) => {
@@ -186,6 +216,8 @@ btnTransfer.addEventListener('click', (e) => {
     receiverAcc.movementsDates.push(new Date().toISOString())
     updateUI()
     inputTransferAmount.value = inputTransferTo.value = '';
+    clearInterval(timer)
+    timer = startLogOutTimer();
   }
 })
 
@@ -209,6 +241,8 @@ btnLoan.addEventListener('click', (e) => {
     currentAccount.movements.push(amount);
     currentAccount.movementsDates.push(new Date().toISOString())
     updateUI(currentAccount)
+    clearInterval(timer)
+    timer = startLogOutTimer();
   }
   inputLoanAmount.value = ''
 })
@@ -216,19 +250,19 @@ btnLoan.addEventListener('click', (e) => {
 let sorted = false;
 btnSort.addEventListener('click', (e) => {
   e.preventDefault();
-  displayMovements(currentAccount.movements, !sorted)
+  displayMovements(currentAccount, !sorted)
   sorted = !sorted;
 })
 
 const calcDisplaySummary = function (acc) {
   const incomes = acc.movements.filter(mov => mov > 0).reduce((acc, mov) => acc + mov, 0);
-  labelSumIn.textContent = `${incomes.toFixed(2)}€`;
+  labelSumIn.textContent = formatCurrency(incomes, acc.locale, acc.currency);
 
   const out = acc.movements.filter(mov => mov < 0).reduce((acc, mov) => acc + mov, 0);
-  labelSumOut.textContent = `${Math.abs(out).toFixed(2)}€`;
+  labelSumOut.textContent = formatCurrency(Math.abs(out), acc.locale, acc.currency);
 
   const interest = acc.movements.filter(mov => mov > 0).map(deposit => deposit * acc.interestRate / 100).reduce((acc, int) => acc + int, 0)
-  labelSumInterest.textContent = `${interest.toFixed(2)}€`;
+  labelSumInterest.textContent = formatCurrency(interest, acc.locale, acc.currency);
 }
 createUserNames(accounts)
 
