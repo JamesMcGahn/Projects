@@ -73,3 +73,28 @@ tabsContainer.addEventListener('click', (e) => {
 
   document.querySelector(`.operations__content--${clicked.dataset.tab}`).classList.add('operations__content--active')
 })
+
+// menu fade
+const fade = function (e, opacity) {
+  if (e.target.classList.contains('nav__link')) {
+    const clicked = e.target
+    const siblings = clicked.closest('.nav').querySelectorAll('.nav__link')
+    const logo = clicked.closest('.nav').querySelector('img')
+
+    siblings.forEach(link => {
+      if (link !== clicked) {
+        link.style.opacity = opacity
+      }
+    })
+    logo.style.opacity = opacity
+  }
+}
+
+
+const nav = document.querySelector('.nav')
+nav.addEventListener('mouseover', (e) => {
+  fade(e, 0.5)
+})
+nav.addEventListener('mouseout', (e) => {
+  fade(e, 1)
+})
