@@ -1,7 +1,6 @@
 class SearchView {
     _parentElement = document.querySelector('.search');
-    _errorMessage = `We couldn't find that recipe`;
-    _message = `We couldn't find that recipe`;
+
 
     getQuery() {
         const query = this._parentElement.querySelector('.search__field').value;
