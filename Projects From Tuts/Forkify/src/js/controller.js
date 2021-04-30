@@ -3,6 +3,7 @@ import recipeView from './views/recipeView.js';
 import searchView from './views/searchView.js';
 import resultsView from './views/resultsView.js';
 import paginationView from './views/paginationView.js';
+import bookmarksView from './views/bookmarksView';
 
 
 import 'core-js/stable'
@@ -27,6 +28,8 @@ const controlRecipes = async function () {
 
     // updated search results with selected recipe
     resultsView.update(model.getSearchResultsPage())
+    bookmarksView.update(model.state.bookmarks)
+
     // load recipe 
     await model.loadRecipe(id);
 
@@ -78,10 +81,15 @@ const controlAddBookmark = function () {
   }
   recipeView.update(model.state.recipe)
 
+  bookmarksView.render(model.state.bookmarks)
 }
 
+const controlBookmarks = function () {
+  bookmarksView.render(model.state.bookmarks)
+}
 
 const init = function () {
+  bookmarksView.addHandlerRender(controlBookmarks)
   recipeView.addHandlerRender(controlRecipes)
   searchView.addHandlerSearch(controlSearchResults)
   paginationView.addHandlerClick(controlPagination);
