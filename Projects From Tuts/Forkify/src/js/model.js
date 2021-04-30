@@ -59,6 +59,7 @@ export const loadSearchResults = async function (query) {
                 title: recipe.title,
                 publisher: recipe.publisher,
                 image: recipe.image_url,
+                ...(recipe.key && { key: recipe.key })
             }
         })
         state.search.page = 1;
