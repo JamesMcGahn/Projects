@@ -1,14 +1,14 @@
 {
   "name": "forkify",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.html",
+  "description": "Recipe App",
+  "default": "index.html",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html"
+    "build": "parcel build index.html --dist-dir ./dist"
   },
   "keywords": [],
-  "author": "",
+  "author": "James McGahn",
   "license": "ISC",
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.13.0",
