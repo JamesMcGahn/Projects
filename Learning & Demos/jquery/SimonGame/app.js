@@ -3,7 +3,7 @@ let gamePattern = [];
 let userChosenColor;
 let userPattern = [];
 let level = 0;
-let currentPosition;
+let currentPosition = 0;
 
 function nextSequence() {
     let randomChosenColor = buttonColors[Math.floor(Math.random() * 4)]
@@ -19,8 +19,6 @@ function playSequence() {
             playSound(gamePattern[i]);
         }, 1200 * i)
     }
-
-
 }
 
 
@@ -32,8 +30,8 @@ function userSelection(color) {
     checkAnswer(currentPosition);
 }
 
-function playSound(color) {
-    const audio = new Audio(`./sounds/${color}.mp3`)
+function playSound(sound) {
+    const audio = new Audio(`./sounds/${sound}.mp3`)
     audio.play();
 }
 
@@ -49,8 +47,20 @@ function animateButtonPress(color) {
 function startGame() {
     if (level === 0) {
         nextSequence()
-        currentPosition = 0;
+    } else {
+        resetGame()
+        $("#level-title").text(`Level ${level}`);
+        nextSequence()
     }
+}
+
+function resetGame() {
+
+    gamePattern = [];
+    userChosenColor;
+    userPattern = [];
+    level = 0;
+    currentPosition = 0;
 }
 
 function checkAnswer() {
@@ -67,7 +77,7 @@ function checkAnswer() {
             $("#level-title").text(`Level ${level}`);
             setTimeout(() => { nextSequence() }, 500)
             userPattern = [];
-            console.log(`current position ${currentPosition} changed`)
+
             currentPosition = 0;
         } else {
             currentPosition++
@@ -75,9 +85,11 @@ function checkAnswer() {
 
         console.log(currentPosition, 'end of if block')
     } else {
-        console.log('wrong')
-        console.log(userPattern)
-        console.log(gamePattern)
+        playSound('wrong')
+        $("#level-title").text(`Game Over, Press any key to Restart`);
+        $("body").addClass("game-over")
+        setTimeout(() => { $("body").removeClass("game-over") }, 300)
+        level = -1
     }
 
 }
