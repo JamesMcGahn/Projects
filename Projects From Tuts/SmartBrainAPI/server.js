@@ -1,12 +1,12 @@
 const express = require("express");
-
-
+const cors = require("cors");
+const bcrypt = require('bcrypt');
 
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
+app.use(cors());
 
 const database = {
     users: [
@@ -22,10 +22,11 @@ const database = {
 }
 
 app.get('/', (req, res) => {
-    res.send('this works')
+    res.json("this works")
 })
 
 app.post('/signin', (req, res) => {
+    console.log(req.body)
     if (req.body.email === database.users[0].email && req.body.password === database.users[0].password) {
         res.json('hi')
     } else {
