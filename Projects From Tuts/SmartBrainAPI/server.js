@@ -52,14 +52,6 @@ app.post('/signin', (req, res) => {
 })
 
 app.post('/register', (req, res) => {
-    database.users.push({
-        id: 1234,
-        name: req.body.name,
-        email: req.body.email,
-        entries: 0,
-        joined: new Date()
-    })
-
     db('users').returning('*').insert(
         {
             name: req.body.name,
@@ -72,34 +64,20 @@ app.post('/register', (req, res) => {
 
 app.get('/profile/:id', (req, res) => {
     const { id } = req.params;
-    console.log(id)
-    let found = false;
-    database.users.forEach(user => {
-        if (user.id === +id) {
-
-            found = true
-            return res.json(user)
+    db.select('*').from('users').where({ id }).then(user => {
+        if (user.length) {
+            res.json(user[0])
+        } else {
+            res.status(400).json('cant find user')
         }
-    })
-    if (!found) {
-        res.status(400).json('cant find')
-    }
+    }).catch(err => (res.status(400).json('error finding user')))
 })
 
 app.put('/image', (req, res) => {
     const { id } = req.body;
-    let found = false;
-    database.users.forEach(user => {
-        if (user.id === +id) {
-
-            found = true
-            user.entries++
-            return res.json(user.entries)
-        }
-    })
-    if (!found) {
-        res.status(400).json('cant find')
-    }
+    db('users').where('id', '=', id).increment('entries', 1)
+        .returning('entries').then(entries => res.json(entries[0]))
+        .catch(err => (res.status(400).json('error getting entries')))
 })
 
 app.listen(3001, () => {
