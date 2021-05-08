@@ -13,19 +13,10 @@ const db = knex({
     }
 });
 
-
-
-db.select('*').from('users').then(data => console.log(data))
-
-
-
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
-
-
-
 
 const database = {
     users: [

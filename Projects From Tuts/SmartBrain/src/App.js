@@ -51,7 +51,6 @@ class App extends React.Component {
   }
 
   loadUser = (data) => {
-    console.log(2, data.name)
     this.setState({
       user: {
         id: data.id,
@@ -62,7 +61,7 @@ class App extends React.Component {
         joined: data.joined,
       }
     })
-    console.log(this.state.user)
+
   }
 
   calculateFaceLocation = (data) => {
@@ -112,6 +111,7 @@ class App extends React.Component {
   onRouteChange = (route) => {
     if (route === 'signout') {
       this.setState({ isSignedIn: false })
+      this.setState({ imageUrl: '' })
     } else if (route === 'home') {
       this.setState({ isSignedIn: true })
     }
