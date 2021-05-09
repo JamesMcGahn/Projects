@@ -24,19 +24,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
-const database = {
-    users: [
-        {
-            id: 123,
-            name: 'John',
-            email: 'john@example.com',
-            password: 'cheese',
-            entries: 0,
-            joined: new Date()
-        }
-    ]
-}
-
 app.get('/', (req, res) => {
     res.json("this works")
 })
