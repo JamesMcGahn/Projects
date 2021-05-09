@@ -87,7 +87,7 @@ class App extends React.Component {
 
   onPictureSubmit = () => {
     this.setState({ imageUrl: this.state.input })
-    fetch('http://localhost:3001/imageurl',
+    fetch('https://pacific-waters-09775.herokuapp.com/imageurl',
       {
         method: 'post',
         headers: { 'Content-Type': 'application/json' },
@@ -98,7 +98,7 @@ class App extends React.Component {
       .then(res => res.json())
       .then((response) => {
         if (response) {
-          fetch('http://localhost:3001/image', {
+          fetch('https://pacific-waters-09775.herokuapp.com/image', {
             method: 'put',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
