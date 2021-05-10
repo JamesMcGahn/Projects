@@ -1,25 +1,19 @@
 const express = require('express');
 const path = require('path');
-
+const date = require(__dirname + '/date.js');
 app = express();
 
-let todos = []
+const todos = []
 
 
 app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
 app.set('views', path.join(__dirname, 'views'))
+app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/', (req, res) => {
-    const today = new Date();
-    const day = today.toLocaleDateString('en-US',
-        {
-            weekday: "long",
-            day: "numeric",
-            month: "long"
-        })
-
+    const day = date.getDate();
     res.render("list", { today: day, todos: todos })
 })
 
