@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
 const express = require("express");
 const ejs = require("ejs");
 const path = require("path");
@@ -5,13 +9,16 @@ const _ = require("lodash");
 const mongoose = require('mongoose');
 const app = express();
 
+
+const PORT = process.env.PORT || 3000;
+
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.set('views', path.join(__dirname, 'views'))
 
-
-mongoose.connect('mongodb://localhost:27017/blogsDB', { useNewUrlParser: true, useUnifiedTopology: true });
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/blogsDB';
+mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const blogsSchema = {
   title: String,
@@ -67,6 +74,8 @@ app.get('/posts/:title/:id', async (req, res) => {
 
 })
 
-app.listen(3000, function () {
-  console.log("Server started on port 3000");
-});
+
+
+app.listen(PORT, () => {
+  console.log(`app firing on ${PORT}`)
+})
