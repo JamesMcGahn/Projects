@@ -4,6 +4,6 @@
 <% for(let post of posts) { %>
 <div>
   <h3><%= post.title %></h3>
-  <p><%= `${post.body.slice(0,100)}...` %><a href="<%=`/posts/${post.title}`%>">Read More</a></p>
+  <p><%= `${post.body.slice(0,100)}...` %><a href="<%=`/posts/${post.title}/${post._id}`%>">Read More</a></p>
 </div>
 <% } %> <%- include('partials/footer') %>
