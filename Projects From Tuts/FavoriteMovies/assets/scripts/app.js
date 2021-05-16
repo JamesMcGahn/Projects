@@ -93,6 +93,7 @@ const deleteMovieHandler = (e) => {
             movieList.children[movieDel].remove();
             localStorage.setItem('movies', JSON.stringify(movies))
             cancelClickHandler();
+            updateUI()
         } else {
             cancelClickHandler();
         }
@@ -128,9 +129,9 @@ const addMovieHandler = () => {
     removeMovieModal();
     hideBackdrop();
     clearMovieInputs()
-    updateUI()
     renderMovieElement(id, title, img, rating)
     localStorage.setItem('movies', JSON.stringify(movies))
+    updateUI()
 }
 
 const cancelClickHandler = () => {
