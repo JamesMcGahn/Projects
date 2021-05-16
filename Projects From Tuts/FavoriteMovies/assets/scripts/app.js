@@ -9,6 +9,7 @@ const movieList = document.querySelector('#movie-list')
 const deleteMovieModal = document.getElementById('delete-modal');
 const delMovieCancelBtn = deleteMovieModal.querySelector('.btn--passive');
 const delMovieBtn = deleteMovieModal.querySelector('.btn--danger');
+const notification = document.querySelector('.notification');
 const movies = [];
 
 const updateUI = () => {
@@ -32,6 +33,16 @@ const renderMovieElement = () => {
 
     movieList.append(newMovieElement);
 
+}
+
+function displayNote(msg) {
+    notification.classList.add('note')
+    notification.innerText = msg;
+
+    setTimeout(() => {
+        notification.classList.remove('note')
+        notification.innerText = ''
+    }, 1500)
 }
 
 
@@ -76,8 +87,13 @@ const addMovieHandler = () => {
     const imgValue = userInputs[1].value;
     const ratingValue = userInputs[2].value;
 
-    if (titleValue.trim() === '' || imgValue.trim() === '' || ratingValue.trim() === '' || +ratingValue < 1 || +ratingValue > 5) {
-        alert('Please enter correct values')
+    if (titleValue.trim() === '' || imgValue.trim() === '' || ratingValue.trim() === '') {
+        displayNote('Please enter a value for each field')
+        return
+    }
+    if (+ratingValue < 1 || +ratingValue > 5) {
+        displayNote('Please enter a rating in between 1 & 5')
+        return
     }
 
     const newMovie = {
