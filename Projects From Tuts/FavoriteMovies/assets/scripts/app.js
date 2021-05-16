@@ -10,14 +10,33 @@ const deleteMovieModal = document.getElementById('delete-modal');
 const delMovieCancelBtn = deleteMovieModal.querySelector('.btn--passive');
 const delMovieBtn = deleteMovieModal.querySelector('.btn--danger');
 const notification = document.querySelector('.notification');
-const movies = [];
+
+let movies = [];
+
+const getSavedMovies = function () {
+    const moviesJSON = localStorage.getItem('movies');
+    try {
+        if (moviesJSON !== null) {
+            movies = JSON.parse(moviesJSON)
+        } else {
+            movies = []
+        }
+    } catch (e) {
+        movies = []
+    }
+}
+
+
+function renderMovies(movies) {
+    movies.forEach(movie => renderMovieElement(movie.id, movie.title, movie.img, movie.rating))
+}
 
 const updateUI = () => {
     movies.length > 0 ? entryTextSection.style.display = 'none' : entryTextSection.style.display = 'block';
 }
 
-const renderMovieElement = () => {
-    const { id, title, img, rating } = movies[movies.length - 1];
+const renderMovieElement = (id, title, img, rating) => {
+
     const newMovieElement = document.createElement('li');
     newMovieElement.className = 'movie-element';
     newMovieElement.id = id
@@ -72,6 +91,7 @@ const deleteMovieHandler = (e) => {
             movieDel = movies.findIndex(movie => movie.id === id)
             movies.splice(movieDel, 1)
             movieList.children[movieDel].remove();
+            localStorage.setItem('movies', JSON.stringify(movies))
             cancelClickHandler();
         } else {
             cancelClickHandler();
@@ -104,11 +124,13 @@ const addMovieHandler = () => {
     }
 
     movies.push(newMovie);
+    const { id, title, img, rating } = newMovie;
     removeMovieModal();
     hideBackdrop();
     clearMovieInputs()
     updateUI()
-    renderMovieElement()
+    renderMovieElement(id, title, img, rating)
+    localStorage.setItem('movies', JSON.stringify(movies))
 }
 
 const cancelClickHandler = () => {
@@ -117,6 +139,13 @@ const cancelClickHandler = () => {
     hideDelMovieModal();
 }
 
+const init = function () {
+    getSavedMovies();
+    renderMovies(movies)
+    updateUI()
+}
+
+init()
 startMovieButton.addEventListener('click', showMovieModal)
 cancelButton.addEventListener('click', cancelClickHandler)
 backdrop.addEventListener('click', cancelClickHandler)
