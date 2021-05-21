@@ -55,7 +55,7 @@ const renderItems = function (grocItem, id) {
 
 const renderList = function () {
     list.innerHTML = ''
-    groceries.forEach(item => renderItems(item.name, item.id))
+    groceries.length > 0 ? groceries.forEach(item => renderItems(item.name, item.id)) : container.classList.remove('show-container')
 }
 
 const addItem = function (e) {
@@ -79,6 +79,7 @@ const deleteItem = function (itemID) {
     saveLocalStore();
     renderList();
     displayAlert('Item Deleted', 'success')
+    setDefault()
 }
 
 const editItem = function (itemID) {
@@ -86,6 +87,12 @@ const editItem = function (itemID) {
     grocery.value = groceries[index].name
     editFlag = true;
     editIndex = index
+}
+
+const setDefault = function () {
+    editFlag = false;
+    editIndex = null;
+    grocery.value = ''
 }
 
 const editSubmit = function (value, editIndex) {
@@ -98,9 +105,11 @@ const editSubmit = function (value, editIndex) {
 
 const clearList = function () {
     groceries = []
+    setDefault()
     saveLocalStore()
     container.classList.remove('show-container')
     list.innerHTML = ''
+    displayAlert('Items Cleared', 'success')
 }
 
 // ****** LOCAL STORAGE **********
