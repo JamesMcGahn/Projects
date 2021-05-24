@@ -1,7 +1,7 @@
 const { Engine, Render, Runner, World, Bodies, Body, Events } = Matter;
 
 const cellsHorizontal = 9;
-const cellsVertical = 6;
+const cellsVertical = 7;
 const width = window.innerWidth
 const height = window.innerHeight;
 
@@ -59,6 +59,9 @@ const horizontals = Array(cellsVertical - 1).fill(null).map(() => Array(cellsHor
 const startRow = Math.floor(Math.random() * cellsVertical)
 const startColumn = Math.floor(Math.random() * cellsHorizontal)
 
+
+
+
 const stepThroughCells = (row, column) => {
     // if alreadery visted row,colum, -> return
     if (grid[row][column]) return
@@ -98,49 +101,54 @@ const stepThroughCells = (row, column) => {
 
 stepThroughCells(startRow, startColumn)
 
-horizontals.forEach((row, rowIndex) => {
-    row.forEach((open, columnIndex) => {
-        if (open) return
+const generateWalls = function () {
 
-        const wall = Bodies.rectangle(
-            columnIndex * unitLengthX + unitLengthX / 2,
-            rowIndex * unitLengthY + unitLengthY,
-            unitLengthX,
-            10,
-            {
-                isStatic: true,
-                label: 'wall',
-                render: {
-                    fillStyle: 'red'
+
+    horizontals.forEach((row, rowIndex) => {
+        row.forEach((open, columnIndex) => {
+            if (open) return
+
+            const wall = Bodies.rectangle(
+                columnIndex * unitLengthX + unitLengthX / 2,
+                rowIndex * unitLengthY + unitLengthY,
+                unitLengthX,
+                10,
+                {
+                    isStatic: true,
+                    label: 'wall',
+                    render: {
+                        fillStyle: 'red'
+                    }
                 }
-            }
-        )
-        World.add(world, wall)
+            )
+            World.add(world, wall)
+        })
     })
-})
 
 
 
-verticals.forEach((row, rowIndex) => {
-    row.forEach((open, columnIndex) => {
-        if (open) return
+    verticals.forEach((row, rowIndex) => {
+        row.forEach((open, columnIndex) => {
+            if (open) return
 
-        const wall = Bodies.rectangle(
-            columnIndex * unitLengthX + unitLengthX,
-            rowIndex * unitLengthY + unitLengthY / 2,
-            10,
-            unitLengthY,
-            {
-                isStatic: true,
-                label: 'wall',
-                render: {
-                    fillStyle: 'red'
+            const wall = Bodies.rectangle(
+                columnIndex * unitLengthX + unitLengthX,
+                rowIndex * unitLengthY + unitLengthY / 2,
+                10,
+                unitLengthY,
+                {
+                    isStatic: true,
+                    label: 'wall',
+                    render: {
+                        fillStyle: 'red'
+                    }
                 }
-            }
-        );
-        World.add(world, wall);
+            );
+            World.add(world, wall);
+        });
     });
-});
+}
+generateWalls();
 
 // goal
 const goal = Bodies.rectangle(
@@ -159,28 +167,32 @@ const goal = Bodies.rectangle(
 World.add(world, goal);
 
 // ball
-const ballRadius = Math.min(unitLengthX, unitLengthY) / 3
-const ball = Bodies.circle(
-    unitLengthX / 2,
-    unitLengthY / 2,
-    ballRadius,
-    {
-        label: 'ball',
-        render: {
-            fillStyle: 'lightblue'
+const generateBall = () => {
+    const ballRadius = Math.min(unitLengthX, unitLengthY) / 3
+    const ball = Bodies.circle(
+        unitLengthX / 2,
+        unitLengthY / 2,
+        ballRadius,
+        {
+            label: 'ball',
+            render: {
+                fillStyle: 'lightblue'
+            }
         }
-    }
-)
-World.add(world, ball);
+    )
+    World.add(world, ball);
 
-document.addEventListener('keydown', (e) => {
-    const { x, y } = ball.velocity;
-    if (e.code === "ArrowUp" || e.code === "KeyW") Body.setVelocity(ball, { x, y: y - 5 })
-    if (e.code === "ArrowDown" || e.code === "KeyS") Body.setVelocity(ball, { x, y: y + 5 })
-    if (e.code === "ArrowLeft" || e.code === "KeyA") Body.setVelocity(ball, { x: x - 5, y })
-    if (e.code === "ArrowRight" || e.code === "KeyD") Body.setVelocity(ball, { x: x + 5, y })
-})
 
+    document.addEventListener('keydown', (e) => {
+        const { x, y } = ball.velocity;
+        if (e.code === "ArrowUp" || e.code === "KeyW") Body.setVelocity(ball, { x, y: y - 5 })
+        if (e.code === "ArrowDown" || e.code === "KeyS") Body.setVelocity(ball, { x, y: y + 5 })
+        if (e.code === "ArrowLeft" || e.code === "KeyA") Body.setVelocity(ball, { x: x - 5, y })
+        if (e.code === "ArrowRight" || e.code === "KeyD") Body.setVelocity(ball, { x: x + 5, y })
+    })
+
+}
+generateBall()
 // win condition
 
 Events.on(engine, 'collisionStart', event => {
@@ -198,3 +210,22 @@ Events.on(engine, 'collisionStart', event => {
         }
     })
 })
+
+const resetGame = () => {
+    document.querySelector('.hidden').classList.remove('winner');
+    world.gravity.y = 0;
+    World.clear(world, true)
+    walls.splice(0, world.length - 1)
+    World.add(world, walls);
+    stepThroughCells(Math.floor(Math.random() * cellsVertical), Math.floor(Math.random() * cellsHorizontal))
+    generateWalls();
+    generateBall()
+}
+
+
+
+const resetBtn = document.querySelector('.btn')
+const resetMap = document.querySelector('.btn-map')
+
+resetBtn.addEventListener('click', resetGame)
+resetMap.addEventListener('click', () => location.reload())
