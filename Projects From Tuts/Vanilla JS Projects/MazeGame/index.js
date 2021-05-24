@@ -1,12 +1,13 @@
-const { Engine, Render, Runner, World, Bodies } = Matter;
+const { Engine, Render, Runner, World, Bodies, Body } = Matter;
 
-const cells = 3;
+const cells = 5;
 const width = 600;
 const height = 600;
 
 const unitLength = width / cells;
 
 const engine = Engine.create();
+engine.world.gravity.y = 0;
 const { world } = engine;
 const render = Render.create({
     element: document.body,
@@ -22,10 +23,10 @@ Runner.run(Runner.create(), engine);
 
 // Walls
 const walls = [
-    Bodies.rectangle(width / 2, 0, width, 40, { isStatic: true }),
-    Bodies.rectangle(width / 2, height, width, 40, { isStatic: true }),
-    Bodies.rectangle(0, height / 2, 40, height, { isStatic: true }),
-    Bodies.rectangle(width, height / 2, 40, height, { isStatic: true })
+    Bodies.rectangle(width / 2, 0, width, 2, { isStatic: true }),
+    Bodies.rectangle(width / 2, height, width, 2, { isStatic: true }),
+    Bodies.rectangle(0, height / 2, 2, height, { isStatic: true }),
+    Bodies.rectangle(width, height / 2, 2, height, { isStatic: true })
 ];
 
 World.add(world, walls);
@@ -116,14 +117,12 @@ horizontals.forEach((row, rowIndex) => {
 
 verticals.forEach((row, rowIndex) => {
     row.forEach((open, columnIndex) => {
-        if (open) {
-            return;
-        }
+        if (open) return
 
         const wall = Bodies.rectangle(
             columnIndex * unitLength + unitLength,
             rowIndex * unitLength + unitLength / 2,
-            5,
+            10,
             unitLength,
             {
                 isStatic: true,
@@ -132,3 +131,29 @@ verticals.forEach((row, rowIndex) => {
         World.add(world, wall);
     });
 });
+
+// goal
+const goal = Bodies.rectangle(
+    width - unitLength / 2,
+    height - unitLength / 2,
+    unitLength * .7,
+    unitLength * .7,
+    { isStatic: true }
+)
+World.add(world, goal);
+
+// ball
+const ball = Bodies.circle(
+    unitLength / 2,
+    unitLength / 2,
+    unitLength / 4
+)
+World.add(world, ball);
+
+document.addEventListener('keydown', (e) => {
+    const { x, y } = ball.velocity;
+    if (e.code === "ArrowUp" || e.code === "KeyW") Body.setVelocity(ball, { x, y: y - 5 })
+    if (e.code === "ArrowDown" || e.code === "KeyS") Body.setVelocity(ball, { x, y: y + 5 })
+    if (e.code === "ArrowLeft" || e.code === "KeyA") Body.setVelocity(ball, { x: x - 5, y })
+    if (e.code === "ArrowRight" || e.code === "KeyD") Body.setVelocity(ball, { x: x + 5, y })
+})
