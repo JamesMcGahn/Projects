@@ -19,6 +19,25 @@ $navItems = array(
     ),
 );
 
-
+    $team = array(
+    array(
+        "name" => "Frank III",
+        "position" => "Owner",
+        "bio" => "velit voluptatibus nihil aperiam rerum quasi dolor ullam eveniet labore, ad nesciunt quisquam.",
+        "img" => "frankie"
+    ),
+    array(
+        "name" => "Frank II (Francis)",
+        "position" => "GM",
+        "bio" => "velit voluptatibus nihil aperiam rerum quasi dolor ullam eveniet labore, ad nesciunt quisquam.",
+        "img" => "francis"
+    ),
+    array(
+        "name" => "Frank IV (Carlos)",
+        "position" => "Chef",
+        "bio" => "velit voluptatibus nihil aperiam rerum quasi dolor ullam eveniet labore, ad nesciunt quisquam.",
+        "img" => "carlos"
+    ),
+    );
 
 ?>

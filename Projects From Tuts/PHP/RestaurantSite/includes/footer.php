@@ -15,7 +15,7 @@
               3:30pm - 12:00 am 
             </p>
           </div>
-          <small>Date</small>
+          <small><?php echo Date('Y'), " - ", $companyName ?></small>
         </div>
 
         </div>
