@@ -15,8 +15,12 @@
 get_header();
 ?>
 
-	<main id="primary" class="site-main">
-
+<section class="feature-image feature-image-default-alt" data-type="background" data-speed="2">
+      <h1 class="page-title">Blog</h1>
+    </section>
+	<div class="container">
+      <div class="row" id="primary">
+        <main id="content" class="col-sm-8" role="main">
 		<?php
 		if ( have_posts() ) :
 
@@ -41,7 +45,7 @@ get_header();
 
 			endwhile;
 
-			the_posts_navigation();
+			'the_posts_navigation'();
 
 		else :
 
@@ -49,9 +53,16 @@ get_header();
 
 		endif;
 		?>
+</main>
+		<aside class="col-sm-4">
+		<?php get_sidebar(); ?>
+			</aside>
+	  </div>
+	</div>
+	
 
 	</main><!-- #main -->
 
 <?php
-get_sidebar();
+
 get_footer();
