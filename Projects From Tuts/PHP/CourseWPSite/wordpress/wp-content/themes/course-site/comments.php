@@ -21,32 +21,32 @@ if ( post_password_required() ) {
 ?>
 
 <div id="comments" class="comments-area">
-
+	<div class="comments-wrap">
 	<?php
 	// You can start editing here -- including this comment!
 	if ( have_comments() ) :
 		?>
-		<h2 class="comments-title">
+		<h3 class="comments-title">
 			<?php
 			$course_site_comment_count = get_comments_number();
 			if ( '1' === $course_site_comment_count ) {
 				printf(
 					/* translators: 1: title. */
-					esc_html__( 'One thought on &ldquo;%1$s&rdquo;', 'course-site' ),
+					esc_html__( 'One comment on &ldquo;%1$s&rdquo;', 'course-site' ),
 					'<span>' . wp_kses_post( get_the_title() ) . '</span>'
 				);
 			} else {
 				printf( 
 					/* translators: 1: comment count number, 2: title. */
-					esc_html( _nx( '%1$s thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', $course_site_comment_count, 'comments title', 'course-site' ) ),
+					esc_html( _nx( '%1$s comment on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', $course_site_comment_count, 'comments title', 'course-site' ) ),
 					number_format_i18n( $course_site_comment_count ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					'<span>' . wp_kses_post( get_the_title() ) . '</span>'
 				);
 			}
 			?>
-		</h2><!-- .comments-title -->
+		</h3><!-- .comments-title -->
 
-		<?php the_comments_navigation(); ?>
+		<?php "the_comments_navigation"(); ?>
 
 		<ol class="comment-list">
 			<?php
@@ -60,7 +60,7 @@ if ( post_password_required() ) {
 		</ol><!-- .comment-list -->
 
 		<?php
-		the_comments_navigation();
+		"the_comments_navigation"();
 
 		// If comments are closed and there are comments, let's leave a little note, shall we?
 		if ( ! comments_open() ) :
@@ -73,5 +73,5 @@ if ( post_password_required() ) {
 
 	comment_form();
 	?>
-
+	</div>
 </div><!-- #comments -->

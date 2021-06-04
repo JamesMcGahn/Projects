@@ -995,6 +995,23 @@ footer li.signup-link a:hover {
   border-top: solid 1px #eee;
 }
 
+#comments footer {
+  background: none;
+  color: inherit;
+}
+
+footer .comment-meta {
+  background: none;
+  color: inherit;
+}
+
+#comments footer a {
+  color: inherit;
+}
+#comments .comment-metadata {
+  margin: 10px 0 0;
+}
+
 /* === RESOURCES === */
 
 .resource {
