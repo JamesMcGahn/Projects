@@ -10,18 +10,17 @@
 get_header();
 ?>
 
-	<main id="primary" class="site-main">
-
-		<?php if ( have_posts() ) : ?>
-
-			<header class="page-header">
-				<h1 class="page-title">
-					<?php
+<section class="feature-image feature-image-default-alt" data-type="background" data-speed="2">
+<?php if ( have_posts() ) : ?>
+<?php
 					/* translators: %s: search query. */
 					printf( esc_html__( 'Search Results for: %s', 'course-site' ), '<span>' . get_search_query() . '</span>' );
 					?>
-				</h1>
-			</header><!-- .page-header -->
+	</section>
+	<div class="container">
+      <div class="row" id="primary">
+        <main id="content" class="col-sm-8" role="main">
+
 
 			<?php
 			/* Start the Loop */
@@ -40,14 +39,22 @@ get_header();
 			the_posts_navigation();
 
 		else :
-
-			get_template_part( 'template-parts/content', 'none' );
+			
+			get_template_part( 'template-parts/content', 'search' );
 
 		endif;
 		?>
 
-	</main><!-- #main -->
+</main>
+		<aside class="col-sm-4">
+		<?php get_sidebar(); ?>
+			</aside>
+	  </div>
+	</div>
+	
+
+	
 
 <?php
-get_sidebar();
+
 get_footer();
