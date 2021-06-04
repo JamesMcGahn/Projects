@@ -51,6 +51,7 @@ if ( ! function_exists( 'course_site_setup' ) ) :
 		register_nav_menus(
 			array(
 				'menu-1' => esc_html__( 'Primary', 'course-site' ),
+				'footer' => esc_html__( 'Footer Menu', 'course-site' ),
 			)
 		);
 

@@ -45,7 +45,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="/"><img src="<?php bloginfo( 'stylesheet_directory'); ?>/assets/img/logo.png" alt="logo" /></a>
+              <a class="navbar-brand" href="<?php echo esc_url( home_url('/'))?>"><img src="<?php bloginfo( 'stylesheet_directory'); ?>/assets/img/logo.png" alt="logo" /></a>
             </div>
 
 			<?php

@@ -10,51 +10,66 @@
 get_header();
 ?>
 
-	<main id="primary" class="site-main">
-
-		<section class="error-404 not-found">
-			<header class="page-header">
-				<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'course-site' ); ?></h1>
-			</header><!-- .page-header -->
-
-			<div class="page-content">
-				<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'course-site' ); ?></p>
-
-					<?php
-					get_search_form();
-
-					the_widget( 'WP_Widget_Recent_Posts' );
+<section class="feature-image feature-image-default" data-type="background" data-speed="2">
+		<h1>Cant Find That Page...</h1>
+	</section>
+	<div class="container">
+      <div class="row" id="primary">
+        <main id="content" class="col-sm-8">
+<div class="error-404 not-found"> 
+ <div class="page-content">
+	<h2>But.. dont worry we are here to help</h2>
+	
+	<h3>Resources</h3>
+	<?php $loop = new WP_Query( array( 'post_type' => 'resource', 'orderby' => 'post_id', 'order' => 'ASC')); ?>
+					
+			    	<div class="resource-row clearfix">
+				    
+					<?php while ( $loop-> have_posts() ) : $loop->the_post(); 
+					
+					$resource_url = get_field('resource_url');
+					$resource_image = get_field('resource_image');
+					$resource_text = get_field('button_text');
+					
 					?>
+					<div class="resource">
 
-					<div class="widget widget_categories">
-						<h2 class="widget-title"><?php esc_html_e( 'Most Used Categories', 'course-site' ); ?></h2>
-						<ul>
-							<?php
-							wp_list_categories(
-								array(
-									'orderby'    => 'count',
-									'order'      => 'DESC',
-									'show_count' => 1,
-									'title_li'   => '',
-									'number'     => 10,
-								)
-							);
-							?>
-						</ul>
-					</div><!-- .widget -->
+							<img src="<?php echo $resource_image['url']; ?>" alt="<?php echo $resource_image['alt']; ?>">
+					    	<h3><a href="<?php echo $resource_url; ?>"><?php the_title(); ?></a></h3>
+					    	<?php the_excerpt(); ?>
+							<?php if (!empty($resource_text)) { ?>
+							<a href="#" class="btn btn-success"><?php echo $resource_text; ?></a>
+					    	<?php } ?>
+				    	</div>
 
-					<?php
-					/* translators: %1$s: smiley */
-					$course_site_archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'course-site' ), convert_smilies( ':)' ) ) . '</p>';
-					the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$course_site_archive_content" );
 
-					the_widget( 'WP_Widget_Tag_Cloud' );
-					?>
+					<?php endwhile; wp_reset_query(); ?>
 
-			</div><!-- .page-content -->
-		</section><!-- .error-404 -->
+ </div>
+ <h3>Categories</h3>	
+ <div class="widget widget_categories">
+	 <h4 class="widget_title">Most Used Categories</h4>
+	 <ul> <?php wp_list_categories(
+		 array(
+			 'orderby' => 'count',
+			 'order' => 'DESC',
+			 'show_count' => 1,
+			 'title_li' => '',
+			 'number' => 10
 
-	</main><!-- #main -->
+		 )
+	 ) ?></ul>
+	 
+ </div>	
+ <h3>Archives</h3>
+ <?php the_widget('WP_Widget_Archives', 'title=Archives', 'before_title=</h4 class="widgettitle">&after_title=</h4>'); ?>
+</div>
+		</main>
+		<aside class="col-sm-4">
+	<?php get_sidebar(); ?>
+	</aside>
+</div>
+</div>
 
 <?php
 get_footer();
