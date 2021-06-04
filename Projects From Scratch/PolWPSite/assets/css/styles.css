@@ -1,0 +1,82 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Raleway', sans-serif;
+}
+header {
+  padding-left: 15px;
+}
+
+.container-fluid {
+  padding: 0;
+}
+.hero {
+  background-image: linear-gradient(to left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%), url('../img/paul_sarlo_hero.jpeg');
+  min-height: 80vh;
+  /* position: relative; */
+  background-size: cover;
+  width: 100%;
+  padding: 0 0;
+}
+
+.logo {
+  padding: 1% 0 1% 0%;
+  margin-left: 8%;
+}
+.logo img {
+  width: 65%;
+}
+
+.callta {
+  height: 5vh;
+  width: 100%;
+  padding: 1% 0 4% 30%;
+}
+
+.callta .btn {
+  margin-left: 5px;
+  width: auto;
+  padding: 1%;
+  background-color: #2a6f97;
+}
+
+.rescont {
+  background: #012a4a;
+  min-height: 35vh;
+  padding: 5% 5% 5% 5%;
+  text-align: center;
+  /* background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; */
+}
+
+.resrow {
+  width: 100%;
+  color: white;
+}
+
+.resheader {
+  margin-bottom: 4%;
+}
+.mainres i {
+  color: white;
+  size: 5x;
+}
+
+.mainres a {
+  text-decoration: none;
+  color: white;
+}
+.mainres a:hover,
+.mainres i:hover {
+  color: #eda632;
+}
+
+footer {
+  background-color: #fff;
+  height: 5vh;
+  width: 100%;
+  padding: 1% 0 1% 5%;
+  text-align: center;
+}
