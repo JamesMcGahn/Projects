@@ -370,6 +370,11 @@ body {
   top: 32px;
 }
 
+.navbar-nav > li.current_page_item a,
+.navbar-nav > li.current_page_parent a {
+  color: white;
+}
+
 /* ==== GLOBAL ==== */
 
 h1,
