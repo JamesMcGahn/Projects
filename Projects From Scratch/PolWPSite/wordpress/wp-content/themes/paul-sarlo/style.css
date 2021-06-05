@@ -383,6 +383,18 @@ header .navsocial {
   color: #2a6f97;
 }
 
+#navtitle:hover {
+  color: #eda632;
+}
+
+.navsocial:hover {
+  color: #eda632;
+}
+
+div.collapse.navbar-collapse a:hover {
+  color: #eda632;
+}
+
 .hero {
   background-image: linear-gradient(to left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 90%), url('/assets/img/paul_sarlo_hero.jpeg');
   min-height: 80vh;
@@ -412,10 +424,12 @@ header .navsocial {
 }
 
 .callta .btn {
-  margin-left: 5px;
+  margin-left: 1%;
   width: auto;
   padding: 1%;
   background-color: #2a6f97;
+  border-color: white;
+  font-weight: bold;
 }
 
 .callta .btn:hover {
@@ -440,8 +454,8 @@ header .navsocial {
 }
 
 .resheader h2 {
-  margin-bottom: 4%;
-  font-size: 2em;
+  margin-bottom: 6%;
+  font-size: 2.5em;
 }
 
 .mainres i {
@@ -461,6 +475,21 @@ header .navsocial {
 .mainres a:hover,
 .mainres i:hover {
   color: #eda632;
+}
+
+.resbtn.resrow {
+  margin-top: 5%;
+}
+.resbtn.resrow button {
+  background-color: #2a6f97;
+  color: white;
+  font-weight: bold;
+  padding: 1% 2%;
+  border-color: white;
+}
+
+.resbtn.resrow button:hover {
+  background-color: #eda632;
 }
 
 footer {
