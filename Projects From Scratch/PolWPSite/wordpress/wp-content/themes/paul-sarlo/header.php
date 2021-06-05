@@ -37,7 +37,7 @@
 	<header>
 	<nav class="navbar  sticky-top navbar-expand-lg navbar-light bg-light ">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Senator Paul Sarlo</a>
+          <a class="navbar-brand" href="<?php echo esc_url( home_url('/'))?>">Senator Paul Sarlo</a>
           <button
             class="navbar-toggler"
             type="button"
