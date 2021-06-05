@@ -7,11 +7,17 @@ header {
   padding-left: 15px;
 }
 
+header .navsocial {
+  padding-left: 4px;
+  padding-right: 4px;
+  color: #2a6f97;
+}
+
 .container-fluid {
   padding: 0;
 }
 .hero {
-  background-image: linear-gradient(to left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%), url('../img/paul_sarlo_hero.jpeg');
+  background-image: linear-gradient(to left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 90%), url('../img/paul_sarlo_hero.jpeg');
   min-height: 80vh;
   /* position: relative; */
   background-size: cover;
@@ -21,16 +27,17 @@ header {
 
 .logo {
   padding: 1% 0 1% 0%;
-  margin-left: 8%;
+  margin-left: 9%;
 }
+
 .logo img {
   width: 65%;
 }
 
 .callta {
-  height: 5vh;
+  text-align: center;
   width: 100%;
-  padding: 1% 0 4% 30%;
+  padding: 1% 0 0% 1%;
 }
 
 .callta .btn {
@@ -56,12 +63,18 @@ header {
   color: white;
 }
 
-.resheader {
+.resheader h2 {
   margin-bottom: 4%;
+  font-size: 2em;
 }
 .mainres i {
   color: white;
   size: 5x;
+}
+
+.mainres h3 {
+  font-size: 1.5em;
+  margin-top: 2.5%;
 }
 
 .mainres a {
