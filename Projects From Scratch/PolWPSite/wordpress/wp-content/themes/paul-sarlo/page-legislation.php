@@ -10,6 +10,7 @@ $url = 'https://legiscan.com/gaits/feed/1ba6cff8dce784a3ccbbb0ae5cfc6da7.rss';
 
 
 // Thanks for Eric Ma for the below
+// modified from the original code == check out the below link for the original code
 // Check http://www.systutorials.com/136102/a-php-function-for-fetching-rss-feed-and-outputing-feed-items-as-html/ for description
 // RSS to HTML
 /*
@@ -56,16 +57,15 @@ function get_rss_feed_as_html($feed_url, $max_item_cnt = 10, $show_date = true, 
     if ($max_item_cnt > count($feed)) {
         $max_item_cnt = count($feed);
     }
-    $result .= '<div class="feed-lists">';
+    $result .= '';
     for ($x=0;$x<$max_item_cnt;$x++) {
         $title = str_replace(' & ', ' &amp; ', $feed[$x]['title']);
         $link = $feed[$x]['link'];
-        $result .= '<li class="feed-item">';
-        $result .= '<div class="feed-title"><strong><a href="'.$link.'" title="'.$title.'">'.$title.'</a></strong></div>';
-        if ($show_date) {
-            $date = date('l F d, Y', strtotime($feed[$x]['date']));
-            $result .= '<small class="feed-date"><em>Posted on '.$date.'</em></small>';
-        }
+        $result .= '<div class="col"><div class="card h-100"><div class="card-body">';
+        $result .= '<div class="card-title legifeedtitle"><strong><a href="'.$link.'" title="'.$title.'">'.$title.'</a></strong></div>';
+
+
+        
         if ($show_description) {
             $description = $feed[$x]['desc'];
             $content = $feed[$x]['content'];
@@ -93,23 +93,55 @@ function get_rss_feed_as_html($feed_url, $max_item_cnt = 10, $show_date = true, 
             if ($has_image == 1) {
                 $description = '<img class="feed-item-image" src="' . $image['src'] . '" />' . $description;
             }
-            $result .= '<div class="feed-description">' . $description;
-            $result .= ' <a href="'.$link.'" title="'.$title.'">Continue Reading &raquo;</a>'.'</div>';
+            $result .= '<p class="card-text">' . $description;
+            $result .= ' </br> <a href="'.$link.'" title="'.$title.'">Continue Reading &raquo;</a>'.'</p>';
+
+
+            if ($show_date) {
+                $date = date('l F d, Y', strtotime($feed[$x]['date']));
+                $result .= '</div><div class="card-footer"><small class="feed-date"><em>Last Action: '.$date.'</em></small></div>';
+            }
+
         }
-        $result .= '</li>';
+        $result .= '</div></div>';
     }
-    $result .= '</div>';
+    $result .= '';
     return $result;
 }
 
-function output_rss_feed($feed_url, $max_item_cnt = 10, $show_date = true, $show_description = true, $max_words = 0)
+function output_rss_feed($feed_url, $max_item_cnt = 50, $show_date = true, $show_description = true, $max_words = 0)
 {
     echo get_rss_feed_as_html($feed_url, $max_item_cnt, $show_date, $show_description, $max_words);
 }
-
-
-output_rss_feed($url)
-
 ?>
+
+
+
+<div id="home" class="container-fluid">
+<div class="container-fluid legi">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div id="legicontainer" class="col-md-10 col-sm-12 ">
+
+            <div class="row legiheader">
+                <h1><?php the_title(); ?></h1>
+            </div>
+            <div class="row legicontent">
+                <div class="row row-cols-12 row-cols-md-2 row-cols-sm-1 g-4">
+                <?php output_rss_feed($url)  ?>
+ 
+                    </div>
+                <div class="row">
+                    <div class="col-12"> 
+                </div>       
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+
+</div>
+
 
 <?php get_footer(); ?>
