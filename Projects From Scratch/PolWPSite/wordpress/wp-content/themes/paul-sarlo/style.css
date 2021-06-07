@@ -550,3 +550,7 @@ p.card-text a {
 p.card-text a:hover {
   color: #eda632;
 }
+
+img.img-card-res {
+  width: 100%;
+}
