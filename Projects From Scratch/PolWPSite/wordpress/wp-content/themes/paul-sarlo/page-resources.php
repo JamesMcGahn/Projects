@@ -16,26 +16,38 @@ get_header();
                 <h1><?php the_title(); ?></h1>
             </div>
             <div class="row legicontent">
-                <div class="row row-cols-12 row-cols-md-3 row-cols-sm-1 g-4">
+                <div class="row row-cols-sm-2  row-cols-md-3  g-4">
 
-                <?php $loop = new WP_Query( array( 'post_type' => 'resource', 'orderby' => 'post_id', 'order' => 'ASC')); ?>
-					
-			    	<!-- <div class="resource-row clearfix"> -->
-				    
+                <?php $constService = get_post(60, ARRAY_A);
+                             $consthumbnailUrl = wp_get_attachment_url( get_post_thumbnail_id( 60));
+                ?>
+                <div class="col">
+                            <div class="card h-100">
+                                 <img src="<?php echo $consthumbnailUrl ?>" class="card-img-top img-card-res" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title resourceP-title"><a href="<?php echo get_permalink(60)?>"> <?php echo $constService["post_title"]; ?></a></h5>
+                                    <p class="card-text resourceP-text"><?php echo $constService["post_excerpt"]; ?></p>
+                                </div>
+                            </div>
+                        </div>
+                <?php wp_reset_query(); ?>
+
+                <?php $loop = new WP_Query( array( 'post_type' => 'resource', 'orderby' => 'post_id', 'order' => 'ASC')); ?>				    
 					<?php while ( $loop-> have_posts() ) : $loop->the_post();  
                             $thumbnailUrl = wp_get_attachment_url( get_post_thumbnail_id( $post-> ID));
                             ?>
                         <div class="col">
-                            <div class="card">
+                            <div class="card h-100">
                                  <img src="<?php echo $thumbnailUrl ?>" class="card-img-top img-card-res" alt="...">
                                 <div class="card-body">
-                                    <h5 class="card-title"><a href="<?php echo get_permalink()?>"> <?php the_title(); ?></a></h5>
-                                    <p class="card-text"><?php the_excerpt(); ?></p>
+                                    <h5 class="card-title resourceP-title"><a href="<?php echo get_permalink()?>"> <?php the_title(); ?></a></h5>
+                                    <p class="card-text resourceP-text"><?php the_excerpt(); ?></p>
                                 </div>
                             </div>
                         </div>
 
                         <?php endwhile;  wp_reset_query();?>
+
                     </div>
                 <div class="row">
                     <div class="col-12"> 

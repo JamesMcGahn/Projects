@@ -547,10 +547,21 @@ p.card-text a {
   color: #2a6f97;
 }
 .legifeedtitle.card-title a:hover,
-p.card-text a:hover {
+p.card-text a:hover,
+.resourceP-title a:hover {
   color: #eda632;
 }
 
 img.img-card-res {
   width: 100%;
+}
+
+.resourceP-title {
+  text-align: center;
+}
+
+.resourceP-title a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
 }
