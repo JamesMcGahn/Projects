@@ -6,16 +6,20 @@
  *
  * @package Paul_Sarlo
  */
+$display_featured_image = get_post_field('display_featured_image', $post-> ID, 'edit'  );
+
+
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
+
+<article  id="post-<?php the_ID(); ?>" <?php post_class("col-md-12 col-sm-12 card"); ?>>
+	<div class="entry-header row bioheader">
 		<?php
 		if ( is_singular() ) :
-			the_title( '<h1 class="entry-title">', '</h1>' );
+			the_title( '<h1 class="entry-title postheader">', '</h1>' );
 		else :
-			the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
+			the_title( '<h3 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h3>' );
 		endif;
 
 		if ( 'post' === get_post_type() ) :
@@ -27,37 +31,19 @@
 				?>
 			</div><!-- .entry-meta -->
 		<?php endif; ?>
-	</header><!-- .entry-header -->
+	</div><!-- .entry-header -->
+	<div class="row biocontent">
+		<?php if($display_featured_image) { ?>
+	<div class="row justify-content-center">
+		<div class="col-md-10 col-sm-10 "><img class="postimage" src="<?php echo wp_get_attachment_url( get_post_thumbnail_id( $post-> ID)); ?>"></div>
+	</div>
+			<?php } else {}?>
 
-	<?php paul_sarlo_post_thumbnail(); ?>
-
-	<div class="entry-content">
-		<?php
-		the_content(
-			sprintf(
-				wp_kses(
-					/* translators: %s: Name of current post. Only visible to screen readers */
-					__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'paul-sarlo' ),
-					array(
-						'span' => array(
-							'class' => array(),
-						),
-					)
-				),
-				wp_kses_post( get_the_title() )
-			)
-		);
-
-		wp_link_pages(
-			array(
-				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'paul-sarlo' ),
-				'after'  => '</div>',
-			)
-		);
-		?>
-	</div><!-- .entry-content -->
-
-	<footer class="entry-footer">
-		<?php paul_sarlo_entry_footer(); ?>
-	</footer><!-- .entry-footer -->
+	<div class="row justify-content-center">
+	<div class="col-md-9 col-sm-12 bio"> 
+	<?php the_content(); ?>
+	</div>
+	</div>
+		
+		</div>
 </article><!-- #post-<?php the_ID(); ?> -->

@@ -504,12 +504,14 @@ footer {
 /* ---------------------------------------------------------------------------------------- */
 
 .about,
-.legi {
+.legi,
+.post {
   background-color: #012a4a;
 }
 
 #biocontainer,
-#legicontainer {
+#legicontainer,
+#postcontainer {
   margin-top: 35px;
   margin-bottom: 35px;
   padding-top: 20px;
@@ -564,4 +566,21 @@ img.img-card-res {
   text-decoration: none;
   color: black;
   font-weight: bold;
+}
+
+.entry-title {
+  color: black;
+}
+
+/* ----------------------------------POST ------------------------------------------------------
+------------------------------------------------------------------------------------------------
+*/
+
+.postheader.entry-title {
+  margin-left: 1%;
+  margin-top: 1%;
+}
+
+img.postimage {
+  width: 80%;
 }

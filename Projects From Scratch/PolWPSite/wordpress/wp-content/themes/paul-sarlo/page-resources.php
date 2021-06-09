@@ -23,7 +23,7 @@ get_header();
                 ?>
                 <div class="col">
                             <div class="card h-100">
-                                 <img src="<?php echo $consthumbnailUrl ?>" class="card-img-top img-card-res" alt="...">
+                            <a href="<?php echo get_permalink(60)?>"><img src="<?php echo $consthumbnailUrl ?>" class="card-img-top img-card-res" alt="..."></a>
                                 <div class="card-body">
                                     <h5 class="card-title resourceP-title"><a href="<?php echo get_permalink(60)?>"> <?php echo $constService["post_title"]; ?></a></h5>
                                     <p class="card-text resourceP-text"><?php echo $constService["post_excerpt"]; ?></p>
@@ -38,7 +38,7 @@ get_header();
                             ?>
                         <div class="col">
                             <div class="card h-100">
-                                 <img src="<?php echo $thumbnailUrl ?>" class="card-img-top img-card-res" alt="...">
+                            <a href="<?php echo get_permalink()?>"> <img src="<?php echo $thumbnailUrl ?>" class="card-img-top img-card-res" alt="..."></a>
                                 <div class="card-body">
                                     <h5 class="card-title resourceP-title"><a href="<?php echo get_permalink()?>"> <?php the_title(); ?></a></h5>
                                     <p class="card-text resourceP-text"><?php the_excerpt(); ?></p>
