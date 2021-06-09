@@ -8,11 +8,13 @@ get_header();
     <div id="home" class="container-fluid">
         <div class="container-fluid about">
             <div class="row">
+            
                 <div class="col-md-2"></div>
+
                 <div id="biocontainer" class="col-md-8 col-sm-12 card">
 
                     <div class="row bioheader">
-                        <h1><?php the_title(); ?></h1>
+                        
                     </div>
                     <div class="row biocontent">
                         <div class="row">

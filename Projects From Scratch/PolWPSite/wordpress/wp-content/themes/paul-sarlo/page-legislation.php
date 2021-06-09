@@ -60,9 +60,10 @@ function get_rss_feed_as_html($feed_url, $max_item_cnt = 10, $show_date = true, 
     $result .= '';
     for ($x=0;$x<$max_item_cnt;$x++) {
         $title = str_replace(' & ', ' &amp; ', $feed[$x]['title']);
+        $titleLink = str_replace('NJ ', '', $title);
         $link = $feed[$x]['link'];
         $result .= '<div class="col"><div class="card h-100"><div class="card-body">';
-        $result .= '<div class="card-title legifeedtitle"><strong><a href="'.$link.'" title="'.$title.'">'.$title.'</a></strong></div>';
+        $result .= '<div class="card-title legifeedtitle"><strong><a href="https://www.njleg.state.nj.us/bills/BillView.asp?BillNumber='.$titleLink.'"  title="'.$title.'"  target="_blank">'.$title.'</a></strong></div>';
 
 
         
@@ -94,7 +95,7 @@ function get_rss_feed_as_html($feed_url, $max_item_cnt = 10, $show_date = true, 
                 $description = '<img class="feed-item-image" src="' . $image['src'] . '" />' . $description;
             }
             $result .= '<p class="card-text">' . $description;
-            $result .= ' </br> <a href="'.$link.'" title="'.$title.'">Continue Reading &raquo;</a>'.'</p>';
+            $result .= ' </br> <a href="https://www.njleg.state.nj.us/bills/BillView.asp?BillNumber='.$titleLink.'" title="'.$title.'" target="_blank">Continue Reading &raquo;</a>'.'</p>';
 
 
             if ($show_date) {

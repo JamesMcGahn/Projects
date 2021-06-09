@@ -32,12 +32,14 @@ $display_featured_image = get_post_field('display_featured_image', $post-> ID, '
 			</div><!-- .entry-meta -->
 		<?php endif; ?>
 	</div><!-- .entry-header -->
-	<div class="row biocontent">
-		<?php if($display_featured_image) { ?>
+	<div class="row biocontent justify-content-center">
+		
 	<div class="row justify-content-center">
-		<div class="col-md-10 col-sm-10 "><img class="postimage" src="<?php echo wp_get_attachment_url( get_post_thumbnail_id( $post-> ID)); ?>"></div>
+	<?php if($display_featured_image) { ?>
+		<div class="col-md-6 col-sm-12 "><img class="postimage" src="<?php echo wp_get_attachment_url( get_post_thumbnail_id( $post-> ID)); ?>"></div>
+		<?php } else {}?>
 	</div>
-			<?php } else {}?>
+			
 
 	<div class="row justify-content-center">
 	<div class="col-md-9 col-sm-12 bio"> 
