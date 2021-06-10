@@ -54,21 +54,22 @@
 				wp_nav_menu( array( 
 					'theme_location' => 'header_menu',
 					'container' => '',
-					'items_wrap' => '<div class="navbar-nav ms-auto">%3$s</div>',
+					'items_wrap' => '<div class="navbar-nav col-8 ">%3$s</div>',
 					'before' => '<span class="nav-link nav-title">', 
 					'after' => '</span>'
 				));
 			?>
-
-
-            <!-- <div class="navbar-nav ms-auto">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-              <a class="nav-link" href="#">Features</a>
-              <a class="nav-link" href="#">Pricing</a>
-              <a class="nav-link" href="#">Disabled</a>
-            </div> -->
+            <?php get_search_form(); ?>
             <a href="https://twitter.com/PaulASarlo" target="_blank"><i class="fab fa-twitter-square fa-2x navsocial"></i></a>
             <a href="https://www.facebook.com/PaulASarlo" target="_blank"><i class="fab fa-facebook-square fa-2x navsocial"></i></a>
+        
+      
+ 
+          </div>
+            
+            
+            
+      </div>
           </div>
           
         </div>
