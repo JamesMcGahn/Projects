@@ -3,5 +3,5 @@
 					
 					<input type="search" class="search-field form-control me-2" placeholder="Search" value="<?php get_search_query() ?>" name="s" />
 				</label>
-                <button class="btn btn-outline-success search-submit " type="submit">Search</button>
+                <button class="btn search-submit " type="submit">Search</button>
 </form>

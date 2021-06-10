@@ -24,7 +24,9 @@
     ></script>
 
 <div class="row">
-	<div class="col-xs-5 col-sm-5 col-md-2 col-2"></div>
+	<div class="col-xs-5 col-sm-5 col-md-2 col-2">
+	
+	</div>
 		<div class="col-xs-2 col-sm-2 col-md-8 col-lg-8 align-self-center"> 
 		  <?php
 				wp_nav_menu( array( 
@@ -42,8 +44,11 @@
           
 		  </div>  
 	<div class="col-sm-12 col-lg-2 align-self-end">
-	<div><small> <a href="https://www.senatorpaulsarlo.com">&copy; <?php echo date('Y'); ?> Paul Sarlo </a> </small> </div>
-	<div><small> <a href="https://www.jamesmcgahn.com" target="_blank">&copy; <?php echo date('Y'); ?> James McGahn </a> </small> </div>
+	
+	<div>
+	<small> <a href="https://www.senatorpaulsarlo.com">&copy; <?php echo date('Y'); ?> Paul Sarlo </a> </small>
+	<small> <a href="https://www.jamesmcgahn.com" target="_blank">&copy; <?php echo date('Y'); ?> James McGahn </a> </small> 
+	 </div>
 	</div>
 
 	  </div>

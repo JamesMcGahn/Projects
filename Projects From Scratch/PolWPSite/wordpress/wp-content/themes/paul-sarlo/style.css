@@ -362,6 +362,7 @@ body.page {
 
 header {
   padding-left: 15px;
+  background-color: #f8f9fa;
 }
 
 .navbar-nav > li.menu-item a {
@@ -395,10 +396,11 @@ div.collapse.navbar-collapse a:hover {
   color: #eda632;
 }
 
-.search-submit {
+button.search-submit {
   background-color: #2a6f97;
   color: white;
   font-weight: bold;
+  margin-left: 4px;
 }
 
 .nav-search-form form {
@@ -510,14 +512,6 @@ div.col-3.nav-social-icons {
   background-color: #eda632;
 }
 
-footer {
-  background-color: #fff;
-  height: 5vh;
-  width: 100%;
-  padding: 1% 0 1% 5%;
-  text-align: center;
-}
-
 /* ------------------------About ME ------------------------------------------------------- */
 /* ---------------------------------------------------------------------------------------- */
 
@@ -606,6 +600,10 @@ img.postimage {
 /* ----------------------------------Footer ------------------------------------------------------
 ------------------------------------------------------------------------------------------------
 */
+footer {
+  background-color: #f8f9fa;
+}
+
 li.menu-item > span.nav-link a {
   text-decoration: none;
   margin-bottom: 1px;
@@ -625,12 +623,50 @@ li.menu-item > span.nav-link a:hover {
   color: #eda632;
 }
 
+footer {
+  background-color: #fff;
+  /* height: 5vh; */
+  width: 100%;
+  /* padding: 1% 0 1% 5%; */
+  text-align: center;
+}
+
 footer small a {
   text-decoration: none;
   color: black;
-  font-size: 1em;
+  font-size: 0.8em;
+  line-height: 0.2em;
 }
 
 footer small a:hover {
   color: #eda632;
+}
+
+footer .navsocial {
+  color: #2a6f97;
+}
+
+@media (max-width: 382px) {
+  .hero {
+    min-height: 40vh;
+    position: relative;
+
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    min-height: 30vh;
+
+    position: relative;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: 25vh;
+
+    position: relative;
+  }
 }
