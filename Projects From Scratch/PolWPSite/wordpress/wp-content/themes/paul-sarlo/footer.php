@@ -23,22 +23,30 @@
       crossorigin="anonymous"
     ></script>
 
+<div class="row">
+	<div class="col-xs-5 col-sm-5 col-md-2 col-2"></div>
+		<div class="col-xs-2 col-sm-2 col-md-8 col-lg-8 align-self-center"> 
+		  <?php
+				wp_nav_menu( array( 
+					'theme_location' => 'header_menu',
+					'container' => '',
+					'items_wrap' => '<ul class="nav justify-content-center">%3$s</ul>',
+					'before' => '<span class="nav-link">', 
+					'after' => '</span>'
+				));
+			?>
+            <a href="https://twitter.com/PaulASarlo" target="_blank"><i class="fab fa-twitter-square fa-2x navsocial"></i></a>
+            <a href="https://www.facebook.com/PaulASarlo" target="_blank"><i class="fab fa-facebook-square fa-2x navsocial"></i></a>
+			
+			
+          
+		  </div>  
+	<div class="col-sm-12 col-lg-2 align-self-end">
+	<div><small> <a href="https://www.senatorpaulsarlo.com">&copy; <?php echo date('Y'); ?> Paul Sarlo </a> </small> </div>
+	<div><small> <a href="https://www.jamesmcgahn.com" target="_blank">&copy; <?php echo date('Y'); ?> James McGahn </a> </small> </div>
+	</div>
 
-
-
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'paul-sarlo' ) ); ?>">
-				<?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'paul-sarlo' ), 'WordPress' );
-				?>
-			</a>
-			<span class="sep"> | </span>
-				<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'paul-sarlo' ), 'paul-sarlo', '<a href="http://underscores.me/">Underscores.me</a>' );
-				?>
-		</div><!-- .site-info -->
+	  </div>
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 

@@ -584,3 +584,35 @@ img.img-card-res {
 img.postimage {
   width: 100%;
 }
+
+/* ----------------------------------Footer ------------------------------------------------------
+------------------------------------------------------------------------------------------------
+*/
+li.menu-item > span.nav-link a {
+  text-decoration: none;
+  margin-bottom: 1px;
+  margin-top: 1px;
+  color: black;
+  font-size: 1em;
+  line-height: 1em;
+}
+
+.nav > li.current_page_item a,
+.nav > li.current_page_parent a {
+  color: black;
+  font-weight: bold;
+}
+
+li.menu-item > span.nav-link a:hover {
+  color: #eda632;
+}
+
+footer small a {
+  text-decoration: none;
+  color: black;
+  font-size: 1em;
+}
+
+footer small a:hover {
+  color: #eda632;
+}
