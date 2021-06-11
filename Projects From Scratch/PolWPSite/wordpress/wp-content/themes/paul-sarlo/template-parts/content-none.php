@@ -9,12 +9,14 @@
 
 ?>
 
-<section class="no-results not-found">
+<section class="no-results not-found card">
 	<header class="page-header">
 		<h1 class="page-title"><?php esc_html_e( 'Nothing Found', 'paul-sarlo' ); ?></h1>
 	</header><!-- .page-header -->
 
-	<div class="page-content">
+	<div class="card">
+	<div class="row ms-1 mb-1">
+				<div class=col-10 >
 		<?php
 		if ( is_home() && current_user_can( 'publish_posts' ) ) :
 
@@ -35,9 +37,10 @@
 			?>
 
 			<p><?php esc_html_e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'paul-sarlo' ); ?></p>
-			<?php
-			get_search_form();
 
+			<?php get_search_form();  ?>
+
+			<?php
 		else :
 			?>
 
@@ -47,5 +50,6 @@
 
 		endif;
 		?>
+		</div>
 	</div><!-- .page-content -->
 </section><!-- .no-results -->

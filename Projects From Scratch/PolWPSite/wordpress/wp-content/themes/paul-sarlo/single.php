@@ -28,8 +28,8 @@ while ( have_posts() ) :
 
 	the_post_navigation(
 		array(
-			'prev_text' => '<span class="nav-subtitle">' . esc_html__( 'Previous:', 'paul-sarlo' ) . '</span> <span class="nav-title">%title</span>',
-			'next_text' => '<span class="nav-subtitle">' . esc_html__( 'Next:', 'paul-sarlo' ) . '</span> <span class="nav-title">%title</span>',
+			'prev_text' => '<span class="nav-subtitle"><i class="fas fa-chevron-left"></i>' . esc_html__( ' Previous Release:', 'paul-sarlo' ) . '</span> <span class="nav-title">%title</span>',
+			'next_text' => '<span class="nav-subtitle"><i class="fas fa-chevron-right"></i>' . esc_html__( ' Next Release:', 'paul-sarlo' ) . '</span> <span class="nav-title">%title</span>',
 		)
 	);
 

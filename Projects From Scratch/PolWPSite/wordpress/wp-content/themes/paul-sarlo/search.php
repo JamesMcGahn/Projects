@@ -9,18 +9,21 @@
 
 get_header();
 ?>
-
+<div class="container-fluid legi">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div id="legicontainer" class="col-md-8 col-sm-12 col-12 ">
 	<main id="primary" class="site-main">
 
 		<?php if ( have_posts() ) : ?>
 
-			<header class="page-header">
-				<h1 class="page-title">
+			<header class="page-header card mb-2">
+				<h2 class="page-title">
 					<?php
 					/* translators: %s: search query. */
 					printf( esc_html__( 'Search Results for: %s', 'paul-sarlo' ), '<span>' . get_search_query() . '</span>' );
 					?>
-				</h1>
+				</h2>
 			</header><!-- .page-header -->
 
 			<?php
@@ -47,7 +50,10 @@ get_header();
 		?>
 
 	</main><!-- #main -->
-
+	</div>
+        <div class="col-md-1"></div>
+    </div>
+</div>
 <?php
-get_sidebar();
+
 get_footer();

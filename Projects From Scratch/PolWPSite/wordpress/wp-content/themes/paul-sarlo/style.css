@@ -588,22 +588,24 @@ img.img-card-res {
 ------------------------------------------------------------------------------------------------
 */
 
-.postheader.entry-title,
-h3.blogrollheader {
-  margin-left: 1%;
+.postheader {
   margin-top: 1%;
   color: black;
   text-decoration: none;
 }
 
 .blogrollheader {
+  margin-top: 1%;
   margin-bottom: 0.5em;
 }
 .blogrollheader a {
   text-decoration: none;
   color: black;
 }
-
+.blogrollheader a:hover {
+  text-decoration: none;
+  color: #eda632;
+}
 img.postimage {
   width: 100%;
 }
@@ -620,10 +622,23 @@ a.moretag:hover {
 
 div.entry-meta.row {
   margin-left: 0;
+  padding-left: 0;
 }
 
 div.row.readmore {
   margin-bottom: 1em;
+}
+
+div.row.post-content {
+  padding-left: 0;
+}
+
+nav.navigation a {
+  color: white;
+  text-decoration: none;
+}
+nav.navigation a:hover {
+  color: #eda632;
 }
 
 /* ----------------------------------Footer ------------------------------------------------------
