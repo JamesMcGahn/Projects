@@ -14,8 +14,12 @@
 
 get_header();
 ?>
-
-	<main id="primary" class="site-main">
+<main id="primary" class="site-main">
+<div class="container-fluid legi">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div id="legicontainer" class="col-md-8 col-sm-12 col-12 ">
+	
 
 		<?php
 		if ( have_posts() ) :
@@ -49,9 +53,14 @@ get_header();
 
 		endif;
 		?>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
 
+</div>
 	</main><!-- #main -->
 
 <?php
-get_sidebar();
+
 get_footer();

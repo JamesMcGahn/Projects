@@ -178,3 +178,9 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+
+function new_excerpt_more($more) {
+	global $post;
+	return '... </br><div class="row readmore"><div class="col-10"></div><div class="col-2"> <a class="moretag" href=" ' . get_permalink($post->ID) . '"> Read More  </a></div></div>';
+}
+add_filter('excerpt_more', 'new_excerpt_more');

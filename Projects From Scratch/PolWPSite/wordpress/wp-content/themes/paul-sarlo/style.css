@@ -588,13 +588,42 @@ img.img-card-res {
 ------------------------------------------------------------------------------------------------
 */
 
-.postheader.entry-title {
+.postheader.entry-title,
+h3.blogrollheader {
   margin-left: 1%;
   margin-top: 1%;
+  color: black;
+  text-decoration: none;
+}
+
+.blogrollheader {
+  margin-bottom: 0.5em;
+}
+.blogrollheader a {
+  text-decoration: none;
+  color: black;
 }
 
 img.postimage {
   width: 100%;
+}
+
+a.moretag {
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+  font-size: 1.1em;
+}
+a.moretag:hover {
+  color: #eda632;
+}
+
+div.entry-meta.row {
+  margin-left: 0;
+}
+
+div.row.readmore {
+  margin-bottom: 1em;
 }
 
 /* ----------------------------------Footer ------------------------------------------------------
@@ -625,16 +654,26 @@ li.menu-item > span.nav-link a:hover {
 
 footer {
   background-color: #fff;
-  /* height: 5vh; */
   width: 100%;
-  /* padding: 1% 0 1% 5%; */
   text-align: center;
+}
+
+div#footerRow {
+  margin: 0 auto;
+}
+
+div.copyright {
+  line-height: 0.8;
+  text-align: right;
+}
+
+footer small {
+  margin-bottom: 0;
 }
 
 footer small a {
   text-decoration: none;
   color: black;
-  font-size: 0.8em;
   line-height: 0.2em;
 }
 
@@ -668,5 +707,10 @@ footer .navsocial {
     min-height: 25vh;
 
     position: relative;
+  }
+
+  .bioimage img {
+    width: 35vh;
+    margin: 5% 0 1% 30%;
   }
 }

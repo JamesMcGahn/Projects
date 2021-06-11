@@ -33,7 +33,7 @@ get_header();
 <div id="home" class="container-fluid">
       <div class="container-fluid hero">
         <div class="col-6 logo">
-          <img src="<?php bloginfo( 'stylesheet_directory'); ?>/assets/img/PAS_HERO_LOGO_LG.png" />
+          <img  class="img-fluid" src="<?php bloginfo( 'stylesheet_directory'); ?>/assets/img/PAS_HERO_LOGO_LG.png" />
         </div>
       </div>
       <div class="container-fluid callta row">
