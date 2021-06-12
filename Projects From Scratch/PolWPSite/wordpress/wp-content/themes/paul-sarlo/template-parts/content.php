@@ -40,9 +40,9 @@ $display_featured_image_BlogRoll = get_post_field('display_featured_image_br', $
 	<div class="clearfix">
 	<?php 
 	if ( is_singular() && $display_featured_image ) : ?>
-		<img class="col-md-6 float-md-end mb-3 ms-md-3" src="<?php echo wp_get_attachment_url( get_post_thumbnail_id( $post-> ID)); ?>">
+		<img class="postimage col-12 col-sm-12 col-md-6 float-md-end mb-3 ms-md-3" src="<?php echo wp_get_attachment_url( get_post_thumbnail_id( $post-> ID)); ?>">
 		<?php 	elseif(!is_singular() && $display_featured_image_BlogRoll ) : ?>
-		<img class="col-md-6 float-md-end mb-3 ms-md-3" src="<?php echo wp_get_attachment_url( get_post_thumbnail_id( $post-> ID)); ?>">
+		<img class="postimage col-12 col-sm-12 col-md-6  float-md-end mb-3 ms-md-3" src="<?php echo wp_get_attachment_url( get_post_thumbnail_id( $post-> ID)); ?>">
 		
 		<?php else : 
 

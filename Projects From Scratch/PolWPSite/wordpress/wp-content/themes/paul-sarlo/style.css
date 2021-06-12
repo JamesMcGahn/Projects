@@ -613,7 +613,8 @@ img.img-card-res {
   color: #eda632;
 }
 img.postimage {
-  width: 100%;
+  max-height: 42vh;
+  width: auto;
 }
 
 a.moretag {
@@ -639,11 +640,13 @@ div.row.post-content {
   padding-left: 0;
 }
 
-nav.navigation a {
+nav.navigation a,
+.rollPagination a {
   color: white;
   text-decoration: none;
 }
-nav.navigation a:hover {
+nav.navigation a:hover,
+.rollPagination a:hover {
   color: #eda632;
 }
 

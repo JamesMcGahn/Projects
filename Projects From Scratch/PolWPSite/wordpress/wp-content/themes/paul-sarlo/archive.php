@@ -9,14 +9,19 @@
 
 get_header();
 ?>
+<main id="primary" class="site-main">
+<div class="container-fluid legi">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div id="legicontainer" class="col-md-8 col-sm-12 col-12 ">
+	
 
-	<main id="primary" class="site-main">
 
 		<?php if ( have_posts() ) : ?>
 
-			<header class="page-header">
+			<header class="page-header card mb-4">
 				<?php
-				the_archive_title( '<h1 class="page-title">', '</h1>' );
+				the_archive_title( '<h1 class="page-title">Archive For the ', '</h1>' );
 				the_archive_description( '<div class="archive-description">', '</div>' );
 				?>
 			</header><!-- .page-header -->
@@ -34,9 +39,6 @@ get_header();
 				get_template_part( 'template-parts/content', get_post_type() );
 
 			endwhile;
-
-			the_posts_navigation();
-
 		else :
 
 			get_template_part( 'template-parts/content', 'none' );
@@ -44,6 +46,17 @@ get_header();
 		endif;
 		?>
 
+<div class="row">
+			<div class="col-3 rollPagination"><?php previous_posts_link();   ?></div>
+			<div class="col-7"></div>
+			<div class="col-2 rollPagination"><?php next_posts_link(); ?></div>
+		</div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+
+</div>
 	</main><!-- #main -->
 
 <?php
