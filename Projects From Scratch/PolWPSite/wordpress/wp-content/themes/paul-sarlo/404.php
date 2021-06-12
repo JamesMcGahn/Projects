@@ -9,52 +9,67 @@
 
 get_header();
 ?>
-
-	<main id="primary" class="site-main">
+<div class="container-fluid fourOFour">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div id="fourOFour" class="col-md-10 col-sm-12 col-12 ">
+	<main id="primary" class="site-main card">
 
 		<section class="error-404 not-found">
 			<header class="page-header">
-				<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'paul-sarlo' ); ?></h1>
+				<h1 class="page-title fourOFourtitle"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'paul-sarlo' ); ?></h1>
 			</header><!-- .page-header -->
 
-			<div class="page-content">
-				<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'paul-sarlo' ); ?></p>
+			<div class="page-content container">
+					<div class="row fourOFourHeadtext">
+					
+						<div class="col-12">
+							<h5>Try searching with new keywords or how about check some of the most recent Press Releases Below?</h5>
+							</div>
+					</div>
 
-					<?php
-					get_search_form();
+					
 
-					the_widget( 'WP_Widget_Recent_Posts' );
-					?>
+					<div class="card-group mb-3">
 
-					<div class="widget widget_categories">
-						<h2 class="widget-title"><?php esc_html_e( 'Most Used Categories', 'paul-sarlo' ); ?></h2>
-						<ul>
-							<?php
-							wp_list_categories(
-								array(
-									'orderby'    => 'count',
-									'order'      => 'DESC',
-									'show_count' => 1,
-									'title_li'   => '',
-									'number'     => 10,
-								)
-							);
-							?>
-						</ul>
-					</div><!-- .widget -->
 
-					<?php
-					/* translators: %1$s: smiley */
-					$paul_sarlo_archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'paul-sarlo' ), convert_smilies( ':)' ) ) . '</p>';
-					the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$paul_sarlo_archive_content" );
+					<?php $loop = new WP_Query( array( 'post_type' => 'post', 'orderby' => 'post_id', 'order' => 'DESC', 'posts_per_page' => 3 )); ?>				    
+					<?php while ( $loop-> have_posts() ) : $loop->the_post();  
+                            $thumbnailUrl = wp_get_attachment_url( get_post_thumbnail_id( $post-> ID));
 
-					the_widget( 'WP_Widget_Tag_Cloud' );
-					?>
+								?>
+					
+					
+                            <div class="card">
+                            <a href="<?php echo get_permalink();?>"> <img src="<?php if(empty($thumbnailUrl)){echo bloginfo( 'stylesheet_directory'); ?>/assets/img/american_flag_stock.jpeg <?php } else{echo $thumbnailUrl;} ?>" class="card-img-top fourOFourImg" alt="..."></a>
+                                <div class="card-body">
+                                    <h5 class="card-title fourOFour-title"><a href="<?php echo get_permalink();?>"> <?php the_title(); ?></a></h5>
+                                    <p class="card-text fourOFour-text"><?php the_excerpt(); ?></p>
+									</div>
+									<div class="card-footer">
+      									<small class="text-muted">Last updated 3 mins ago</small>
+    								</div>
+                            </div>
+                        
+
+                        <?php endwhile;  wp_reset_query();?>
+						</div></div>
+					
 
 			</div><!-- .page-content -->
 		</section><!-- .error-404 -->
 
+
+
+		</div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+
+</div>
 	</main><!-- #main -->
 
 <?php
 get_footer();
+
+?>

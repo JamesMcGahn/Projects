@@ -339,6 +339,7 @@
 .navbar-nav > li.current_page_parent a {
   color: black;
   font-weight: bold;
+  text-decoration: underline;
 }
 
 /* Home Page */
@@ -517,13 +518,15 @@ div.col-3.nav-social-icons {
 
 .about,
 .legi,
-.post {
+.post, 
+.fourOFour{
   background-color: #012a4a;
 }
 
 #biocontainer,
 #legicontainer,
-#postcontainer {
+#postcontainer,
+#fourOFour {
   margin-top: 35px;
   margin-bottom: 35px;
   padding-top: 20px;
@@ -569,6 +572,9 @@ p.card-text a:hover,
 img.img-card-res {
   width: 100%;
 }
+
+/* ------------------------resource  page ------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------- */
 
 .resourceP-title {
   text-align: center;
@@ -640,6 +646,37 @@ nav.navigation a {
 nav.navigation a:hover {
   color: #eda632;
 }
+
+
+
+img.fourOFourImg.card-img-top {
+  height: 42vh;
+  width: 100%;
+
+}
+
+div.row.fourOFourHeadtext {
+  margin-bottom: 1%;
+  text-align: center;
+}
+
+.fourOFourtitle {
+  text-align: center;
+  padding: 4px;
+}
+
+.fourOFour-title {
+  text-align: center;
+}
+
+.fourOFour-title a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+
+
 
 /* ----------------------------------Footer ------------------------------------------------------
 ------------------------------------------------------------------------------------------------
