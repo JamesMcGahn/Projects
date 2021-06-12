@@ -349,6 +349,12 @@ html {
   margin: 0;
 }
 
+button.btn:hover,
+button.btn:active {
+  border-color: #2a6f97;
+  box-shadow: 1px 5px 5px #2a6f97;
+}
+
 body.page {
   width: 100% !important;
   margin: 0 !important;
@@ -402,6 +408,17 @@ button.search-submit {
   color: white;
   font-weight: bold;
   margin-left: 4px;
+}
+button.search-submit:hover {
+  background-color: #eda632;
+  color: white;
+}
+button.search-submit:active,
+button.search-submit:focus,
+input.search-field:active,
+input.search-field:focus {
+  border-color: #2a6f97;
+  box-shadow: 1px 5px 5px #2a6f97;
 }
 
 .nav-search-form form {
@@ -518,8 +535,8 @@ div.col-3.nav-social-icons {
 
 .about,
 .legi,
-.post, 
-.fourOFour{
+.post,
+.fourOFour {
   background-color: #012a4a;
 }
 
@@ -650,12 +667,12 @@ nav.navigation a:hover,
   color: #eda632;
 }
 
-
-
+/* ----------------------------------404 ------------------------------------------------------
+------------------------------------------------------------------------------------------------
+*/
 img.fourOFourImg.card-img-top {
   height: 42vh;
   width: 100%;
-
 }
 
 div.row.fourOFourHeadtext {
@@ -678,8 +695,22 @@ div.row.fourOFourHeadtext {
   font-weight: bold;
 }
 
+/* ----------------------------------contact ------------------------------------------------------
+------------------------------------------------------------------------------------------------
+*/
 
+.contactheader {
+  color: white;
+  margin-bottom: 3%;
+}
+iframe#contactmap {
+  max-height: 50vh;
+  min-height: 42vh;
+}
 
+div.contactcontent {
+  padding: 1.5%;
+}
 
 /* ----------------------------------Footer ------------------------------------------------------
 ------------------------------------------------------------------------------------------------
