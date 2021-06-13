@@ -23,11 +23,10 @@ get_header();
                     </div>
                     <div class="row biocontent">
                         <div class="row">
-                            <div class="col-md-3 col-sm-12 bioimage"><img src="<?php echo wp_get_attachment_url( get_post_thumbnail_id( $post-> ID)); ?>"></div>
-                            <div class="col-md-9 col-sm-12 bio">
-                            <?php the_content(); ?>
-                            </div>
-                                
+                        <div class="clearfix">
+                        <img  class="col-6 col-md-6 float-md-end mb-3 ms-md-3" src="<?php echo wp_get_attachment_url( get_post_thumbnail_id( $post-> ID)); ?>">
+                        <p><?php the_content(); ?></p>
+                        </div>  
                             </div>
                         <div class="row">
                             <div class="col-12"> 

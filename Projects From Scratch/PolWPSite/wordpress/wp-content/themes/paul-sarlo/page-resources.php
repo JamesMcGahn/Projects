@@ -15,9 +15,9 @@ get_header();
 <div class="container-fluid resc">
     <div class="row">
         <div class="col-md-1"></div>
-        <div id="resccontainer" class="col-md-10 col-sm-12 ">
+        <div id="resccontainer" class="col-12 col-md-10 col-sm-12  ">
             <div class="row legicontent">
-                <div class="row row-cols-sm-2  row-cols-md-3  g-4">
+                <div class="row row-cols-1 row-cols-sm-2  row-cols-md-3  g-4">
 
                 <?php $constService = get_post(60, ARRAY_A);
                              $consthumbnailUrl = wp_get_attachment_url( get_post_thumbnail_id( 60));

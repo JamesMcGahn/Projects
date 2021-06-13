@@ -28,8 +28,8 @@
 					'after' => '</span>'
 				));
 			?>
-            <a href="https://twitter.com/PaulASarlo" target="_blank"><i class="fab fa-twitter-square fa-2x navsocial"></i></a>
-            <a href="https://www.facebook.com/PaulASarlo" target="_blank"><i class="fab fa-facebook-square fa-2x navsocial"></i></a>
+            <a href="https://twitter.com/PaulASarlo" target="_blank" rel="noopener"><i class="fab fa-twitter-square fa-2x navsocial"></i></a>
+            <a href="https://www.facebook.com/PaulASarlo" target="_blank" rel="noopener"><i class="fab fa-facebook-square fa-2x navsocial"></i></a>
 			
 			
           
@@ -38,7 +38,7 @@
 	
 	<div class="copyright">
 	<small> <a href="https://www.senatorpaulsarlo.com">&copy; <?php echo date('Y'); ?> Paul Sarlo </a> </small></br>
-	<small> <a href="https://www.jamesmcgahn.com" target="_blank">&copy; <?php echo date('Y'); ?> James McGahn </a> </small> 
+	<small> <a href="https://www.jamesmcgahn.com" target="_blank" rel="noopener">&copy; <?php echo date('Y'); ?> James McGahn </a> </small> 
 	 </div>
 	</div>
 

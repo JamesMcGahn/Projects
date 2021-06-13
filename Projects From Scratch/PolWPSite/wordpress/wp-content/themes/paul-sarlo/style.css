@@ -377,7 +377,7 @@ header {
   margin-bottom: 1px;
   margin-top: 1px;
   color: black;
-  font-size: 1.3em;
+  font-size: 1.1em;
   line-height: 1em;
 }
 
@@ -393,14 +393,22 @@ header .navsocial {
 
 #navtitle:hover {
   color: #eda632;
+  text-shadow: 1px 5px 5px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
 }
 
-.navsocial:hover {
+.navsocial:hover,
+.navsocial:focus,
+.navsocial:active {
   color: #eda632;
+  border-color: #2a6f97;
+  text-shadow: 1px 5px 5px #2a6f97;
 }
 
 div.collapse.navbar-collapse a:hover {
   color: #eda632;
+  text-shadow: 1px 5px 5px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
 }
 
 button.search-submit {
@@ -476,7 +484,7 @@ div.col-3.nav-social-icons {
 .rescont {
   background: #012a4a;
   min-height: 35vh;
-  padding: 5% 6% 5% 6%;
+  padding: 6% 6% 5% 6%;
   text-align: center;
   /* background-attachment: fixed;
 	background-position: center;
@@ -484,11 +492,13 @@ div.col-3.nav-social-icons {
 	background-size: cover; */
 }
 
-.resrow {
+div.row.resrow {
   width: 100%;
   color: white;
   padding-left: 15%;
   padding-right: 15%;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .resheader h2 {
@@ -557,8 +567,8 @@ div.headerImage.row {
 }
 
 .headerImage {
-  min-height: 45vh;
-  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 15%, rgba(0, 0, 0, 0.8) 100%), url('/assets/img/berrys_creek.jpg');
+  min-height: 35vh;
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 15%, rgba(0, 0, 0, 0.8) 100%), url('/assets/img/meadows.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center top;
@@ -572,6 +582,15 @@ div.headerImage.row {
   padding-top: 4%;
   text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
   font-size: 3rem;
+  font-family: 'Raleway', sans-serif;
+}
+.headerImageText h5 {
+  color: white;
+  margin: 0;
+  /* text-align: center; */
+  padding-top: 1%;
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+  font-size: 1.5rem;
   font-family: 'Raleway', sans-serif;
 }
 
@@ -588,7 +607,8 @@ div.headerImage.row {
 }
 
 .bioimage img {
-  width: 100%;
+  min-height: 20vh;
+  width: auto;
   margin: 20% 0 1% 3%;
 }
 
@@ -784,14 +804,39 @@ div.contactcontent {
   padding: 1.5%;
 }
 
+p a {
+  text-decoration: none;
+  color: black;
+}
+p a:hover {
+  color: #eda632;
+  text-shadow: 1px 5px 5px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+}
+
+input.btn.btn-primary {
+  margin-left: 1%;
+  width: auto;
+  padding: 1.5% 2%;
+  background-color: #2a6f97;
+  border-color: white;
+  font-weight: bold;
+}
+input.btn.btn-primary:focus,
+input.btn.btn-primary:hover {
+  background-color: #eda632;
+  border-color: #2a6f97;
+  box-shadow: 1px 5px 5px #2a6f97;
+}
 /* ----------------------------------Footer ------------------------------------------------------
 ------------------------------------------------------------------------------------------------
 */
 footer {
+  margin-top: 1%;
   background-color: #f8f9fa;
 }
 
-li.menu-item > span.nav-link a {
+footer li.menu-item > span.nav-link a {
   text-decoration: none;
   margin-bottom: 1px;
   margin-top: 1px;
@@ -808,6 +853,8 @@ li.menu-item > span.nav-link a {
 
 li.menu-item > span.nav-link a:hover {
   color: #eda632;
+  text-shadow: 1px 5px 5px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
 }
 
 footer {
@@ -837,6 +884,8 @@ footer small a {
 
 footer small a:hover {
   color: #eda632;
+  text-shadow: 1px 5px 5px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
 }
 
 footer .navsocial {
@@ -860,7 +909,8 @@ footer .navsocial {
   }
 }
 
-@media (max-width: 768px) {
+@media only screen and (device-width: 768px) {
+  /* For general iPad layouts */
   .hero {
     min-height: 25vh;
 
@@ -868,7 +918,7 @@ footer .navsocial {
   }
 
   .bioimage img {
-    width: 35vh;
-    margin: 5% 0 1% 30%;
+    width: 50%;
+    margin: 5% 0 1% 10%;
   }
 }

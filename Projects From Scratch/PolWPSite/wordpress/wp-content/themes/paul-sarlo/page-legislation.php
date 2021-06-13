@@ -138,7 +138,7 @@ function output_rss_feed($feed_url, $max_item_cnt = 50, $show_date = true, $show
         <div class="col-md-1"></div>
         <div id="legicontainer" class="col-md-10 col-sm-12 ">
             <div class="row legicontent">
-                <div class="row row-cols-12 row-cols-md-2 row-cols-sm-1 g-4">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-sm-1 g-4">
                 <?php output_rss_feed($url)  ?>
                     </div>
                 <div class="row">

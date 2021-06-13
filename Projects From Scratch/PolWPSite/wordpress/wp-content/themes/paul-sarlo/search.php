@@ -9,6 +9,13 @@
 
 get_header();
 ?>
+<div id="home" class="container-fluid">
+<div class="row headerImage align-items-center">
+    <div class="col-12 headerImageText">
+                <h1 class="text-center">Search Results: </h1>
+				<h5 class="text-center"><?php echo get_search_query(); ?></h5>
+            </div>
+    </div>
 <div class="container-fluid legi">
     <div class="row">
         <div class="col-md-2"></div>
@@ -17,14 +24,6 @@ get_header();
 
 		<?php if ( have_posts() ) : ?>
 
-			<header class="page-header card mb-2">
-				<h2 class="page-title">
-					<?php
-					/* translators: %s: search query. */
-					printf( esc_html__( 'Search Results for: %s', 'paul-sarlo' ), '<span>' . get_search_query() . '</span>' );
-					?>
-				</h2>
-			</header><!-- .page-header -->
 
 			<?php
 			/* Start the Loop */
@@ -54,6 +53,7 @@ get_header();
         <div class="col-md-1"></div>
     </div>
 </div>
+	</div>
 <?php
 
 get_footer();

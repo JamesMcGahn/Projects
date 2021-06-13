@@ -4,6 +4,11 @@
  */
 
 $APIKEY = get_field('google_map_key');
+$AddressLine1 = get_field('address_line_1');
+$AddressLine2 = get_field('address_line_2');
+$phone = get_field('contact_phone');
+$email = get_field('contact_email');
+$directions = get_field('contact_directions');
 
 get_header();
 ?>
@@ -26,13 +31,13 @@ get_header();
             src="https://www.google.com/maps/embed/v1/streetview?key=<?php echo $APIKEY;?>&location=40.8473501,-74.0830352&heading=215.11&pitch=10" allowfullscreen>
             </iframe>
             <div>
-            <h4>Office Location:<h4>
+            <h4>Office Location:</h4>
             <address>
-            <p>123 Cheeseburger Street</p>
-            <p>123 Cheeseburger Street</p>
-            <p>Phone: <a href="tel:+1234567891">123-456-7894</a></p>
-            <p>Email: <a href="mailto:ham@hamsandwhich.com">ham@hamsandwhich.com</a></p>
-            <a target="_blank" href="https://www.google.com/maps/place/496+Columbia+Blvd,+Wood-Ridge,+NJ+07075/@40.8471054,-74.0854626,17z"> Directions &raquo;</a>   
+            <p><?php echo $AddressLine1 ?></p>
+            <p><?php echo $AddressLine2 ?></p>
+            <p>Phone: <a href="tel:+<?php echo $phone?>"><?php echo $phone ?></a></p>
+            <p>Email: <a href="mailto:<?php echo $email ?>"><?php echo $email ?></a></p>
+            <p><strong><a target="_blank" href="<?php echo $contact_directions ?>"> Directions to the Office &raquo;</a></strong>   </p>
             </address>
             </div>
         </div>
