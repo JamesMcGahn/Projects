@@ -24,10 +24,10 @@ get_header();
 				</h1>
             </div>
     </div>
-<div class="container-fluid legi">
+<div class="container-fluid posts">
     <div class="row">
         <div class="col-md-2"></div>
-        <div id="legicontainer" class="col-md-8 col-sm-12 col-12 ">
+        <div id="postscontainer" class="col-md-8 col-sm-12 col-12 ">
 	
 
 		<?php

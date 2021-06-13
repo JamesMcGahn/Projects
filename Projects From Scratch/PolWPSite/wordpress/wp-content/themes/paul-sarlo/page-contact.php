@@ -3,6 +3,8 @@
     Template Name: Contact
  */
 
+$APIKEY = get_field('google_map_key');
+
 get_header();
 ?>
 <div id="home" class="container-fluid">
@@ -11,17 +13,17 @@ get_header();
                 <h1 class="text-center"><?php the_title(); ?></h1>
             </div>
     </div>
-<div class="container-fluid legi">
+<div class="container-fluid contact">
     <div class="row">
         <div class="col-md-1"></div>
-        <div id="legicontainer" class="col-md-10 col-sm-12 ">
+        <div id="contactcontainer" class="col-md-10 col-sm-12 ">
 
             
             <div class="card contactcontent">
             <div class="clearfix">
             <iframe  
             frameborder="0" style="border:0" id="contactmap"  class="col-12 col-sm-12 col-md-6 float-md-end mb-3 ms-md-3"
-            src="https://www.google.com/maps/embed/v1/streetview?key=AIzaSyD72kMynSteYlxQAU9yGvrI70JZHX1tR1w&location=40.8473501,-74.0830352&heading=215.11&pitch=10" allowfullscreen>
+            src="https://www.google.com/maps/embed/v1/streetview?key=<?php echo $APIKEY;?>&location=40.8473501,-74.0830352&heading=215.11&pitch=10" allowfullscreen>
             </iframe>
             <div>
             <h4>Office Location:<h4>

@@ -535,15 +535,16 @@ div.col-3.nav-social-icons {
 .about,
 .legi,
 .post,
-.fourOFour {
+.fourOFour,
+.posts,
+.contact,
+.resc {
   background-color: #012a4a;
 }
 
 #biocontainer,
-#legicontainer,
 #postcontainer,
 #fourOFour {
-  margin-top: 35px;
   margin-bottom: 35px;
   padding-top: 20px;
   padding-left: 3%;
@@ -553,12 +554,11 @@ div.col-3.nav-social-icons {
 
 div.headerImage.row {
   margin-right: 0;
-  margin-bottom: 0;
 }
 
 .headerImage {
   min-height: 45vh;
-  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 15%, rgba(0, 0, 0, 0.8) 100%), url('/assets/img/trenton_banner_2.jpg');
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 15%, rgba(0, 0, 0, 0.8) 100%), url('/assets/img/berrys_creek.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center top;
@@ -578,6 +578,15 @@ div.headerImage.row {
 /* ------------------------About ME ------------------------------------------------------- */
 /* ---------------------------------------------------------------------------------------- */
 
+#biocontainer {
+  margin-top: 25px;
+  margin-bottom: 35px;
+  padding-top: 20px;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-bottom: 3%;
+}
+
 .bioimage img {
   width: 100%;
   margin: 20% 0 1% 3%;
@@ -590,8 +599,24 @@ div.headerImage.row {
 /* ------------------------legislation page ------------------------------------------------------- */
 /* ---------------------------------------------------------------------------------------- */
 
+#legicontainer {
+  margin-bottom: 35px;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-bottom: 3%;
+}
+
 .legiheader {
   color: white;
+}
+
+#legicontainer_text {
+  margin-bottom: 0;
+  margin-top: 2%;
+}
+
+.legiIntroContent.card {
+  padding: 2%;
 }
 
 .legifeedtitle.card-title a {
@@ -619,6 +644,13 @@ img.img-card-res {
 /* ------------------------resource  page ------------------------------------------------------- */
 /* ---------------------------------------------------------------------------------------- */
 
+#resccontainer {
+  margin-bottom: 35px;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-bottom: 3%;
+}
+
 .resourceP-title {
   text-align: center;
 }
@@ -636,6 +668,15 @@ img.img-card-res {
 /* ----------------------------------POST ------------------------------------------------------
 ------------------------------------------------------------------------------------------------
 */
+
+#postscontainer {
+  margin-top: 25px;
+  margin-bottom: 35px;
+  padding-top: 20px;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-bottom: 3%;
+}
 
 .postheader {
   margin-top: 1%;
@@ -724,6 +765,15 @@ div.row.fourOFourHeadtext {
 /* ----------------------------------contact ------------------------------------------------------
 ------------------------------------------------------------------------------------------------
 */
+
+#contactcontainer {
+  margin-top: 25px;
+  margin-bottom: 35px;
+  padding-top: 20px;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-bottom: 3%;
+}
 
 iframe#contactmap {
   max-height: 50vh;

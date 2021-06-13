@@ -12,10 +12,10 @@ get_header();
                 <h1 class="text-center"><?php the_title(); ?></h1>
             </div>
     </div>
-<div class="container-fluid legi">
+<div class="container-fluid resc">
     <div class="row">
         <div class="col-md-1"></div>
-        <div id="legicontainer" class="col-md-10 col-sm-12 ">
+        <div id="resccontainer" class="col-md-10 col-sm-12 ">
             <div class="row legicontent">
                 <div class="row row-cols-sm-2  row-cols-md-3  g-4">
 

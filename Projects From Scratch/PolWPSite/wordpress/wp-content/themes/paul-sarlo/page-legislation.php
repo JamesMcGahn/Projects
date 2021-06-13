@@ -5,7 +5,7 @@
 
 get_header();
 
-$url = 'https://legiscan.com/gaits/feed/1ba6cff8dce784a3ccbbb0ae5cfc6da7.rss';
+$url  = get_field('rss_feed_link');
 
 
 
@@ -120,13 +120,20 @@ function output_rss_feed($feed_url, $max_item_cnt = 50, $show_date = true, $show
 
 <div id="home" class="container-fluid">
 <div class="row headerImage align-items-center">
-        <div class="col-1 col-md-1"></div>
     <div class="col-12 headerImageText">
                 <h1 class="text-center"><?php the_title(); ?></h1>
             </div>
-            <div class="col-1 col-md-4"></div>
     </div>
 <div class="container-fluid legi">
+<div class="row">
+<div class="col-md-2"></div>
+<div id="legicontainer_text" class="col-md-8 col-sm-12 ">
+    <div class="card legiIntroContent">
+        <?php the_content(); ?>
+    </div>
+</div>
+<div class="col-md-2"></div>
+</div>
     <div class="row">
         <div class="col-md-1"></div>
         <div id="legicontainer" class="col-md-10 col-sm-12 ">

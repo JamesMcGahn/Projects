@@ -9,22 +9,25 @@
 
 get_header();
 ?>
+<div id="home" class="container-fluid">
+<div class="row headerImage align-items-center">
+    <div class="col-12 headerImageText">
+                <h1 class="text-center">Oops! That page can&rsquo;t be found.</h1>
+            </div>
+    </div>
 <div class="container-fluid fourOFour">
+
     <div class="row">
         <div class="col-md-1"></div>
         <div id="fourOFour" class="col-md-10 col-sm-12 col-12 ">
 	<main id="primary" class="site-main card">
 
-		<section class="error-404 not-found">
-			<header class="page-header">
-				<h1 class="page-title fourOFourtitle"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'paul-sarlo' ); ?></h1>
-			</header><!-- .page-header -->
 
 			<div class="page-content container">
 					<div class="row fourOFourHeadtext">
 					
 						<div class="col-12">
-							<h5>Try searching with new keywords or how about check some of the most recent Press Releases Below?</h5>
+							<h5>Try searching with new keywords</h5> <h5>Maybe check out some of the most recent Press Releases Below?</h5>
 							</div>
 					</div>
 
