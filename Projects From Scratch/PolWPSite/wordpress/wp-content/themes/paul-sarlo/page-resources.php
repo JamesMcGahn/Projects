@@ -7,14 +7,15 @@ get_header();
 ?>
 
 <div id="home" class="container-fluid">
+<div class="row headerImage align-items-center">
+    <div class="col-12 headerImageText">
+                <h1 class="text-center"><?php the_title(); ?></h1>
+            </div>
+    </div>
 <div class="container-fluid legi">
     <div class="row">
         <div class="col-md-1"></div>
         <div id="legicontainer" class="col-md-10 col-sm-12 ">
-
-            <div class="row legiheader">
-                <h1><?php the_title(); ?></h1>
-            </div>
             <div class="row legicontent">
                 <div class="row row-cols-sm-2  row-cols-md-3  g-4">
 

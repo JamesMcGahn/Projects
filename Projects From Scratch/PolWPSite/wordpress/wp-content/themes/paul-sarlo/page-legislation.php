@@ -119,18 +119,20 @@ function output_rss_feed($feed_url, $max_item_cnt = 50, $show_date = true, $show
 
 
 <div id="home" class="container-fluid">
+<div class="row headerImage align-items-center">
+        <div class="col-1 col-md-1"></div>
+    <div class="col-12 headerImageText">
+                <h1 class="text-center"><?php the_title(); ?></h1>
+            </div>
+            <div class="col-1 col-md-4"></div>
+    </div>
 <div class="container-fluid legi">
     <div class="row">
         <div class="col-md-1"></div>
         <div id="legicontainer" class="col-md-10 col-sm-12 ">
-
-            <div class="row legiheader">
-                <h1><?php the_title(); ?></h1>
-            </div>
             <div class="row legicontent">
                 <div class="row row-cols-12 row-cols-md-2 row-cols-sm-1 g-4">
                 <?php output_rss_feed($url)  ?>
- 
                     </div>
                 <div class="row">
                     <div class="col-12"> 

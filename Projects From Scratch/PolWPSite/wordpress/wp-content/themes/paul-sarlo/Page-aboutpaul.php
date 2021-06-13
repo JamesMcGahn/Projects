@@ -6,6 +6,11 @@
 get_header();
 ?>
     <div id="home" class="container-fluid">
+    <div class="row headerImage align-items-center">
+    <div class="col-12 headerImageText">
+                <h1 class="text-center"><?php the_title(); ?></h1>
+            </div>
+    </div>
         <div class="container-fluid about">
             <div class="row">
             

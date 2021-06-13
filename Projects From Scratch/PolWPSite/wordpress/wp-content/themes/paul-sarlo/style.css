@@ -529,8 +529,7 @@ div.col-3.nav-social-icons {
 .resbtn.resrow button:hover {
   background-color: #eda632;
 }
-
-/* ------------------------About ME ------------------------------------------------------- */
+/* ------------------------Page (General) ------------------------------------------------------- */
 /* ---------------------------------------------------------------------------------------- */
 
 .about,
@@ -551,6 +550,33 @@ div.col-3.nav-social-icons {
   padding-right: 3%;
   padding-bottom: 3%;
 }
+
+div.headerImage.row {
+  margin-right: 0;
+  margin-bottom: 0;
+}
+
+.headerImage {
+  min-height: 45vh;
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 15%, rgba(0, 0, 0, 0.8) 100%), url('/assets/img/trenton_banner_2.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center top;
+  height: 100px;
+}
+
+.headerImageText h1 {
+  color: white;
+  margin-bottom: 3%;
+  /* text-align: center; */
+  padding-top: 4%;
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+  font-size: 3rem;
+  font-family: 'Raleway', sans-serif;
+}
+
+/* ------------------------About ME ------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------- */
 
 .bioimage img {
   width: 100%;
@@ -699,10 +725,6 @@ div.row.fourOFourHeadtext {
 ------------------------------------------------------------------------------------------------
 */
 
-.contactheader {
-  color: white;
-  margin-bottom: 3%;
-}
 iframe#contactmap {
   max-height: 50vh;
   min-height: 42vh;

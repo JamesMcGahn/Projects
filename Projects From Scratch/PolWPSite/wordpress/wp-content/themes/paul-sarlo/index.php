@@ -15,6 +15,15 @@
 get_header();
 ?>
 <main id="primary" class="site-main">
+<div class="row headerImage align-items-center">
+    <div class="col-12 headerImageText">
+	<h1 class="text-center">
+		<?php  if ( is_home() ) { 
+			echo get_the_title( get_option('page_for_posts', true) );?>
+			<?php  } else { the_title(); } ?>
+				</h1>
+            </div>
+    </div>
 <div class="container-fluid legi">
     <div class="row">
         <div class="col-md-2"></div>
@@ -68,6 +77,4 @@ get_header();
 </div>
 	</main><!-- #main -->
 
-<?php
-
-get_footer();
+<?php get_footer(); ?>
