@@ -23,6 +23,8 @@ $resource_item_4_icon = get_field('resource_item_4_icon');
 $resource_item_4_text = get_field('resource_item_4_text');
 //resource title
 $resource_section_title = get_field('resource_section_title');
+$resource_title_link = get_field('resource_title_link');
+
 // resource Button
 $resource_section_button_text = get_field('resource_section_button_text');
 $resource_section_button_link = get_field('resource_section_button_link');
@@ -41,7 +43,7 @@ get_header();
       </div>
       <div class="container-fluid rescont">  
         <div class="row resrow">
-          <div class="resheader"><h2><?php echo $resource_section_title ?></h2></div>
+          <div class="resheader"><a href="<?php echo $resource_title_link ?>"><h2><?php echo $resource_section_title ?></h2></a></div>
           <div class="mainres col-md-3 col-sm-12"><a href="<?php echo $resource_item_1_link ?>"><i class="fas <?php echo $resource_item_1_icon ?> fa-5x"></i><h3><?php echo $resource_item_1_text ?></h3></a></div>
           <div class="mainres col-md-3 col-sm-12"><a href="<?php echo $resource_item_2_link ?>"><i class="fas <?php echo $resource_item_2_icon ?> fa-5x"></i><h3><?php echo $resource_item_2_text ?></h3></a></div>
           <div class="mainres col-md-3 col-sm-12"><a href="<?php echo $resource_item_3_link ?>"><i class="fas <?php echo $resource_item_3_icon ?> fa-5x"></i><h3><?php echo $resource_item_3_text ?></h3></a></div>

@@ -459,10 +459,13 @@ div.col-3.nav-social-icons {
   width: 65%;
 }
 
-.callta {
+div.callta.row {
   text-align: center;
   width: 100%;
   padding: 1% 0 0% 1%;
+  background-color: #fff;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .callta p {
@@ -504,6 +507,16 @@ div.row.resrow {
 .resheader h2 {
   margin-bottom: 6%;
   font-size: 2.5em;
+  text-decoration: none;
+}
+.resheader a {
+  color: white;
+  text-decoration: none;
+}
+.resheader a:hover {
+  color: #eda632;
+  text-shadow: 1px 5px 5px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
 }
 
 .mainres i {
@@ -523,6 +536,8 @@ div.row.resrow {
 .mainres a:hover,
 .mainres i:hover {
   color: #eda632;
+  text-shadow: 1px 5px 5px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
 }
 
 .resbtn.resrow {
