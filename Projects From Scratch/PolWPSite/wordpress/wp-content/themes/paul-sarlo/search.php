@@ -12,14 +12,14 @@ get_header();
 <div id="home" class="container-fluid">
 <div class="row headerImage align-items-center">
     <div class="col-12 headerImageText">
-                <h1 class="text-center">Search Results: </h1>
-				<h5 class="text-center"><?php echo get_search_query(); ?></h5>
+                <h1 id="searchh1" class="text-center">Search Results For: </h1>
+				<h4 class="text-center"><?php echo get_search_query(); ?></h4>
             </div>
     </div>
-<div class="container-fluid legi">
+<div class="container-fluid posts">
     <div class="row">
         <div class="col-md-2"></div>
-        <div id="legicontainer" class="col-md-8 col-sm-12 col-12 ">
+        <div id="postscontainer" class="col-md-8 col-sm-12 col-12 ">
 	<main id="primary" class="site-main">
 
 		<?php if ( have_posts() ) : ?>

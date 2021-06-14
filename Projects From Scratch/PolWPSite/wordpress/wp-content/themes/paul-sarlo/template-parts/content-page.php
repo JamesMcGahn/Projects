@@ -9,13 +9,9 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-	</header><!-- .entry-header -->
-
-	<?php paul_sarlo_post_thumbnail(); ?>
-
+<article id="post-<?php the_ID(); ?>" <?php post_class('mb-3 col-md-12 col-sm-12 card container-fluid articlediv'); ?>>
+	<div class="clearfix">
+	<img class=" col-12 col-sm-12 col-md-6 float-md-end mb-2 ms-md-3 mt-3" src="<?php echo wp_get_attachment_url( get_post_thumbnail_id( $post-> ID)); ?>">
 	<div class="entry-content">
 		<?php
 		the_content();
@@ -28,15 +24,19 @@
 		);
 		?>
 	</div><!-- .entry-content -->
+	</div>
 
-	<?php if ( get_edit_post_link() ) : ?>
+
+	
+</article><!-- #post-<?php the_ID(); ?> -->
+<?php if ( get_edit_post_link() ) : ?>
 		<footer class="entry-footer">
 			<?php
 			edit_post_link(
 				sprintf(
 					wp_kses(
 						/* translators: %s: Name of current post. Only visible to screen readers */
-						__( 'Edit <span class="screen-reader-text">%s</span>', 'paul-sarlo' ),
+						__( 'Edit This Page <span class="screen-reader-text">%s</span>', 'paul-sarlo' ),
 						array(
 							'span' => array(
 								'class' => array(),
@@ -51,4 +51,3 @@
 			?>
 		</footer><!-- .entry-footer -->
 	<?php endif; ?>
-</article><!-- #post-<?php the_ID(); ?> -->

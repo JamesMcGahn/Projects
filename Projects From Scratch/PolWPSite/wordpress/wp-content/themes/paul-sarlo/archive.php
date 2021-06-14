@@ -9,22 +9,24 @@
 
 get_header();
 ?>
+
+
+<div id="home" class="container-fluid">
+<div class="row headerImage align-items-center">
+    <div class="col-12 headerImageText">
+                <?php the_archive_title( '<h1 class="page-title text-center">Archive For the ', '</h1>' );?>
+				<h5 class="text-center"><?php echo get_search_query(); ?></h5>
+            </div>
+    </div>
 <main id="primary" class="site-main">
-<div class="container-fluid legi">
+<div class="container-fluid posts">
     <div class="row">
         <div class="col-md-2"></div>
-        <div id="legicontainer" class="col-md-8 col-sm-12 col-12 ">
+        <div id="postscontainer" class="col-md-8 col-sm-12 col-12 ">
 	
 
 
 		<?php if ( have_posts() ) : ?>
-
-			<header class="page-header card mb-4">
-				<?php
-				the_archive_title( '<h1 class="page-title">Archive For the ', '</h1>' );
-				the_archive_description( '<div class="archive-description">', '</div>' );
-				?>
-			</header><!-- .page-header -->
 
 			<?php
 			/* Start the Loop */
@@ -58,7 +60,7 @@ get_header();
 
 </div>
 	</main><!-- #main -->
-
+	</div>
 <?php
 
 get_footer();

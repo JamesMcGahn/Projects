@@ -11,11 +11,31 @@
  *
  * @package Paul_Sarlo
  */
+$usesidebar = get_post_field('usesidebar', $post-> ID, 'edit'  );
+
+
 
 get_header();
 ?>
 
-	<main id="primary" class="site-main">
+<div id="home" class="container-fluid">
+<div class="row headerImage align-items-center">
+    <div class="col-12 headerImageText">
+                <h1 class="text-center"><?php the_title(); ?></h1>
+            </div>
+    </div>
+<div class="container-fluid page">
+    <div id="pagecontent" class="row">
+	<div class="col-md-1"></div>
+	<?php if($usesidebar) { ?>
+        <div id="pagecontainer" class="col-md-8 col-sm-12 ">
+	<?php }  else { ?>
+	<div id="pagecontainer" class="col-md-10 col-sm-12 ">
+	
+	<?php  }  ?>
+
+
+
 
 		<?php
 		while ( have_posts() ) :
@@ -30,9 +50,19 @@ get_header();
 
 		endwhile; // End of the loop.
 		?>
-
 	</main><!-- #main -->
+	</div>
+<?php if($usesidebar) { ?>
+	<div class="col-md-3">
+	<?php get_sidebar(); 
+}  else { ?>
+<div class="col-md-1">
+<?php }  ?>
 
+       
+    </div>
+</div>
+	</div>
 <?php
-get_sidebar();
+
 get_footer();

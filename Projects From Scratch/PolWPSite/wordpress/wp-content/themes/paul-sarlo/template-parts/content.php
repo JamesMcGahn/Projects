@@ -15,7 +15,7 @@ $display_featured_image_BlogRoll = get_post_field('display_featured_image_br', $
 ?>
 
 
-<article  id="post-<?php the_ID(); ?>" <?php post_class("col-md-12 col-sm-12 card container-fluid" ); ?>>
+<article  id="post-<?php the_ID(); ?>" <?php post_class("mb-3 col-md-12 col-sm-12 card container-fluid articlediv" ); ?>>
 	<div class="entry-header row">
 		<div class="col-12">
 		<?php

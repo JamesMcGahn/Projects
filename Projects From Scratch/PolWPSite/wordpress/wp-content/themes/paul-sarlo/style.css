@@ -548,7 +548,8 @@ div.row.resrow {
 .fourOFour,
 .posts,
 .contact,
-.resc {
+.resc,
+.page {
   background-color: #012a4a;
 }
 
@@ -578,20 +579,59 @@ div.headerImage.row {
 .headerImageText h1 {
   color: white;
   margin-bottom: 3%;
-  /* text-align: center; */
   padding-top: 4%;
   text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
   font-size: 3rem;
   font-family: 'Raleway', sans-serif;
 }
-.headerImageText h5 {
+
+h1#searchh1 {
+  margin-bottom: 0;
+}
+
+.headerImageText h4 {
   color: white;
-  margin: 0;
-  /* text-align: center; */
-  padding-top: 1%;
+  margin-bottom: 3%;
   text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
   font-size: 1.5rem;
   font-family: 'Raleway', sans-serif;
+}
+
+#pagecontainer {
+  margin-bottom: 35px;
+  padding-top: 20px;
+  padding-left: 1%;
+  padding-bottom: 3%;
+}
+
+#pagecontent {
+  margin-top: 25px;
+}
+
+aside.widget-area:first-child {
+  margin-top: 20px;
+}
+
+section.sidebarWidget {
+  margin-bottom: 1rem;
+}
+
+.widget_search.sidebarWidget > form > label > input.search-field {
+  margin-right: 3rem !important;
+}
+
+.sidebarWidget li a {
+  text-decoration: none;
+  margin-bottom: 1px;
+  margin-top: 1px;
+  color: black;
+  font-size: 1em;
+  line-height: 1em;
+}
+.sidebarWidget li a:hover {
+  color: #eda632;
+  text-shadow: 1px 5px 5px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
 }
 
 /* ------------------------About ME ------------------------------------------------------- */
@@ -718,7 +758,7 @@ img.img-card-res {
 }
 img.postimage {
   max-height: 42vh;
-  width: auto;
+  max-width: 100%;
 }
 
 a.moretag {
@@ -915,10 +955,5 @@ footer .navsocial {
     min-height: 25vh;
 
     position: relative;
-  }
-
-  .bioimage img {
-    width: 50%;
-    margin: 5% 0 1% 10%;
   }
 }
