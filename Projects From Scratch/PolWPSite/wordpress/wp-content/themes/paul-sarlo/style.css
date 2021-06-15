@@ -442,7 +442,6 @@ div.col-3.nav-social-icons {
 }
 
 .hero {
-  background-image: linear-gradient(to left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 90%), url('/assets/img/paul_sarlo_hero.jpeg');
   min-height: 80vh;
   /* position: relative; */
   background-size: cover;
@@ -540,6 +539,19 @@ div.row.resrow {
   font-weight: bold;
 }
 
+div.mainres h3:hover,
+div.resheader h2:hover {
+  color: #eda632;
+  border-color: #2a6f97;
+  text-shadow: 1px 5px 5px #2a6f97;
+  font-weight: bold;
+}
+div.mainres i:hover {
+  color: #eda632;
+  border-color: #2a6f97;
+  text-shadow: 1px 5px 5px #2a6f97;
+}
+
 .resbtn.resrow {
   margin-top: 5%;
 }
@@ -553,6 +565,7 @@ div.row.resrow {
 
 .resbtn.resrow button:hover {
   background-color: #eda632;
+  font-weight: bold;
 }
 /* ------------------------Page (General) ------------------------------------------------------- */
 /* ---------------------------------------------------------------------------------------- */
@@ -584,7 +597,7 @@ div.headerImage.row {
 
 .headerImage {
   min-height: 35vh;
-  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 15%, rgba(0, 0, 0, 0.8) 100%), url('/assets/img/meadows.jpg');
+  max-height: 42vh;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center top;

@@ -6,13 +6,14 @@
  *
  * @package Paul_Sarlo
  */
-
+$header_image = get_post_field('header_image', $post-> ID, 'display');
 get_header();
 ?>
 
 
 <div id="home" class="container-fluid">
-<div class="row headerImage align-items-center">
+<div class="row headerImage align-items-center" style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 15%, rgba(0, 0, 0, 0.8) 100%), url('<?php echo wp_get_attachment_url( $header_image); ?>');">
+
     <div class="col-12 headerImageText">
                 <h1 class="text-center"><?php the_title(); ?></h1>
             </div>

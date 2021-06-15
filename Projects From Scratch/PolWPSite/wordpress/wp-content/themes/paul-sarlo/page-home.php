@@ -3,6 +3,11 @@
     Template Name: Home
  */
 
+//hero background image and logo
+$hero_image = get_field('hero_image');
+$hero_background_logo = get_field('hero_background_logo');
+
+
  // call to action 
 $call_to_action_text = get_field('call_to_action_text');
 $call_to_action_button = get_field('call_to_action_button');
@@ -33,9 +38,9 @@ $resource_section_button_link = get_field('resource_section_button_link');
 get_header();
 ?>
 <div id="home" class="container-fluid">
-      <div class="container-fluid hero">
+      <div class="container-fluid hero" style="background-image: linear-gradient(to left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 90%), url('<?php echo $hero_image;?>');">
         <div class="col-6 logo">
-          <img  class="img-fluid" src="<?php bloginfo( 'stylesheet_directory'); ?>/assets/img/PAS_HERO_LOGO_LG.png" />
+          <img  class="img-fluid" src="<?php echo $hero_background_logo;?>" />
         </div>
       </div>
       <div class="container-fluid callta row">

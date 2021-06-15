@@ -4,7 +4,7 @@
  */
 
 get_header();
-
+$header_image = get_field('header_image');
 $url  = get_field('rss_feed_link');
 
 
@@ -119,7 +119,7 @@ function output_rss_feed($feed_url, $max_item_cnt = 50, $show_date = true, $show
 
 
 <div id="home" class="container-fluid">
-<div class="row headerImage align-items-center">
+<div class="row headerImage align-items-center" style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 30%, rgba(0, 0, 0, 0.8) 100%), url('<?php echo $header_image ?>');">
     <div class="col-12 headerImageText">
                 <h1 class="text-center"><?php the_title(); ?></h1>
             </div>

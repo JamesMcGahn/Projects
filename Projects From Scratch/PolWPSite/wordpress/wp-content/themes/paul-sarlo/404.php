@@ -10,7 +10,7 @@
 get_header();
 ?>
 <div id="home" class="container-fluid">
-<div class="row headerImage align-items-center">
+<div class="row headerImage align-items-center" style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 30%, rgba(0, 0, 0, 0.8) 100%), url('<?php echo get_option('fourOfourImageUrl'); ?>');">
     <div class="col-12 headerImageText">
                 <h1 class="text-center">Oops! That page can&rsquo;t be found.</h1>
             </div>

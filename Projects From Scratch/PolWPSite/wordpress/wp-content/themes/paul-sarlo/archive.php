@@ -12,7 +12,8 @@ get_header();
 
 
 <div id="home" class="container-fluid">
-<div class="row headerImage align-items-center">
+<div class="row headerImage align-items-center" style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 30%, rgba(0, 0, 0, 0.8) 100%), url('<?php echo get_option('archiveImageUrl'); ?>');">
+
     <div class="col-12 headerImageText">
                 <?php the_archive_title( '<h1 class="page-title text-center">Archive For the ', '</h1>' );?>
 				<h5 class="text-center"><?php echo get_search_query(); ?></h5>

@@ -184,3 +184,39 @@ function new_excerpt_more($more) {
 	return '... </br><div class="row readmore"> <a class="moretag" href=" ' . get_permalink($post->ID) . '"<span class="nav-subtitle">Read More &raquo;<span class="nav-subtitle"></a></div>';
 }
 add_filter('excerpt_more', 'new_excerpt_more');
+
+// adding global fields for header images of 404, archive, search, etc
+
+add_action('admin_menu', 'headerImageInterface');
+
+function headerImageInterface() {
+	add_options_page('Default Page Header Images', 'Default Page Header Images', '8', 'functions', 'editDefaultPageheaderImages');
+}
+
+function editDefaultPageheaderImages() {
+	?>
+	<div class='wrap'>
+	<h2>Global Custom Fields</h2>
+	<form method="post" action="options.php">
+	<?php wp_nonce_field('update-options') ?>
+
+	<p><strong>404 Header Image Url</strong><br />
+	<input type="text" name="fourOfourImageUrl" size="45" value="<?php echo get_option('fourOfourImageUrl'); ?>" /></p>
+
+	<p><strong>Archive Header Image Url</strong><br />
+	<input type="text" name="archiveImageUrl" size="45" value="<?php echo get_option('archiveImageUrl'); ?>" /></p>
+
+	<p><strong>Search Header Image Url</strong><br />
+	<input type="text" name="searchImageUrl" size="45" value="<?php echo get_option('searchImageUrl'); ?>" /></p>
+
+	<p><input type="submit" name="Submit" value="Update Options" /></p>
+
+	<input type="hidden" name="action" value="update" />
+	<input type="hidden" name="page_options" value="fourOfourImageUrl,archiveImageUrl,searchImageUrl" />
+
+	</form>
+	</div>
+	<?php
+}
+
+?>
