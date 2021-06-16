@@ -804,14 +804,13 @@ img.img-card-res {
 }
 
 img.img-card-CS {
-  height: auto;
+  margin-top: 3rem;
   width: 100%;
-  /* width: 100%; */
 }
 
 div.card.resource-CS-card {
-  margin-right: 5px;
-  max-width: 526px;
+  max-width: 525px;
+  max-height: 95%;
 }
 
 /* ----------------------------------POST ------------------------------------------------------

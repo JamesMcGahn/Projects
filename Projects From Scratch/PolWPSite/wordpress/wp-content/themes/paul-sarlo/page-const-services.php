@@ -17,13 +17,14 @@ get_header();
         <div class="col-md-1"></div>
         <div id="rescCScontainer" class="col-12 col-md-10 col-sm-12  ">
             <div class="row legicontent">
-                <div class="row row-cols-1 row-cols-sm-2  row-cols-md-2  g-0">
+                
 
 <?php $loop = new WP_Query( array( 'post_type' => 'constituent_services', 'orderby' => 'post_id', 'order' => 'ASC')); ?>				    
 					<?php while ( $loop-> have_posts() ) : $loop->the_post();  
                             $thumbnailUrl = wp_get_attachment_url( get_post_thumbnail_id( $post-> ID));
                             ?>
-<div class="card mb-2 resource-CS-card">
+                            <div class="col-12 col-md-6">
+<div class="card mb-4 resource-CS-card">
   <div class="row g-0">
     <div class="col-md-4">
     <a href="<?php echo get_permalink()?>"> <img src="<?php echo $thumbnailUrl ?>" class=" img-card-CS" alt="..."></a>
@@ -36,17 +37,17 @@ get_header();
     </div>
   </div>
 </div>
-
+</div>
                         <?php endwhile;  wp_reset_query();?>
 
-                    </div>
+
                 <div class="row">
                     <div class="col-12"> 
                 </div>       
                 </div>
             </div>
         </div>
-        <div class="col-md-2"></div>
+        <div class="col-12 col-md-2"></div>
     </div>
 </div>
 
