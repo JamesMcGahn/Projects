@@ -42,7 +42,7 @@ get_header();
                             <a href="<?php echo get_permalink()?>"> <img src="<?php echo $thumbnailUrl ?>" class="card-img-top img-card-res" alt="..."></a>
                                 <div class="card-body">
                                     <h5 class="card-title resourceP-title"><a href="<?php echo get_permalink()?>"> <?php the_title(); ?></a></h5>
-                                    <p class="card-text resourceP-text"><?php the_excerpt(); ?></p>
+                                    <!-- <p class="card-text resourceP-text"><?php the_excerpt(); ?></p> -->
                                 </div>
                             </div>
                         </div>

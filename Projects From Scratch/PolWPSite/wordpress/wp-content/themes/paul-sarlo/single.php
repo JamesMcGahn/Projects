@@ -7,6 +7,7 @@
  * @package Paul_Sarlo
  */
 $header_image = get_post_field('header_image', $post-> ID, 'display');
+$postTitle = get_the_title($post-> ID);
 get_header();
 ?>
 
@@ -15,7 +16,12 @@ get_header();
 <div class="row headerImage align-items-center" style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 15%, rgba(0, 0, 0, 0.8) 100%), url('<?php echo wp_get_attachment_url( $header_image); ?>');">
 
     <div class="col-12 headerImageText">
-                <h1 class="text-center"><?php the_title(); ?></h1>
+        <?php if(strlen($postTitle) > 60) { 
+            echo '<h3 class="text-center">' . $postTitle  .'</h3>';
+        } else {
+            echo '<h1 class="text-center">' . $postTitle .'</h1>';
+         } ?>
+
             </div>
     </div>
 <div class="container-fluid post">

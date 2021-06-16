@@ -349,6 +349,17 @@ html {
   margin: 0;
 }
 
+div.clearfix a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+div.clearfix a:hover {
+  color: #eda632;
+  text-shadow: 1px 5px 5px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+}
+
 button.btn:hover,
 button.btn:active {
   border-color: #2a6f97;
@@ -612,6 +623,16 @@ div.headerImage.row {
   font-size: 3rem;
   font-family: 'Raleway', sans-serif;
 }
+.headerImageText h3 {
+  color: white;
+  margin-bottom: 3%;
+  padding-top: 4%;
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+  font-size: 1.75rem;
+  font-family: 'Raleway', sans-serif;
+  padding-left: 1%;
+  padding-right: 1%;
+}
 
 h1#searchh1 {
   margin-bottom: 0;
@@ -727,12 +748,21 @@ p.card-text a:hover,
 
 img.img-card-res {
   width: 100%;
+  min-height: 42vh;
+  max-height: 50vh;
 }
 
 /* ------------------------resource  page ------------------------------------------------------- */
 /* ---------------------------------------------------------------------------------------- */
 
 #resccontainer {
+  margin-bottom: 35px;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-bottom: 3%;
+}
+#rescCScontainer {
+  margin-top: 35px;
   margin-bottom: 35px;
   padding-left: 3%;
   padding-right: 3%;
@@ -748,9 +778,40 @@ img.img-card-res {
   color: black;
   font-weight: bold;
 }
+.resourceP-title a:hover {
+  color: #eda632;
+  text-shadow: 1px 5px 5px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+}
 
 .entry-title {
   color: black;
+}
+
+.resource-CS-title {
+  text-align: center;
+}
+
+.resource-CS-title a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+.resource-CS-title a:hover {
+  color: #eda632;
+  text-shadow: 1px 5px 5px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+}
+
+img.img-card-CS {
+  height: auto;
+  width: 100%;
+  /* width: 100%; */
+}
+
+div.card.resource-CS-card {
+  margin-right: 5px;
+  max-width: 526px;
 }
 
 /* ----------------------------------POST ------------------------------------------------------

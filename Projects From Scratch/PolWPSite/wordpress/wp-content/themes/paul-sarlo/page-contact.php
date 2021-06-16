@@ -37,7 +37,7 @@ get_header();
             <p><?php echo $AddressLine2 ?></p>
             <p>Phone: <a href="tel:+<?php echo $phone?>"><?php echo $phone ?></a></p>
             <p>Email: <a href="mailto:<?php echo $email ?>"><?php echo $email ?></a></p>
-            <p><strong><a target="_blank" href="<?php echo $contact_directions ?>"> Directions to the Office &raquo;</a></strong>   </p>
+            <p><strong><a target="_blank" href="<?php echo $directions ?>"> Directions to the Office &raquo;</a></strong>   </p>
             </address>
             </div>
         </div>
