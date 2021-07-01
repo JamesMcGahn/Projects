@@ -9,7 +9,7 @@ class Die extends Component {
         return (
             <div>
                 <i class={`fas fa-dice-${this.props.numRoll} fa-7x`}></i>
-                {console.log(this.props.numRoll)}
+
             </div>
         )
     }
