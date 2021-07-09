@@ -25,14 +25,18 @@ class Todolist extends Component {
         this.setState({ todos: removed })
     }
 
-    completeTodo(todo) {
-
+    completeTodo(id) {
+        const toggleCompleted = this.state.todos.map(todo => {
+            return todo.id === id ? { ...todo, completed: !todo.completed } : { ...todo }
+        })
+        this.setState({ todos: toggleCompleted })
     }
 
     render() {
         return <div>
             <TodoForm addTodo={this.addTodo} />
-            {this.state.todos.map(todo => <Todo title={todo.title} id={todo.id} removeTodo={this.removeTodo} completeTodo={this.completeTodo} />)}
+            {this.state.todos.map(todo => <Todo key={todo.id} title={todo.title} id={todo.id} completed={todo.completed}
+                removeTodo={this.removeTodo} completeTodo={this.completeTodo} updateTodo={this.updateTodo} />)}
         </div>
     }
 }
