@@ -23,11 +23,18 @@ class Deck extends Component {
     }
 
     async drawCard() {
-        let deckId = this.state.deckId
-        const res = await axios.get(`https://deckofcardsapi.com/api/deck/${deckId}/draw/`);
-        const { remaining } = await res.data
-        const { images, suit, value } = await res.data.cards[0]
-        this.setState({ remainingCards: remaining, deck: [...this.state.deck, { cardImg: images.png, cardValue: `${value} of ${suit}` }] })
+        try {
+            let deckId = this.state.deckId
+            const res = await axios.get(`https://deckofcardsapi.com/api/deck/${deckId}/draw/`);
+            if (!res.data.success) throw new Error
+
+            const { remaining } = await res.data
+            const { images, suit, value } = await res.data.cards[0]
+            this.setState(st => ({ remainingCards: remaining, deck: [...st.deck, { cardImg: images.png, cardValue: `${value} of ${suit}` }] }))
+        } catch (error) {
+            console.error(error)
+        }
+
     }
     render() {
         const style = { position: 'relative', paddingLeft: '40%' }

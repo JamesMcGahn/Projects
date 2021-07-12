@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 
 class Card extends Component {
+    constructor(props) {
+        super(props);
+        this._cardIndex = this.props.zindex - 52
+        this._tilt = Math.floor(Math.random() * 25)
+        this._styles = { zIndex: this._cardIndex, position: 'absolute', transform: `rotate(${this._tilt}deg)` }
 
+    }
     render() {
-        let cardIndex = this.props.zindex - 52
-        let tilt = Math.floor(Math.random() * 25)
-        let styles = {
-            zIndex: cardIndex, position: 'absolute', transform: `rotate(${tilt}deg)`
-        }
-        console.log(cardIndex)
         return (
-            <div style={styles}>
+            <div style={this._styles}>
                 <img src={this.props.img} alt={this.props.altText} />
             </div >
         )
