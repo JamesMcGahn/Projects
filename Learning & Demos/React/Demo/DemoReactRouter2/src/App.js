@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom'
 import './App.css';
-import DogList from './DogList'
-import DogDetails from './DogDetails'
+
 import Routes from './Routes'
 import Navbar from './Navbar'
 import whiskey from './images/whiskey.jpg'
