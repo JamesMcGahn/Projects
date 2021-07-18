@@ -15,7 +15,6 @@ class ColorBox extends Component {
     }
 
     changeCopyState() {
-        console.log('click')
         this.setState({ copied: true }, () => {
             setTimeout(() => this.setState({ copied: false }), 1500)
         })
