@@ -7,7 +7,8 @@ import Snackbar from '@material-ui/core/Snackbar'
 import CloseIcon from '@material-ui/icons/Close'
 import IconButton from '@material-ui/core/IconButton'
 import 'rc-slider/assets/index.css'
-import './Navbar.css'
+import { withStyles } from '@material-ui/styles'
+import styles from './styles/NavbarStyles'
 
 class Navbar extends Component {
     constructor(props) {
@@ -31,21 +32,22 @@ class Navbar extends Component {
     }
 
     render() {
+        const { classes } = this.props
         return (
             <header>
-                <div className="Navbar">
-                    <div className="logo">
+                <div className={classes.Navbar}>
+                    <div className={classes.logo}>
                         <Link to='/'>Color App</Link>
                     </div>
                     {this.props.showingAll && (
-                        <div className="slider-container">
+                        <div>
                             <span>Level: {this.props.level}</span>
-                            <div className="slider">
+                            <div className={classes.slider}>
                                 <Slider defaultValue={this.props.level}
                                     min={100} max={900} step={100} onAfterChange={this.props.changeLevel} />
                             </div>
                         </div>)}
-                    <div className="select-container">
+                    <div className={classes.selectContainer}>
                         <Select value={this.state.format} onChange={this.handleFormatChange}>
                             <MenuItem value='hex'>HEX</MenuItem>
                             <MenuItem value='rgb'>RGB</MenuItem>
@@ -70,4 +72,4 @@ class Navbar extends Component {
     }
 }
 
-export default Navbar
+export default withStyles(styles)(Navbar)
