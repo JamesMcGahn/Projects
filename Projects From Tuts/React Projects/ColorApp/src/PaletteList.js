@@ -1,36 +1,7 @@
 import React, { Component } from 'react'
 import { withStyles } from '@material-ui/styles'
 import MiniPalette from './MiniPalette'
-
-const styles = {
-    root: {
-        backgroundColor: "blue",
-        height: "100vh",
-        display: "flex",
-        alignItems: "flex-start",
-        justifyContent: "center"
-    },
-    container: {
-        width: "50%",
-        display: "flex",
-        alignItems: "flex-start",
-        flexDirection: "column",
-        flexWrap: "wrap"
-    },
-    nav: {
-        display: "flex",
-        width: "100%",
-        justifyContent: "space-between",
-        color: "white"
-    },
-    palettes: {
-        boxSizing: "border-box",
-        width: "100%",
-        display: "grid",
-        gridTemplateColumns: "repeat(3, 30%)",
-        gridGap: "5%"
-    }
-};
+import styles from './styles/PaletteListStyles'
 
 class PaletteList extends Component {
     goToPalette(id) {
@@ -48,7 +19,7 @@ class PaletteList extends Component {
                     <div className={classes.palettes}>
                         {this.props.palettes.map(p => {
                             return (
-                                <MiniPalette {...p} handleClick={() => this.goToPalette(p.id)} />
+                                <MiniPalette key={p.id} {...p} handleClick={() => this.goToPalette(p.id)} />
                             )
                         })}
                     </div>
