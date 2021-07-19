@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import { withStyles } from '@material-ui/styles'
 import MiniPalette from './MiniPalette'
 
@@ -39,7 +38,7 @@ class PaletteList extends Component {
     }
 
     render() {
-        const { palettes, classes } = this.props
+        const { classes } = this.props
         return (
             <div className={classes.root}>
                 <div className={classes.container}>
