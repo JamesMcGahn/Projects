@@ -34,15 +34,25 @@ const styles = {
     }
 };
 
-function DraggableColorBox(props) {
-    const { classes } = props;
-    return (
-        <div className={classes.root} style={{ backgroundColor: props.color }}>
-            <div className={classes.boxContent}>
-                <span> {props.name}</span>
-                <DeleteIcon className={classes.deleteIcon} />
+class DraggableColorBox extends Component {
+    constructor(props) {
+        super(props);
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick() {
+        this.props.handleDelete(this.props.name)
+    }
+    render() {
+        const { classes } = this.props;
+        return (
+            <div className={classes.root} style={{ backgroundColor: this.props.color }}>
+                <div className={classes.boxContent}>
+                    <span> {this.props.name}</span>
+                    <DeleteIcon className={classes.deleteIcon} onClick={this.handleClick} />
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
 export default withStyles(styles)(DraggableColorBox)
