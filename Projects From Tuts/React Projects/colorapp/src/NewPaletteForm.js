@@ -18,33 +18,18 @@ const styles = theme => ({
     root: {
         display: "flex"
     },
-    appBar: {
-        transition: theme.transitions.create(["margin", "width"], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen
-        })
-    },
-    appBarShift: {
-        width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: drawerWidth,
-        transition: theme.transitions.create(["margin", "width"], {
-            easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen
-        })
-    },
-    menuButton: {
-        marginLeft: 12,
-        marginRight: 20
-    },
     hide: {
         display: "none"
     },
     drawer: {
         width: drawerWidth,
-        flexShrink: 0
+        flexShrink: 0,
+        height: "100vh"
     },
     drawerPaper: {
-        width: drawerWidth
+        width: drawerWidth,
+        display: "flex",
+        alignItems: "center"
     },
     drawerHeader: {
         display: "flex",
@@ -69,6 +54,20 @@ const styles = theme => ({
             duration: theme.transitions.duration.enteringScreen
         }),
         marginLeft: 0
+    },
+    container: {
+        width: "90%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    buttons: {
+        width: "100%"
+    },
+    button: {
+        width: "50%"
     }
 });
 
@@ -151,7 +150,7 @@ class NewPaletteForm extends Component {
         const paletteFull = this.state.colors.length >= maxColors
         return (
             <div className={classes.root}>
-                <PaletteFormNav open={open} classes={classes}
+                <PaletteFormNav open={open}
                     palettes={palettes}
                     savePalette={this.savePalette}
                     handleDrawerOpen={this.handleDrawerOpen}
@@ -171,21 +170,30 @@ class NewPaletteForm extends Component {
                         </IconButton>
                     </div>
                     <Divider />
-                    <Typography variant="h4">Design Your Palette</Typography>
-                    <Button variant="contained"
-                        color="secondary"
-                        onClick={this.clearColors}
-                    >Clear Palette</Button>
-                    <Button variant="contained"
-                        color="primary"
-                        disabled={paletteFull}
-                        onClick={this.randomColors}>{paletteFull ? 'Palette Full' : 'Random Color'}</Button>
-                    <ColorPickerForm
-                        paletteFull={paletteFull}
-                        addNewColor={this.addNewColor}
-                        colors={this.state.colors}
-                        updateCurrentColor={this.props.updateCurrentColor}
-                    />
+                    <div className={classes.container}>
+                        <Typography variant="h4"
+                            gutterBottom>
+                            Design Your Palette</Typography>
+                        <div className={classes.buttons}>
+                            <Button variant="contained"
+                                color="secondary"
+                                onClick={this.clearColors}
+                                className={classes.button}
+                            >Clear Palette</Button>
+                            <Button
+                                variant="contained"
+                                className={classes.button}
+                                color="primary"
+                                disabled={paletteFull}
+                                onClick={this.randomColors}>{paletteFull ? 'Palette Full' : 'Random Color'}</Button>
+                        </div>
+                        <ColorPickerForm
+                            paletteFull={paletteFull}
+                            addNewColor={this.addNewColor}
+                            colors={this.state.colors}
+                            updateCurrentColor={this.props.updateCurrentColor}
+                        />
+                    </div>
                 </Drawer>
                 <main
                     className={classNames(classes.content, {
