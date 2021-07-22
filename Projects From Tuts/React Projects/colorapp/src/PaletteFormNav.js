@@ -11,7 +11,6 @@ import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 import styles from './styles/PaletteFormNavStyles'
 import AddToPhotosIcon from "@material-ui/icons/AddToPhotos";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 
 
 class PaletteFormNav extends Component {
