@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import Palette from './Palette'
 import PaletteList from './PaletteList'
 import SinglePalette from './SinglePalette'
@@ -17,6 +17,7 @@ class App extends Component {
     }
     this.savePalette = this.savePalette.bind(this)
     this.findPalette = this.findPalette.bind(this)
+    this.removePalette = this.removePalette.bind(this)
   }
   findPalette(id) {
     return this.state.palettes.find((palette) => palette.id === id)
@@ -28,11 +29,21 @@ class App extends Component {
     })
   }
 
+  removePalette(id) {
+    const remainingPalettes = this.state.palettes.filter((palette) => palette.id !== id)
+    this.setState({ palettes: remainingPalettes }, () => window.localStorage.setItem('palettes', JSON.stringify(this.state.palettes)))
+
+    return (
+      <Redirect to='/' />
+    )
+  }
+
+
   render() {
     return (
       <Switch>
         <Route exact path="/palette/new" render={(routeProps) => <NewPaletteForm savePalette={this.savePalette} palettes={this.state.palettes} {...routeProps} />} />
-        <Route exact path='/' render={(routeProps) => <PaletteList palettes={this.state.palettes} {...routeProps} />} />
+        <Route exact path='/' render={(routeProps) => <PaletteList palettes={this.state.palettes} removePalette={this.removePalette} {...routeProps} />} />
         <Route exact path='/palette/:id' render={(routeProps) => <Palette palette={generatePalette(this.findPalette(routeProps.match.params.id))} />} />
         <Route
           exact
