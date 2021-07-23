@@ -7,7 +7,8 @@ const down = (size) => {
         xs: '575.98px',
         sm: '767.98px',
         md: '991.98px',
-        lg: '1199.px'
+        lg: '1199.px',
+        xl: '1600 px'
     }
     return `@media (max-width: ${sizes[size]})`
 }
