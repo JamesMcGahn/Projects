@@ -1,70 +1,18 @@
-# Getting Started with Create React App
+# The Color App Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The The Color App was a Project in Colt Steele's The Modern React Bootcamp (Hooks, Context, NextJS, Router). The goal of this project was to combine everything learned about React and create an React App. Most of the App was completed on my own after being prompted for the next step (All styling was copied).
 
-## Available Scripts
+## Link
 
-In the project directory, you can run:
+https://competent-wilson-8de5e5.netlify.app/
 
-### `npm start`
+## Usage
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+In this app, users can create a palette of colors they would like to keep. The user can drag and sort each color of the palette to their placement liking. If a user is having trouble thinking of a color they can generate a random color. Users can delete a color from their palette to replace it with another color. When the user is ready to save their palette, they will need to pick an unqiue name and emoji. Users palettes will save to local storage. Users can delete their palettes if they no longer want them. When viewing the palette users can adjust between the different luminance of a color. If a user would like to further break down the shades of the color they can click on that individual color and it show a scale of that color. Whether on the main palette or the individual color shade break down, users can click to copy the hex, rgb, or rgba code. Users can choose which will be displayed by a dropdown menu in the top right of the app.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+![](project_demo.gif)
 
-### `npm test`
+## Tech Stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- JSS
+- React
