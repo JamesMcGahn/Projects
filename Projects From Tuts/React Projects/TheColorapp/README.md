@@ -1,6 +1,6 @@
 # The Color App Project
 
-The The Color App was a Project in Colt Steele's The Modern React Bootcamp (Hooks, Context, NextJS, Router). The goal of this project was to combine everything learned about React and create an React App. Most of the App was completed on my own after being prompted for the next step (All styling was copied).
+The The Color App was a Project in Colt Steele's The Modern React Bootcamp (Hooks, Context, NextJS, Router). The goal of this project was to combine everything learned about React and create a React App. Most of the App was completed on my own after being prompted for the next step (All styling was copied).
 
 ## Link
 
