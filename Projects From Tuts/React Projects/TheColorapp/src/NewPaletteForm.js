@@ -12,6 +12,7 @@ import PaletteFormNav from "./PaletteFormNav"
 import ColorPickerForm from "./ColorPickerForm"
 import arrayMove from 'array-move';
 import styles from './styles/NewPaletteFormStyles'
+import seedColors from './SeedColors'
 
 class NewPaletteForm extends Component {
     static defaultProps = {
@@ -21,7 +22,7 @@ class NewPaletteForm extends Component {
         super(props);
         this.state = {
             open: true,
-            colors: this.props.palettes[0].colors
+            colors: seedColors[0].colors
         };
         this.addNewColor = this.addNewColor.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -83,7 +84,27 @@ class NewPaletteForm extends Component {
 
     randomColors() {
         const allColors = this.props.palettes.map(p => p.colors).flat()
-        const randoColor = (allColors[Math.floor(Math.random() * allColors.length)])
+        let randoColor
+        let isDuplicate = true;
+        let i = 20;
+        while (isDuplicate) {
+            randoColor = (allColors[Math.floor(Math.random() * allColors.length)])
+            isDuplicate = this.state.colors.some(color => color.name === randoColor.name)
+            i--
+            // basic error handling if user deletes all the palettes to put colors, 
+            // alt could be to just pull from seedcolors or generate true random Colors/Names
+            if (i === 0) {
+                let newRandom = `#`
+                for (let i = 1; i <= 6; i++) {
+                    let randomNum = Math.floor(Math.random() * 10)
+                    newRandom += randomNum
+                }
+                randoColor.color = newRandom;
+                randoColor.name = `Random Color ${newRandom.slice(1)}`
+                break
+            }
+        }
+
         this.setState({ colors: [...this.state.colors, randoColor] })
     }
 

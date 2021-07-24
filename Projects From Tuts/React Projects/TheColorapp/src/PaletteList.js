@@ -61,7 +61,7 @@ class PaletteList extends Component {
                     <TransitionGroup className={classes.palettes}>
                         {this.props.palettes.map(p => {
                             return (
-                                <CSSTransition key={p.id} classNames="fade" timeout={500} ><MiniPalette key={p.id} id={p.id} {...p} goToPalette={this.goToPalette} handleDialog={this.handleDeleteDialogOpen} /></CSSTransition>
+                                <CSSTransition key={p.id} classNames="fade" timeout={300} ><MiniPalette key={p.id} id={p.id} {...p} goToPalette={this.goToPalette} handleDialog={this.handleDeleteDialogOpen} /></CSSTransition>
                             )
                         })}
                     </TransitionGroup>

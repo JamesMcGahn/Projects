@@ -53,7 +53,7 @@ const styles = {
         padding: "10px",
         zIndex: 10,
         opacity: 0,
-
+        boxSizing: 'initial !important',
     }
 };
 
