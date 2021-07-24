@@ -15,6 +15,9 @@ const styles = {
         },
         ".Page-exit-active": {
             opacity: 0
+        },
+        '&:after': {
+            boxSizing: 'revert'
         }
     },
 }

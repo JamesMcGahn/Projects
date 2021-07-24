@@ -8,7 +8,8 @@ const styles = {
         overflow: "hidden",
         cursor: "pointer",
         "&:hover svg": {
-            opacity: 1
+            opacity: 1,
+
         }
     },
     colors: {
@@ -51,7 +52,8 @@ const styles = {
         top: "0px",
         padding: "10px",
         zIndex: 10,
-        opacity: 0
+        opacity: 0,
+
     }
 };
 
