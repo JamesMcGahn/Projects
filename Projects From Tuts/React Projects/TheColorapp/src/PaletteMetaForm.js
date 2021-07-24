@@ -47,6 +47,7 @@ class PaletteMetaForm extends Component {
 
     savePalette(emoji) {
         this.props.savePalette(this.state.newPaletteName, emoji.native)
+        this.setState({ stage: '' })
     }
 
     render() {
