@@ -8,13 +8,26 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Grid from "@material-ui/core/Grid";
 import { Typography } from '@material-ui/core';
+import { uuid } from 'uuidv4';
 
 export default function TodoApp() {
     const initial = [{ id: 1, task: "Walk The Goldfish", completed: true }]
     const [todos, setTodos] = useState(initial)
 
     const addTodo = newTodoText => {
-        setTodos([...todos, { id: 4, task: newTodoText, completed: true }])
+        setTodos([...todos, { id: uuid(), task: newTodoText, completed: false }])
+    }
+
+    const removeTodo = todoId => {
+        const remainingTodos = todos.filter(todo => todo.id !== todoId)
+        setTodos(remainingTodos)
+    }
+
+    const toggleTodo = todoId => {
+        const toggledTodos = todos.map(todo => {
+            return todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
+        })
+        setTodos(toggledTodos)
     }
 
 
@@ -39,7 +52,7 @@ export default function TodoApp() {
             >
                 <Grid item xs={11} md={8} lg={4}>
                     <TodoForm addTodo={addTodo} />
-                    <TodoList todos={todos} />
+                    <TodoList todos={todos} removeTodo={removeTodo} toggleTodo={toggleTodo} />
                 </Grid>
             </Grid>
 
