@@ -18,6 +18,14 @@ export default function TodoApp() {
         setTodos([...todos, { id: uuid(), task: newTodoText, completed: false }])
     }
 
+    const editTodo = (editText, id) => {
+        const editedTodos = todos.map(todo => {
+            return todo.id === id ? { ...todo, task: editText } : todo
+        })
+        setTodos(editedTodos)
+
+    }
+
     const removeTodo = todoId => {
         const remainingTodos = todos.filter(todo => todo.id !== todoId)
         setTodos(remainingTodos)
@@ -52,7 +60,7 @@ export default function TodoApp() {
             >
                 <Grid item xs={11} md={8} lg={4}>
                     <TodoForm addTodo={addTodo} />
-                    <TodoList todos={todos} removeTodo={removeTodo} toggleTodo={toggleTodo} />
+                    <TodoList todos={todos} removeTodo={removeTodo} toggleTodo={toggleTodo} editTodo={editTodo} />
                 </Grid>
             </Grid>
 
