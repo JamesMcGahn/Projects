@@ -8,7 +8,7 @@ import Divider from "@material-ui/core/Divider";
 
 
 function TodoList(props) {
-    const { todos } = useContext(TodosContext)
+    const todos = useContext(TodosContext)
     return (
         <Paper>
             <List>

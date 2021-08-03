@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import useToggleState from './hooks/useToggleState'
 import EditForm from './EditForm';
-import { TodosContext } from './context/todos.context'
+import { DispatchContext } from './context/todos.context'
 
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -13,7 +13,7 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 
 function Todo({ task, completed, id, }) {
     const [isEditing, toggleEdit] = useToggleState(false)
-    const { dispatch } = useContext(TodosContext)
+    const dispatch = useContext(DispatchContext)
     return (
         <ListItem>
             {isEditing ?
