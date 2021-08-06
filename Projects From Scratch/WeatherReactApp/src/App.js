@@ -3,6 +3,8 @@ import React, { useEffect } from 'react';
 import Forecast from './Forecast';
 import Form from './Form';
 import Navbar from './Navbar';
+import OW_API_KEY from './keys.js'
+
 
 import axios from 'axios'
 import clsx from 'clsx';
@@ -90,7 +92,7 @@ function App(props) {
 
   const weatherFetch = async () => {
     try {
-      const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city},${stateLoc},${country}&units=imperial&appid=`);
+      const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city},${stateLoc},${country}&units=imperial&appid=${OW_API_KEY}`);
       const { data } = response
       console.log(data)
       return setweatherData(data)
