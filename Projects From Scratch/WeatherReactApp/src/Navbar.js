@@ -1,99 +1,125 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-
-import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import InputBase from '@material-ui/core/InputBase';
+import { alpha, makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
-
-const drawerWidth = 240;
+import SearchIcon from '@material-ui/icons/Search';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import NativeSelect from '@material-ui/core/NativeSelect';
 const useStyles = makeStyles((theme) => ({
     root: {
-        display: 'flex',
+        flexGrow: 1,
     },
-    appBar: {
-        transition: theme.transitions.create(['margin', 'width'], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-    },
-    appBarShift: {
-        width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: drawerWidth,
-        transition: theme.transitions.create(['margin', 'width'], {
-            easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-    },
-    menuButton: {
-        marginRight: theme.spacing(2),
-    },
-    hide: {
+    title: {
+        flexGrow: 1,
         display: 'none',
+        [theme.breakpoints.up('sm')]: {
+            display: 'block',
+        },
     },
-    drawer: {
-        width: drawerWidth,
-        flexShrink: 0,
+    search: {
+        position: 'relative',
+        borderRadius: theme.shape.borderRadius,
+        backgroundColor: alpha(theme.palette.common.white, 0.15),
+        '&:hover': {
+            backgroundColor: alpha(theme.palette.common.white, 0.25),
+        },
+        width: '100%',
+        [theme.breakpoints.up('sm')]: {
+            marginLeft: theme.spacing(1),
+            width: 'auto',
+        },
     },
-    drawerPaper: {
-        width: drawerWidth,
-    },
-    drawerHeader: {
+    searchIcon: {
+        padding: theme.spacing(0, 2),
+        height: '100%',
+        position: 'absolute',
+        pointerEvents: 'none',
         display: 'flex',
         alignItems: 'center',
-        padding: theme.spacing(0, 1),
-        // necessary for content to be below app bar
-        ...theme.mixins.toolbar,
-        justifyContent: 'flex-end',
+        justifyContent: 'center',
     },
-    content: {
-        flexGrow: 1,
-        padding: theme.spacing(3),
-        transition: theme.transitions.create('margin', {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-        marginLeft: -drawerWidth,
+    inputRoot: {
+        color: 'inherit',
     },
-    contentShift: {
-        transition: theme.transitions.create('margin', {
-            easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-        marginLeft: 0,
+    inputInput: {
+        padding: theme.spacing(1, 1, 1, 0),
+        // vertical padding + font size from searchIcon
+        paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+        transition: theme.transitions.create('width'),
+        width: '100%',
+        [theme.breakpoints.up('sm')]: {
+            width: '12ch',
+            '&:focus': {
+                width: '20ch',
+            },
+        },
     },
+    formControl: {
+        margin: '.5rem',
+        height: '2rem',
+        minWidth: 120,
+        backgroundColor: alpha(theme.palette.common.white, 0.15),
+        color: 'white',
+    },
+    iconCont: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '60%'
+    }
 }));
 
-
-function Navbar({ open, handleDrawerOpen }) {
+function Navbar() {
     const classes = useStyles();
-    const theme = useTheme();
+
     return (
-        <AppBar
-            position="fixed"
-            className={clsx(classes.appBar, {
-                [classes.appBarShift]: open,
-            })}
-        >
-            <Toolbar>
-                <IconButton
-                    color="inherit"
-                    aria-label="open drawer"
-                    onClick={handleDrawerOpen}
-                    edge="start"
-                    className={clsx(classes.menuButton, open && classes.hide)}
-                >
-                    <MenuIcon />
-                </IconButton>
-                <Typography variant="h6" noWrap>
-                    Persistent drawer
-                </Typography>
-            </Toolbar>
-        </AppBar>
+        <div className={classes.root} >
+            <AppBar position="static" style={{ backgroundColor: 'black' }}>
+                <Toolbar>
+                    <Typography className={classes.title} variant="h6" noWrap>
+                        Weather App
+                    </Typography>
+                    <div className={classes.iconCont}>
+                        <div className={classes.search}>
+                            <div className={classes.searchIcon}>
+                                <SearchIcon />
+                            </div>
+                            <InputBase
+                                placeholder="Search…"
+                                classes={{
+                                    root: classes.inputRoot,
+                                    input: classes.inputInput,
+                                }}
+                                inputProps={{ 'aria-label': 'search' }}
+                            />
+                        </div>
+                        <FormControl className={classes.formControl}>
+                            <NativeSelect
+                                native
+                                value={"placeholder"}
+                                onChange={"handleChange"}
+                                inputProps={{
+                                    name: 'age',
+                                    id: 'age-native-simple',
+                                }}
+                            >
+                                <option aria-label="None" value="Metric" />
+                                <option value={10}>Ten</option>
+                                <option value={20}>Twenty</option>
+                                <option value={30}>Thirty</option>
+                            </NativeSelect>
+                        </FormControl>
+                    </div>
+                </Toolbar>
+            </AppBar>
+        </div>
     );
 }
-
-export default Navbar;
+export default Navbar
