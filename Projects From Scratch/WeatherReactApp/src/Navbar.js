@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
     formControl: {
         margin: '.5rem',
         height: '2rem',
-        minWidth: 120,
+        minWidth: 60,
         backgroundColor: alpha(theme.palette.common.white, 0.15),
         color: 'white',
     },
@@ -76,8 +76,24 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function Navbar() {
+function Navbar({ unit, setSearchText, setUnit }) {
+    const handleChangeUnit = (e) => {
+        setUnit(e.target.value)
+        console.log(e.target.value)
+    }
+
+    const handleSearch = (e) => {
+        e.preventDefault()
+        setSearchText(searchPlaceholder)
+        setSearchPlaceholder('Search...')
+    }
+
+    const handleChange = (e) => {
+        setSearchPlaceholder(e.target.value)
+    }
+
     const classes = useStyles();
+    const [searchPlaceholder, setSearchPlaceholder] = useState('Search...')
 
     return (
         <div className={classes.root} >
@@ -87,33 +103,37 @@ function Navbar() {
                         Weather App
                     </Typography>
                     <div className={classes.iconCont}>
-                        <div className={classes.search}>
-                            <div className={classes.searchIcon}>
-                                <SearchIcon />
+                        <form onSubmit={handleSearch}>
+                            <div className={classes.search}>
+                                <div className={classes.searchIcon}>
+                                    <SearchIcon />
+                                </div>
+                                <InputBase
+                                    value={searchPlaceholder}
+                                    onChange={handleChange}
+                                    placeholder={searchPlaceholder}
+                                    classes={{
+                                        root: classes.inputRoot,
+                                        input: classes.inputInput,
+                                    }}
+                                    inputProps={{ 'aria-label': 'search' }}
+                                />
                             </div>
-                            <InputBase
-                                placeholder="Search…"
-                                classes={{
-                                    root: classes.inputRoot,
-                                    input: classes.inputInput,
-                                }}
-                                inputProps={{ 'aria-label': 'search' }}
-                            />
-                        </div>
+                        </form>
                         <FormControl className={classes.formControl}>
                             <NativeSelect
                                 native
-                                value={"placeholder"}
-                                onChange={"handleChange"}
+                                value={unit}
+                                onChange={handleChangeUnit}
                                 inputProps={{
-                                    name: 'age',
-                                    id: 'age-native-simple',
+                                    name: 'units',
+                                    id: 'units',
                                 }}
+                                style={{ color: 'white', marginLeft: '1rem' }}
                             >
                                 <option aria-label="None" value="Metric" />
-                                <option value={10}>Ten</option>
-                                <option value={20}>Twenty</option>
-                                <option value={30}>Thirty</option>
+                                <option value={"imperial"}>F°</option>
+                                <option value={"metric"}>C°</option>
                             </NativeSelect>
                         </FormControl>
                     </div>

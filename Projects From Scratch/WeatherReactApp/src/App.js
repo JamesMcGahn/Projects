@@ -23,17 +23,12 @@ function App(props) {
 
   const [open, setOpen] = React.useState('false');
   const [city, setCity] = React.useState('Miami');
+  const [unit, setUnit] = React.useState('imperial')
   const [stateLoc, setStateLoc] = React.useState('FL');
   const [country, Setcountry] = React.useState('US');
   const [weatherData, setweatherData] = React.useState(false);
+  const [searchText, setSearchText] = React.useState('')
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
 
   const weatherFetch = async () => {
     try {
@@ -57,9 +52,9 @@ function App(props) {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <Navbar handleDrawerOpen={handleDrawerOpen} open={open} />
+      <Navbar unit={unit} setUnit={setUnit} setSearchText={setSearchText} />
       {weatherData &&
-        <Forecast weather={weatherData} handleDrawerOpen={handleDrawerOpen} className={classes.paper} />
+        <Forecast weather={weatherData} className={classes.paper} />
       }
     </div>
   );
