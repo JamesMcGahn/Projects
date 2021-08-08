@@ -3,8 +3,8 @@ import React, { useEffect } from 'react';
 import Forecast from './Forecast';
 import Navbar from './Navbar';
 import HistoryBar from './HistoryBar'
-import WeatherTab from './WeatherTab'
 import { OW_API_KEY } from './keys.js'
+import ForecastTypeBar from './ForecastTypeBar';
 
 
 import { Switch, Route, Redirect } from 'react-router-dom'
@@ -102,6 +102,7 @@ function App(props) {
       <CssBaseline />
       <Navbar unit={unit} setUnit={setUnit} setSearchText={setSearchText} />
       <HistoryBar weather={weatherData} />
+      <ForecastTypeBar id={selectedLocation} />
 
       <Route render={({ location }) =>
         <Switch location={location}>

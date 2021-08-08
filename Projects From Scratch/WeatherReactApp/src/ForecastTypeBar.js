@@ -14,25 +14,27 @@ const useStyles = makeStyles((theme) => ({
     root: {
         backgroundColor: theme.palette.background.paper,
         width: '100wh',
+
     },
     tab: {
         "& a": {
-            display: 'inline-block',
+            display: 'block',
             color: 'black',
             textDecoration: "none",
             width: '100%',
             height: '100%',
         }
-
     }
+
+
 }));
 
-export default function HistoryBar({ weather }) {
+export default function ForecastTypeBar({ id }) {
     const classes = useStyles();
     const theme = useTheme();
     const [value, setValue] = React.useState(0);
-    const history = weather.reverse();
     const handleChange = (event, newValue) => {
+        console.log('hit')
         setValue(newValue);
     };
 
@@ -45,19 +47,20 @@ export default function HistoryBar({ weather }) {
             <AppBar position="static" color="default">
                 <Tabs
                     value={value}
-                    onChange={handleChange}
                     indicatorColor="primary"
                     textColor="primary"
-                    aria-label="Location History"
-                >
-                    {[...weather].reverse().map((loc, i) =>
+                    onChange={handleChange}
+                    aria-label=""
 
-                        <Tab className={classes.tab} label={<Link to={`/${loc.id}`}>{loc.city}</Link>} index={i} id={loc.id} key={loc.id}>
-                        </Tab>
-                    )}
+                >
+                    <Tab className={classes.tab} label={<Link to={`/${id}`}>Today </Link>} index={0} id={id} />
+
+                    <Tab className={classes.tab} label={<Link to={`/${id}/hourly`}>Hourly</Link>} index={1} id={id} />
+
+                    <Tab className={classes.tab} label={<Link to={`/${id}/daily`}>Daily</Link>} index={2} id={id} />
                 </Tabs>
             </AppBar>
 
-        </div>
+        </div >
     );
 }
