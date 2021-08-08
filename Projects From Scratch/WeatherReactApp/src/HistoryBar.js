@@ -1,14 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import SwipeableViews from 'react-swipeable-views';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles, } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
 import { Link } from 'react-router-dom'
-import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -18,13 +13,15 @@ const useStyles = makeStyles((theme) => ({
     tab: {
         "& a": {
             display: 'block',
-            color: 'black',
+            color: 'white',
             textDecoration: "none",
             width: '100%',
             height: '100%',
+            fontSize: '.875rem',
+
         },
         "& img": {
-            width: '15%',
+            width: '10%',
             border: '1px solid black',
 
         }
@@ -34,35 +31,21 @@ const useStyles = makeStyles((theme) => ({
 
 export default function HistoryBar({ weather }) {
     const classes = useStyles();
-    const theme = useTheme();
-    const [value, setValue] = React.useState(0);
-    const history = weather.reverse();
-    const handleChange = (event, newValue) => {
-        console.log('hit button', event, newValue);
-
-        setValue(newValue);
-    };
-
-    const handleChangeIndex = (index) => {
-        setValue(index);
-    };
-
-
-    const weatherRev = [...weather].reverse()
+    const firstSix = [...weather].reverse().filter((item, index) => index <= 6)
     return (
         <div className={classes.root}>
-            <AppBar position="static" color="default">
+            <AppBar position="static" style={{ backgroundColor: '#1b4de4' }} >
                 <Tabs
                     indicatorColor="primary"
                     textColor="primary"
                     aria-label="Location History"
                     value={false}
                 >
-                    {[...weather].reverse().map((loc, i) => {
-                        if (i >= 6) return
+
+                    {firstSix.map((loc, i) => {
                         return (
                             <Tab className={classes.tab} label={<Link to={`/${loc.id}`}   >
-                                <img src={`http://openweathermap.org/img/wn/${loc.current.weather[0].icon}@2x.png`} />
+                                <img alt="forecast-icon" src={`http://openweathermap.org/img/wn/${loc.current.weather[0].icon}@2x.png`} />
                                 {`
                             ${Math.trunc(loc.current.temp)}° ${loc.city}`}</Link>} index={i} id={loc.id} key={loc.id}>
                             </Tab>
