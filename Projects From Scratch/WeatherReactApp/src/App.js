@@ -16,7 +16,11 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-
+    backgroundColor: "#1a357c",
+    backgroundImage: 'linear-gradient(#1a357c 9%,#99479b)',
+    height: '100%',
+    backgroundAttachment: "fixed",
+    backgroundRepeat: "no-repeat"
   }
 }));
 

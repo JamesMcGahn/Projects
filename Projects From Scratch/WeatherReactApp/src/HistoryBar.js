@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, } from '@material-ui/core/styles';
+import { makeStyles, alpha } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -11,6 +11,8 @@ const useStyles = makeStyles((theme) => ({
         width: '100wh',
     },
     tab: {
+        borderRight: '1px solid',
+        borderRightColor: alpha(theme.palette.common.white, 0.12),
         "& a": {
             display: 'block',
             color: 'white',
@@ -22,8 +24,6 @@ const useStyles = makeStyles((theme) => ({
         },
         "& img": {
             width: '10%',
-            border: '1px solid black',
-
         }
 
     }
