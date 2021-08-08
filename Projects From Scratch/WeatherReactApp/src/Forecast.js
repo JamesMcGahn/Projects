@@ -21,46 +21,49 @@ const useStyles = makeStyles({
 
 function Forecast({ weather }) {
     const classes = useStyles()
-
+    console.log(weather, 'passed from link')
     return (
         <Card className={classes.root}>
-            {console.log('forecast', weather)}
-            {weather.map(weather =>
-                <CardContent>
-                    <Typography gutterBottom variant="h3" component="h1">
-                        {`${weather.name}`}
-                    </Typography>
 
-                    <List>
-                        <ListItem>
-                            <ListItemText primary={`${weather.weather[0].description.replace(/\b\w/g, l => l.toUpperCase())}`} />
-                        </ListItem>
-                        <ListItem>
-                            <ListItemText primary={`Relative Humidity: ${weather.main.humidity}`} />
-                        </ListItem>
-                        <ListItem>
-                            <ListItemText primary={`Feels Like: ${weather.main.feels_like}`} />
-                        </ListItem>
-                        <ListItem>
-                            <ListItemText primary={`Min: ${weather.main.temp_min}° F, Max: ${weather.main.temp_max}° F`} />
-                        </ListItem>
-                        <ListItem>
-                            <ListItemText primary={`Wind Gusts: ${weather.wind.gust} mph`} />
-                        </ListItem>
-                    </List>
+            {weather.flat().map(weather => {
 
+                { console.log('forecast', weather); }
+                return (
+                    < CardContent >
+                        <Typography gutterBottom variant="h3" component="h1">
+                            {`${weather.city}`}
+                        </Typography>
+                        {`${weather.current.temp}° F`}
+                        <List>
+                            <ListItem>
+                                <ListItemText primary={`${weather.current.weather[0].description.replace(/\b\w/g, l => l.toUpperCase())}`} />
+                            </ListItem>
+                            <ListItem>
+                                <ListItemText primary={`Relative Humidity: ${weather.current.humidity}`} />
+                            </ListItem>
+                            <ListItem>
+                                <ListItemText primary={`Feels Like: ${weather.current.feels_like}`} />
+                            </ListItem>
+                            <ListItem>
+                                <ListItemText primary={`Min: ${weather.current.temp}° F, `} />
+                            </ListItem>
 
-
-                    {`${weather.main.temp}° F`}
-                    {`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
+                        </List>
 
 
-                </CardContent>
-            )}
+
+
+                        {`https://openweathermap.org/img/wn/${weather.current.weather[0].icon}@2x.png`}
+
+
+                    </CardContent>
+                )
+            })
+            }
             <CardActions>
                 <Button size="large" >Change Location</Button>
             </CardActions>
-        </Card>
+        </Card >
     );
 }
 

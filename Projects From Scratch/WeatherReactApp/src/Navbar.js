@@ -12,6 +12,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
+import { Link } from 'react-router-dom'
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -85,7 +86,7 @@ function Navbar({ unit, setSearchText, setUnit }) {
     const handleSearch = (e) => {
         e.preventDefault()
         setSearchText(searchPlaceholder)
-        setSearchPlaceholder('Search...')
+        setSearchPlaceholder('')
     }
 
     const handleChange = (e) => {
@@ -93,14 +94,16 @@ function Navbar({ unit, setSearchText, setUnit }) {
     }
 
     const classes = useStyles();
-    const [searchPlaceholder, setSearchPlaceholder] = useState('Search...')
+    const [searchPlaceholder, setSearchPlaceholder] = useState('')
 
     return (
         <div className={classes.root} >
             <AppBar position="static" style={{ backgroundColor: 'black' }}>
                 <Toolbar>
                     <Typography className={classes.title} variant="h6" noWrap>
-                        Weather App
+                        <Link to={`/`}>
+                            Weather App
+                        </Link>
                     </Typography>
                     <div className={classes.iconCont}>
                         <form onSubmit={handleSearch}>

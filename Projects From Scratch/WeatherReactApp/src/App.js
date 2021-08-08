@@ -24,12 +24,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function App(props) {
-
-  const [open, setOpen] = React.useState('false');
-  const [city, setCity] = React.useState('Miami');
+  const [coords, setCoords] = React.useState('')
+  const [city, setCity] = React.useState('');
   const [unit, setUnit] = React.useState('imperial')
-  const [stateLoc, setStateLoc] = React.useState('FL');
-  const [country, Setcountry] = React.useState('US');
+
+
   const [weatherData, setweatherData] = React.useState([]);
   const [searchText, setSearchText] = React.useState('')
   const [selectedLocation, setSelectedLocation] = React.useState(0);
@@ -38,34 +37,62 @@ function App(props) {
     setSelectedLocation(newValue);
   };
 
-  const handleChangeIndex = (index) => {
-    setSelectedLocation(index);
-  };
 
   const findLocation = (id) => {
     console.log(id)
     console.log('fuc', weatherData.filter(loc => (loc.id === id)))
-    return weatherData.filter(loc => (loc.id === id))
+    const locData = weatherData.filter(loc => (loc.id === id))
+    console.log(locData)
+    return locData;
+  }
+
+  const coordsFetch = async () => {
+    try {
+      if (searchText.length === 0) {
+        throw new Error('No search text')
+      } else {
+        const res = await axios.get(`https://geocode.xyz/${searchText}?json=1`)
+        const { data } = res
+        setCity(data.standard.city)
+        setCoords({ latt: data.latt, longt: data.longt })
+
+        console.log(coords.latt, coords.longt)
+
+      }
+    }
+    catch (e) {
+      console.log('coords', e)
+    }
   }
 
   const weatherFetch = async () => {
     try {
-      const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city},${stateLoc},${country}&units=imperial&appid=${OW_API_KEY}`);
+      if (coords === '') throw new Error('No coords')
+      const response = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${coords.latt}&lon=${coords.longt}&units=imperial&appid=${OW_API_KEY}`);
       const { data } = response
       console.log(data)
-      const newData = { ...data, id: uuid(), }
+      const newData = { ...data, id: uuid(), city: city }
       setSelectedLocation(newData.id)
-      return setweatherData([...weatherData, newData])
+      setCity('')
+      setweatherData([...weatherData, newData])
+      return (
+        <Redirect to='/' />
+      )
     } catch (e) {
       console.log(e)
     }
   }
 
-
   useEffect(() => {
     weatherFetch()
-    console.log(weatherData)
-  }, [city])
+  }, [coords])
+
+  useEffect(() => {
+    coordsFetch()
+  }, [searchText])
+
+
+
 
 
   const classes = useStyles();

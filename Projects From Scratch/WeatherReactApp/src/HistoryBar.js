@@ -7,7 +7,8 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-
+import { Link } from 'react-router-dom'
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -20,7 +21,7 @@ export default function HistoryBar({ weather }) {
     const classes = useStyles();
     const theme = useTheme();
     const [value, setValue] = React.useState(0);
-
+    const history = weather.reverse();
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
@@ -39,8 +40,11 @@ export default function HistoryBar({ weather }) {
                     textColor="primary"
                     aria-label="Location History"
                 >
-                    {weather.map((loc, i) => <Tab label={loc.name} index={i} id={loc.id} key={loc.id}
-                    />)}
+                    {[...weather].reverse().map((loc, i) =>
+                        <Link to={`/${loc.id}`}>
+                            <Tab label={loc.city} index={i} id={loc.id} key={loc.id}>
+                            </Tab>
+                        </Link>)}
                 </Tabs>
             </AppBar>
 
