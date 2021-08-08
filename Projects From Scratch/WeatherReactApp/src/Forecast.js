@@ -8,7 +8,6 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 
 
@@ -21,7 +20,6 @@ const useStyles = makeStyles({
 
 function Forecast({ weather }) {
     const classes = useStyles()
-    console.log(weather, 'passed from link')
     return (
         <Card className={classes.root}>
 
@@ -33,7 +31,7 @@ function Forecast({ weather }) {
                         <Typography gutterBottom variant="h3" component="h1">
                             {`${weather.city}`}
                         </Typography>
-                        {`${weather.current.temp}° F`}
+                        {`${weather.current.temp}${weather.unit === 'imperial' ? "°F " : "°C"}`}
                         <List>
                             <ListItem>
                                 <ListItemText primary={`${weather.current.weather[0].description.replace(/\b\w/g, l => l.toUpperCase())}`} />
@@ -45,7 +43,7 @@ function Forecast({ weather }) {
                                 <ListItemText primary={`Feels Like: ${weather.current.feels_like}`} />
                             </ListItem>
                             <ListItem>
-                                <ListItemText primary={`Min: ${weather.current.temp}° F, `} />
+                                <ListItemText primary={`Min: ${weather.current.temp} ${weather.unit === 'imperial' ? "°F " : "°C"} `} />
                             </ListItem>
 
                         </List>

@@ -23,9 +23,13 @@ const useStyles = makeStyles((theme) => ({
             textDecoration: "none",
             width: '100%',
             height: '100%',
+        },
+    },
+    tabDiv: {
+        "& button": {
+            minWidth: '300px'
         }
     }
-
 
 }));
 
@@ -46,12 +50,13 @@ export default function ForecastTypeBar({ id }) {
         <div className={classes.root}>
             <AppBar position="static" color="default">
                 <Tabs
+                    className={classes.tabDiv}
                     value={value}
                     indicatorColor="primary"
                     textColor="primary"
                     onChange={handleChange}
                     aria-label=""
-
+                    centered
                 >
                     <Tab className={classes.tab} label={<Link to={`/${id}`}>Today </Link>} index={0} id={id} />
 

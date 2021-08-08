@@ -114,7 +114,7 @@ function Navbar({ unit, setSearchText, setUnit }) {
                                 <InputBase
                                     value={searchPlaceholder}
                                     onChange={handleChange}
-                                    placeholder={searchPlaceholder}
+                                    placeholder='Enter a City'
                                     classes={{
                                         root: classes.inputRoot,
                                         input: classes.inputInput,

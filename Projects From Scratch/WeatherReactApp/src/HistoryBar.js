@@ -17,11 +17,16 @@ const useStyles = makeStyles((theme) => ({
     },
     tab: {
         "& a": {
-            display: 'inline-block',
+            display: 'block',
             color: 'black',
             textDecoration: "none",
             width: '100%',
             height: '100%',
+        },
+        "& img": {
+            width: '15%',
+            border: '1px solid black',
+
         }
 
     }
@@ -33,6 +38,8 @@ export default function HistoryBar({ weather }) {
     const [value, setValue] = React.useState(0);
     const history = weather.reverse();
     const handleChange = (event, newValue) => {
+        console.log('hit button', event, newValue);
+
         setValue(newValue);
     };
 
@@ -40,21 +47,27 @@ export default function HistoryBar({ weather }) {
         setValue(index);
     };
 
+
+    const weatherRev = [...weather].reverse()
     return (
         <div className={classes.root}>
             <AppBar position="static" color="default">
                 <Tabs
-                    value={value}
-                    onChange={handleChange}
                     indicatorColor="primary"
                     textColor="primary"
                     aria-label="Location History"
+                    value={false}
                 >
-                    {[...weather].reverse().map((loc, i) =>
-
-                        <Tab className={classes.tab} label={<Link to={`/${loc.id}`}>{loc.city}</Link>} index={i} id={loc.id} key={loc.id}>
-                        </Tab>
-                    )}
+                    {[...weather].reverse().map((loc, i) => {
+                        if (i >= 6) return
+                        return (
+                            <Tab className={classes.tab} label={<Link to={`/${loc.id}`}   >
+                                <img src={`http://openweathermap.org/img/wn/${loc.current.weather[0].icon}@2x.png`} />
+                                {`
+                            ${Math.trunc(loc.current.temp)}° ${loc.city}`}</Link>} index={i} id={loc.id} key={loc.id}>
+                            </Tab>
+                        )
+                    })}
                 </Tabs>
             </AppBar>
 
