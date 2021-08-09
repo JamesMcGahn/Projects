@@ -17,7 +17,6 @@ function AllMeetupsPage(props) {
                 return res.json()
             }).then((data) => {
                 const meetupData = []
-                console.log(data)
                 for (const key in data) {
                     const meet = {
                         id: key,
