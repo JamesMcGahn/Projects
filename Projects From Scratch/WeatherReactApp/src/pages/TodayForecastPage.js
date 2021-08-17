@@ -32,8 +32,8 @@ const useStyles = makeStyles({
 
 function TodayForecastPage(props) {
     const { weather } = props
-    const forecast = weather[0][0] === 'undefined' ? false : weather[0][0]
-    console.log(weather)
+    const forecast = weather === 'undefined' ? false : weather[0]
+    console.log(forecast)
     const classes = useStyles()
     return (
         <>
@@ -46,7 +46,7 @@ function TodayForecastPage(props) {
                         icon={`http://openweathermap.org/img/wn/${forecast.current.weather[0].icon}@2x.png`} />
                     <Card className={classes.card}>
 
-                        {weather.flat().map((weather, i) => {
+                        {weather.map((weather, i) => {
                             return (
                                 < CardContent key={i}>
                                     <Typography gutterBottom variant="h3" component="h1">

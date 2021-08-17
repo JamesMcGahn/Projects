@@ -45,6 +45,12 @@ function App(props) {
     return locData;
   }
 
+  const removeLocation = (id) => {
+    const removed = weatherData.filter(loc => (loc.id !== id))
+    setweatherData(removed)
+    if (id === selectedLocation) setSelectedLocation(weatherData[weatherData.length - 1].id)
+  }
+
   const checkData = (newData) => {
     const cleanedData = weatherData.filter(locations => {
       return locations.lat !== newData.lat && locations.lon !== newData.lon
@@ -113,28 +119,24 @@ function App(props) {
     <div className={classes.root}>
       <CssBaseline />
       <MainNav unit={unit} setUnit={setUnit} setSearchText={setSearchText} weather={weatherData}
-        id={selectedLocation} setTypeTabIndex={setTypeTabIndex} typeTabIndex={typeTabIndex}
+        id={selectedLocation} setTypeTabIndex={setTypeTabIndex} typeTabIndex={typeTabIndex} removeLocation={removeLocation}
       />
 
       <Route render={({ location }) =>
         <Switch location={location}>
           <Route exact path='/:locId/hourly' render={routeProps => (
-            <HourlyForecastPage weather={[findLocation(routeProps.match.params.locId, 1)]} />
+            <HourlyForecastPage weather={findLocation(routeProps.match.params.locId, 1)} />
           )} />
           <Route exact path='/:locId' render={routeProps => (
-            <TodayForecastPage weather={[findLocation(routeProps.match.params.locId, 0)]} />
+            <TodayForecastPage weather={findLocation(routeProps.match.params.locId, 0)} />
           )} />
           <Route path='/' render={(routeProps) => (
             <>
-              {selectedLocation ? <TodayForecastPage weather={[findLocation(selectedLocation, 0)]} /> : <h1></h1>}
+              {selectedLocation ? <TodayForecastPage weather={findLocation(selectedLocation, 0)} /> : <h1></h1>}
             </>
           )} />
         </Switch>
       } />
-
-
-
-
     </div>
   );
 }
