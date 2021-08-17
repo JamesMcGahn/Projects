@@ -26,15 +26,18 @@ const useStyles = makeStyles((theme) => ({
 
 function App(props) {
   const [coords, setCoords] = React.useState('')
-  const [city, setCity] = React.useState('');
+  const [city, setCity] = React.useState();
   const [unit, setUnit] = React.useState('imperial')
   const [typeTabIndex, setTypeTabIndex] = React.useState(0);
 
   const [weatherData, setweatherData] = React.useState([]);
   const [searchText, setSearchText] = React.useState('')
-  const [selectedLocation, setSelectedLocation] = React.useState(0);
+  const [selectedLocation, setSelectedLocation] = React.useState();
+
+
 
   const findLocation = (id, setTab) => {
+    if (!id) return setSearchText('Miami')
     const locData = weatherData.filter(loc => (loc.id === id))
     setSelectedLocation(id)
     setTypeTabIndex(setTab)
@@ -46,6 +49,8 @@ function App(props) {
       return locations.lat !== newData.lat && locations.lon !== newData.lon
     })
     setweatherData([...cleanedData, newData])
+    window.localStorage.setItem('locations', JSON.stringify([...cleanedData, newData]))
+    setSelectedLocation(newData.id)
   }
 
   const coordsFetch = async () => {
@@ -55,6 +60,7 @@ function App(props) {
       } else {
         const res = await axios.get(`https://geocode.xyz/${searchText}?json=1`)
         const { data } = res
+        console.log(data)
         setCity(data.standard.city)
         setCoords({ latt: data.latt, longt: data.longt })
       }
@@ -71,13 +77,8 @@ function App(props) {
       const { data } = response
       console.log(data)
       const newData = { ...data, id: uuid(), city: city, unit: unit }
-      setSelectedLocation(newData.id)
-      setCity('')
       checkData(newData)
-
-      return (
-        <Redirect to='/' />
-      )
+      setCity('')
     } catch (e) {
       console.log(e)
     }
@@ -105,9 +106,10 @@ function App(props) {
     }
   }, [])
 
-  useEffect(() => {
-    window.localStorage.setItem('locations', JSON.stringify(weatherData))
-  }, [weatherData])
+  // useEffect(() => {
+  //   return <Redirect to='/' />
+  // }, [selectedLocation])
+
 
 
   const classes = useStyles();
@@ -128,7 +130,7 @@ function App(props) {
           )} />
           <Route path='/' render={(routeProps) => (
             <>
-              {selectedLocation && <Forecast weather={findLocation(selectedLocation)} />}
+              {selectedLocation ? <Forecast weather={[findLocation(selectedLocation, 0)]} /> : <h1></h1>}
             </>
           )} />
         </Switch>

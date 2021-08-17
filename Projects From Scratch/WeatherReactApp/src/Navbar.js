@@ -7,6 +7,7 @@ import { alpha, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
+import { useHistory } from "react-router-dom";
 import { Link } from 'react-router-dom'
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -74,6 +75,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Navbar({ unit, setSearchText, setUnit }) {
+    let history = useHistory();
     const handleChangeUnit = (e) => {
         setUnit(e.target.value)
         console.log(e.target.value)
@@ -83,6 +85,7 @@ function Navbar({ unit, setSearchText, setUnit }) {
         e.preventDefault()
         setSearchText(searchPlaceholder)
         setSearchPlaceholder('')
+        history.push("/");
     }
 
     const handleChange = (e) => {
