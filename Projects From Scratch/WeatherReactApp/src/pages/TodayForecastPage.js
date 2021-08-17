@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
-import WeatherSummary from './components/WeatherSummary.js';
+import TodayWeatherSummary from '../components/forecastCards/TodayWeatherSummary.js';
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -30,7 +30,7 @@ const useStyles = makeStyles({
 });
 
 
-function Forecast(props) {
+function TodayForecastPage(props) {
     const { weather } = props
     const forecast = weather[0][0] === 'undefined' ? false : weather[0][0]
     console.log(weather)
@@ -41,7 +41,7 @@ function Forecast(props) {
 
 
                 <div className={classes.root}>
-                    <WeatherSummary city={forecast.city} time={forecast.current.dt} temp={forecast.current.temp}
+                    <TodayWeatherSummary city={forecast.city} time={forecast.current.dt} temp={forecast.current.temp}
                         description={forecast.current.weather[0].description} unit={forecast.unit}
                         icon={`http://openweathermap.org/img/wn/${forecast.current.weather[0].icon}@2x.png`} />
                     <Card className={classes.card}>
@@ -89,4 +89,4 @@ function Forecast(props) {
     );
 }
 
-export default Forecast;
+export default TodayForecastPage;

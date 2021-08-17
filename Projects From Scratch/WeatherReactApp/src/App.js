@@ -1,11 +1,12 @@
 import './App.css';
 import React, { useEffect } from 'react';
-import Forecast from './Forecast';
-import Navbar from './Navbar';
-import HistoryBar from './HistoryBar'
-import HourlyForecast from './HourlyForecast';
+import TodayForecastPage from './pages/TodayForecastPage';
+
+import MainNav from './components/layout/MainNav'
+
+import HourlyForecastPage from './pages/HourlyForecastPage';
 import { OW_API_KEY } from './keys.js'
-import ForecastTypeBar from './ForecastTypeBar';
+
 
 
 import { Switch, Route, Redirect } from 'react-router-dom'
@@ -73,7 +74,7 @@ function App(props) {
   const weatherFetch = async () => {
     try {
       if (coords === '' || city === '') throw new Error('No coords')
-      const response = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${coords.latt}&lon=${coords.longt}&units=imperial&appid=${OW_API_KEY}`);
+      const response = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${coords.latt}&lon=${coords.longt}&units=${unit}&appid=${OW_API_KEY}`);
       const { data } = response
       console.log(data)
       const newData = { ...data, id: uuid(), city: city, unit: unit }
@@ -106,31 +107,26 @@ function App(props) {
     }
   }, [])
 
-  // useEffect(() => {
-  //   return <Redirect to='/' />
-  // }, [selectedLocation])
-
-
 
   const classes = useStyles();
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <Navbar unit={unit} setUnit={setUnit} setSearchText={setSearchText} />
-      <HistoryBar weather={weatherData} />
-      <ForecastTypeBar id={selectedLocation} setTypeTabIndex={setTypeTabIndex} typeTabIndex={typeTabIndex} />
+      <MainNav unit={unit} setUnit={setUnit} setSearchText={setSearchText} weather={weatherData}
+        id={selectedLocation} setTypeTabIndex={setTypeTabIndex} typeTabIndex={typeTabIndex}
+      />
 
       <Route render={({ location }) =>
         <Switch location={location}>
           <Route exact path='/:locId/hourly' render={routeProps => (
-            <HourlyForecast weather={[findLocation(routeProps.match.params.locId, 1)]} />
+            <HourlyForecastPage weather={[findLocation(routeProps.match.params.locId, 1)]} />
           )} />
           <Route exact path='/:locId' render={routeProps => (
-            <Forecast weather={[findLocation(routeProps.match.params.locId, 0)]} />
+            <TodayForecastPage weather={[findLocation(routeProps.match.params.locId, 0)]} />
           )} />
           <Route path='/' render={(routeProps) => (
             <>
-              {selectedLocation ? <Forecast weather={[findLocation(selectedLocation, 0)]} /> : <h1></h1>}
+              {selectedLocation ? <TodayForecastPage weather={[findLocation(selectedLocation, 0)]} /> : <h1></h1>}
             </>
           )} />
         </Switch>

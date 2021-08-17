@@ -19,7 +19,7 @@ const useStyles = makeStyles({
         '& h2, h4': {
             padding: 0,
             margin: 0
-        }
+        },
     },
     icon: {
         padding: '.5rem',
@@ -32,12 +32,15 @@ const useStyles = makeStyles({
         fontSize: '4rem',
         margin: '0',
         padding: '0',
+    },
+    desscript: {
+        fontSize: '1.2rem',
     }
 });
 
 
 
-function WeatherSummary({ city, time, temp, description, unit, icon }) {
+function TodayWeatherSummary({ city, time, temp, description, unit, icon }) {
     const classes = useStyles()
     const convertTime = new Date(time * 1000).toLocaleTimeString('en-US', { timeStyle: 'short' })
     return (
@@ -49,7 +52,7 @@ function WeatherSummary({ city, time, temp, description, unit, icon }) {
                     {`${Math.ceil(temp)}${unit === 'imperial' ? "°F " : "°C"}`}
 
                 </span>
-                <h4>{description.replace(/\b\w/g, l => l.toUpperCase())}</h4>
+                <h4 class={classes.desscript}>{description.replace(/\b\w/g, l => l.toUpperCase())}</h4>
             </div>
             <div className={classes.icon}>
                 <img alt="forecast-icon" src={icon} />
@@ -58,4 +61,4 @@ function WeatherSummary({ city, time, temp, description, unit, icon }) {
     );
 }
 
-export default WeatherSummary;
+export default TodayWeatherSummary;

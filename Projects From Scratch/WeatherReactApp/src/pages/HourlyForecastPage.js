@@ -24,7 +24,7 @@ const useStyles = makeStyles({
 });
 
 
-function HourlyForecast({ weather }) {
+function HourlyForecastPage({ weather }) {
     const classes = useStyles()
     const { hourly } = weather[0][0]
     const { city } = weather[0][0]
@@ -57,4 +57,4 @@ function HourlyForecast({ weather }) {
     );
 }
 
-export default HourlyForecast;
+export default HourlyForecastPage;
