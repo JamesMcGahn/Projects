@@ -26,9 +26,9 @@ const useStyles = makeStyles({
 
 function HourlyForecastPage({ weather }) {
     const classes = useStyles()
-    const { hourly } = weather[0][0]
-    const { city } = weather[0][0]
+    const { hourly, city } = weather[0]
     const dayHourly = hourly.filter((item, index) => index <= 24)
+    const currentTime = new Date(weather[0].current.dt * 1000).getDay()
     return (
         <div className={classes.root}>
             <Card className={classes.card}>
@@ -39,9 +39,14 @@ function HourlyForecastPage({ weather }) {
                     <List>
                         {dayHourly.map((weather, i) => {
                             const convertTime = new Date(weather.dt * 1000).toLocaleTimeString('en-US', { timeStyle: 'short' })
+                            const bannerTime = new Date(weather.dt * 1000).toLocaleDateString('en-Us', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
+                            const listItemDay = new Date(weather.dt * 1000).getDay()
+                            const listItemHour = new Date(weather.dt * 1000).getHours()
+                            console.log(currentTime, listItemDay, listItemHour)
                             return (
                                 <ListItem key={i}>
-                                    <ListItemText primary={convertTime} />
+                                    <ListItemText primary={`${currentTime < listItemDay && listItemHour === 0 ? bannerTime : ''}`} />
+                                    <ListItemText primary={`${convertTime}`} />
                                     <ListItemText primary={`${weather.temp}${weather.unit === 'imperial' ? "°F " : "°C"}`} />
                                     <ListItemText primary={`${weather.weather[0].description.replace(/\b\w/g, l => l.toUpperCase())}`} />
                                     <ListItemText primary={`Relative Humidity: ${weather.humidity}`} />
