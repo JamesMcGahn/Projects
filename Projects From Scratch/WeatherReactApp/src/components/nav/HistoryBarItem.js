@@ -12,7 +12,7 @@ function HistoryBarItem({ id, temp, city, icon, removeLocation }) {
         setShowDelete(true)
         setInterval(() => {
             setShowDelete(false)
-        }, 4000);
+        }, 5000);
     }
     const handleDelete = (event) => {
         event.preventDefault();
@@ -27,7 +27,7 @@ function HistoryBarItem({ id, temp, city, icon, removeLocation }) {
             </Link>
             {showDelete ?
                 <div onClick={handleDelete}
-                    style={{ display: 'inline-block', width: '20%', height: '100%', color: '#1a357c', backgroundColor: 'white', padding: '.6rem' }}>
+                    style={{ display: 'inline-block', width: '20%', height: '100%', color: '#1a357c', backgroundColor: 'white', padding: '.6rem', borderBottom: '.26rem solid white' }}>
                     <span style={{ fontSize: '.5rem' }}>Remove</span>
                 </div>
                 : <div>
