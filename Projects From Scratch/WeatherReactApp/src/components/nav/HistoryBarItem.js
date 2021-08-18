@@ -2,15 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { useHistory } from "react-router-dom";
-import Button from '@material-ui/core/Button';
+
 
 function HistoryBarItem({ id, temp, city, icon, removeLocation }) {
     let history = useHistory()
     const [showDelete, setShowDelete] = React.useState(false)
     const handleClick = (event) => {
         event.preventDefault();
-        // removeLocation(id)
-        // history.push("/");
         setShowDelete(true)
         setInterval(() => {
             setShowDelete(false)

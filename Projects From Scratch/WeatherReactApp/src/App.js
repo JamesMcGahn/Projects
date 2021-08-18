@@ -9,7 +9,7 @@ import { OW_API_KEY } from './keys.js'
 
 
 
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import { uuid } from 'uuidv4';
 import axios from 'axios'
 import { makeStyles } from '@material-ui/core/styles';
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function App(props) {
-  const [coords, setCoords] = React.useState('')
+  const [coords, setCoords] = React.useState()
   const [city, setCity] = React.useState();
   const [unit, setUnit] = React.useState('imperial')
   const [typeTabIndex, setTypeTabIndex] = React.useState(0);
