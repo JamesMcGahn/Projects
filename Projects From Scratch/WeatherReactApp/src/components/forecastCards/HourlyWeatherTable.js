@@ -89,7 +89,7 @@ function HourlyWeather({ weather }) {
                                 const bannerTime = new Date(weather.dt * 1000).toLocaleDateString('en-Us', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
                                 if ((currentTime < listItemDay && listItemHour === 0) || i === 0) {
                                     return <>
-                                        <TableCell align="left" colSpan={6} classes={{ root: classes.banner }}>
+                                        <TableCell align="left" colSpan={6} classes={{ root: classes.banner }} key={bannerTime}>
                                             <h3> {bannerTime}</h3>
                                         </TableCell>
                                         <HourlyWeatherTableRow key={i} weather={weather} unit={unit} />

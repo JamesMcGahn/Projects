@@ -21,7 +21,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundImage: 'linear-gradient(#1a357c 9%,#99479b)',
     height: '100%',
     backgroundAttachment: "fixed",
-    backgroundRepeat: "no-repeat"
+    backgroundRepeat: "no-repeat",
+    fontFamily: ['Meta', 'Roboto', 'Arial', 'Helvetica', 'Arial', "sans - serif"]
   }
 }));
 
@@ -48,6 +49,7 @@ function App(props) {
   const removeLocation = (id) => {
     const removed = weatherData.filter(loc => (loc.id !== id))
     setweatherData(removed)
+    window.localStorage.setItem('locations', JSON.stringify(removed))
     if (id === selectedLocation) setSelectedLocation(weatherData[weatherData.length - 1].id)
   }
 

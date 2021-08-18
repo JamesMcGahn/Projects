@@ -9,6 +9,8 @@ import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import { useHistory } from "react-router-dom";
 import { Link } from 'react-router-dom'
+
+
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -70,7 +72,15 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        width: '60%'
+        width: '100%',
+        height: '10%',
+        margin: '.5rem 0 .5rem 0'
+    },
+    logo: {
+        width: '100%'
+    },
+    logoContainer: {
+        width: '5%'
     }
 }));
 
@@ -99,12 +109,12 @@ function Navbar({ unit, setSearchText, setUnit }) {
         <div className={classes.root} >
             <AppBar position="static" style={{ backgroundColor: '#1a357c' }} >
                 <Toolbar>
-                    <Typography className={classes.title} variant="h6" noWrap>
-                        <Link to={`/`}>
-                            Weather App
-                        </Link>
-                    </Typography>
                     <div className={classes.iconCont}>
+                        <div className={classes.logoContainer}>
+                            <Link to={`/`}>
+                                <img className={classes.logo} src="/images/ReactWeatherChannellogo.jpg" />
+                            </Link>
+                        </div>
                         <form onSubmit={handleSearch}>
                             <div className={classes.search}>
                                 <div className={classes.searchIcon}>

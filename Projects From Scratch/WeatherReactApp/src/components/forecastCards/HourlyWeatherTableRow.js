@@ -39,13 +39,14 @@ const useStyles = makeStyles({
         textAlign: "left",
     },
     faicon: {
-        width: '12%',
+        width: '15%',
         color: '#3f51b5',
-        marginRight: '5px',
-        marginTop: "3px"
+        marginRight: '1rem',
+        marginTop: "3px",
+
     },
     fatext: {
-        width: '35%',
+        width: '50%',
         marginBottom: '7px',
         "& span": {
             display: "block"
@@ -79,7 +80,7 @@ function HourlyWeatherTableRow({ weather, unit }) {
             <TableRow className={classes.root}>
 
                 <TableCell align="left" size='medium' padding="checkbox" classes={{ paddingCheckbox: classes.checkCell }} >{convertTime}</TableCell>
-                <TableCell align="left" size='small' padding='default'>{`${Math.ceil(weather.temp)}${unit === 'imperial' ? "° F " : "° C"}`}</TableCell>
+                <TableCell align="left" size='small' padding='normal'>{`${Math.ceil(weather.temp)}${unit === 'imperial' ? "° F " : "° C"}`}</TableCell>
                 <TableCell align="right" padding='checkbox'><img className={classes.icon} src={`http://openweathermap.org/img/wn/${icon}@2x.png`} alt={'ss'} /></TableCell>
                 <TableCell align="left" >{description}</TableCell>
                 <TableCell align="right" padding='none' classes={{ paddingNone: classes.wind }} >{description}</TableCell>
