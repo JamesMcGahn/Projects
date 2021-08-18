@@ -97,42 +97,44 @@ function HourlyWeatherTableRow({ weather, unit }) {
                         <Box margin={1} boxShadow={1} p={1}>
                             <Table size="small" aria-label="more-info">
                                 <TableBody >
-                                    <TableCell align="center" padding='none' classes={{ root: classes.tableCell }}>
-                                        <div className={classes.expandCol}>
-                                            <div className={classes.faicon}><FontAwesomeIcon icon={faThermometerThreeQuarters} size="2x" /></div>
-                                            <div className={classes.fatext}>
-                                                <span >Feels Like</span>
-                                                <span className={classes.favalue}>{`${Math.ceil(weather.feels_like)} ${unit === 'imperial' ? "°F " : "°C"}`}</span>
+                                    <TableRow key={weather.dt}>
+                                        <TableCell align="center" padding='none' classes={{ root: classes.tableCell }}>
+                                            <div className={classes.expandCol}>
+                                                <div className={classes.faicon}><FontAwesomeIcon icon={faThermometerThreeQuarters} size="2x" /></div>
+                                                <div className={classes.fatext}>
+                                                    <span >Feels Like</span>
+                                                    <span className={classes.favalue}>{`${Math.ceil(weather.feels_like)} ${unit === 'imperial' ? "°F " : "°C"}`}</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </TableCell>
-                                    <TableCell align="center" padding='none' classes={{ root: classes.tableCell }}>
-                                        <div className={classes.expandCol}>
-                                            <div className={classes.faicon}><FontAwesomeIcon icon={faTint} size="2x" /></div>
-                                            <div className={classes.fatext}>
-                                                <span >Wind</span>
-                                                <span className={classes.favalue}>{`${Math.ceil(weather.wind_speed)} ${unit === 'imperial' ? "mph " : "mps"}`}</span>
+                                        </TableCell>
+                                        <TableCell align="center" padding='none' classes={{ root: classes.tableCell }}>
+                                            <div className={classes.expandCol}>
+                                                <div className={classes.faicon}><FontAwesomeIcon icon={faTint} size="2x" /></div>
+                                                <div className={classes.fatext}>
+                                                    <span >Wind</span>
+                                                    <span className={classes.favalue}>{`${Math.ceil(weather.wind_speed)} ${unit === 'imperial' ? "mph " : "mps"}`}</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </TableCell>
-                                    <TableCell align="center" padding='none' classes={{ root: classes.tableCell }}>
-                                        <div className={classes.expandCol}>
-                                            <div className={classes.faicon}><FontAwesomeIcon icon={faWind} size="2x" /></div>
-                                            <div className={classes.fatext}>
-                                                <span >Humidity</span>
-                                                <span className={classes.favalue}>{weather.humidity}%</span>
+                                        </TableCell>
+                                        <TableCell align="center" padding='none' classes={{ root: classes.tableCell }}>
+                                            <div className={classes.expandCol}>
+                                                <div className={classes.faicon}><FontAwesomeIcon icon={faWind} size="2x" /></div>
+                                                <div className={classes.fatext}>
+                                                    <span >Humidity</span>
+                                                    <span className={classes.favalue}>{weather.humidity}%</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </TableCell>
-                                    <TableCell align="center" padding='none' classes={{ root: classes.tableCell }}>
-                                        <div className={classes.expandCol}>
-                                            <div className={classes.faicon}><FontAwesomeIcon icon={faSun} size="2x" /></div>
-                                            <div className={classes.fatext}>
-                                                <span >UV Index</span>
-                                                <span className={classes.favalue}>{weather.uvi} of 10</span>
+                                        </TableCell>
+                                        <TableCell align="center" padding='none' classes={{ root: classes.tableCell }}>
+                                            <div className={classes.expandCol}>
+                                                <div className={classes.faicon}><FontAwesomeIcon icon={faSun} size="2x" /></div>
+                                                <div className={classes.fatext}>
+                                                    <span >UV Index</span>
+                                                    <span className={classes.favalue}>{weather.uvi} of 10</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </TableCell>
+                                        </TableCell>
+                                    </TableRow>
                                 </TableBody>
                             </Table>
                         </Box>

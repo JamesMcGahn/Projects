@@ -2,9 +2,9 @@
   font-family: 'Meta';
   src: local('Meta'), url('./fonts/meta.ttf') format('truetype');
 }
-
-html {
-  font-family: 'Meta', 'Arial' !important;
+@font-face {
+  font-family: 'MetaBold';
+  src: local('MetaBold'), url('./fonts/metaBold.ttf') format('truetype');
 }
 
 body {
@@ -13,7 +13,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-code {
+*/ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }

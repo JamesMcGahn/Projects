@@ -19,6 +19,9 @@ const useStyles = makeStyles((theme) => ({
             textDecoration: "none",
             width: '100%',
             height: '100%',
+            fontSize: '1.1rem',
+            fontFamily: 'Metabold',
+            textTransform: 'none',
         },
     },
     tabDiv: {
@@ -48,7 +51,7 @@ export default function ForecastTypeBar({ id, typeTabIndex, setTypeTabIndex }) {
                     aria-label=""
                     centered
                 >
-                    <Tab className={classes.tab} label={<Link to={`/${id}`}>Today </Link>} index={0} id={id} />
+                    <Tab className={classes.tab} classes={{ root: classes.tab }} label={<Link to={`/${id}`}>Today </Link>} index={0} id={id} />
 
                     <Tab className={classes.tab} label={<Link to={`/${id}/hourly`}>Hourly</Link>} index={1} id={id} />
 

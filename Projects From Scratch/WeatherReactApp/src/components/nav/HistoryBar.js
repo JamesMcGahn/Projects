@@ -23,6 +23,8 @@ const useStyles = makeStyles((theme) => ({
             width: '100%',
             height: '100%',
             fontSize: '.875rem',
+            textTransform: 'none',
+            fontFamily: 'Metabold'
 
         },
         "& img": {

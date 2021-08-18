@@ -13,7 +13,7 @@ import { Switch, Route } from 'react-router-dom'
 import { uuid } from 'uuidv4';
 import axios from 'axios'
 import { makeStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     backgroundAttachment: "fixed",
     backgroundRepeat: "no-repeat",
-    fontFamily: ['Meta', 'Roboto', 'Arial', 'Helvetica', 'Arial', "sans - serif"]
   }
 }));
 
@@ -119,7 +118,7 @@ function App(props) {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <CssBaseline />
+
       <MainNav unit={unit} setUnit={setUnit} setSearchText={setSearchText} weather={weatherData}
         id={selectedLocation} setTypeTabIndex={setTypeTabIndex} typeTabIndex={typeTabIndex} removeLocation={removeLocation}
       />
