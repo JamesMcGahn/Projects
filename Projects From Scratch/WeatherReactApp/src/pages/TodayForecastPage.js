@@ -37,7 +37,7 @@ function TodayForecastPage(props) {
                         <TodayWeatherSummary city={forecast.city} time={forecast.current.dt} temp={forecast.current.temp}
                             description={forecast.current.weather[0].description} unit={forecast.unit}
                             icon={`http://openweathermap.org/img/wn/${forecast.current.weather[0].icon}@2x.png`}
-                            min={forecast.daily[0].temp.min} max={forecast.daily[0].temp.max} />
+                            min={forecast.daily[0].temp.min} max={forecast.daily[0].temp.max} rainChance={forecast.daily[0].pop} />
                     </div>
                     <div className={classes.todayday}>
                         <TodayWeatherDaySummary weather={weather} />

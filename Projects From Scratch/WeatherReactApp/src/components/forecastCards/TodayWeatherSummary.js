@@ -16,13 +16,16 @@ const useStyles = makeStyles({
     text: {
 
         width: '60%',
+        height: '100%',
+        marginTop: '20px',
         '& h2, h4': {
             padding: 0,
             margin: 0
         },
         '& h2': {
             fontSize: '1.3rem',
-        }
+        },
+
     },
     icon: {
         padding: '.5rem',
@@ -30,29 +33,39 @@ const useStyles = makeStyles({
         textAlign: 'center',
         fontSize: '1.5rem',
         '& img': {
-            width: '100%',
+            width: '90%',
             marginBottom: 0
         }
     },
     temp: {
-        fontSize: '4.6rem',
+        fontSize: '4.8rem',
         margin: '0',
         padding: '0',
         fontFamily: 'Metabold',
     },
     desscript: {
-        fontSize: '1.4rem',
+        fontSize: '1.45rem',
+        fontFamily: 'Metabold',
     },
     time: {
-        fontSize: '1rem',
+        fontSize: '1.2rem',
         fontFamily: 'Meta',
         fontWeight: 400
     },
+    rain: {
+        fontSize: '1.2rem',
+        margin: '0',
+    },
+    lowHigh: {
+        marginTop: 0,
+        fontSize: '1.8rem',
+        fontFamily: 'Metabold',
+    }
 });
 
 
 
-function TodayWeatherSummary({ city, time, temp, description, unit, icon, min, max }) {
+function TodayWeatherSummary({ city, time, temp, description, unit, icon, min, max, rainChance }) {
     const classes = useStyles()
     const convertTime = new Date(time * 1000).toLocaleTimeString('en-US', { timeStyle: 'short' })
     return (
@@ -64,11 +77,12 @@ function TodayWeatherSummary({ city, time, temp, description, unit, icon, min, m
                     {`${Math.ceil(temp)}${unit === 'imperial' ? "°F " : "°C"}`}
 
                 </span>
-                <h4 class={classes.desscript}>{description.replace(/\b\w/g, l => l.toUpperCase())}</h4>
+                <h4 className={classes.desscript}>{description.replace(/\b\w/g, l => l.toUpperCase())}</h4>
+                <h5 className={classes.rain}>{Math.floor(rainChance)}% chance of rain today</h5>
             </div>
             <div className={classes.icon}>
                 <img alt="forecast-icon" src={icon} />
-                {`${Math.trunc(min)}° / ${Math.trunc(max)}°`}
+                <span className={classes.lowHigh}>{`${Math.trunc(min)}° / ${Math.trunc(max)}°`}</span>
             </div>
         </Card>
     );

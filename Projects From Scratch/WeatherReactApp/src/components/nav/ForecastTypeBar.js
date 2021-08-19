@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        backgroundColor: theme.palette.background.paper,
+        backgroundColor: 'theme.palette.background.paper',
         width: '100wh',
 
     },
@@ -22,12 +22,18 @@ const useStyles = makeStyles((theme) => ({
             fontSize: '1.1rem',
             fontFamily: 'Metabold',
             textTransform: 'none',
+            color: 'white'
         },
     },
     tabDiv: {
+        backgroundColor: '#113076;',
         "& button": {
-            minWidth: '300px'
+            minWidth: '300px',
+
         }
+    },
+    indicator: {
+        backgroundColor: 'white'
     }
 
 }));
@@ -44,6 +50,7 @@ export default function ForecastTypeBar({ id, typeTabIndex, setTypeTabIndex }) {
             <AppBar position="static" color="default">
                 <Tabs
                     className={classes.tabDiv}
+                    classes={{ indicator: classes.indicator }}
                     value={typeTabIndex}
                     indicatorColor="primary"
                     textColor="primary"

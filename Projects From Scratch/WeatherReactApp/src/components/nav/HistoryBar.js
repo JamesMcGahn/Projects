@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
             textDecoration: "none",
             width: '100%',
             height: '100%',
-            fontSize: '.875rem',
+            fontSize: '1rem',
             textTransform: 'none',
             fontFamily: 'Metabold'
 

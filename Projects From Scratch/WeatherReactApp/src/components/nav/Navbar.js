@@ -14,6 +14,12 @@ import { Link } from 'react-router-dom'
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
+
+
+    },
+    appbar: {
+        backgroundColor: '#039',
+        color: 'white'
     },
     title: {
         flexGrow: 1,
@@ -66,7 +72,6 @@ const useStyles = makeStyles((theme) => ({
         height: '2rem',
         minWidth: 60,
         backgroundColor: alpha(theme.palette.common.white, 0.15),
-        color: 'white',
     },
     iconCont: {
         display: 'flex',
@@ -107,7 +112,7 @@ function Navbar({ unit, setSearchText, setUnit }) {
 
     return (
         <div className={classes.root} >
-            <AppBar position="static" style={{ backgroundColor: '#1a357c' }} >
+            <AppBar position="static" classes={{ root: classes.appbar }} >
                 <Toolbar>
                     <div className={classes.iconCont}>
                         <div className={classes.logoContainer}>
