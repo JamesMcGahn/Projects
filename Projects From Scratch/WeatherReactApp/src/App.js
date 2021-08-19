@@ -9,7 +9,7 @@ import { OW_API_KEY } from './keys.js'
 
 
 
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import { uuid } from 'uuidv4';
 import axios from 'axios'
 import { makeStyles } from '@material-ui/core/styles';
@@ -38,10 +38,14 @@ function App(props) {
 
 
   const findLocation = (id, setTab) => {
-    if (!id) return setSearchText('Miami')
+    if (!id) {
+      if (selectedLocation) id = selectedLocation;
+      if (weatherData.length > 0) id = weatherData[weatherData.length - 1].id;
+    }
     const locData = weatherData.filter(loc => (loc.id === id))
     setSelectedLocation(id)
     setTypeTabIndex(setTab)
+    console.log(locData)
     return locData;
   }
 
@@ -125,15 +129,20 @@ function App(props) {
 
       <Route render={({ location }) =>
         <Switch location={location}>
-          <Route exact path='/:locId/hourly' render={routeProps => (
+          <Route exact path='/hourly/:locId' render={routeProps => (
             <HourlyForecastPage weather={findLocation(routeProps.match.params.locId, 1)} />
           )} />
-          <Route exact path='/:locId' render={routeProps => (
+          <Route exact path='/today/:locId' render={routeProps => (
             <TodayForecastPage weather={findLocation(routeProps.match.params.locId, 0)} />
           )} />
           <Route path='/' render={(routeProps) => (
             <>
-              {selectedLocation ? <TodayForecastPage weather={findLocation(selectedLocation, 0)} /> : <h1></h1>}
+              {
+                selectedLocation ?
+                  <Redirect to={`/today/${selectedLocation}`} />
+                  :
+                  <h1></h1>
+              }
             </>
           )} />
         </Switch>

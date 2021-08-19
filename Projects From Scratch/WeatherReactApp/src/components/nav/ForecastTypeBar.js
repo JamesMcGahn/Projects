@@ -58,11 +58,11 @@ export default function ForecastTypeBar({ id, typeTabIndex, setTypeTabIndex }) {
                     aria-label=""
                     centered
                 >
-                    <Tab className={classes.tab} classes={{ root: classes.tab }} label={<Link to={`/${id}`}>Today </Link>} index={0} id={id} />
+                    <Tab className={classes.tab} classes={{ root: classes.tab }} label={<Link to={`/today/${id}`}>Today </Link>} index={0} id={id} />
 
-                    <Tab className={classes.tab} label={<Link to={`/${id}/hourly`}>Hourly</Link>} index={1} id={id} />
+                    <Tab className={classes.tab} label={<Link to={`/hourly/${id}`}>Hourly</Link>} index={1} id={id} />
 
-                    <Tab className={classes.tab} label={<Link to={`/${id}/daily`}>Daily</Link>} index={2} id={id} />
+                    <Tab className={classes.tab} label={<Link to={`/daily/${id}`}>Daily</Link>} index={2} id={id} />
                 </Tabs>
             </AppBar>
 

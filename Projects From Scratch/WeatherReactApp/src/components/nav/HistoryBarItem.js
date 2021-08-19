@@ -21,7 +21,7 @@ function HistoryBarItem({ id, temp, city, icon, removeLocation }) {
     }
     return (
         <>
-            <Link to={`/${id}`} style={{ width: '70%', display: 'inline-block', marginLeft: '1.5rem' }}>
+            <Link to={`/today/${id}`} style={{ width: '70%', display: 'inline-block', marginLeft: '1.5rem' }}>
                 <img alt="forecast-icon" src={icon} />
                 <span style={{ marginRight: '2rem' }}>{`${Math.trunc(temp)}° ${city}`}</span>
             </Link>
