@@ -2,16 +2,16 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TodayWeatherSummary from '../components/forecastCards/TodayWeatherSummary.js';
 import TodayWeatherDaySummary from '../components/forecastCards/TodayWeatherDaySummary'
+import TodayWeatherDetail from '../components/forecastCards/TodayWeatherDetail'
 
 const useStyles = makeStyles({
     root: {
         width: '100%',
-        height: '100vh',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
-
+        marginTop: '15px'
     },
     todaysum: {
         width: '60%',
@@ -43,6 +43,9 @@ function TodayForecastPage(props) {
                     </div>
                     <div className={classes.todayday}>
                         <TodayWeatherDaySummary weather={weather} />
+                    </div>
+                    <div>
+                        <TodayWeatherDetail weather={weather} />
                     </div>
 
 

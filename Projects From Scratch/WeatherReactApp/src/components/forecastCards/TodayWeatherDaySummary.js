@@ -18,7 +18,8 @@ const useStyles = makeStyles((theme) => ({
         minHeight: '80%',
         marginLeft: '15px',
         '& h3': {
-            fontSize: '1.5rem'
+            fontSize: '1.25rem',
+            marginTop: '10px'
         }
     },
     expandCol: {
@@ -39,10 +40,13 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         fontSize: '1.2rem',
-        fontFamily: 'Metabold'
+        fontFamily: 'Metabold',
+
     },
     favalue: {
         fontSize: '2.5rem',
+        color: '#1b4de4',
+        fontWeight: '800'
     },
     tablecont: {
         width: '100%',
@@ -50,7 +54,8 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: '40px'
+        marginTop: '35px',
+        marginBottom: '20px',
 
     },
     button: {

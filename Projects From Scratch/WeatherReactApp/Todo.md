@@ -21,7 +21,7 @@ React Weather Project
   - [ ] Create Sidebar
     - [ ] Air Quality Index Card
     - [ ] Pollen/Allegy Card
-  - [ ] Weather Detail Card
+  - [x] Weather Detail Card
   - [ ] Weather Hourly Forecast Card
   - [ ] Weather Daily Forecast Card
 
