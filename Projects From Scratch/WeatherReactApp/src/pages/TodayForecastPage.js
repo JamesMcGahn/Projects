@@ -4,6 +4,7 @@ import TodayWeatherSummary from '../components/forecastCards/TodayWeatherSummary
 import TodayWeatherDaySummary from '../components/forecastCards/TodayWeatherDaySummary'
 import TodayWeatherDetail from '../components/forecastCards/TodayWeatherDetail'
 import TodayHourlyForecastSummary from '../components/forecastCards/TodayHourlyForecastSummary'
+import TodayDailyForecastSummary from '../components/forecastCards/TodayDailyForecastSummary'
 
 const useStyles = makeStyles({
     root: {
@@ -50,6 +51,9 @@ function TodayForecastPage(props) {
                     </div>
                     <div className={classes.summaryCard}>
                         <TodayHourlyForecastSummary weather={weather} />
+                    </div>
+                    <div className={classes.summaryCard}>
+                        <TodayDailyForecastSummary weather={weather} />
                     </div>
                 </ div>
             }

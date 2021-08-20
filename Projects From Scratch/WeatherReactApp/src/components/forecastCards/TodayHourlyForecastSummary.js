@@ -24,7 +24,7 @@ function TodayHourlyForecastSummary({ weather }) {
     return (
         <SummaryCard cardTitle={`Hourly Forecast`}
             cardData={card} unit={false} route={`/hourly/${id}`}
-            buttonColor={'#1b4de4'} buttonText={'Next Hours'}
+            buttonColor={'#1b4de4'} buttonText={'Next Hours'} iconColor={'#E0E0E0'}
         />
     );
 }

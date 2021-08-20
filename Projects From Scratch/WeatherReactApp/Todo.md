@@ -25,7 +25,7 @@ React Weather Project
     - [ ] Pollen/Allegy Card
   - [x] Weather Detail Card
   - [x] Weather Hourly Forecast Card
-  - [ ] Weather Daily Forecast Card
+  - [x] Weather Daily Forecast Card
 
 ### Hourly Forecast Page
 

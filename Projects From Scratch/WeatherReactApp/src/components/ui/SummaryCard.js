@@ -69,14 +69,21 @@ const useStyles = makeStyles((theme) => ({
     bottomText: {
         fontSize: '.9rem',
         '& svg': {
-            color: '#E0E0E0',
+            color: props => props.iconColor,
         }
+    },
+    valueSubtext: {
+        fontSize: '1.2rem',
+        color: '#1b4de4',
+        fontWeight: '800',
+        marginTop: 0,
+        lineHeight: '0.5'
     }
 }))
 
 function SummaryCard(props) {
-    const { cardTitle, cardData, unit, route, buttonColor, buttonText } = props
-    const classes = useStyles({ itemsLength: cardData.length })
+    const { cardTitle, cardData, unit, route, buttonColor, buttonText, valueSubtext, iconColor } = props
+    const classes = useStyles({ itemsLength: cardData.length, iconColor })
     return (
         <Card className={classes.root}>
             <div className={classes.content}>
@@ -88,9 +95,9 @@ function SummaryCard(props) {
                                 <div className={classes.expandCol} style={cardData.length - 1 === i ? { border: 'none' } : null}>
                                     <div className={classes.fatext}>
                                         <span className={classes.title}>{item.title}</span>
-                                        <span className={classes.favalue}>{`${Math.ceil(item.value)}
-                                        ${unit ? `${unit === 'imperial' ? "° F " : "° C"}` : '°'}`
+                                        <span className={classes.favalue}>{`${Math.ceil(item.value)}${unit ? `${unit === 'imperial' ? "° F " : "° C"}` : '°'}`
                                         }</span>
+                                        {item.valueSubtext ? <span className={classes.valueSubtext}>{item.valueSubtext}</span> : null}
                                         {item.icon ? <img className={classes.icon} src={item.icon} alt={item.iconText} /> : null}
                                         {item.bottomText ? <span className={classes.bottomText}>{item.bottomText}</span> : null}
                                     </div>
