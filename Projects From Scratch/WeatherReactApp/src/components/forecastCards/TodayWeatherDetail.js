@@ -85,8 +85,7 @@ const useStyles = makeStyles({
 function TodayWeatherDetail(props) {
     const classes = useStyles();
     const { weather } = props;
-    console.log(weather, 'g')
-    const { unit, current, city, daily, minutely, timezone_offset } = weather[0]
+    const { unit, current, city, daily, minutely, } = weather[0]
 
     function createRowData(name, icon, value) {
         return { name, icon, value };

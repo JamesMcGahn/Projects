@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
     content: {
         minHeight: '80%',
         marginLeft: '15px',
+        marginRight: '15px',
         '& h3': {
             fontSize: '1.25rem',
             marginTop: '10px'
@@ -28,12 +29,13 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: "center",
         alignContent: "center",
         textAlign: "left",
-        width: '25%',
+        width: props => `${100 / props.itemsLength}%`,
         borderRight: '1px solid rgba(224, 224, 224, 1)',
         height: '',
     },
     fatext: {
         marginBottom: '7px',
+        textAlign: 'center',
         "& span": {
             display: "block"
         }
@@ -60,12 +62,21 @@ const useStyles = makeStyles((theme) => ({
     },
     button: {
         margin: '0 0 15px 15px',
+    },
+    icon: {
+        width: '80%',
+    },
+    bottomText: {
+        fontSize: '.9rem',
+        '& svg': {
+            color: '#E0E0E0',
+        }
     }
 }))
 
 function SummaryCard(props) {
-    const classes = useStyles()
     const { cardTitle, cardData, unit, route, buttonColor, buttonText } = props
+    const classes = useStyles({ itemsLength: cardData.length })
     return (
         <Card className={classes.root}>
             <div className={classes.content}>
@@ -77,7 +88,11 @@ function SummaryCard(props) {
                                 <div className={classes.expandCol} style={cardData.length - 1 === i ? { border: 'none' } : null}>
                                     <div className={classes.fatext}>
                                         <span className={classes.title}>{item.title}</span>
-                                        <span className={classes.favalue}>{`${Math.ceil(item.value)}${unit === 'imperial' ? "° F " : "° C"}`}</span>
+                                        <span className={classes.favalue}>{`${Math.ceil(item.value)}
+                                        ${unit ? `${unit === 'imperial' ? "° F " : "° C"}` : '°'}`
+                                        }</span>
+                                        {item.icon ? <img className={classes.icon} src={item.icon} alt={item.iconText} /> : null}
+                                        {item.bottomText ? <span className={classes.bottomText}>{item.bottomText}</span> : null}
                                     </div>
                                 </div>
                             )

@@ -12,6 +12,8 @@ React Weather Project
 - [ ] Pollen Forecast Page
 - [ ] Refactor / Clean up App File
 - [ ] Error Card / Notification
+- [ ] Footer
+- [ ] Page Layout Component
 - [ ] Remove inline styles on HistoryBar Item
 - [ ] Remove Styles from components put in separate file
 
@@ -22,7 +24,7 @@ React Weather Project
     - [ ] Air Quality Index Card
     - [ ] Pollen/Allegy Card
   - [x] Weather Detail Card
-  - [ ] Weather Hourly Forecast Card
+  - [x] Weather Hourly Forecast Card
   - [ ] Weather Daily Forecast Card
 
 ### Hourly Forecast Page

@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TodayWeatherSummary from '../components/forecastCards/TodayWeatherSummary.js';
 import TodayWeatherDaySummary from '../components/forecastCards/TodayWeatherDaySummary'
 import TodayWeatherDetail from '../components/forecastCards/TodayWeatherDetail'
+import TodayHourlyForecastSummary from '../components/forecastCards/TodayHourlyForecastSummary'
 
 const useStyles = makeStyles({
     root: {
@@ -15,11 +16,11 @@ const useStyles = makeStyles({
     },
     todaysum: {
         width: '60%',
-        marginBottom: '1rem'
+        marginTop: '1rem'
     },
-    todayday: {
+    summaryCard: {
         width: '60%',
-        marginBottom: '1rem'
+        marginTop: '1rem'
     }
 });
 
@@ -41,14 +42,15 @@ function TodayForecastPage(props) {
                             id={forecast.id}
                         />
                     </div>
-                    <div className={classes.todayday}>
+                    <div className={classes.summaryCard}>
                         <TodayWeatherDaySummary weather={weather} />
                     </div>
-                    <div>
+                    <div className={classes.summaryCard}>
                         <TodayWeatherDetail weather={weather} />
                     </div>
-
-
+                    <div className={classes.summaryCard}>
+                        <TodayHourlyForecastSummary weather={weather} />
+                    </div>
                 </ div>
             }
         </>

@@ -17,10 +17,6 @@ function TodayWeatherDaySummary({ weather }) {
         createCardData('Evening', `${Math.ceil(night)}`),
         createCardData('Overnight', `${Math.ceil(eve)}`),
     ];
-
-
-
-    console.log(weather)
     return (
         <SummaryCard cardTitle={`Today's Forecast for ${city}`}
             cardData={cardData} unit={unit} route={`/daily/${id}`}

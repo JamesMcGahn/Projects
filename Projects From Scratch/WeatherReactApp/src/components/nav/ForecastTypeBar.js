@@ -56,7 +56,6 @@ export default function ForecastTypeBar({ id, typeTabIndex, setTypeTabIndex }) {
                     onChange={handleChange}
                     aria-label=""
                     centered
-                    variant="scrollable"
                 >
                     <Tab className={classes.tab} classes={{ root: classes.tab }} label={<Link to={`/today/${id}`}>Today </Link>} index={0} id={id} />
 
