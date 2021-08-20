@@ -1,14 +1,10 @@
 import './App.css';
 import React, { useEffect } from 'react';
 import TodayForecastPage from './pages/TodayForecastPage';
-
 import MainNav from './components/layout/MainNav'
-
 import HourlyForecastPage from './pages/HourlyForecastPage';
+import DailyForecastPage from './pages/DailyForecastPage';
 import { OW_API_KEY } from './keys.js'
-
-
-
 import { Switch, Route, Redirect } from 'react-router-dom'
 import { uuid } from 'uuidv4';
 import axios from 'axios'
@@ -130,6 +126,9 @@ function App(props) {
 
       <Route render={({ location }) =>
         <Switch location={location}>
+          <Route exact path='/daily/:locId' render={routeProps => (
+            <DailyForecastPage weather={findLocation(routeProps.match.params.locId, 2)} />
+          )} />
           <Route exact path='/hourly/:locId' render={routeProps => (
             <HourlyForecastPage weather={findLocation(routeProps.match.params.locId, 1)} />
           )} />

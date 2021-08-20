@@ -15,17 +15,17 @@ const useStyles = makeStyles({
 });
 
 
-function HourlyForecastPage({ weather }) {
+function DailyForecastPage({ weather }) {
     const classes = useStyles()
     return (
         <div className={classes.root}>
-            <WeatherTable tableData={weather[0].hourly}
+            <WeatherTable tableData={weather[0].daily}
                 forecastTime={weather[0].current.dt} timeZoneOffset={weather[0].timezone_offset}
-                tableTitle={'Hourly Weather'} city={weather[0].city}
-                unit={weather[0].unit} hourly={true}
+                tableTitle={'7 Day Weather'} city={weather[0].city}
+                unit={weather[0].unit} hourly={false}
             />
         </div>
     );
 }
 
-export default HourlyForecastPage;
+export default DailyForecastPage;

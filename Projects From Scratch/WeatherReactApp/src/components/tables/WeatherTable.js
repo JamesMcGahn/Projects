@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
@@ -8,7 +6,8 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import Paper from '@material-ui/core/Paper';
-import HourlyWeatherTableRow from '../forecastCards/HourlyWeatherTableRow'
+import WeatherTableRow from './WeatherTableRow'
+import { TableRow } from '@material-ui/core';
 
 
 
@@ -66,38 +65,39 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function HourlyWeather({ weather }) {
-    const { city, unit, timezone_offset } = weather[0]
+function WeatherTable({ hourly, tableData, forecastTime, timeZoneOffset, tableTitle, city, unit }) {
     const classes = useStyles();
-    const localTime = (weather[0].current.dt + timezone_offset)
+    const localTime = (forecastTime + timeZoneOffset)
     const currentTime = new Date(localTime * 1000).getDay()
     const time = new Date(localTime * 1000).toLocaleTimeString('en-US', { timeStyle: 'short' })
     return (
-        <div className={classes.container}>
+        <div className={classes.container} key={localTime}>
             <Paper className={classes.paper}>
                 <Box margin={0} boxShadow={0} p={1} >
                     <div className={classes.headTitle}>
-                        <div><span><h2>Hourly Weather</h2> <h3> - {city}</h3> </span></div>
+                        <div><span><h2>{tableTitle}</h2> <h3> - {city}</h3> </span></div>
                         <div><h4>As of {time}</h4></div>
                     </div>
                 </Box>
                 <TableContainer component={Paper} classes={{ root: classes.tableContainer }}>
                     <Table aria-label="hourly forecast table">
                         <TableBody>
-                            {weather[0].hourly.map((weather, i) => {
-                                const hourlyLocal = (weather.dt + timezone_offset)
-                                const listItemDay = new Date(hourlyLocal * 1000).getDay()
-                                const listItemHour = new Date(hourlyLocal * 1000).getHours()
-                                const bannerTime = new Date(hourlyLocal * 1000).toLocaleDateString('en-Us', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
-                                if ((currentTime < listItemDay && listItemHour === 0) || i === 0) {
+                            {tableData.map((weather, i) => {
+                                const timeLocal = (weather.dt + timeZoneOffset)
+                                const listItemDay = new Date(timeLocal * 1000).getDay()
+                                const listItemHour = new Date(timeLocal * 1000).getHours()
+                                const bannerTime = new Date(timeLocal * 1000).toLocaleDateString('en-Us', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
+                                if (hourly && ((currentTime < listItemDay && listItemHour === 0) || i === 0)) {
                                     return <>
-                                        <TableCell align="left" colSpan={6} classes={{ root: classes.banner }} key={bannerTime}>
-                                            <h3> {bannerTime}</h3>
-                                        </TableCell>
-                                        <HourlyWeatherTableRow key={i} weather={weather} unit={unit} localHourTime={hourlyLocal} />
+                                        <TableRow key={bannerTime}>
+                                            <TableCell align="left" colSpan={6} classes={{ root: classes.banner }} >
+                                                <h3> {bannerTime}</h3>
+                                            </TableCell>
+                                        </TableRow>
+                                        <WeatherTableRow key={i} weather={weather} unit={unit} localHourTime={timeLocal} hourly={hourly} />
                                     </>
                                 } else {
-                                    return <HourlyWeatherTableRow key={i} weather={weather} unit={unit} localHourTime={hourlyLocal} />
+                                    return <WeatherTableRow key={i} weather={weather} unit={unit} localHourTime={timeLocal} hourly={hourly} index={i} />
                                 }
                             })}
                         </TableBody>
@@ -109,4 +109,4 @@ function HourlyWeather({ weather }) {
     );
 }
 
-export default HourlyWeather;
+export default WeatherTable;
