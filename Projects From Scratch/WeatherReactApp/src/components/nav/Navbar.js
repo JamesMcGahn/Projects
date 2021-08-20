@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
@@ -117,7 +116,7 @@ function Navbar({ unit, setSearchText, setUnit }) {
                     <div className={classes.iconCont}>
                         <div className={classes.logoContainer}>
                             <Link to={`/`}>
-                                <img className={classes.logo} src="/images/ReactWeatherChannellogo.jpg" />
+                                <img className={classes.logo} src="/images/ReactWeatherChannellogo.jpg" alt='logo' />
                             </Link>
                         </div>
                         <form onSubmit={handleSearch}>

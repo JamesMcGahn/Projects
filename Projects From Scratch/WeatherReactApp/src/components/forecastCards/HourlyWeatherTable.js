@@ -9,7 +9,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import Paper from '@material-ui/core/Paper';
 import HourlyWeatherTableRow from '../forecastCards/HourlyWeatherTableRow'
-import { DateTime } from 'luxon'
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -70,7 +70,6 @@ function HourlyWeather({ weather }) {
     const { city, unit, timezone_offset } = weather[0]
     const classes = useStyles();
     const localTime = (weather[0].current.dt + timezone_offset)
-    const convertTime = new Date(localTime * 1000).toLocaleTimeString('en-US', { timeStyle: 'short' })
     const currentTime = new Date(localTime * 1000).getDay()
     const time = new Date(localTime * 1000).toLocaleTimeString('en-US', { timeStyle: 'short' })
     return (

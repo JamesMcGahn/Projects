@@ -5,12 +5,15 @@ React Weather Project
 ## APP Build
 
 - [ ] Daily Forecast Page
+- [ ] Alerts Page
 - [ ] Weekend Forecast Page
 - [ ] Radar Forecast Page
 - [ ] Air Quality Forecast Page
 - [ ] Pollen Forecast Page
 - [ ] Refactor / Clean up App File
 - [ ] Error Card / Notification
+- [ ] Remove inline styles on HistoryBar Item
+- [ ] Remove Styles from components put in separate file
 
 ### Today Forecast Page
 

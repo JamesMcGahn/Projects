@@ -15,7 +15,6 @@ const useStyles = makeStyles((theme) => ({
     tab: {
         "& a": {
             display: 'block',
-            color: 'black',
             textDecoration: "none",
             width: '100%',
             height: '100%',

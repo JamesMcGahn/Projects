@@ -30,11 +30,9 @@ function App(props) {
   const [city, setCity] = React.useState();
   const [unit, setUnit] = React.useState('imperial')
   const [typeTabIndex, setTypeTabIndex] = React.useState(0);
-
   const [weatherData, setweatherData] = React.useState([]);
   const [searchText, setSearchText] = React.useState('')
   const [selectedLocation, setSelectedLocation] = React.useState();
-
 
 
   const findLocation = (id, setTab) => {
@@ -62,7 +60,6 @@ function App(props) {
     })
     setweatherData([...cleanedData, newData])
     window.localStorage.setItem('locations', JSON.stringify([...cleanedData, newData]))
-    setSelectedLocation(newData.id)
   }
 
   const coordsFetch = async () => {
@@ -89,8 +86,10 @@ function App(props) {
       const { data } = response
       console.log(data)
       const newData = { ...data, id: uuid(), city: city, unit: unit }
+      setSelectedLocation(newData.id)
       checkData(newData)
       setCity('')
+
     } catch (e) {
       console.log(e)
     }
@@ -103,6 +102,8 @@ function App(props) {
   useEffect(() => {
     coordsFetch()
   }, [searchText])
+
+
 
   useEffect(() => {
     try {
@@ -131,6 +132,9 @@ function App(props) {
         <Switch location={location}>
           <Route exact path='/hourly/:locId' render={routeProps => (
             <HourlyForecastPage weather={findLocation(routeProps.match.params.locId, 1)} />
+          )} />
+          <Route exact path='/today/' render={routeProps => (
+            <TodayForecastPage weather={findLocation(selectedLocation, 0)} />
           )} />
           <Route exact path='/today/:locId' render={routeProps => (
             <TodayForecastPage weather={findLocation(routeProps.match.params.locId, 0)} />

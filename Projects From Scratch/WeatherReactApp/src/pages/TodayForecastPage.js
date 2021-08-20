@@ -27,7 +27,6 @@ const useStyles = makeStyles({
 function TodayForecastPage(props) {
     const { weather } = props
     const forecast = weather === 'undefined' ? false : weather[0]
-    console.log(forecast)
     const classes = useStyles()
     return (
         <>
@@ -37,7 +36,10 @@ function TodayForecastPage(props) {
                         <TodayWeatherSummary city={forecast.city} time={forecast.current.dt + forecast.timezone_offset} temp={forecast.current.temp}
                             description={forecast.current.weather[0].description} unit={forecast.unit}
                             icon={`http://openweathermap.org/img/wn/${forecast.current.weather[0].icon}@2x.png`}
-                            min={forecast.daily[0].temp.min} max={forecast.daily[0].temp.max} rainChance={forecast.daily[0].pop} />
+                            min={forecast.daily[0].temp.min} max={forecast.daily[0].temp.max} rainChance={forecast.daily[0].pop}
+                            alert={forecast.hasOwnProperty('alerts') ? forecast.alerts[0] : false}
+                            id={forecast.id}
+                        />
                     </div>
                     <div className={classes.todayday}>
                         <TodayWeatherDaySummary weather={weather} />

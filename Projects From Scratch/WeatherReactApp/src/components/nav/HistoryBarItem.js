@@ -2,9 +2,20 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { useHistory } from "react-router-dom";
+import { makeStyles } from '@material-ui/core/styles';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronRight, faExclamationCircle } from '@fortawesome/free-solid-svg-icons'
+const useStyles = makeStyles({
+    warn: {
+        '& svg': {
+            color: 'yellow'
+        }
+    }
+});
 
 
-function HistoryBarItem({ id, temp, city, icon, removeLocation }) {
+function HistoryBarItem({ id, temp, city, icon, removeLocation, alert }) {
+    const classes = useStyles()
     let history = useHistory()
     const [showDelete, setShowDelete] = React.useState(false)
     const handleClick = (event) => {
@@ -22,8 +33,11 @@ function HistoryBarItem({ id, temp, city, icon, removeLocation }) {
     return (
         <>
             <Link to={`/today/${id}`} style={{ width: '70%', display: 'inline-block', marginLeft: '1.5rem' }}>
-                <img alt="forecast-icon" src={icon} />
-                <span style={{ marginRight: '2rem' }}>{`${Math.trunc(temp)}° ${city}`}</span>
+                <div>
+                    <img alt="forecast-icon" src={icon} />
+                    <span style={{ marginRight: '1px' }}>{`${Math.trunc(temp)}° ${city}`}</span>
+                    {alert ? <span className={classes.warn}> <FontAwesomeIcon icon={faExclamationCircle} size="sm" /></span> : ''}
+                </div>
             </Link>
             {showDelete ?
                 <div onClick={handleDelete}

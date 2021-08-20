@@ -64,6 +64,7 @@ export default function HistoryBar({ weather, removeLocation }) {
                                 label={
                                     <HistoryBarItem id={loc.id} icon={`http://openweathermap.org/img/wn/${loc.current.weather[0].icon}@2x.png`}
                                         temp={loc.current.temp} city={loc.city} removeLocation={removeLocation}
+                                        alert={loc.hasOwnProperty('alerts') ? loc.alerts[0] : false}
                                     />
                                 } index={i} id={loc.id} key={loc.id}
                             />

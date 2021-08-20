@@ -1,6 +1,9 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronRight, faExclamationCircle } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom'
 const useStyles = makeStyles({
     root: {
         width: '100%',
@@ -55,17 +58,32 @@ const useStyles = makeStyles({
     rain: {
         fontSize: '1.2rem',
         margin: '0',
+        color: 'white',
+    },
+    alert: {
+        "& a": {
+            textDecoration: 'none'
+        },
+        "& svg": {
+            color: 'white',
+        }
+
     },
     lowHigh: {
         marginTop: 0,
         fontSize: '1.8rem',
         fontFamily: 'Metabold',
+    },
+    warn: {
+        '& svg': {
+            color: 'yellow'
+        },
     }
 });
 
 
 
-function TodayWeatherSummary({ city, time, temp, description, unit, icon, min, max, rainChance }) {
+function TodayWeatherSummary({ id, city, time, temp, description, unit, icon, min, max, rainChance, alert }) {
     const classes = useStyles()
     const convertTime = new Date(time * 1000).toLocaleTimeString('en-US', { timeStyle: 'short' })
     return (
@@ -78,7 +96,15 @@ function TodayWeatherSummary({ city, time, temp, description, unit, icon, min, m
 
                 </span>
                 <h4 className={classes.desscript}>{description.replace(/\b\w/g, l => l.toUpperCase())}</h4>
-                <h5 className={classes.rain}>{Math.floor(rainChance)}% chance of rain today</h5>
+                {alert ?
+                    <span className={classes.alert} >
+                        <Link to={`/alerts/${id}`} >
+
+                            <span className={classes.warn}> <FontAwesomeIcon icon={faExclamationCircle} size="sm" /></span>
+                            <span className={classes.rain}>{` ${alert.event} `}</span> <FontAwesomeIcon icon={faChevronRight} size="sm" />
+                        </Link>
+                    </span>
+                    : <h5 className={classes.rain}>{Math.floor(rainChance)}% chance of rain today</h5>}
             </div>
             <div className={classes.icon}>
                 <img alt="forecast-icon" src={icon} />
