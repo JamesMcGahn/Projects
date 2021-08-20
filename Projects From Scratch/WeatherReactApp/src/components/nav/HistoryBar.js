@@ -54,6 +54,7 @@ export default function HistoryBar({ weather, removeLocation }) {
                     textColor="primary"
                     aria-label="Location History"
                     value={false}
+                    variant="scrollable"
                 >
 
                     {firstSix.map((loc, i) => {

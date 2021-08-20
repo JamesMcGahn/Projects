@@ -9,14 +9,14 @@ import { Link } from 'react-router-dom'
 const useStyles = makeStyles((theme) => ({
     root: {
         backgroundColor: 'theme.palette.background.paper',
-        width: '100wh',
+        // width: '100wh',
 
     },
     tab: {
         "& a": {
             display: 'block',
             textDecoration: "none",
-            width: '100%',
+            // width: '100%',
             height: '100%',
             fontSize: '1.1rem',
             fontFamily: 'Metabold',
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     tabDiv: {
         backgroundColor: '#113076;',
         "& button": {
-            minWidth: '300px',
+            minWidth: '25%',
 
         }
     },
@@ -56,6 +56,7 @@ export default function ForecastTypeBar({ id, typeTabIndex, setTypeTabIndex }) {
                     onChange={handleChange}
                     aria-label=""
                     centered
+                    variant="scrollable"
                 >
                     <Tab className={classes.tab} classes={{ root: classes.tab }} label={<Link to={`/today/${id}`}>Today </Link>} index={0} id={id} />
 
