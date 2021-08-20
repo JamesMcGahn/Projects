@@ -2,9 +2,7 @@ import React from 'react';
 import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
 import CardActions from '@material-ui/core/CardActions';
-import Button from '@material-ui/core/Button';
-
-
+import CardButton from '../ui/Button'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -18,7 +16,10 @@ const useStyles = makeStyles((theme) => ({
     },
     content: {
         minHeight: '80%',
-        marginLeft: '1rem'
+        marginLeft: '15px',
+        '& h3': {
+            fontSize: '1.5rem'
+        }
     },
     expandCol: {
         display: 'flex',
@@ -37,7 +38,8 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     title: {
-        fontSize: '1rem',
+        fontSize: '1.2rem',
+        fontFamily: 'Metabold'
     },
     favalue: {
         fontSize: '2.5rem',
@@ -48,13 +50,17 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: '1rem'
+        marginTop: '40px'
+
+    },
+    button: {
+        margin: '0 0 15px 15px',
     }
 }))
 
 function TodayWeatherDaySummary({ weather }) {
     const classes = useStyles()
-    const { city, unit } = weather[0]
+    const { city, unit, id } = weather[0]
     const { day, eve, morn, night } = weather[0].daily[0].feels_like
     console.log(weather)
     return (
@@ -93,8 +99,10 @@ function TodayWeatherDaySummary({ weather }) {
                 </div>
             </div>
             <div>
-                <CardActions>
-                    <Button size="large">Next Hours</Button>
+                <CardActions className={classes.button}>
+                    <CardButton route={`/daily/${id}`} backgroundColor='#1b4de4'>
+                        Next Hours
+                    </CardButton>
                 </CardActions>
             </div>
         </Card >

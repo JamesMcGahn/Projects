@@ -69,10 +69,10 @@ const useStyles = makeStyles({
 
 });
 
-function HourlyWeatherTableRow({ weather, unit }) {
+function HourlyWeatherTableRow({ weather, unit, localHourTime }) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
-    const convertTime = new Date(weather.dt * 1000).toLocaleTimeString('en-US', { timeStyle: 'short' })
+    const convertTime = new Date(localHourTime * 1000).toLocaleTimeString('en-US', { timeStyle: 'short' })
     const icon = weather.weather[0].icon
     const description = weather.weather[0].description.replace(/\b\w/g, l => l.toUpperCase())
     return (

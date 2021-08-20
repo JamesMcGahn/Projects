@@ -9,7 +9,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import Paper from '@material-ui/core/Paper';
 import HourlyWeatherTableRow from '../forecastCards/HourlyWeatherTableRow'
-
+import { DateTime } from 'luxon'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -67,35 +67,38 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function HourlyWeather({ weather }) {
+    const { city, unit, timezone_offset } = weather[0]
     const classes = useStyles();
-    const convertTime = new Date(weather[0].current.dt * 1000).toLocaleTimeString('en-US', { timeStyle: 'short' })
-    const currentTime = new Date(weather[0].current.dt * 1000).getDay()
-    const { city, unit } = weather[0]
+    const localTime = (weather[0].current.dt + timezone_offset)
+    const convertTime = new Date(localTime * 1000).toLocaleTimeString('en-US', { timeStyle: 'short' })
+    const currentTime = new Date(localTime * 1000).getDay()
+    const time = new Date(localTime * 1000).toLocaleTimeString('en-US', { timeStyle: 'short' })
     return (
         <div className={classes.container}>
             <Paper className={classes.paper}>
                 <Box margin={0} boxShadow={0} p={1} >
                     <div className={classes.headTitle}>
                         <div><span><h2>Hourly Weather</h2> <h3> - {city}</h3> </span></div>
-                        <div><h4>As of {convertTime}</h4></div>
+                        <div><h4>As of {time}</h4></div>
                     </div>
                 </Box>
                 <TableContainer component={Paper} classes={{ root: classes.tableContainer }}>
                     <Table aria-label="hourly forecast table">
                         <TableBody>
                             {weather[0].hourly.map((weather, i) => {
-                                const listItemDay = new Date(weather.dt * 1000).getDay()
-                                const listItemHour = new Date(weather.dt * 1000).getHours()
-                                const bannerTime = new Date(weather.dt * 1000).toLocaleDateString('en-Us', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
+                                const hourlyLocal = (weather.dt + timezone_offset)
+                                const listItemDay = new Date(hourlyLocal * 1000).getDay()
+                                const listItemHour = new Date(hourlyLocal * 1000).getHours()
+                                const bannerTime = new Date(hourlyLocal * 1000).toLocaleDateString('en-Us', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
                                 if ((currentTime < listItemDay && listItemHour === 0) || i === 0) {
                                     return <>
                                         <TableCell align="left" colSpan={6} classes={{ root: classes.banner }} key={bannerTime}>
                                             <h3> {bannerTime}</h3>
                                         </TableCell>
-                                        <HourlyWeatherTableRow key={i} weather={weather} unit={unit} />
+                                        <HourlyWeatherTableRow key={i} weather={weather} unit={unit} localHourTime={hourlyLocal} />
                                     </>
                                 } else {
-                                    return <HourlyWeatherTableRow key={i} weather={weather} unit={unit} />
+                                    return <HourlyWeatherTableRow key={i} weather={weather} unit={unit} localHourTime={hourlyLocal} />
                                 }
                             })}
                         </TableBody>
