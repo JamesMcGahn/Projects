@@ -101,7 +101,7 @@ function TodayWeatherSummary({ id, city, time, temp, description, unit, icon, mi
                         <Link to={`/alerts/${id}`} >
 
                             <span className={classes.warn}> <FontAwesomeIcon icon={faExclamationCircle} size="sm" /></span>
-                            <span className={classes.rain}>{` ${alert.event.replace(/\b\w/g, l => l.toUpperCase())} Warning `}</span> <FontAwesomeIcon icon={faChevronRight} size="1x" />
+                            <span className={classes.rain}>{` ${alert.event.replace(/\b\w/g, l => l.toUpperCase())} Alert `}</span> <FontAwesomeIcon icon={faChevronRight} size="1x" />
                         </Link>
                     </span>
                     : <h5 className={classes.rain}>{Math.floor(rainChance)}% chance of rain today</h5>}

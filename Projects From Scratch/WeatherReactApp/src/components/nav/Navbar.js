@@ -138,7 +138,7 @@ function Navbar({ unit, setSearchText, setUnit }) {
                         </form>
                         <FormControl className={classes.formControl}>
                             <NativeSelect
-                                native
+                                native='true'
                                 value={unit}
                                 onChange={handleChangeUnit}
                                 inputProps={{

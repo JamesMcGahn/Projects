@@ -85,7 +85,7 @@ const useStyles = makeStyles({
 function TodayWeatherDetail(props) {
     const classes = useStyles();
     const { weather } = props;
-    const { unit, current, city, daily, minutely, } = weather[0]
+    const { unit, current, city, daily, minutely, } = weather
 
     function createRowData(name, icon, value) {
         return { name, icon, value };

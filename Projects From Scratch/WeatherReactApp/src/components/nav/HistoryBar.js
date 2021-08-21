@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function HistoryBar({ weather, removeLocation }) {
+export default function HistoryBar({ weather, removeLocation, idChange }) {
     const classes = useStyles();
     const firstSix = [...weather].reverse().filter((item, index) => index <= 6)
 
@@ -65,7 +65,7 @@ export default function HistoryBar({ weather, removeLocation }) {
                                 label={
                                     <HistoryBarItem id={loc.id} icon={`http://openweathermap.org/img/wn/${loc.current.weather[0].icon}@2x.png`}
                                         temp={loc.current.temp} city={loc.city} removeLocation={removeLocation}
-                                        alert={loc.hasOwnProperty('alerts') ? loc.alerts[0] : false}
+                                        alert={loc.hasOwnProperty('alerts') ? loc.alerts[0] : false} idChange={idChange}
                                     />
                                 } index={i} id={loc.id} key={loc.id}
                             />

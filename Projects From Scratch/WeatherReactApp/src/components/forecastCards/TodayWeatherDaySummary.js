@@ -3,8 +3,8 @@ import SummaryCard from '../ui/SummaryCard'
 
 
 function TodayWeatherDaySummary({ weather }) {
-    const { city, unit, id } = weather[0]
-    const { day, eve, morn, night } = weather[0].daily[0].feels_like
+    const { city, unit, id } = weather
+    const { day, eve, morn, night } = weather.daily[0].feels_like
 
 
     function createCardData(title, value) {

@@ -10,6 +10,8 @@ import { uuid } from 'uuidv4';
 import axios from 'axios'
 import { makeStyles } from '@material-ui/core/styles';
 
+import uselocalStoreHook from './hooks/useLocalStoreHook'
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,27 +28,31 @@ function App(props) {
   const [city, setCity] = React.useState();
   const [unit, setUnit] = React.useState('imperial')
   const [typeTabIndex, setTypeTabIndex] = React.useState(0);
-  const [weatherData, setweatherData] = React.useState([]);
+  const [weatherData, setweatherData] = uselocalStoreHook()
   const [searchText, setSearchText] = React.useState('')
   const [selectedLocation, setSelectedLocation] = React.useState();
 
 
   const findLocation = (id, setTab) => {
-    if (!id) {
-      if (selectedLocation) id = selectedLocation;
-      if (weatherData.length > 0) id = weatherData[weatherData.length - 1].id;
+    let passedId = id
+    if (!passedId) {
+      if (selectedLocation) passedId = selectedLocation;
+      else if (weatherData.length > 0) passedId = weatherData[weatherData.length - 1].id;
+      else return null
     }
     const locData = weatherData.filter(loc => (loc.id === id))
-    setSelectedLocation(id)
-    setTypeTabIndex(setTab)
-    console.log(locData)
+    setTypeTabIndex(setTab) //TODO bad state call need to pull out in own handler, pass to history item
     return locData;
+  }
+
+  const idChange = (id) => {
+    setSelectedLocation(id)
   }
 
   const removeLocation = (id) => {
     const removed = weatherData.filter(loc => (loc.id !== id))
     setweatherData(removed)
-    window.localStorage.setItem('locations', JSON.stringify(removed))
+
     if (id === selectedLocation) setSelectedLocation(weatherData[weatherData.length - 1].id)
   }
 
@@ -55,7 +61,6 @@ function App(props) {
       return locations.lat !== newData.lat && locations.lon !== newData.lon
     })
     setweatherData([...cleanedData, newData])
-    window.localStorage.setItem('locations', JSON.stringify([...cleanedData, newData]))
   }
 
   const coordsFetch = async () => {
@@ -101,19 +106,7 @@ function App(props) {
 
 
 
-  useEffect(() => {
-    try {
-      const locations = JSON.parse(window.localStorage.getItem('locations'))
-      if (locations.length > 0) {
-        setweatherData(locations)
-        setSelectedLocation(locations[locations.length - 1].id)
-      } else {
-        setweatherData([])
-      }
-    } catch (e) {
-      console.log(e)
-    }
-  }, [])
+
 
 
   const classes = useStyles();
@@ -121,7 +114,7 @@ function App(props) {
     <div className={classes.root}>
 
       <MainNav unit={unit} setUnit={setUnit} setSearchText={setSearchText} weather={weatherData}
-        id={selectedLocation} setTypeTabIndex={setTypeTabIndex} typeTabIndex={typeTabIndex} removeLocation={removeLocation}
+        id={selectedLocation} setTypeTabIndex={setTypeTabIndex} typeTabIndex={typeTabIndex} removeLocation={removeLocation} idChange={idChange}
       />
 
       <Route render={({ location }) =>
@@ -132,12 +125,10 @@ function App(props) {
           <Route exact path='/hourly/:locId' render={routeProps => (
             <HourlyForecastPage weather={findLocation(routeProps.match.params.locId, 1)} />
           )} />
-          <Route exact path='/today/' render={routeProps => (
-            <TodayForecastPage weather={findLocation(selectedLocation, 0)} />
-          )} />
           <Route exact path='/today/:locId' render={routeProps => (
-            <TodayForecastPage weather={findLocation(routeProps.match.params.locId, 0)} />
+            <TodayForecastPage weather={weatherData} findLocation={findLocation} id={routeProps.match.params.locId} />
           )} />
+
           <Route path='/' render={(routeProps) => (
             <>
               {

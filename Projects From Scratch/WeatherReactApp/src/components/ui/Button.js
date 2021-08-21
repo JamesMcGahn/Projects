@@ -24,7 +24,7 @@ const useStyles = makeStyles(({
 
 
 function CardButton(props) {
-    const { route, id, backgroundColor } = props;
+    const { route, backgroundColor } = props;
     const classes = useStyles({ backgroundColor })
     return (
         <Button size="large" classes={{ root: classes.root, label: classes.text }} >

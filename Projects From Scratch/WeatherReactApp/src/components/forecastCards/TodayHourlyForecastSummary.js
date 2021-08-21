@@ -3,9 +3,9 @@ import SummaryCard from '../ui/SummaryCard'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCloud } from '@fortawesome/free-solid-svg-icons'
 function TodayHourlyForecastSummary({ weather }) {
-    const { city, unit, id, timezone_offset } = weather[0]
+    const { id, timezone_offset } = weather
 
-    const firstFiveHours = weather[0].hourly.filter((e, i) => i <= 4)
+    const firstFiveHours = weather.hourly.filter((e, i) => i <= 4)
     const card = firstFiveHours.map((item) => {
         const hourlyLocal = (item.dt + timezone_offset)
         const convertTime = new Date(hourlyLocal * 1000).toLocaleTimeString('en-US', { timeStyle: 'short' })

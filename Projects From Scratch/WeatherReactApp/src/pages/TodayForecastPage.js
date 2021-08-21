@@ -27,14 +27,16 @@ const useStyles = makeStyles({
 
 
 function TodayForecastPage(props) {
-    const { weather } = props
-    const forecast = weather === 'undefined' ? false : weather[0]
+    const { id, findLocation } = props
+    const forecast = findLocation(id, 0)
     const classes = useStyles()
+    console.log('for', forecast)
     return (
-        <>
-            {!forecast ? <h1>loading</h1> :
-                <div className={classes.root}>
+        <div className={classes.root} key={`${id}-today`}>
+            {forecast.map(forecast => {
+                return (<>
                     <div className={classes.todaysum}>
+
                         <TodayWeatherSummary city={forecast.city} time={forecast.current.dt + forecast.timezone_offset} temp={forecast.current.temp}
                             description={forecast.current.weather[0].description} unit={forecast.unit}
                             icon={`http://openweathermap.org/img/wn/${forecast.current.weather[0].icon}@2x.png`}
@@ -44,20 +46,23 @@ function TodayForecastPage(props) {
                         />
                     </div>
                     <div className={classes.summaryCard}>
-                        <TodayWeatherDaySummary weather={weather} />
+                        <TodayWeatherDaySummary weather={forecast} />
                     </div>
                     <div className={classes.summaryCard}>
-                        <TodayWeatherDetail weather={weather} />
+                        <TodayWeatherDetail weather={forecast} />
                     </div>
                     <div className={classes.summaryCard}>
-                        <TodayHourlyForecastSummary weather={weather} />
+                        <TodayHourlyForecastSummary weather={forecast} />
                     </div>
                     <div className={classes.summaryCard}>
-                        <TodayDailyForecastSummary weather={weather} />
+                        <TodayDailyForecastSummary weather={forecast} />
                     </div>
-                </ div>
-            }
-        </>
+                </>)
+            })}
+        </ div>
+
+
+
     );
 }
 

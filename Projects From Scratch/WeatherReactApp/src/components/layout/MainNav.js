@@ -4,11 +4,11 @@ import HistoryBar from '../nav/HistoryBar'
 import ForecastTypeBar from '../nav/ForecastTypeBar'
 
 function MainNav(props) {
-    const { unit, setUnit, setSearchText, weather, id, setTypeTabIndex, typeTabIndex, removeLocation } = props
+    const { unit, setUnit, setSearchText, weather, id, setTypeTabIndex, typeTabIndex, removeLocation, idChange } = props
     return (
         <>
             <Navbar unit={unit} setUnit={setUnit} setSearchText={setSearchText} />
-            <HistoryBar weather={weather} removeLocation={removeLocation} />
+            <HistoryBar weather={weather} removeLocation={removeLocation} idChange={idChange} />
             <ForecastTypeBar id={id} setTypeTabIndex={setTypeTabIndex} typeTabIndex={typeTabIndex} />
         </>
     );

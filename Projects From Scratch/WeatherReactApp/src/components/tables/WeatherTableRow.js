@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import Table from '@material-ui/core/Table';
@@ -10,7 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faWind, faTint, faThermometerThreeQuarters, faSun } from '@fortawesome/free-solid-svg-icons'
+import { faWind } from '@fortawesome/free-solid-svg-icons'
 import DailyInnerTable from './DailyInnerTable'
 import HourlyInnerTable from './HourlyInnerTable';
 
@@ -92,7 +91,7 @@ function WeatherTableRow({ weather, unit, localHourTime, hourly, index, timeZone
         if (!hourly && index === 0) {
             setOpen(true)
         }
-    }, [])
+    }, [index])
 
     const openRow = () => {
         setOpen(!open)

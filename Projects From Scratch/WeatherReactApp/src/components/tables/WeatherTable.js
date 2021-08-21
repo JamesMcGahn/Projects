@@ -80,7 +80,7 @@ function WeatherTable({ hourly, tableData, forecastTime, timeZoneOffset, tableTi
                     </div>
                 </Box>
                 <TableContainer component={Paper} classes={{ root: classes.tableContainer }}>
-                    <Table aria-label="hourly forecast table">
+                    <Table aria-label="hourly forecast table" key={`${tableTitle}-${time}`}>
                         <TableBody>
                             {tableData.map((weather, i) => {
                                 const timeLocal = (weather.dt + timeZoneOffset)

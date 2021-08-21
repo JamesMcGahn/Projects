@@ -4,7 +4,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { useHistory } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronRight, faExclamationCircle } from '@fortawesome/free-solid-svg-icons'
+import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons'
 const useStyles = makeStyles({
     warn: {
         '& svg': {
@@ -14,14 +14,14 @@ const useStyles = makeStyles({
 });
 
 
-function HistoryBarItem({ id, temp, city, icon, removeLocation, alert }) {
+function HistoryBarItem({ id, temp, city, icon, removeLocation, alert, idChange }) {
     const classes = useStyles()
     let history = useHistory()
     const [showDelete, setShowDelete] = React.useState(false)
     const handleClick = (event) => {
         event.preventDefault();
         setShowDelete(true)
-        setInterval(() => {
+        setTimeout(() => {
             setShowDelete(false)
         }, 5000);
     }
@@ -32,7 +32,7 @@ function HistoryBarItem({ id, temp, city, icon, removeLocation, alert }) {
     }
     return (
         <>
-            <Link to={`/today/${id}`} style={{ width: '70%', display: 'inline-block', marginLeft: '1.5rem' }}>
+            <Link to={`/today/${id}`} style={{ width: '70%', display: 'inline-block', marginLeft: '1.5rem' }} onClick={() => idChange(id)}>
                 <div>
                     <img alt="forecast-icon" src={icon} />
                     <span style={{ marginRight: '1px' }}>{`${Math.trunc(temp)}° ${city}`}</span>
