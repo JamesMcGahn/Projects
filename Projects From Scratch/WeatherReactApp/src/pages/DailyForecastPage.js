@@ -8,7 +8,7 @@ function DailyForecastPage({ id, idChange, changeTab, findLocation }) {
         <Page id={id} idChange={idChange} changeTab={changeTab} tab={2} findLocation={findLocation}>
             {
                 forecast.map(weather =>
-                    <WeatherTable tableData={weather.daily}
+                    <WeatherTable tableData={weather.daily} key={weather.city}
                         forecastTime={weather.current.dt} timeZoneOffset={weather.timezone_offset}
                         tableTitle={'7 Day Weather'} city={weather.city}
                         unit={weather.unit} hourly={false} timezone={weather.timezone}

@@ -4,6 +4,7 @@ import TodayForecastPage from './pages/TodayForecastPage';
 import MainNav from './components/layout/MainNav'
 import HourlyForecastPage from './pages/HourlyForecastPage';
 import DailyForecastPage from './pages/DailyForecastPage';
+import AlertsPage from './pages/AlertsPage';
 import { OW_API_KEY } from './keys.js'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import { uuid } from 'uuidv4';
@@ -125,14 +126,17 @@ function App(props) {
           <Route exact path='/welcome/' render={routeProps => (
             <h1>select a location</h1>
           )} />
+          <Route exact path='/alerts/:locId' render={routeProps => (
+            <AlertsPage findLocation={findLocation} changeTab={changeTab} idChange={idChange} id={routeProps.match.params.locId} />
+          )} />
           <Route exact path='/daily/:locId' render={routeProps => (
-            <DailyForecastPage weather={findLocation(routeProps.match.params.locId, 2)} findLocation={findLocation} changeTab={changeTab} idChange={idChange} id={routeProps.match.params.locId} />
+            <DailyForecastPage findLocation={findLocation} changeTab={changeTab} idChange={idChange} id={routeProps.match.params.locId} />
           )} />
           <Route exact path='/hourly/:locId' render={routeProps => (
-            <HourlyForecastPage weather={findLocation(routeProps.match.params.locId, 1)} findLocation={findLocation} changeTab={changeTab} idChange={idChange} id={routeProps.match.params.locId} />
+            <HourlyForecastPage findLocation={findLocation} changeTab={changeTab} idChange={idChange} id={routeProps.match.params.locId} />
           )} />
           <Route exact path='/today/:locId' render={routeProps => (
-            <TodayForecastPage weather={weatherData} findLocation={findLocation} changeTab={changeTab} idChange={idChange} id={routeProps.match.params.locId} />
+            <TodayForecastPage findLocation={findLocation} changeTab={changeTab} idChange={idChange} id={routeProps.match.params.locId} />
           )} />
 
           <Route path='/' render={(routeProps) => (

@@ -27,7 +27,7 @@ function TodayForecastPage(props) {
         <Page id={id} idChange={idChange} changeTab={changeTab} tab={0} findLocation={findLocation}>
             {forecast.map(forecast => {
                 return (<>
-                    <div className={classes.todaysum}>
+                    <div className={classes.todaysum} key={forecast.city}>
 
                         <TodayWeatherSummary city={forecast.city} time={forecast.current.dt + forecast.timezone_offset} temp={forecast.current.temp}
                             description={forecast.current.weather[0].description} unit={forecast.unit}

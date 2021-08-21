@@ -34,6 +34,10 @@ const useStyles = makeStyles((theme) => ({
     indicator: {
         backgroundColor: 'white'
     }
+    ,
+    hidden: {
+        display: 'none'
+    }
 
 }));
 
@@ -57,11 +61,13 @@ export default function ForecastTypeBar({ id, typeTabIndex, setTypeTabIndex }) {
                     aria-label=""
                     centered
                 >
-                    <Tab className={classes.tab} classes={{ root: classes.tab }} label={<Link to={`/today/${checkID}`}>Today </Link>} index={0} id={id} />
+                    <Tab className={classes.tab} classes={{ root: classes.tab }} label={<Link to={`/today/${checkID}`}>Today </Link>} index={0} />
 
-                    <Tab className={classes.tab} label={<Link to={`/hourly/${checkID}`}>Hourly</Link>} index={1} id={id} />
+                    <Tab className={classes.tab} label={<Link to={`/hourly/${checkID}`}>Hourly</Link>} index={1} />
 
-                    <Tab className={classes.tab} label={<Link to={`/daily/${checkID}`}>Daily</Link>} index={2} id={id} />
+                    <Tab className={classes.tab} label={<Link to={`/daily/${checkID}`}>Daily</Link>} index={2} />
+
+                    <Tab classes={{ root: classes.hidden }} index={3} />
                 </Tabs>
             </AppBar>
 

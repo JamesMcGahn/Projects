@@ -82,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 function SummaryCard(props) {
-    const { cardTitle, cardData, unit, route, buttonColor, buttonText, iconColor } = props
+    const { cardTitle, cardData, unit, route, buttonColor, buttonText, valueSubtext, iconColor } = props
     const classes = useStyles({ itemsLength: cardData.length, iconColor })
     return (
         <Card className={classes.root}>
@@ -92,7 +92,7 @@ function SummaryCard(props) {
                     {cardData.length > 0 ?
                         cardData.map((item, i) => {
                             return (
-                                <div className={classes.expandCol} style={cardData.length - 1 === i ? { border: 'none' } : null}>
+                                <div key={cardTitle + `-${i}`} className={classes.expandCol} style={cardData.length - 1 === i ? { border: 'none' } : null}>
                                     <div className={classes.fatext}>
                                         <span className={classes.title}>{item.title}</span>
                                         <span className={classes.favalue}>{`${Math.ceil(item.value)}${unit ? `${unit === 'imperial' ? "° F " : "° C"}` : '°'}`
