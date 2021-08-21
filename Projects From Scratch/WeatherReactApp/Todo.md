@@ -4,7 +4,7 @@ React Weather Project
 
 ## APP Build
 
-- [ ] Daily Forecast Page
+- [x] Daily Forecast Page
 - [ ] Alerts Page
 - [ ] Weekend Forecast Page
 - [ ] Radar Forecast Page

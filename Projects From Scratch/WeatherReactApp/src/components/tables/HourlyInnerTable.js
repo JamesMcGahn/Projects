@@ -4,6 +4,7 @@ import TableRow from '@material-ui/core/TableRow';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faWind, faTint, faThermometerThreeQuarters, faSun } from '@fortawesome/free-solid-svg-icons'
 import { makeStyles } from '@material-ui/core/styles';
+import TableBody from '@material-ui/core/TableBody';
 
 const useStyles = makeStyles({
     root: {
@@ -79,22 +80,24 @@ function HourlyInnerTable({ weather, unit }) {
     console.log(cellData)
 
     return (
-        <TableRow key={weather.dt}>
-            {cellData.map((item, i) => {
-                return (
-                    <TableCell align="center" padding='none' classes={{ root: classes.tableCell }} key={`${i}-hour-tc`}>
-                        <div className={classes.expandCol}>
-                            <div className={classes.faicon}><FontAwesomeIcon icon={item.icon} size="2x" /></div>
-                            <div className={classes.fatext}>
-                                <span >{item.text}</span>
-                                <span className={classes.favalue}>{item.value}</span>
+        <TableBody >
+            <TableRow key={weather.dt}>
+                {cellData.map((item, i) => {
+                    return (
+                        <TableCell align="center" padding='none' classes={{ root: classes.tableCell }} key={`${i}-hour-tc`}>
+                            <div className={classes.expandCol}>
+                                <div className={classes.faicon}><FontAwesomeIcon icon={item.icon} size="2x" /></div>
+                                <div className={classes.fatext}>
+                                    <span >{item.text}</span>
+                                    <span className={classes.favalue}>{item.value}</span>
+                                </div>
                             </div>
-                        </div>
-                    </TableCell>
-                )
-            })}
+                        </TableCell>
+                    )
+                })}
 
-        </TableRow>
+            </TableRow>
+        </TableBody>
     );
 }
 

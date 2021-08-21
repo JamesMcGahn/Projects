@@ -4,14 +4,14 @@ import Box from '@material-ui/core/Box';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
+
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faWind, faTint, faThermometerThreeQuarters, faSun } from '@fortawesome/free-solid-svg-icons'
-
+import DailyInnerTable from './DailyInnerTable'
 import HourlyInnerTable from './HourlyInnerTable';
 
 const useStyles = makeStyles({
@@ -73,7 +73,7 @@ const useStyles = makeStyles({
 
 
 
-function WeatherTableRow({ weather, unit, localHourTime, hourly, index }) {
+function WeatherTableRow({ weather, unit, localHourTime, hourly, index, timeZoneOffset, timezone }) {
 
     const [open, setOpen] = React.useState(false);
     const classes = useStyles({ open, hourly });
@@ -93,6 +93,10 @@ function WeatherTableRow({ weather, unit, localHourTime, hourly, index }) {
             setOpen(true)
         }
     }, [])
+
+    const openRow = () => {
+        setOpen(!open)
+    }
 
 
     return (
@@ -114,13 +118,16 @@ function WeatherTableRow({ weather, unit, localHourTime, hourly, index }) {
             <TableRow>
                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
-                        <Box margin={1} boxShadow={1} p={1}>
-                            <Table size="small" aria-label="more-info">
-                                <TableBody >
-                                    {hourly ? <HourlyInnerTable unit={unit} weather={weather} /> : null}
-                                </TableBody>
-                            </Table>
-                        </Box>
+
+                        <Table size="small" aria-label="more-info">
+
+                            {hourly ?
+                                <HourlyInnerTable unit={unit} weather={weather} />
+                                :
+                                <DailyInnerTable unit={unit} weather={weather} openRow={openRow} open={open} dayTime={dayTime} timezone={timezone} />
+                            }
+
+                        </Table>
                     </Collapse>
                 </TableCell>
             </TableRow>

@@ -22,8 +22,9 @@ function DailyForecastPage({ weather }) {
             <WeatherTable tableData={weather[0].daily}
                 forecastTime={weather[0].current.dt} timeZoneOffset={weather[0].timezone_offset}
                 tableTitle={'7 Day Weather'} city={weather[0].city}
-                unit={weather[0].unit} hourly={false}
+                unit={weather[0].unit} hourly={false} timezone={weather[0].timezone}
             />
+
         </div>
     );
 }

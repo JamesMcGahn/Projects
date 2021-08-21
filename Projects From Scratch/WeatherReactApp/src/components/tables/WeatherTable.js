@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function WeatherTable({ hourly, tableData, forecastTime, timeZoneOffset, tableTitle, city, unit }) {
+function WeatherTable({ hourly, tableData, forecastTime, timeZoneOffset, tableTitle, city, unit, timezone }) {
     const classes = useStyles();
     const localTime = (forecastTime + timeZoneOffset)
     const currentTime = new Date(localTime * 1000).getDay()
@@ -97,7 +97,7 @@ function WeatherTable({ hourly, tableData, forecastTime, timeZoneOffset, tableTi
                                         <WeatherTableRow key={i} weather={weather} unit={unit} localHourTime={timeLocal} hourly={hourly} />
                                     </>
                                 } else {
-                                    return <WeatherTableRow key={i} weather={weather} unit={unit} localHourTime={timeLocal} hourly={hourly} index={i} />
+                                    return <WeatherTableRow key={i} weather={weather} unit={unit} localHourTime={timeLocal} hourly={hourly} index={i} timezone={timezone} />
                                 }
                             })}
                         </TableBody>
