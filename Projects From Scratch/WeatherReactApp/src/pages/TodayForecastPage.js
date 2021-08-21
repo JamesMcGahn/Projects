@@ -5,16 +5,8 @@ import TodayWeatherDaySummary from '../components/forecastCards/TodayWeatherDayS
 import TodayWeatherDetail from '../components/forecastCards/TodayWeatherDetail'
 import TodayHourlyForecastSummary from '../components/forecastCards/TodayHourlyForecastSummary'
 import TodayDailyForecastSummary from '../components/forecastCards/TodayDailyForecastSummary'
-
+import Page from '../components/layout/Page'
 const useStyles = makeStyles({
-    root: {
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column',
-        marginTop: '15px'
-    },
     todaysum: {
         width: '60%',
         marginTop: '1rem'
@@ -25,14 +17,14 @@ const useStyles = makeStyles({
     }
 });
 
-
 function TodayForecastPage(props) {
-    const { id, findLocation } = props
-    const forecast = findLocation(id, 0)
+    const { id, findLocation, idChange, changeTab, } = props
+    const forecast = findLocation(id)
+
     const classes = useStyles()
     console.log('for', forecast)
     return (
-        <div className={classes.root} key={`${id}-today`}>
+        <Page id={id} idChange={idChange} changeTab={changeTab} tab={0} findLocation={findLocation}>
             {forecast.map(forecast => {
                 return (<>
                     <div className={classes.todaysum}>
@@ -59,7 +51,7 @@ function TodayForecastPage(props) {
                     </div>
                 </>)
             })}
-        </ div>
+        </ Page>
 
 
 

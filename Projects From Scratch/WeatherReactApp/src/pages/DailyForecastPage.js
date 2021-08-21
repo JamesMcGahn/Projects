@@ -1,31 +1,20 @@
 import React from 'react';
-import { makeStyles, } from '@material-ui/core/styles';
 import WeatherTable from '../components/tables/WeatherTable';
+import Page from '../components/layout/Page'
 
-const useStyles = makeStyles({
-    root: {
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: '2rem',
-        flexDirection: 'column',
-    },
-
-});
-
-
-function DailyForecastPage({ weather }) {
-    const classes = useStyles()
+function DailyForecastPage({ id, idChange, changeTab, findLocation }) {
+    const forecast = findLocation(id)
     return (
-        <div className={classes.root}>
-            <WeatherTable tableData={weather[0].daily}
-                forecastTime={weather[0].current.dt} timeZoneOffset={weather[0].timezone_offset}
-                tableTitle={'7 Day Weather'} city={weather[0].city}
-                unit={weather[0].unit} hourly={false} timezone={weather[0].timezone}
-            />
-
-        </div>
+        <Page id={id} idChange={idChange} changeTab={changeTab} tab={2} findLocation={findLocation}>
+            {
+                forecast.map(weather =>
+                    <WeatherTable tableData={weather.daily}
+                        forecastTime={weather.current.dt} timeZoneOffset={weather.timezone_offset}
+                        tableTitle={'7 Day Weather'} city={weather.city}
+                        unit={weather.unit} hourly={false} timezone={weather.timezone}
+                    />
+                )}
+        </Page>
     );
 }
 

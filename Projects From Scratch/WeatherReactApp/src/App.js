@@ -41,12 +41,15 @@ function App(props) {
       else return null
     }
     const locData = weatherData.filter(loc => (loc.id === id))
-    setTypeTabIndex(setTab) //TODO bad state call need to pull out in own handler, pass to history item
-    return locData;
+    return locData
   }
 
   const idChange = (id) => {
     setSelectedLocation(id)
+  }
+
+  const changeTab = (tab) => {
+    setTypeTabIndex(tab)
   }
 
   const removeLocation = (id) => {
@@ -119,14 +122,17 @@ function App(props) {
 
       <Route render={({ location }) =>
         <Switch location={location}>
+          <Route exact path='/welcome/' render={routeProps => (
+            <h1>select a location</h1>
+          )} />
           <Route exact path='/daily/:locId' render={routeProps => (
-            <DailyForecastPage weather={findLocation(routeProps.match.params.locId, 2)} />
+            <DailyForecastPage weather={findLocation(routeProps.match.params.locId, 2)} findLocation={findLocation} changeTab={changeTab} idChange={idChange} id={routeProps.match.params.locId} />
           )} />
           <Route exact path='/hourly/:locId' render={routeProps => (
-            <HourlyForecastPage weather={findLocation(routeProps.match.params.locId, 1)} />
+            <HourlyForecastPage weather={findLocation(routeProps.match.params.locId, 1)} findLocation={findLocation} changeTab={changeTab} idChange={idChange} id={routeProps.match.params.locId} />
           )} />
           <Route exact path='/today/:locId' render={routeProps => (
-            <TodayForecastPage weather={weatherData} findLocation={findLocation} id={routeProps.match.params.locId} />
+            <TodayForecastPage weather={weatherData} findLocation={findLocation} changeTab={changeTab} idChange={idChange} id={routeProps.match.params.locId} />
           )} />
 
           <Route path='/' render={(routeProps) => (
@@ -135,10 +141,14 @@ function App(props) {
                 selectedLocation ?
                   <Redirect to={`/today/${selectedLocation}`} />
                   :
-                  <h1></h1>
+                  <Redirect to={`/welcome`} />
               }
             </>
           )} />
+          <Route path='*' render={(routeProps) => (
+            <Redirect to={`/welcome`} />
+          )} />
+
         </Switch>
       } />
     </div>

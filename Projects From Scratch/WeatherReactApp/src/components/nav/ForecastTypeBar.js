@@ -43,7 +43,7 @@ export default function ForecastTypeBar({ id, typeTabIndex, setTypeTabIndex }) {
     const handleChange = (event, newValue) => {
         setTypeTabIndex(newValue);
     };
-
+    let checkID = id ? id : ''
     return (
         <div className={classes.root}>
             <AppBar position="static" color="default">
@@ -57,11 +57,11 @@ export default function ForecastTypeBar({ id, typeTabIndex, setTypeTabIndex }) {
                     aria-label=""
                     centered
                 >
-                    <Tab className={classes.tab} classes={{ root: classes.tab }} label={<Link to={`/today/${id}`}>Today </Link>} index={0} id={id} />
+                    <Tab className={classes.tab} classes={{ root: classes.tab }} label={<Link to={`/today/${checkID}`}>Today </Link>} index={0} id={id} />
 
-                    <Tab className={classes.tab} label={<Link to={`/hourly/${id}`}>Hourly</Link>} index={1} id={id} />
+                    <Tab className={classes.tab} label={<Link to={`/hourly/${checkID}`}>Hourly</Link>} index={1} id={id} />
 
-                    <Tab className={classes.tab} label={<Link to={`/daily/${id}`}>Daily</Link>} index={2} id={id} />
+                    <Tab className={classes.tab} label={<Link to={`/daily/${checkID}`}>Daily</Link>} index={2} id={id} />
                 </Tabs>
             </AppBar>
 

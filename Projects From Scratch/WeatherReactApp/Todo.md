@@ -13,7 +13,7 @@ React Weather Project
 - [ ] Refactor / Clean up App File
 - [ ] Error Card / Notification
 - [ ] Footer
-- [ ] Page Layout Component
+- [x] Page Layout Component
 - [ ] Remove inline styles on HistoryBar Item
 - [ ] Remove Styles from components put in separate file
 

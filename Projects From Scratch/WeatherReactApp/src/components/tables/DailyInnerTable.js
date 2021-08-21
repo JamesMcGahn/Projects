@@ -110,7 +110,7 @@ function DailyInnerTable({ dayTime, weather, unit, openRow, timezone }) {
 
     const cellData = [
         createCellData(`${dayTime} | Day`, `${Math.trunc(weather.temp.day)}`, weather.weather[0].icon, faTint, weather.pop, faWind, weather.wind_speed, faTint, 'Humidity', weather.humidity, faSun, 'UV Index', `${Math.trunc(weather.uvi)} of 10`, faArrowUp, 'Sunrise', sunRise, faArrowDown, 'SunSet', sunSet),
-        createCellData(`${dayTime} | Day`, `${Math.trunc(weather.temp.day)}`, weather.weather[0].icon, faTint, weather.pop, faWind, weather.wind_speed, faTint, 'Humidity', weather.humidity, faSun, 'UV Index', `${Math.trunc(weather.uvi)} of 10`, faArrowUp, 'Moonrise', moonRise, faArrowDown, 'Moonset', moonSet)
+        createCellData(`${dayTime} | Day`, `${Math.trunc(weather.temp.night)}`, weather.weather[0].icon, faTint, weather.pop, faWind, weather.wind_speed, faTint, 'Humidity', weather.humidity, faSun, 'UV Index', `${Math.trunc(weather.uvi)} of 10`, faArrowUp, 'Moonrise', moonRise, faArrowDown, 'Moonset', moonSet)
     ]
 
     console.log(cellData)
