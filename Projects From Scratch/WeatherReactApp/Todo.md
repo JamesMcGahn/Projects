@@ -5,8 +5,8 @@ React Weather Project
 ## APP Build
 
 - [x] Daily Forecast Page
-- [ ] Alerts Page
-- [ ] Weekend Forecast Page
+- [x] Alerts Page
+- [x] Weekend Forecast Page
 - [ ] Radar Forecast Page
 - [ ] Air Quality Forecast Page
 - [ ] Pollen Forecast Page
@@ -16,17 +16,15 @@ React Weather Project
 - [x] Page Layout Component
 - [ ] Remove inline styles on HistoryBar Item
 - [ ] Remove Styles from components put in separate file
+- [ ] No Location / Welcome Page
 
 ### Today Forecast Page
 
-- [ ] Today Forecast Page
-  - [ ] Create Sidebar
-    - [ ] Air Quality Index Card
-    - [ ] Pollen/Allegy Card
+- [x] Today Forecast Page
   - [x] Weather Detail Card
   - [x] Weather Hourly Forecast Card
   - [x] Weather Daily Forecast Card
 
 ### Hourly Forecast Page
 
-- [ ] Error Handling - if no data is passed
+- [x] Error Handling - if no data is passed

@@ -94,10 +94,10 @@ function WeatherTable({ hourly, tableData, forecastTime, timeZoneOffset, tableTi
                                                 <h3> {bannerTime}</h3>
                                             </TableCell>
                                         </TableRow>
-                                        <WeatherTableRow key={i} weather={weather} unit={unit} localHourTime={timeLocal} hourly={hourly} />
+                                        <WeatherTableRow key={`${i}-brow-${listItemHour}`} weather={weather} unit={unit} localHourTime={timeLocal} hourly={hourly} />
                                     </>
                                 } else {
-                                    return <WeatherTableRow key={i} weather={weather} unit={unit} localHourTime={timeLocal} hourly={hourly} index={i} timezone={timezone} />
+                                    return <WeatherTableRow key={`${i}-Rrow-${listItemHour}`} weather={weather} unit={unit} localHourTime={timeLocal} hourly={hourly} index={i} timezone={timezone} />
                                 }
                             })}
                         </TableBody>

@@ -47,7 +47,7 @@ function AlertsPage(props) {
     const forecast = findLocation(id)
     console.log(forecast)
     return (
-        <Page id={id} idChange={idChange} changeTab={changeTab} tab={3} findLocation={findLocation} >
+        <Page id={id} idChange={idChange} changeTab={changeTab} tab={4} findLocation={findLocation} >
             <div className={classes.todaysum}>
                 {forecast.map(loc => {
                     let alert

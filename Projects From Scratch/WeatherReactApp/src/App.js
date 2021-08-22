@@ -4,6 +4,7 @@ import TodayForecastPage from './pages/TodayForecastPage';
 import MainNav from './components/layout/MainNav'
 import HourlyForecastPage from './pages/HourlyForecastPage';
 import DailyForecastPage from './pages/DailyForecastPage';
+import WeekendForecastPage from './pages/WeekendForecastPage';
 import AlertsPage from './pages/AlertsPage';
 import { OW_API_KEY } from './keys.js'
 import { Switch, Route, Redirect } from 'react-router-dom'
@@ -134,6 +135,9 @@ function App(props) {
           )} />
           <Route exact path='/hourly/:locId' render={routeProps => (
             <HourlyForecastPage findLocation={findLocation} changeTab={changeTab} idChange={idChange} id={routeProps.match.params.locId} />
+          )} />
+          <Route exact path='/weekend/:locId' render={routeProps => (
+            <WeekendForecastPage findLocation={findLocation} changeTab={changeTab} idChange={idChange} id={routeProps.match.params.locId} />
           )} />
           <Route exact path='/today/:locId' render={routeProps => (
             <TodayForecastPage findLocation={findLocation} changeTab={changeTab} idChange={idChange} id={routeProps.match.params.locId} />
