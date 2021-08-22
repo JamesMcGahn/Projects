@@ -7,7 +7,7 @@ import DailyForecastPage from './pages/DailyForecastPage';
 import WeekendForecastPage from './pages/WeekendForecastPage';
 import RadarForecastPage from './pages/RadarForecastPage';
 import AlertsPage from './pages/AlertsPage';
-import { OW_API_KEY } from './keys.js'
+import { OW_API_KEY, AW_API_KEY } from './keys.js'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import { uuid } from 'uuidv4';
 import axios from 'axios'
@@ -91,8 +91,14 @@ function App(props) {
       if (coords === '' || city === '') throw new Error('No coords')
       const response = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${coords.latt}&lon=${coords.longt}&units=${unit}&appid=${OW_API_KEY}`);
       const { data } = response
-      console.log(data)
-      const newData = { ...data, id: uuid(), city: city, unit: unit }
+      const newData = {
+        ...data, id: uuid(), city: city, unit: unit,
+        air: await axios.get(`https://api.weatherbit.io/v2.0/current/airquality?lat=${coords.latt}&lon=${coords.longt}&key=${AW_API_KEY}`)
+          .then(res => {
+            return res.data.data[0] ? res.data.data[0] : null
+          })
+
+      }
       setSelectedLocation(newData.id)
       checkData(newData)
       setCity('')

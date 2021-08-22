@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 
-import '../styles/windyMap.css'
+// import '../styles/windyMap.css'
 import { W_API_KEY } from '../keys'
 
 const useStyles = makeStyles({
@@ -19,6 +19,14 @@ const useStyles = makeStyles({
     mapDiv: {
         width: '60%',
         minHeight: "60vh",
+        '& #logo-wrapper': {
+            top: 'initial',
+            bottom: '65px'
+        },
+        '& #logo-wrapper #logo': {
+            left: '90%',
+            top: '90%',
+        }
     },
     btnDiv: {
         marginTop: '8px',
@@ -83,9 +91,13 @@ function RadarForecastPage(props) {
             </div>
             <div className={classes.btnDiv}>
                 <ButtonGroup variant="contained" classes={{ root: classes.btnGroup }} aria-label="outlined primary button group">
-                    <Button onClick={() => changeOverlay('rain')}>Rain Radar</Button>
-                    <Button onClick={() => changeOverlay('temp')}>Temperature Radar</Button>
-                    <Button onClick={() => changeOverlay('wind')}>Wind Radar</Button>
+                    <Button onClick={() => changeOverlay('rain')}>Rain</Button>
+                    <Button onClick={() => changeOverlay('temp')}>Temperature</Button>
+                    <Button onClick={() => changeOverlay('wind')}>Wind</Button>
+                    <Button onClick={() => changeOverlay('pressure')}>Pressure</Button>
+                    <Button onClick={() => changeOverlay('clouds')}>Cloud</Button>
+                    <Button onClick={() => changeOverlay('waves')}>Waves</Button>
+                    <Button onClick={() => changeOverlay('currents')}>Currents</Button>
                 </ButtonGroup>
             </div>
         </Page >

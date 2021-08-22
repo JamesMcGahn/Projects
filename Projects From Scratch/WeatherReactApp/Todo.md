@@ -21,6 +21,7 @@ React Weather Project
 - [ ] Remove inline styles on HistoryBar Item
 - [ ] Remove Styles from components put in separate file
 - [ ] Make styles responsive
+- [ ] No Location / Welcome Page
 
 ### Today Forecast Page
 
