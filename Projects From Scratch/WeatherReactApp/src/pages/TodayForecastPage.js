@@ -22,7 +22,7 @@ function TodayForecastPage(props) {
     const forecast = findLocation(id)
 
     const classes = useStyles()
-    console.log('for', forecast)
+
     return (
         <Page id={id} idChange={idChange} changeTab={changeTab} tab={0} findLocation={findLocation}>
             {forecast.map(forecast => {

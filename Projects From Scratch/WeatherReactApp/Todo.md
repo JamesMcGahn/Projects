@@ -7,16 +7,20 @@ React Weather Project
 - [x] Daily Forecast Page
 - [x] Alerts Page
 - [x] Weekend Forecast Page
-- [ ] Radar Forecast Page
+- [x] Radar Forecast Page
+  - [x] render leaflet / windy map
+  - [x] create map control buttons to change type of radar map
 - [ ] Air Quality Forecast Page
 - [ ] Pollen Forecast Page
 - [ ] Refactor / Clean up App File
+  - [ ] Pull out into Hooks
+  - [ ] use Context ?
 - [ ] Error Card / Notification
 - [ ] Footer
 - [x] Page Layout Component
 - [ ] Remove inline styles on HistoryBar Item
 - [ ] Remove Styles from components put in separate file
-- [ ] No Location / Welcome Page
+- [ ] Make styles responsive
 
 ### Today Forecast Page
 
