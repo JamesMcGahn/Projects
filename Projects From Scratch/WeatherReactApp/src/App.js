@@ -28,11 +28,10 @@ const useStyles = makeStyles((theme) => ({
 
 function App(props) {
   const [coords, setCoords] = React.useState()
-  const [city, setCity] = React.useState();
   const [unit, setUnit] = React.useState('imperial')
   const [typeTabIndex, setTypeTabIndex] = React.useState(0);
   const [weatherData, setweatherData] = uselocalStoreHook()
-  const [searchText, setSearchText] = React.useState('')
+  const [SearchResultLoc, setSearchResultLoc] = React.useState()
   const [selectedLocation, setSelectedLocation] = React.useState();
 
 
@@ -69,40 +68,29 @@ function App(props) {
     setweatherData([...cleanedData, newData])
   }
 
-  const coordsFetch = async () => {
-    try {
-      if (searchText.length === 0) {
-        throw new Error('No search text')
-      } else {
-        const res = await axios.get(`https://geocode.xyz/${searchText}?json=1`)
-        const { data } = res
-        console.log(data)
-        setCity(data.standard.city)
-        setCoords({ latt: data.latt, longt: data.longt })
-      }
-    }
-    catch (e) {
-      console.log('coords', e)
-    }
-  }
+
 
   const weatherFetch = async () => {
+
+
     try {
-      if (coords === '' || city === '') throw new Error('No coords')
-      const response = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${coords.latt}&lon=${coords.longt}&units=${unit}&appid=${OW_API_KEY}`);
-      const { data } = response
-      const newData = {
-        ...data, id: uuid(), city: city, unit: unit,
-        air: await axios.get(`https://api.weatherbit.io/v2.0/current/airquality?lat=${coords.latt}&lon=${coords.longt}&key=${AW_API_KEY}`)
-          .then(res => {
-            return res.data.data[0] ? res.data.data[0] : null
-          })
-
+      if (SearchResultLoc) {
+        const { lat, lon, name, country } = SearchResultLoc
+        let state
+        if (SearchResultLoc.state) state = SearchResultLoc.state
+        const response = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=${unit}&appid=${OW_API_KEY}`);
+        const { data } = response
+        const newData = {
+          ...data, id: uuid(), city: name, unit: unit, country: country, state: state ? state : null,
+          air: await axios.get(`https://api.weatherbit.io/v2.0/current/airquality?lat=${lat}&lon=${lon}&key=${AW_API_KEY}`)
+            .then(res => {
+              return res.data.data[0] ? res.data.data[0] : null
+            })
+        }
+        setSelectedLocation(newData.id)
+        checkData(newData)
+        setSearchResultLoc()
       }
-      setSelectedLocation(newData.id)
-      checkData(newData)
-      setCity('')
-
     } catch (e) {
       console.log(e)
     }
@@ -110,11 +98,7 @@ function App(props) {
 
   useEffect(() => {
     weatherFetch()
-  }, [coords])
-
-  useEffect(() => {
-    coordsFetch()
-  }, [searchText])
+  }, [SearchResultLoc])
 
 
 
@@ -125,7 +109,7 @@ function App(props) {
   return (
     <div className={classes.root}>
 
-      <MainNav unit={unit} setUnit={setUnit} setSearchText={setSearchText} weather={weatherData}
+      <MainNav unit={unit} setUnit={setUnit} setSearchResultLoc={setSearchResultLoc} weather={weatherData}
         id={selectedLocation} setTypeTabIndex={setTypeTabIndex} typeTabIndex={typeTabIndex} removeLocation={removeLocation} idChange={idChange}
       />
 

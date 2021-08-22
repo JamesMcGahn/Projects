@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import InputBase from '@material-ui/core/InputBase';
@@ -8,6 +8,12 @@ import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import { useHistory } from "react-router-dom";
 import { Link } from 'react-router-dom'
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import axios from 'axios'
+import { OW_API_KEY } from '../../keys.js'
+import ClickOutsideWrapper from '../helpers/ClickOutsideWrapper'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -85,29 +91,79 @@ const useStyles = makeStyles((theme) => ({
     },
     logoContainer: {
         width: '5%'
+    },
+    searchResults: {
+        marginTop: '1px',
+        marginLeft: '4%',
+        backgroundColor: 'white',
+        color: 'black',
+        flexGrow: 1,
+        width: '95%',
+        borderRadius: '5px !important'
+
+    },
+    searchContainer: {
+        position: 'absolute',
+        top: '30%',
+        left: '42%',
+        zIndex: 10,
+
+    },
+    list: {
+        '& div.MuiButtonBase-root:hover': {
+            backgroundColor: '#113076',
+            color: 'white',
+        }
     }
 }));
 
-function Navbar({ unit, setSearchText, setUnit }) {
+function Navbar({ unit, setSearchResultLoc, setUnit }) {
     let history = useHistory();
+    const classes = useStyles();
+    const [showSearchResult, setShowSearchResults] = useState(false)
+    const [searchResults, setSearchResults] = useState([]);
+    const [searchPlaceholder, setSearchPlaceholder] = useState('')
+
+    const handleSearchResultClick = (index) => {
+        setShowSearchResults(false)
+        setSearchResultLoc(searchResults[index])
+        setSearchResults([])
+        history.push("/");
+    }
+
     const handleChangeUnit = (e) => {
         setUnit(e.target.value)
-        console.log(e.target.value)
     }
 
     const handleSearch = (e) => {
         e.preventDefault()
-        setSearchText(searchPlaceholder)
+        coordsFetch()
         setSearchPlaceholder('')
-        history.push("/");
     }
 
     const handleChange = (e) => {
         setSearchPlaceholder(e.target.value)
     }
 
-    const classes = useStyles();
-    const [searchPlaceholder, setSearchPlaceholder] = useState('')
+
+    const coordsFetch = async () => {
+        try {
+            if (searchPlaceholder.length < 1) {
+                throw new Error('No search text')
+            } else {
+                const res = await axios.get(`http://api.openweathermap.org/geo/1.0/direct?q=${searchPlaceholder}&limit=5&appid=${OW_API_KEY}`)
+                const { data } = res
+                console.log(data)
+                setSearchResults(data)
+                setShowSearchResults(true)
+            }
+        }
+        catch (e) {
+            console.log('coords', e)
+        }
+    }
+
+
 
     return (
         <div className={classes.root} >
@@ -120,20 +176,40 @@ function Navbar({ unit, setSearchText, setUnit }) {
                             </Link>
                         </div>
                         <form onSubmit={handleSearch}>
-                            <div className={classes.search}>
-                                <div className={classes.searchIcon}>
-                                    <SearchIcon />
+                            <div className={classes.searchContainer}>
+                                <div className={classes.search}>
+                                    <div className={classes.searchIcon}>
+                                        <SearchIcon />
+                                    </div>
+                                    <InputBase
+                                        value={searchPlaceholder}
+                                        onChange={handleChange}
+                                        placeholder='Enter a City'
+                                        classes={{
+                                            root: classes.inputRoot,
+                                            input: classes.inputInput,
+                                        }}
+                                        inputProps={{ 'aria-label': 'search' }}
+                                    />
+
                                 </div>
-                                <InputBase
-                                    value={searchPlaceholder}
-                                    onChange={handleChange}
-                                    placeholder='Enter a City'
-                                    classes={{
-                                        root: classes.inputRoot,
-                                        input: classes.inputInput,
-                                    }}
-                                    inputProps={{ 'aria-label': 'search' }}
-                                />
+                                {showSearchResult ?
+                                    <ClickOutsideWrapper setStatefn={setShowSearchResults}>
+                                        <div className={classes.searchResults}>
+                                            <List classes={{ root: classes.list }} component="nav" aria-label="main mailbox folders">
+
+                                                {searchResults.length ? searchResults.map((item, i) =>
+                                                    <ListItem button key={`${i}-search-result-item`}>
+                                                        <ListItemText onClick={() => handleSearchResultClick(i)} primary={`${item.name}, ${item.state ? `${item.state}, ${item.country} ` : `${item.country}`}`} />
+                                                    </ListItem>
+                                                )
+                                                    : null
+
+                                                }
+                                            </List>
+                                        </div>
+                                    </ClickOutsideWrapper>
+                                    : null}
                             </div>
                         </form>
                         <FormControl className={classes.formControl}>
