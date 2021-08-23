@@ -56,16 +56,21 @@ const useStyles = makeStyles((theme) => ({
     button: {
         margin: '0 0 15px 15px',
     },
+    topCardTitle: {
+        '& h3': {
+            fontSize: '4rem',
+        }
+    }
 }))
 
 function InfoCard(props) {
-    const { cardTitle, cardSubTitle, route, buttonColor, buttonText, } = props
+    const { cardTitle, cardSubTitle, route, buttonColor, buttonText, titleStyle } = props
     const classes = useStyles()
     return (
         <Card className={classes.root}>
             <div className={classes.content}>
                 <div className={classes.headTitle}>
-                    <div><h3> {cardTitle}</h3>
+                    <div><h3 style={titleStyle}> {cardTitle}</h3>
                         <h4>{cardSubTitle}</h4>
                     </div>
                 </div>
@@ -73,13 +78,13 @@ function InfoCard(props) {
                     {props.children}
                 </div>
             </div>
-            <div>
+            {buttonText ? <div>
                 <CardActions className={classes.button}>
                     <CardButton route={route} backgroundColor={buttonColor}>
                         {buttonText}
                     </CardButton>
                 </CardActions>
-            </div>
+            </div> : null}
         </Card >
     );
 }

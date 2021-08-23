@@ -16,12 +16,14 @@ React Weather Project
   - [ ] Pull out into Hooks
   - [ ] use Context ?
 - [ ] Error Card / Notification
-- [ ] Footer
+- [x] Layout Component
+- [x] Footer
 - [x] Page Layout Component
 - [ ] Remove inline styles on HistoryBar Item
 - [ ] Remove Styles from components put in separate file
 - [ ] Make styles responsive
 - [ ] No Location / Welcome Page
+- [ ] Add country / state to city name display
 
 ### Today Forecast Page
 

@@ -26,6 +26,9 @@ const useStyles = makeStyles({
         '& #logo-wrapper #logo': {
             left: '90%',
             top: '90%',
+        },
+        '& #mobile-ovr-select': {
+            display: 'none !important'
         }
     },
     btnDiv: {

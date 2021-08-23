@@ -18,17 +18,19 @@ function HistoryBarItem({ id, temp, city, icon, removeLocation, alert, idChange 
     const classes = useStyles()
     let history = useHistory()
     const [showDelete, setShowDelete] = React.useState(false)
+    let timer
+
     const handleClick = (event) => {
         event.preventDefault();
         setShowDelete(true)
-        setTimeout(() => {
+        timer = setTimeout(() => {
             setShowDelete(false)
         }, 5000);
     }
     const handleDelete = (event) => {
         event.preventDefault();
+        clearTimeout(timer)
         removeLocation(id)
-        history.push("/");
     }
     return (
         <>

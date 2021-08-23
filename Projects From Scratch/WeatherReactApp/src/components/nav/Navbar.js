@@ -99,8 +99,8 @@ const useStyles = makeStyles((theme) => ({
         color: 'black',
         flexGrow: 1,
         width: '95%',
-        borderRadius: '5px !important'
-
+        borderRadius: '5px !important',
+        boxShadow: '0 3px 20px rgb(0 0 0 / 0.5)'
     },
     searchContainer: {
         position: 'absolute',

@@ -41,37 +41,50 @@ const useStyles = makeStyles({
     }
 });
 
+function stringCleaner(string) {
+    if (string.includes('*')) {
+        let strarry = string.split('*')
+        return strarry.map(p => <p>{p}</p>)
+    } else if (string.includes('...')) {
+        let strarry = string.split('...')
+        return strarry.map(p => <p>{p}</p>)
+    } else return string
+}
+
+
 function AlertsPage(props) {
     const { id, findLocation, idChange, changeTab, } = props
     const classes = useStyles()
     const forecast = findLocation(id)
-    console.log(forecast)
     return (
         <Page id={id} idChange={idChange} changeTab={changeTab} tab={4} findLocation={findLocation} >
             <div className={classes.todaysum}>
                 {forecast.map(loc => {
-                    let alert
-
                     if (loc.alerts) {
-                        alert = loc.alerts.map(alert =>
-                        (<Accordion>
-                            <AccordionSummary
-                                expandIcon={<ExpandMoreIcon />}
-                                aria-controls="panel1a-content"
-                                id="panel1a-header"
-                            >
-                                <span className={classes.warn}> <FontAwesomeIcon icon={faExclamationCircle} size="sm" /></span>
-                                <span className={classes.accTitle}> {`  ${alert.event}`} </span>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <div className={classes.accDetail}>
-                                    <h6>Issued By:</h6>
-                                    <p >{alert.sender_name}</p>
-                                    <h6 style={{ margin: '15px 0 0 0' }}>Description:</h6>
-                                    <p>{alert.description}</p>
-                                </div>
-                            </AccordionDetails>
-                        </Accordion>)
+                        alert = loc.alerts.map(alert => {
+
+
+                            return (
+                                < Accordion >
+                                    <AccordionSummary
+                                        expandIcon={<ExpandMoreIcon />}
+                                        aria-controls="panel1a-content"
+                                        id="panel1a-header"
+                                    >
+                                        <span className={classes.warn}> <FontAwesomeIcon icon={faExclamationCircle} size="sm" /></span>
+                                        <span className={classes.accTitle}> {`  ${alert.event}`} </span>
+                                    </AccordionSummary>
+                                    <AccordionDetails>
+                                        <div className={classes.accDetail}>
+                                            <h6>Issued By:</h6>
+                                            <p >{alert.sender_name}</p>
+                                            <h6 style={{ margin: '15px 0 0 0' }}>Description:</h6>
+                                            {stringCleaner(alert.description)}
+                                        </div>
+                                    </AccordionDetails>
+                                </Accordion>
+                            )
+                        }
                         )
                     }
                     return (

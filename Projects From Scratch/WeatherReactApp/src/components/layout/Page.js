@@ -10,7 +10,8 @@ const useStyles = makeStyles({
         justifyContent: 'flex-start',
         alignItems: 'center',
         flexDirection: 'column',
-        marginTop: '15px'
+        marginTop: '15px',
+        marginBottom: '30px',
     },
 });
 function Page(props) {

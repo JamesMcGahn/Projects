@@ -1,39 +1,32 @@
 import './App.css';
 import React, { useEffect } from 'react';
+
+import Layout from './components/layout/Layout'
 import TodayForecastPage from './pages/TodayForecastPage';
-import MainNav from './components/layout/MainNav'
 import HourlyForecastPage from './pages/HourlyForecastPage';
 import DailyForecastPage from './pages/DailyForecastPage';
 import WeekendForecastPage from './pages/WeekendForecastPage';
 import RadarForecastPage from './pages/RadarForecastPage';
 import AlertsPage from './pages/AlertsPage';
+import AirQualityPage from './pages/AirQualityPage';
 import { OW_API_KEY, AW_API_KEY } from './keys.js'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import { uuid } from 'uuidv4';
 import axios from 'axios'
-import { makeStyles } from '@material-ui/core/styles';
-
+import { useHistory } from "react-router-dom";
 import uselocalStoreHook from './hooks/useLocalStoreHook'
 
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: "#1a357c",
-    backgroundImage: 'linear-gradient(#1a357c 9%,#99479b)',
-    height: '100%',
-    backgroundAttachment: "fixed",
-    backgroundRepeat: "no-repeat",
-  }
-}));
+
 
 function App(props) {
-  const [coords, setCoords] = React.useState()
   const [unit, setUnit] = React.useState('imperial')
   const [typeTabIndex, setTypeTabIndex] = React.useState(0);
   const [weatherData, setweatherData] = uselocalStoreHook()
   const [SearchResultLoc, setSearchResultLoc] = React.useState()
   const [selectedLocation, setSelectedLocation] = React.useState();
 
+  let history = useHistory()
 
   const findLocation = (id, setTab) => {
     let passedId = id
@@ -57,8 +50,6 @@ function App(props) {
   const removeLocation = (id) => {
     const removed = weatherData.filter(loc => (loc.id !== id))
     setweatherData(removed)
-
-    if (id === selectedLocation) setSelectedLocation(weatherData[weatherData.length - 1].id)
   }
 
   const checkData = (newData) => {
@@ -71,8 +62,6 @@ function App(props) {
 
 
   const weatherFetch = async () => {
-
-
     try {
       if (SearchResultLoc) {
         const { lat, lon, name, country } = SearchResultLoc
@@ -100,19 +89,24 @@ function App(props) {
     weatherFetch()
   }, [SearchResultLoc])
 
+  useEffect(() => {
+    if (weatherData.findIndex(loc => loc.id === selectedLocation) !== -1) {
+      history.push(`/today/${selectedLocation}`)
+    }
+    else if (weatherData.length > 0) {
+      let id = weatherData[weatherData.length - 1].id
+      history.push(`/today/${id}`)
+    } else {
+      history.push(`/`)
+    }
+
+  }, [weatherData])
 
 
-
-
-
-  const classes = useStyles();
   return (
-    <div className={classes.root}>
-
-      <MainNav unit={unit} setUnit={setUnit} setSearchResultLoc={setSearchResultLoc} weather={weatherData}
-        id={selectedLocation} setTypeTabIndex={setTypeTabIndex} typeTabIndex={typeTabIndex} removeLocation={removeLocation} idChange={idChange}
-      />
-
+    <Layout unit={unit} setUnit={setUnit} setSearchResultLoc={setSearchResultLoc} weather={weatherData}
+      id={selectedLocation} setTypeTabIndex={setTypeTabIndex} typeTabIndex={typeTabIndex} removeLocation={removeLocation} idChange={idChange}
+    >
       <Route render={({ location }) =>
         <Switch location={location}>
           <Route exact path='/welcome/' render={routeProps => (
@@ -120,6 +114,9 @@ function App(props) {
           )} />
           <Route exact path='/alerts/:locId' render={routeProps => (
             <AlertsPage findLocation={findLocation} changeTab={changeTab} idChange={idChange} id={routeProps.match.params.locId} />
+          )} />
+          <Route exact path='/airquality/:locId' render={routeProps => (
+            <AirQualityPage findLocation={findLocation} changeTab={changeTab} idChange={idChange} id={routeProps.match.params.locId} />
           )} />
           <Route exact path='/radar/:locId' render={routeProps => (
             <RadarForecastPage findLocation={findLocation} changeTab={changeTab} idChange={idChange} id={routeProps.match.params.locId} />
@@ -143,7 +140,9 @@ function App(props) {
                 selectedLocation ?
                   <Redirect to={`/today/${selectedLocation}`} />
                   :
-                  <Redirect to={`/welcome`} />
+                  weatherData.length > 0 ? <Redirect to={`/today/${weatherData[weatherData.length - 1].id}`} />
+                    :
+                    <Redirect to={`/welcome`} />
               }
             </>
           )} />
@@ -153,7 +152,7 @@ function App(props) {
 
         </Switch>
       } />
-    </div>
+    </Layout>
   );
 }
 
