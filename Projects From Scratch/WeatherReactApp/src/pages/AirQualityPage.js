@@ -11,11 +11,31 @@ const useStyles = makeStyles({
         marginBottom: '2rem',
         height: '100%',
     },
+    allPols: {
+        width: '60%',
+        marginBottom: '2rem',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'row',
+
+    },
     airContainer: {
         display: 'flex',
         width: '100%',
     },
     airQbody: {
+        width: '100%',
+        display: 'flex',
+        padding: '15px',
+
+    },
+    airQbodyAll: {
+        width: '100%',
+        display: 'flex',
+        padding: '15px',
+        borderBottom: '1px solid rgba(224, 224, 224, 1)',
+    },
+    airQheader: {
         width: '65%',
         display: 'flex',
         padding: '15px',
@@ -33,16 +53,42 @@ const useStyles = makeStyles({
     airQprog: {
         maxWidth: '20%',
     },
+    airQprogBody: {
+        maxWidth: '15%',
+
+    },
     airQtext: {
         marginLeft: '2rem',
         maxWidth: '80%',
         borderRight: '1px solid rgba(224, 224, 224, 1)',
+        paddingRight: '2px',
         '& h3': {
             margin: 0
         },
         '& p': {
-            marginTop: '1px'
+            marginTop: '1px',
+            marginRight: '2px'
         }
+    },
+    airQtextAll: {
+        marginLeft: '2rem',
+        maxWidth: '80%',
+        '& h3': {
+            margin: 0
+        },
+        '& h4': {
+            marginTop: '1px',
+            fontSize: '1rem',
+            fontWeight: 'normal'
+        }
+    },
+    smallCont: {
+        width: '50%',
+    },
+    allPolsCont: {
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap'
     }
 });
 
@@ -71,10 +117,9 @@ function AirQualityPage({ id, idChange, changeTab, findLocation }) {
     let air
     if (forecast.length > 0 && forecast[0].air)
         air = { ...forecast[0].air }
-    console.log(air)
 
 
-    function airQty(value) {
+    function airQty(value, title, header) {
         let text, color, textBody
         if (value > 0 && value <= 50) {
             text = 'Good'
@@ -105,18 +150,46 @@ function AirQualityPage({ id, idChange, changeTab, findLocation }) {
             color = 'maroon'
             textBody = airQtyTest[5]
         }
+        let progressTextSize = header ? '3rem' : '2.4rem'
+        let noHeaderBorder = header ? { borderBottom: 'none' } : {}
         return (
-            <div className={classes.airQbody} >
-                <div className={classes.airQprog}>
-                    <CircularProgressbar styles={{ path: { stroke: color }, text: { fill: 'black', fontSize: '3rem', fontFamily: 'Metabold' } }} value={value} maxValue={500} text={value} />
+            <div className={header ? classes.airQbody : classes.airQbodyAll} >
+                <div className={header ? classes.airQprog : classes.airQprogBody} style={noHeaderBorder}>
+                    <CircularProgressbar styles={{ path: { stroke: color }, text: { fill: 'black', fontSize: progressTextSize, fontFamily: 'Metabold' } }} value={value} maxValue={500} text={Math.ceil(value)} />
                 </div>
-                <div className={classes.airQtext}>
-                    <h3>{text}</h3>
-                    <p>{textBody}</p>
+                <div className={header ? classes.airQtext : classes.airQtextAll}>
+                    <h3>{header ? '' : title}</h3>
+                    <h4>{text}</h4>
+                    <p>{header ? textBody : ''}</p>
                 </div>
             </div>
         )
     }
+
+    const createRows = (title, value) => {
+        return { title, value }
+    }
+
+    const pollutants = {
+        o3: 'O3 (Ozone)',
+        no2: 'NO2 (Nitrogen Dioxide)',
+        so2: 'SO2 (Sulfur Dioxide)',
+        pm25: 'PM 2.5',
+        pm10: 'PM 10',
+        co: 'CO (Carbon Monoxide)'
+    }
+
+
+
+    const polData = [
+        createRows(pollutants['o3'], air.o3),
+        createRows(pollutants['no2'], air.no2),
+        createRows(pollutants['so2'], air.so2),
+        createRows(pollutants['pm25'], air.pm25),
+        createRows(pollutants['pm10'], air.pm10),
+        createRows(pollutants['co'], air.co),
+    ]
+
 
     function highestPollut(obj) {
         let max = 0
@@ -130,13 +203,13 @@ function AirQualityPage({ id, idChange, changeTab, findLocation }) {
         return highPol
     }
     const highestPollKey = highestPollut(air)
-
+    console.log(highestPollKey)
     return (
         <Page id={id} idChange={idChange} changeTab={changeTab} tab={5} findLocation={findLocation}>
             <div className={classes.airCard}>
                 <InfoCard cardTitle={`Today's Air Quality`} titleStyle={{ fontSize: '1.5rem' }} >
                     <div className={classes.airContainer}>
-                        {airQty(air.aqi)}
+                        {airQty(air[highestPollKey], pollutants[highestPollKey], true)}
                         <div className={classes.primaryPol}>
                             <h5>Primary Pollutant:</h5>
                             <p>{pollutants[highestPollKey]}</p>
@@ -145,6 +218,16 @@ function AirQualityPage({ id, idChange, changeTab, findLocation }) {
 
                 </InfoCard>
             </div>
+            <div className={classes.allPols}>
+                <InfoCard cardTitle={'All Pollutants'}>
+                    <div className={classes.allPolsCont}>
+                        {polData.map(p => {
+                            return <div className={classes.smallCont}> {airQty(p.value, p.title, false)}</div>;
+                        })}
+                    </div>
+                </InfoCard>
+            </div>
+
         </Page>
     );
 }

@@ -10,7 +10,7 @@ React Weather Project
 - [x] Radar Forecast Page
   - [x] render leaflet / windy map
   - [x] create map control buttons to change type of radar map
-- [ ] Air Quality Forecast Page
+- [x] Air Quality Forecast Page
 - [ ] Pollen Forecast Page
 - [ ] Refactor / Clean up App File
   - [ ] Pull out into Hooks
