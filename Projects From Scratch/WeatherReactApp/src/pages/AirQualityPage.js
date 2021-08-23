@@ -34,6 +34,7 @@ const useStyles = makeStyles({
         display: 'flex',
         padding: '15px',
         borderBottom: '1px solid rgba(224, 224, 224, 1)',
+
     },
     airQheader: {
         width: '65%',
@@ -77,18 +78,28 @@ const useStyles = makeStyles({
             margin: 0
         },
         '& h4': {
-            marginTop: '1px',
+            marginTop: '4px',
             fontSize: '1rem',
-            fontWeight: 'normal'
+            fontWeight: 'normal',
+            marginBottom: 0,
+            lineHeight: '1.2',
+            color: '#6f7585',
+        },
+        '& span': {
+            marginTop: 0,
+            fontSize: '.9rem',
+            color: '#6f7585',
+
         }
     },
     smallCont: {
         width: '50%',
+
     },
     allPolsCont: {
         display: 'flex',
         flexDirection: 'row',
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
     }
 });
 
@@ -119,7 +130,7 @@ function AirQualityPage({ id, idChange, changeTab, findLocation }) {
         air = { ...forecast[0].air }
 
 
-    function airQty(value, title, header) {
+    function airQty(value, title, aqiVal, header, index) {
         let text, color, textBody
         if (value > 0 && value <= 50) {
             text = 'Good'
@@ -153,21 +164,22 @@ function AirQualityPage({ id, idChange, changeTab, findLocation }) {
         let progressTextSize = header ? '3rem' : '2.4rem'
         let noHeaderBorder = header ? { borderBottom: 'none' } : {}
         return (
-            <div className={header ? classes.airQbody : classes.airQbodyAll} >
+            <div className={header ? classes.airQbody : classes.airQbodyAll} style={index === 4 || index === 5 ? { border: 'none' } : {}}>
                 <div className={header ? classes.airQprog : classes.airQprogBody} style={noHeaderBorder}>
                     <CircularProgressbar styles={{ path: { stroke: color }, text: { fill: 'black', fontSize: progressTextSize, fontFamily: 'Metabold' } }} value={value} maxValue={500} text={Math.ceil(value)} />
                 </div>
                 <div className={header ? classes.airQtext : classes.airQtextAll}>
                     <h3>{header ? '' : title}</h3>
                     <h4>{text}</h4>
+                    <span>{header ? null : `${aqiVal} µg/m³`}</span>
                     <p>{header ? textBody : ''}</p>
                 </div>
-            </div>
+            </div >
         )
     }
 
-    const createRows = (title, value) => {
-        return { title, value }
+    const createRows = (title, value, valAqi,) => {
+        return { title, value, valAqi, }
     }
 
     const pollutants = {
@@ -178,17 +190,31 @@ function AirQualityPage({ id, idChange, changeTab, findLocation }) {
         pm10: 'PM 10',
         co: 'CO (Carbon Monoxide)'
     }
-
-
+    // convert ug/m3 to ppb and then to ppm
+    const co = ((1 / 1.145) * air.co) / 1000
+    // convert ug/m3 to ppb
+    const so2 = ((1 / 2.62) * air.so2)
+    const no2 = ((1 / 1.88) * air.no2)
+    const o3 = ((1 / 2.00) * air.o3)
 
     const polData = [
-        createRows(pollutants['o3'], air.o3),
-        createRows(pollutants['no2'], air.no2),
-        createRows(pollutants['so2'], air.so2),
-        createRows(pollutants['pm25'], air.pm25),
-        createRows(pollutants['pm10'], air.pm10),
-        createRows(pollutants['co'], air.co),
+        createRows(pollutants['o3'], o3, air.o3,),
+        createRows(pollutants['no2'], no2, air.no2),
+        createRows(pollutants['so2'], so2, air.so2),
+        createRows(pollutants['pm25'], air.pm25, air.pm25),
+        createRows(pollutants['pm10'], air.pm10, air.pm10),
+        createRows(pollutants['co'], co, air.co),
     ]
+
+    const fixedAqiPol =
+    {
+        pm10: air.pm10,
+        co: co,
+        o3: o3,
+        so2: so2,
+        no2: no2,
+        pm25: air.pm25,
+    }
 
 
     function highestPollut(obj) {
@@ -202,14 +228,14 @@ function AirQualityPage({ id, idChange, changeTab, findLocation }) {
         }
         return highPol
     }
-    const highestPollKey = highestPollut(air)
+    const highestPollKey = highestPollut(fixedAqiPol)
     console.log(highestPollKey)
     return (
         <Page id={id} idChange={idChange} changeTab={changeTab} tab={5} findLocation={findLocation}>
             <div className={classes.airCard}>
                 <InfoCard cardTitle={`Today's Air Quality`} titleStyle={{ fontSize: '1.5rem' }} >
                     <div className={classes.airContainer}>
-                        {airQty(air[highestPollKey], pollutants[highestPollKey], true)}
+                        {airQty(air.aqi, air.aqi, air.aqi, true)}
                         <div className={classes.primaryPol}>
                             <h5>Primary Pollutant:</h5>
                             <p>{pollutants[highestPollKey]}</p>
@@ -221,8 +247,8 @@ function AirQualityPage({ id, idChange, changeTab, findLocation }) {
             <div className={classes.allPols}>
                 <InfoCard cardTitle={'All Pollutants'}>
                     <div className={classes.allPolsCont}>
-                        {polData.map(p => {
-                            return <div className={classes.smallCont}> {airQty(p.value, p.title, false)}</div>;
+                        {polData.map((p, i) => {
+                            return <div className={classes.smallCont}> {airQty(p.value, p.title, p.valAqi, false, i)}</div>;
                         })}
                     </div>
                 </InfoCard>
