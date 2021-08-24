@@ -7,6 +7,7 @@ import HourlyForecastPage from './pages/HourlyForecastPage';
 import DailyForecastPage from './pages/DailyForecastPage';
 import WeekendForecastPage from './pages/WeekendForecastPage';
 import RadarForecastPage from './pages/RadarForecastPage';
+import WelcomePage from './pages/WelcomePage';
 import AlertsPage from './pages/AlertsPage';
 import AirQualityPage from './pages/AirQualityPage';
 import AllergyPage from './pages/AllergyPage';
@@ -111,7 +112,7 @@ function App(props) {
       <Route render={({ location }) =>
         <Switch location={location}>
           <Route exact path='/welcome/' render={routeProps => (
-            <h1>select a location</h1>
+            <WelcomePage findLocation={findLocation} changeTab={changeTab} idChange={idChange} id={routeProps.match.params.locId} />
           )} />
           <Route exact path='/alerts/:locId' render={routeProps => (
             <AlertsPage findLocation={findLocation} changeTab={changeTab} idChange={idChange} id={routeProps.match.params.locId} />

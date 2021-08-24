@@ -88,7 +88,7 @@ function AirQualityPage({ id, idChange, changeTab, findLocation }) {
                                 const color = aler.value === 0 || aler.value === 1 ? 'green' : aler.value === 2 ? 'yellow' : aler.value === 3 ? 'orange' : aler.value === 4 ? 'red' : ''
                                 const levelText = aler.value === 0 || aler.value === 1 ? 'Low' : aler.value === 2 ? 'Moderate' : aler.value === 3 ? 'High' : aler.value === 4 ? 'Very High' : ''
                                 return (
-                                    <div className={classes.smallCont} style={i === 3 ? { borderRight: 'none' } : {}}>
+                                    <div className={classes.smallCont} key={`${i}-allergy-${aler.name}`} style={i === 3 ? { borderRight: 'none' } : {}}>
                                         <div className={classes.progess} >
                                             <CircularProgressbar styles={{ path: { stroke: color }, text: { fill: 'black', fontSize: '2rem', fontFamily: 'Metabold' } }} value={aler.value} maxValue={4} text={aler.value} />
                                         </div>

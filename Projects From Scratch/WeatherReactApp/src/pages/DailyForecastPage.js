@@ -11,7 +11,7 @@ function DailyForecastPage({ id, idChange, changeTab, findLocation }) {
                     <WeatherTable tableData={weather.daily} key={weather.city}
                         forecastTime={weather.current.dt} timeZoneOffset={weather.timezone_offset}
                         tableTitle={'7 Day Weather'} city={weather.city}
-                        unit={weather.unit} hourly={false} timezone={weather.timezone}
+                        unit={weather.unit} hourly={false} timezone={weather.timezone} id={id}
                     />
                 )}
         </Page>

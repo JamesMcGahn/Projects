@@ -85,7 +85,17 @@ const useStyles = makeStyles({
     },
     buttonText: {
         marginLeft: '4px'
-    }
+    },
+    primaryPol: {
+        width: '20%',
+        padding: '10px',
+        '& h5': {
+            marginBottom: 0
+        },
+        '& p': {
+            marginTop: '10px'
+        }
+    },
 });
 
 

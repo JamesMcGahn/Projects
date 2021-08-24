@@ -6,12 +6,13 @@ import 'react-circular-progressbar/dist/styles.css';
 const useStyles = makeStyles({
 
     airQbody: {
-        width: '70%',
+        width: '75%',
         display: 'flex',
         padding: '15px',
 
     },
     airQbodyAll: {
+        marginTop: '10px',
         width: '50%',
         display: 'flex',
         padding: '15px',
@@ -27,7 +28,9 @@ const useStyles = makeStyles({
 
     },
     airQtext: {
-        marginLeft: '2rem',
+        marginLeft: '1.5rem',
+        paddingRight: '1rem',
+        width: '100%',
         maxWidth: '80%',
         borderRight: '1px solid rgba(224, 224, 224, 1)',
         paddingRight: '2px',
@@ -58,7 +61,8 @@ const useStyles = makeStyles({
             fontSize: '.9rem',
             color: '#6f7585',
 
-        }
+        },
+
     }
 });
 

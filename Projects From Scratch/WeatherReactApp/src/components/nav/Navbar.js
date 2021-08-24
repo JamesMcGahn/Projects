@@ -18,20 +18,13 @@ import ClickOutsideWrapper from '../helpers/ClickOutsideWrapper'
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        flexGrow: 1,
+        // flexGrow: 1,
 
 
     },
     appbar: {
         backgroundColor: '#039',
         color: 'white'
-    },
-    title: {
-        flexGrow: 1,
-        display: 'none',
-        [theme.breakpoints.up('sm')]: {
-            display: 'block',
-        },
     },
     search: {
         position: 'relative',
@@ -47,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     searchIcon: {
-        padding: theme.spacing(0, 2),
+        padding: '1% 2%',
         height: '100%',
         position: 'absolute',
         pointerEvents: 'none',
@@ -59,17 +52,10 @@ const useStyles = makeStyles((theme) => ({
         color: 'inherit',
     },
     inputInput: {
-        padding: theme.spacing(1, 1, 1, 0),
-        paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-        transition: theme.transitions.create('width'),
+        padding: '1px, 1px, 1px, 0',
+        paddingLeft: `25%`,
         width: '100%',
-        minWidth: 60,
-        [theme.breakpoints.up('sm')]: {
-            width: '15ch',
-            '&:focus': {
-                width: '20ch',
-            },
-        },
+        minWidth: '100%',
     },
     formControl: {
         margin: '.5rem',
@@ -83,13 +69,13 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         width: '100%',
         height: '10%',
-        margin: '.5rem 0 .5rem 0'
+        margin: '.5rem 0 .5rem 0',
     },
     logo: {
         width: '100%'
     },
     logoContainer: {
-        width: '5%'
+        width: '5%',
     },
     searchResults: {
         marginTop: '1px',
@@ -103,6 +89,8 @@ const useStyles = makeStyles((theme) => ({
     },
     searchContainer: {
         position: 'absolute',
+        width: '18%',
+        minWidth: '150px',
         top: '30%',
         left: '42%',
         zIndex: 10,

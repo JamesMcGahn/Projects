@@ -8,11 +8,11 @@ function HourlyForecastPage({ id, idChange, changeTab, findLocation }) {
     const forecast = findLocation(id)
     return (
         <Page id={id} idChange={idChange} changeTab={changeTab} tab={1} findLocation={findLocation}>
-            {forecast.map(weather => <WeatherTable tableData={weather.hourly}
-                forecastTime={weather.current.dt} timeZoneOffset={weather.timezone_offset}
-                tableTitle={'Hourly Weather'} city={weather.city} key={weather.city}
-                unit={weather.unit} hourly={true}
-            />)}
+            <WeatherTable tableData={forecast[0].hourly}
+                forecastTime={forecast[0].current.dt} timeZoneOffset={forecast[0].timezone_offset}
+                tableTitle={'Hourly Weather'} city={forecast[0].city} key={forecast[0].city}
+                unit={forecast[0].unit} hourly={true} id={id}
+            />
         </Page>
     );
 }

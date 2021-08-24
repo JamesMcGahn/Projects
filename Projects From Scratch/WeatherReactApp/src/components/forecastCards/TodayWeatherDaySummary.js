@@ -20,7 +20,7 @@ function TodayWeatherDaySummary({ weather }) {
     return (
         <SummaryCard cardTitle={`Today's Forecast for ${city}`}
             cardData={cardData} unit={unit} route={`/daily/${id}`}
-            buttonColor={'#1b4de4'} buttonText={'Next Hours'}
+            buttonColor={'#1b4de4'} buttonText={'Next Hours'} mobileWidth={2} mobileTextAlign="center"
         />
     );
 }

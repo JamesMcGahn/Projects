@@ -13,7 +13,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     root: {
         minWidth: '59.5vw',
         height: '100%',
@@ -22,7 +22,7 @@ const useStyles = makeStyles({
         alignItems: 'center',
         flexDirection: 'column',
         color: 'white',
-        padding: '5px 10px 10px 10px'
+        padding: '5px 10px 10px 10px',
     },
     header: {
         width: '100%',
@@ -41,13 +41,16 @@ const useStyles = makeStyles({
         "& svg": {
             color: 'black',
             fontSize: '1.2rem'
+        },
+        [theme.breakpoints.down('sm')]: {
+            flexDirection: 'column',
         }
     },
     table: {
         width: '100%',
     },
     left: {
-        minWidth: '29vw'
+        minWidth: '29vw',
     },
     right: {
         marginLeft: '3px',
@@ -80,12 +83,12 @@ const useStyles = makeStyles({
     sun: {
         width: '50%'
     },
-});
+}));
 
 function TodayWeatherDetail(props) {
     const classes = useStyles();
     const { weather } = props;
-    const { unit, current, city, daily, minutely, } = weather
+    const { unit, current, city, daily, minutely } = weather
 
     function createRowData(name, icon, value) {
         return { name, icon, value };
@@ -106,7 +109,7 @@ function TodayWeatherDetail(props) {
         createRowData('Dew Point', faHandHoldingWater, `${current.dew_point} ${tempUnits}`),
         createRowData('Cloudiness', faCloud, `${current.clouds} %`),
         createRowData('Wind Gust', faTachometerAlt, `${current.wind_gust} ${speedUnit}`, 67,),
-        createRowData('Precipitation volume', faCloudRain, `${minutely[0].precipitation} mm`),
+        createRowData('Precipitation volume', faCloudRain, ` ${minutely ? minutely[0].precipitation : '0'}  mm`),
     ];
 
     return (

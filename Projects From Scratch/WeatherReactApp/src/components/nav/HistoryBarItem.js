@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { makeStyles } from '@material-ui/core/styles';
@@ -21,7 +21,7 @@ function HistoryBarItem({ id, temp, city, icon, removeLocation, alert, idChange 
     const handleClick = (event) => {
         event.preventDefault();
         setShowDelete(true)
-        timer = setTimeout(() => {
+        setTimeout(() => {
             setShowDelete(false)
         }, 5000);
     }
@@ -30,6 +30,10 @@ function HistoryBarItem({ id, temp, city, icon, removeLocation, alert, idChange 
         clearTimeout(timer)
         removeLocation(id)
     }
+    useEffect(() => {
+        if (timer) clearTimeout(timer)
+    }, [timer])
+
     return (
         <>
             <Link to={`/today/${id}`} style={{ width: '70%', display: 'inline-block', marginLeft: '1.5rem' }} onClick={() => idChange(id)}>

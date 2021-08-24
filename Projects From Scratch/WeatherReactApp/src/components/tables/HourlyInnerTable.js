@@ -81,10 +81,10 @@ function HourlyInnerTable({ weather, unit }) {
 
     return (
         <TableBody >
-            <TableRow key={weather.dt}>
+            <TableRow key={`${weather.dt}-hour-tc-${weather.id}`}>
                 {cellData.map((item, i) => {
                     return (
-                        <TableCell align="center" padding='none' classes={{ root: classes.tableCell }} key={`${i}-hour-tc`}>
+                        <TableCell align="center" padding='none' classes={{ root: classes.tableCell }} key={`${i}-hour-tc-${weather.id}`}>
                             <div className={classes.expandCol}>
                                 <div className={classes.faicon}><FontAwesomeIcon icon={item.icon} size="2x" /></div>
                                 <div className={classes.fatext}>

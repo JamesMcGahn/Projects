@@ -6,16 +6,23 @@ import TodayWeatherDetail from '../components/forecastCards/TodayWeatherDetail'
 import TodayHourlyForecastSummary from '../components/forecastCards/TodayHourlyForecastSummary'
 import TodayDailyForecastSummary from '../components/forecastCards/TodayDailyForecastSummary'
 import Page from '../components/layout/Page'
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     todaysum: {
         width: '60%',
-        marginTop: '1rem'
+        marginTop: '1rem',
+        [theme.breakpoints.down('sm')]: {
+            width: '90%',
+        }
     },
     summaryCard: {
         width: '60%',
-        marginTop: '1rem'
-    }
-});
+        marginTop: '1rem',
+        [theme.breakpoints.down('sm')]: {
+            width: '90%',
+        }
+    },
+
+}));
 
 function TodayForecastPage(props) {
     const { id, findLocation, idChange, changeTab, } = props
@@ -51,7 +58,7 @@ function TodayForecastPage(props) {
                     </div>
                 </React.Fragment >)
             })}
-        </ Page>
+        </ Page >
 
 
 

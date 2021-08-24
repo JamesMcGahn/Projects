@@ -22,6 +22,20 @@ React Weather Project
 - [ ] Remove inline styles on HistoryBar Item
 - [ ] Remove Styles from components put in separate file
 - [ ] Make styles responsive
+  - [x] Today Weather Page
+  - [ ] Radar Page
+  - [ ] Weekend Page
+  - [ ] Hourly Page
+  - [ ] Daily Page
+  - [ ] Allergy Page
+  - [ ] Alerts Page
+  - [ ] Air Quality Page
+  - [ ] Welcome Page
+  - [ ] Navbar
+    - [ ] Search
+    - [ ] HistoryBar
+    - [ ] Forecast Bar
+  - [ ] Footer
 - [ ] No Location / Welcome Page
 - [ ] Add country / state to city name display
 

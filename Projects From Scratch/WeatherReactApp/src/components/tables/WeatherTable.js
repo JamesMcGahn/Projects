@@ -64,14 +64,14 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function WeatherTable({ hourly, tableData, forecastTime, timeZoneOffset, tableTitle, city, unit, timezone }) {
+function WeatherTable({ hourly, tableData, forecastTime, timeZoneOffset, tableTitle, city, unit, timezone, id }) {
     const classes = useStyles();
     const localTime = (forecastTime + timeZoneOffset)
     const currentTime = new Date(localTime * 1000).getDay()
     const time = new Date(localTime * 1000).toLocaleTimeString('en-US', { timeStyle: 'short' })
 
     return (
-        <div className={classes.container} key={localTime}>
+        <div className={classes.container} key={id}>
             <Paper className={classes.paper}>
                 <Box margin={0} boxShadow={0} p={1} >
                     <div className={classes.headTitle}>
@@ -80,7 +80,7 @@ function WeatherTable({ hourly, tableData, forecastTime, timeZoneOffset, tableTi
                     </div>
                 </Box>
                 <TableContainer component={Paper} classes={{ root: classes.tableContainer }} key={`Table-Cont-${tableTitle}-${time}-${city}`}>
-                    <Table aria-label="hourly forecast table" key={`Table-${localTime}-${time}-${city}`}>
+                    <Table aria-label="hourly forecast table" key={`Table-${tableTitle}-${time}-${city}`}>
                         <TableBody>
                             {tableData.map((weather, i) => {
                                 const timeLocal = (weather.dt + timeZoneOffset)
@@ -89,15 +89,15 @@ function WeatherTable({ hourly, tableData, forecastTime, timeZoneOffset, tableTi
                                 const bannerTime = new Date(timeLocal * 1000).toLocaleDateString('en-Us', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
                                 if (hourly && ((currentTime < listItemDay && listItemHour === 0) || i === 0)) {
                                     return < >
-                                        <TableRow key={bannerTime} key={`header-row-${i}`}>
+                                        <TableRow key={bannerTime} key={`header-row-${i}-${hourly}`}>
                                             <TableCell align="left" colSpan={6} classes={{ root: classes.banner }} key={`header-dayDisplay-${i}`} >
                                                 <h3> {bannerTime}</h3>
                                             </TableCell>
                                         </TableRow>
-                                        <WeatherTableRow key={`${i}-brow-${listItemHour}-${city}`} weather={weather} unit={unit} localHourTime={timeLocal} hourly={hourly} />
+                                        <WeatherTableRow key={`${i}-brow-${hourly}-${city}`} weather={weather} unit={unit} localHourTime={timeLocal} hourly={hourly} />
                                     </>
                                 } else {
-                                    return <WeatherTableRow key={`${i}-Rrow-${listItemHour}-${city}`} weather={weather} unit={unit} localHourTime={timeLocal} hourly={hourly} index={i} timezone={timezone} />
+                                    return <WeatherTableRow key={`${i}-Rrow-${hourly}-${city}`} weather={weather} unit={unit} localHourTime={timeLocal} hourly={hourly} index={i} timezone={timezone} />
                                 }
                             })}
                         </TableBody>

@@ -12,7 +12,6 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         justifyContent: 'center',
         flexDirection: 'column',
-
     },
     content: {
         minHeight: '80%',
@@ -21,7 +20,8 @@ const useStyles = makeStyles((theme) => ({
         '& h3': {
             fontSize: '1.25rem',
             marginTop: '10px'
-        }
+        },
+
     },
     expandCol: {
         display: 'flex',
@@ -31,24 +31,43 @@ const useStyles = makeStyles((theme) => ({
         textAlign: "left",
         width: props => `${100 / props.itemsLength}%`,
         borderRight: '1px solid rgba(224, 224, 224, 1)',
-        height: '',
+        [theme.breakpoints.down('sm')]: {
+            width: props => `${100 / 1}%`,
+            borderBottom: '1px solid rgba(224, 224, 224, 1)',
+            borderRight: 'none',
+        }
+
+
     },
     fatext: {
         marginBottom: '7px',
         textAlign: 'center',
         "& span": {
             display: "block"
+        },
+        [theme.breakpoints.down('sm')]: {
+            display: 'flex',
+            width: '100%',
+            alignItems: 'center',
+            textAlign: props => props.textAlign,
+            justifyContent: "center",
         }
     },
     title: {
         fontSize: '1.2rem',
         fontFamily: 'Metabold',
-
+        [theme.breakpoints.down('sm')]: {
+            width: '40%',
+        }
     },
     favalue: {
         fontSize: '2.5rem',
         color: '#1b4de4',
-        fontWeight: '800'
+        fontWeight: '800',
+        [theme.breakpoints.down('sm')]: {
+            width: props => `${100 / props.itemsLength}%`,
+            fontSize: '2rem',
+        }
     },
     tablecont: {
         width: '100%',
@@ -58,6 +77,9 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         marginTop: '35px',
         marginBottom: '20px',
+        [theme.breakpoints.down('sm')]: {
+            flexDirection: 'column'
+        }
 
     },
     button: {
@@ -65,11 +87,22 @@ const useStyles = makeStyles((theme) => ({
     },
     icon: {
         width: '80%',
+        [theme.breakpoints.down('sm')]: {
+            width: '25%',
+            fontSize: '2rem',
+        }
     },
     bottomText: {
         fontSize: '.9rem',
         '& svg': {
             color: props => props.iconColor,
+        },
+        [theme.breakpoints.down('sm')]: {
+            width: '25%',
+            fontSize: '1rem',
+            '& svg': {
+                display: 'block'
+            }
         }
     },
     valueSubtext: {
@@ -77,13 +110,18 @@ const useStyles = makeStyles((theme) => ({
         color: '#1b4de4',
         fontWeight: '800',
         marginTop: 0,
-        lineHeight: '0.5'
+        lineHeight: '0.5', [theme.breakpoints.down('sm')]: {
+            fontSize: '1rem',
+            marginLeft: '6px',
+        }
     }
 }))
 
 function SummaryCard(props) {
-    const { cardTitle, cardData, unit, route, buttonColor, buttonText, iconColor } = props
-    const classes = useStyles({ itemsLength: cardData.length, iconColor })
+    const { cardTitle, cardData, unit, route, buttonColor, buttonText, iconColor, mobileWidth, mobileTextAlign } = props
+    const width = mobileWidth ? mobileWidth : cardData.length
+    const textAlign = mobileTextAlign ? mobileTextAlign : 'center'
+    const classes = useStyles({ itemsLength: width, iconColor })
     return (
         <Card className={classes.root}>
             <div className={classes.content}>
