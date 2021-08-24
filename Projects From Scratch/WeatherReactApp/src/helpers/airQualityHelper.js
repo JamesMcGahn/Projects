@@ -6,6 +6,7 @@ class Polluant {
         this.totalRange = sixMax - oneMin
         this.currentRangeIndex = null
         this.curentScale = 0
+        this.currentRange = ''
         this.currentText = ''
         this.currentColor = ''
         this.range = {
@@ -159,3 +160,5 @@ const airQualityHelper = (air) => {
 
     return [totalAqi, listOfAll, highest]
 }
+
+export default airQualityHelper
