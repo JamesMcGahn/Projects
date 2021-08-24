@@ -35,7 +35,15 @@ const useStyles = makeStyles({
         flexWrap: 'wrap',
     },
     menuDiv: {
-        minWidth: '10%'
+        width: '25%',
+        minWidth: '275px',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    list: {
+        width: '100%'
     },
     menuCont: {
         width: '100%',
@@ -49,7 +57,8 @@ const useStyles = makeStyles({
         width: '100%',
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        alignItems: 'center',
+
     },
     colorCol: {
         width: '10%',
@@ -61,10 +70,10 @@ const useStyles = makeStyles({
     },
     colorAqi: {
         marginLeft: '4px',
-        width: '50%'
+        width: '100%'
     },
     colorRange: {
-        width: '25%',
+        width: '50%',
         marginLeft: '10px'
     },
     menuBtn: {
@@ -73,7 +82,6 @@ const useStyles = makeStyles({
         '& :hover': {
             color: 'black',
         }
-
     },
     buttonText: {
         marginLeft: '4px'
@@ -135,7 +143,7 @@ function AirQualityPage({ id, idChange, changeTab, findLocation }) {
                         transformOrigin={{ vertical: "top", horizontal: "center" }}
                         open={Boolean(anchorEl)}
                         onClose={handleClose}
-                        classes={{ paper: classes.menuDiv }}
+                        classes={{ paper: classes.menuDiv, list: classes.list }}
                     >
                         <div className={classes.menuCont}>
                             <div className={classes.menuRow}>

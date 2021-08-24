@@ -11,7 +11,7 @@ React Weather Project
   - [x] render leaflet / windy map
   - [x] create map control buttons to change type of radar map
 - [x] Air Quality Forecast Page
-- [ ] Pollen Forecast Page
+- [x] Pollen Forecast Page
 - [ ] Refactor / Clean up App File
   - [ ] Pull out into Hooks
   - [ ] use Context ?
