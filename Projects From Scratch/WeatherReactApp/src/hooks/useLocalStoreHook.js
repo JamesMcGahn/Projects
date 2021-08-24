@@ -23,7 +23,7 @@ function useLocalStoreHook() {
             console.log(e)
         }
     }, [state, setState]);
-    console.log(state)
+
     return [state, setState]
 }
 

@@ -3,8 +3,6 @@ import Page from '../components/layout/Page'
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-
-// import '../styles/windyMap.css'
 import { W_API_KEY } from '../keys'
 
 const useStyles = makeStyles({
@@ -53,7 +51,6 @@ function RadarForecastPage(props) {
     const forecast = findLocation(id)
     const windyInit = window.windyInit
     const L = window.L
-    const W = window.W
     let lon, lat, city
     if (forecast.length > 0) {
         lon = forecast[0].lon

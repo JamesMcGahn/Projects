@@ -41,9 +41,6 @@ function AirQualityPage({ id, idChange, changeTab, findLocation }) {
     if (forecast.length > 0 && forecast[0].air)
         air = { ...forecast[0].air }
 
-
-
-
     const allPols = airQualityHelper(air)
 
     return (
@@ -65,7 +62,7 @@ function AirQualityPage({ id, idChange, changeTab, findLocation }) {
                 <InfoCard cardTitle={'All Pollutants'}>
                     <div className={classes.allPolsCont}>
                         {allPols[1].map((p, i) => {
-                            return <AirQualityInnerCard className={classes.smallCont} value={p.value} title={p.name} rawValue={p.rawValue}
+                            return <AirQualityInnerCard key={`innerCard-${i}`} className={classes.smallCont} value={p.value} title={p.name} rawValue={p.rawValue}
                                 maxValue={p.totalRange} color={p.currentColor} textBody={p.currentText} rangeName={p.currentRange} header={false} index={i} />
                         })}
                     </div>

@@ -24,10 +24,10 @@ function TodayForecastPage(props) {
     const classes = useStyles()
 
     return (
-        <Page id={id} idChange={idChange} changeTab={changeTab} tab={0} findLocation={findLocation}>
+        <Page id={id} idChange={idChange} changeTab={changeTab} tab={0} findLocation={findLocation} >
             {forecast.map(forecast => {
-                return (<>
-                    <div className={classes.todaysum} key={forecast.city}>
+                return (<React.Fragment key={`${id}-today-page`} >
+                    <div className={classes.todaysum} >
 
                         <TodayWeatherSummary city={forecast.city} time={forecast.current.dt + forecast.timezone_offset} temp={forecast.current.temp}
                             description={forecast.current.weather[0].description} unit={forecast.unit}
@@ -43,13 +43,13 @@ function TodayForecastPage(props) {
                     <div className={classes.summaryCard}>
                         <TodayWeatherDetail weather={forecast} />
                     </div>
-                    <div className={classes.summaryCard}>
+                    <div className={classes.summaryCard} >
                         <TodayHourlyForecastSummary weather={forecast} />
                     </div>
-                    <div className={classes.summaryCard}>
+                    <div className={classes.summaryCard} >
                         <TodayDailyForecastSummary weather={forecast} />
                     </div>
-                </>)
+                </React.Fragment >)
             })}
         </ Page>
 

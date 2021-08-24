@@ -146,7 +146,7 @@ function DailyInnerTable({ dayTime, weather, unit, openRow, timezone }) {
                                     </div>
                                     <div className={classes.headerIcons}>
                                         <div className={classes.temp}>{item.temp}</div>
-                                        <div className={classes.weatherIcon}><img src={`http://openweathermap.org/img/wn/${item.icon}@2x.png`} /></div>
+                                        <div className={classes.weatherIcon}><img src={`http://openweathermap.org/img/wn/${item.icon}@2x.png`} alt='forecastIcon' /></div>
                                         <div className={classes.littleIcons}>
                                             <div className={classes.iconOne}><FontAwesomeIcon icon={item.litteIconOne} size="1x" /> {`${Math.ceil(item.litteIconOneText)} % `}</div>
                                             <div className={classes.faicon}><FontAwesomeIcon icon={item.litteIconTwo} size="1x" /> {`${Math.ceil(item.litteIconTwoText)} ${unit === 'imperial' ? "mph " : "mps"}`} </div>

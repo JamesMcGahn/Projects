@@ -56,49 +56,48 @@ function AlertsPage(props) {
     const { id, findLocation, idChange, changeTab, } = props
     const classes = useStyles()
     const forecast = findLocation(id)
+
+    let alerts
+    let allAlerts
+
+    if (forecast[0].alerts) {
+        alerts = forecast[0].alerts
+        allAlerts = alerts.map((alert, i) => {
+            return (
+                < Accordion key={`${alert.event}-${i}`}>
+                    <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1a-content"
+                        id="panel1a-header"
+                    >
+                        <span className={classes.warn}> <FontAwesomeIcon icon={faExclamationCircle} size="sm" /></span>
+                        <span className={classes.accTitle}> {`  ${alert.event}`} </span>
+                    </AccordionSummary>
+                    <AccordionDetails key={`${alert.sender_name}-${i}`}>
+                        <div className={classes.accDetail}>
+                            <h6>Issued By:</h6>
+                            <p >{alert.sender_name}</p>
+                            <h6 style={{ margin: '15px 0 0 0' }}>Description:</h6>
+                            {stringCleaner(alert.description)}
+                        </div>
+                    </AccordionDetails>
+                </Accordion>
+            )
+        })
+    }
+
     return (
         <Page id={id} idChange={idChange} changeTab={changeTab} tab={4} findLocation={findLocation} >
             <div className={classes.todaysum}>
-                {forecast.map(loc => {
-                    if (loc.alerts) {
-                        alert = loc.alerts.map(alert => {
+                < InfoCard cardTitle={< span ><h2>Weather Alerts</h2> <h3> - {forecast[0].city}</h3> </span>} route={`/hourly/${id}`}
+                    buttonColor={'#1b4de4'} buttonText={'Hourly Forecast'}
+                    iconColor={'#1b4de4'} key={`Alerts-${id}`}  >
+
+                    {forecast[0].alerts ? allAlerts : <p className={classes.accDetail} key={`${id}`}>No Weather Alerts at this Time</p>}
+
+                </InfoCard>
 
 
-                            return (
-                                < Accordion >
-                                    <AccordionSummary
-                                        expandIcon={<ExpandMoreIcon />}
-                                        aria-controls="panel1a-content"
-                                        id="panel1a-header"
-                                    >
-                                        <span className={classes.warn}> <FontAwesomeIcon icon={faExclamationCircle} size="sm" /></span>
-                                        <span className={classes.accTitle}> {`  ${alert.event}`} </span>
-                                    </AccordionSummary>
-                                    <AccordionDetails>
-                                        <div className={classes.accDetail}>
-                                            <h6>Issued By:</h6>
-                                            <p >{alert.sender_name}</p>
-                                            <h6 style={{ margin: '15px 0 0 0' }}>Description:</h6>
-                                            {stringCleaner(alert.description)}
-                                        </div>
-                                    </AccordionDetails>
-                                </Accordion>
-                            )
-                        }
-                        )
-                    }
-                    return (
-
-                        < InfoCard cardTitle={< span ><h2>Weather Alerts</h2> <h3> - {loc.city}</h3> </span>} route={`/hourly/${id}`}
-                            buttonColor={'#1b4de4'} buttonText={'Hourly Forecast'}
-                            iconColor={'#1b4de4'}>
-
-                            {loc.alerts ? alert : <p className={classes.accDetail}>No Weather Alerts at this Time</p>}
-
-                        </InfoCard>
-                    )
-                }
-                )}
             </div>
         </Page >
     );

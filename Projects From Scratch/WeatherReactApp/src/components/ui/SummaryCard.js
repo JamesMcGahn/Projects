@@ -82,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 function SummaryCard(props) {
-    const { cardTitle, cardData, unit, route, buttonColor, buttonText, valueSubtext, iconColor } = props
+    const { cardTitle, cardData, unit, route, buttonColor, buttonText, iconColor } = props
     const classes = useStyles({ itemsLength: cardData.length, iconColor })
     return (
         <Card className={classes.root}>

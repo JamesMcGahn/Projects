@@ -5,22 +5,17 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { Link } from 'react-router-dom'
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-
-import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
 const useStyles = makeStyles((theme) => ({
     root: {
         backgroundColor: 'theme.palette.background.paper',
-        // width: '100wh',
-
     },
     tab: {
         "& a": {
             display: 'block',
             textDecoration: "none",
-            // width: '100%',
             height: '100%',
             fontSize: '1.1rem',
             fontFamily: 'Metabold',
@@ -79,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ForecastTypeBar({ id, typeTabIndex, setTypeTabIndex }) {
     const [anchorEl, setAnchorEl] = React.useState(null);
-
+    const classes = useStyles();
     let checkID = id ? id : ''
 
     const handleClick = (event) => {
@@ -91,7 +86,7 @@ export default function ForecastTypeBar({ id, typeTabIndex, setTypeTabIndex }) {
         event.stopPropagation();
         setAnchorEl(null);
     };
-    const classes = useStyles();
+
 
     const handleChange = (event, newValue) => {
         setTypeTabIndex(newValue);

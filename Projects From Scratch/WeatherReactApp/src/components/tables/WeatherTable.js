@@ -20,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
     paper: {
         width: '100%',
         marginTop: 0,
-        marginBottom: '2rem',
     },
     table: {
         minWidth: 750,
@@ -37,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
         width: 1,
     },
     container: {
-        width: '65%'
+        width: '65%',
     },
     headTitle: {
         width: '100%',
@@ -70,6 +69,7 @@ function WeatherTable({ hourly, tableData, forecastTime, timeZoneOffset, tableTi
     const localTime = (forecastTime + timeZoneOffset)
     const currentTime = new Date(localTime * 1000).getDay()
     const time = new Date(localTime * 1000).toLocaleTimeString('en-US', { timeStyle: 'short' })
+
     return (
         <div className={classes.container} key={localTime}>
             <Paper className={classes.paper}>
@@ -79,8 +79,8 @@ function WeatherTable({ hourly, tableData, forecastTime, timeZoneOffset, tableTi
                         <div><h4>As of {time}</h4></div>
                     </div>
                 </Box>
-                <TableContainer component={Paper} classes={{ root: classes.tableContainer }}>
-                    <Table aria-label="hourly forecast table" key={`${tableTitle}-${time}`}>
+                <TableContainer component={Paper} classes={{ root: classes.tableContainer }} key={`Table-Cont-${tableTitle}-${time}-${city}`}>
+                    <Table aria-label="hourly forecast table" key={`Table-${localTime}-${time}-${city}`}>
                         <TableBody>
                             {tableData.map((weather, i) => {
                                 const timeLocal = (weather.dt + timeZoneOffset)
@@ -88,16 +88,16 @@ function WeatherTable({ hourly, tableData, forecastTime, timeZoneOffset, tableTi
                                 const listItemHour = new Date(timeLocal * 1000).getHours()
                                 const bannerTime = new Date(timeLocal * 1000).toLocaleDateString('en-Us', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
                                 if (hourly && ((currentTime < listItemDay && listItemHour === 0) || i === 0)) {
-                                    return <>
-                                        <TableRow key={bannerTime}>
-                                            <TableCell align="left" colSpan={6} classes={{ root: classes.banner }} >
+                                    return < >
+                                        <TableRow key={bannerTime} key={`header-row-${i}`}>
+                                            <TableCell align="left" colSpan={6} classes={{ root: classes.banner }} key={`header-dayDisplay-${i}`} >
                                                 <h3> {bannerTime}</h3>
                                             </TableCell>
                                         </TableRow>
-                                        <WeatherTableRow key={`${i}-brow-${listItemHour}`} weather={weather} unit={unit} localHourTime={timeLocal} hourly={hourly} />
+                                        <WeatherTableRow key={`${i}-brow-${listItemHour}-${city}`} weather={weather} unit={unit} localHourTime={timeLocal} hourly={hourly} />
                                     </>
                                 } else {
-                                    return <WeatherTableRow key={`${i}-Rrow-${listItemHour}`} weather={weather} unit={unit} localHourTime={timeLocal} hourly={hourly} index={i} timezone={timezone} />
+                                    return <WeatherTableRow key={`${i}-Rrow-${listItemHour}-${city}`} weather={weather} unit={unit} localHourTime={timeLocal} hourly={hourly} index={i} timezone={timezone} />
                                 }
                             })}
                         </TableBody>

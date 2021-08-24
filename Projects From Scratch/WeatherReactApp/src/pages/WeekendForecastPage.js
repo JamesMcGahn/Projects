@@ -11,10 +11,10 @@ function DailyForecastPage({ id, idChange, changeTab, findLocation }) {
                     const weekendData = weather.daily.filter(day => {
                         const timeLocal = (day.dt + weather.timezone_offset)
                         const listItemDay = new Date(timeLocal * 1000).getDay()
-                        console.log(day, 'inn map', listItemDay)
                         if (listItemDay === 5 || listItemDay === 6 || listItemDay === 7) {
                             return day
                         }
+                        return null
                     }
                     )
                     return (
