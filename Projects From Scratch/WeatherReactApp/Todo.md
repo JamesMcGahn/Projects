@@ -25,6 +25,12 @@ React Weather Project
 - [ ] No Location / Welcome Page
 - [ ] Add country / state to city name display
 
+### Air Quality Forecast Page
+
+- [x] Update AirQuality Concentration Range Calucation Table with Pollutant-Specific Sub-indices - source --> https://www.airnow.gov/sites/default/files/2020-05/aqi-technical-assistance-document-sept2018.pdf
+  - [x] Rewrite function to calucation highest pollutant
+- [ ] Add legend for Aqi score and grading for Polluatant sub indices
+
 ### Today Forecast Page
 
 - [x] Today Forecast Page

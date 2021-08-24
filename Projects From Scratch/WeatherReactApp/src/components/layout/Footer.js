@@ -63,10 +63,10 @@ function Footer(props) {
                     <span>Connect With Us</span>
                 </div>
                 <div className={classes.icons}>
-                    <Link to="https://github.com/Almag3st"><TwitterIcon /></Link>
-                    <Link to="https://github.com/Almag3st"><FacebookIcon /></Link>
-                    <Link to="https://github.com/Almag3st"> <YouTubeIcon /></Link>
-                    <Link to="https://github.com/Almag3st"><InstagramIcon /></Link>
+                    <a href="https://github.com/Almag3st" target="_blank" rel="noopener noreferrer"><TwitterIcon /></a>
+                    <a href="https://github.com/Almag3st" target="_blank" rel="noopener noreferrer"><FacebookIcon /></a>
+                    <a href="https://github.com/Almag3st" target="_blank" rel="noopener noreferrer"> <YouTubeIcon /></a>
+                    <a href="https://github.com/Almag3st" target="_blank" rel="noopener noreferrer"><InstagramIcon /></a>
                 </div>
             </div>
             <div className={classes.center}>
