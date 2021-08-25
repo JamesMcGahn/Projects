@@ -19,8 +19,8 @@ React Weather Project
 - [x] Layout Component
 - [x] Footer
 - [x] Page Layout Component
-- [ ] Remove inline styles on HistoryBar Item
-- [ ] Remove Styles from components put in separate file
+- [x] Remove inline styles on HistoryBar Item
+- [x] Remove Styles from components put in separate file
 - [x] Make styles responsive
   - [x] Today Weather Page
   - [x] Radar Page

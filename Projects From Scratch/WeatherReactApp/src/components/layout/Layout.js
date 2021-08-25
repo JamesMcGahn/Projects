@@ -3,16 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import MainNav from './MainNav';
 import SnackBarAlert from '../ui/SnackBar';
 import Footer from './Footer';
+import { useStyles } from '../../styles/layout/layoutStyles'
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        backgroundColor: "#1a357c",
-        backgroundImage: 'linear-gradient(#1a357c 9%,#99479b)',
-        height: '100%',
-        backgroundAttachment: "fixed",
-        backgroundRepeat: "no-repeat",
-    }
-}));
 
 function Layout(props) {
     const { unit, setUnit, setSearchResultLoc, weather, id, setTypeTabIndex, typeTabIndex, removeLocation, idChange, snackBar, setSnackBar } = props;

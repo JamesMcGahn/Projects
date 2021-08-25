@@ -1,7 +1,7 @@
 import { makeStyles, alpha } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
     root: {
-        backgroundColor: theme.palette.background.paper,
+        backgroundColor: '#1b4de4',
     },
     tab: {
         borderRight: '1px solid',

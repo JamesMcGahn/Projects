@@ -11,7 +11,7 @@ export default function HistoryBar({ weather, removeLocation, idChange }) {
 
     return (
         <div className={classes.root}>
-            <AppBar position="static" style={{ backgroundColor: '#1b4de4' }} >
+            <AppBar position="static" classes={{ root: classes.root }} >
                 <Tabs
                     indicatorColor="primary"
                     textColor="primary"

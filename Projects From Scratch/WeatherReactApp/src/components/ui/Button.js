@@ -1,27 +1,7 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom'
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles(({
-    root: {
-        backgroundColor: props => props.backgroundColor,
-        '&:hover': {
-            backgroundColor: '#039',
-        }
-
-    },
-    text: {
-        textTransform: 'none',
-
-        '& a': {
-            color: 'white',
-            textDecoration: 'none',
-            fontFamily: 'Metabold'
-        }
-    }
-}))
-
+import { useStyles } from '../../styles/ui/buttonStyles'
 
 function CardButton(props) {
     const { route, backgroundColor } = props;

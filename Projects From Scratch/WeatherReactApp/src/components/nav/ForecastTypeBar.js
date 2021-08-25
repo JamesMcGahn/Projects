@@ -82,11 +82,6 @@ export default function ForecastTypeBar({ id, typeTabIndex, setTypeTabIndex }) {
         <Tab classes={{ root: classes.hidden }} index={6} />
     </Tabs>
 
-
-
-
-    console.log(mobile)
-
     return (
         <div className={classes.root}>
             <AppBar position="static" color="default">
