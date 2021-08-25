@@ -120,7 +120,6 @@ const useStyles = makeStyles((theme) => ({
 function SummaryCard(props) {
     const { cardTitle, cardData, unit, route, buttonColor, buttonText, iconColor, mobileWidth, mobileTextAlign } = props
     const width = mobileWidth ? mobileWidth : cardData.length
-    const textAlign = mobileTextAlign ? mobileTextAlign : 'center'
     const classes = useStyles({ itemsLength: width, iconColor })
     return (
         <Card className={classes.root}>

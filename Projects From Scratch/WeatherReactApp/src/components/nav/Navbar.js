@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import InputBase from '@material-ui/core/InputBase';
-import { alpha, makeStyles } from '@material-ui/core/styles';
+import { useStyles } from '../../styles/nav/navbarStyles'
 import SearchIcon from '@material-ui/icons/Search';
 import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
@@ -13,96 +13,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import axios from 'axios'
 import { OW_API_KEY } from '../../keys.js'
-import ClickOutsideWrapper from '../helpers/ClickOutsideWrapper'
-
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        // flexGrow: 1,
-
-
-    },
-    appbar: {
-        backgroundColor: '#039',
-        color: 'white'
-    },
-    search: {
-        position: 'relative',
-        borderRadius: theme.shape.borderRadius,
-        backgroundColor: alpha(theme.palette.common.white, 0.15),
-        '&:hover': {
-            backgroundColor: alpha(theme.palette.common.white, 0.25),
-        },
-        width: '100%',
-        [theme.breakpoints.up('sm')]: {
-            marginLeft: theme.spacing(1),
-            width: 'auto',
-        },
-    },
-    searchIcon: {
-        padding: '1% 2%',
-        height: '100%',
-        position: 'absolute',
-        pointerEvents: 'none',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    inputRoot: {
-        color: 'inherit',
-    },
-    inputInput: {
-        padding: '1px, 1px, 1px, 0',
-        paddingLeft: `25%`,
-        width: '100%',
-        minWidth: '100%',
-    },
-    formControl: {
-        margin: '.5rem',
-        height: '2rem',
-        minWidth: 60,
-        backgroundColor: alpha(theme.palette.common.white, 0.15),
-    },
-    iconCont: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        width: '100%',
-        height: '10%',
-        margin: '.5rem 0 .5rem 0',
-    },
-    logo: {
-        width: '100%'
-    },
-    logoContainer: {
-        width: '5%',
-    },
-    searchResults: {
-        marginTop: '1px',
-        marginLeft: '4%',
-        backgroundColor: 'white',
-        color: 'black',
-        flexGrow: 1,
-        width: '95%',
-        borderRadius: '5px !important',
-        boxShadow: '0 3px 20px rgb(0 0 0 / 0.5)'
-    },
-    searchContainer: {
-        position: 'absolute',
-        width: '18%',
-        minWidth: '150px',
-        top: '30%',
-        left: '42%',
-        zIndex: 10,
-
-    },
-    list: {
-        '& div.MuiButtonBase-root:hover': {
-            backgroundColor: '#113076',
-            color: 'white',
-        }
-    }
-}));
+import ClickOutsideWrapper from '../utils/ClickOutsideWrapper'
 
 function Navbar({ unit, setSearchResultLoc, setUnit }) {
     let history = useHistory();

@@ -33,7 +33,6 @@ const useStyles = makeStyles(theme => ({
     },
     airQtext: {
         marginLeft: '1.5rem',
-        paddingRight: '1rem',
         width: '100%',
         maxWidth: '80%',
         borderRight: '1px solid rgba(224, 224, 224, 1)',

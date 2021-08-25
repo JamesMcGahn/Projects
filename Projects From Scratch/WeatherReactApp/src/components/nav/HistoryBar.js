@@ -1,50 +1,13 @@
 import React from 'react';
-import { makeStyles, alpha } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import HistoryBarItem from './HistoryBarItem'
-
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        backgroundColor: theme.palette.background.paper,
-        width: '100wh',
-    },
-    tab: {
-        borderRight: '1px solid',
-        padding: 0,
-        width: '5 rem',
-        borderRightColor: alpha(theme.palette.common.white, 0.12),
-        "& a": {
-            display: 'block',
-            color: 'white',
-            textDecoration: "none",
-            width: '100%',
-            height: '100%',
-            fontSize: '1rem',
-            textTransform: 'none',
-            fontFamily: 'Metabold'
-
-        },
-        "& img": {
-            width: '10%',
-        },
-
-    },
-    wrapper: {
-        width: '100%',
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: 'space-between'
-    }
-}));
+import { useStyles } from '../../styles/nav/historyBarStyles'
 
 export default function HistoryBar({ weather, removeLocation, idChange }) {
     const classes = useStyles();
     const firstSix = [...weather].reverse().filter((item, index) => index <= 6)
-
-
 
     return (
         <div className={classes.root}>

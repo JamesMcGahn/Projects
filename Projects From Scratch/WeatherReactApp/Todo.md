@@ -31,10 +31,10 @@ React Weather Project
   - [x] Alerts Page
   - [x] Air Quality Page
   - [ ] Welcome Page
-  - [ ] Navbar
-    - [ ] Search
-    - [ ] HistoryBar
-    - [ ] Forecast Bar
+  - [x] Navbar
+    - [x] Search
+    - [x] HistoryBar
+    - [x] Forecast Bar
   - [ ] Footer
 - [ ] No Location / Welcome Page
 - [ ] Add country / state to city name display

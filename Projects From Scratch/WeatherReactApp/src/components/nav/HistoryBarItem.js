@@ -1,20 +1,12 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import { makeStyles } from '@material-ui/core/styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons'
-const useStyles = makeStyles({
-    warn: {
-        '& svg': {
-            color: 'yellow'
-        }
-    }
-});
-
+import { styles } from '../../styles/nav/historyBarStyles'
 
 function HistoryBarItem({ id, temp, city, icon, removeLocation, alert, idChange }) {
-    const classes = useStyles()
+    const classes = styles()
     const [showDelete, setShowDelete] = React.useState(false)
     let timer
 
