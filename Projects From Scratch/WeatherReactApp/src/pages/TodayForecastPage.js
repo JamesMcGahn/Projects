@@ -5,7 +5,7 @@ import TodayWeatherDetail from '../components/forecastCards/TodayWeatherDetail'
 import TodayHourlyForecastSummary from '../components/forecastCards/TodayHourlyForecastSummary'
 import TodayDailyForecastSummary from '../components/forecastCards/TodayDailyForecastSummary'
 import Page from '../components/layout/Page'
-import { useStyles } from '../styles/pages/TodayForecastPageStyles.js'
+import { useStyles } from '../styles/pages/todayForecastPageStyles.js'
 
 function TodayForecastPage(props) {
     const { id, findLocation, idChange, changeTab, } = props

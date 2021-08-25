@@ -1,57 +1,8 @@
 import React from 'react';
 import Page from '../components/layout/Page'
 import InfoCard from '../components/ui/InfoCard';
-import { makeStyles } from '@material-ui/core/styles';
 import { CircularProgressbar } from 'react-circular-progressbar';
-
-const useStyles = makeStyles({
-    airCard: {
-        width: '60%',
-        marginBottom: '1rem',
-        height: '100%',
-    },
-    airContainer: {
-        display: 'flex',
-        width: '100%',
-        flexDirection: 'column'
-    },
-    resultsCont: {
-        display: 'flex',
-        width: '100%',
-        marginTop: '1rem',
-        justifyContent: 'center',
-    },
-    smallCont: {
-        width: '25%',
-        borderRight: '1px solid rgba(224, 224, 224, 1)',
-    },
-    header: {
-        width: '100%',
-        '& h4': {
-            margin: ' 0 .5rem 0 1rem',
-            fontSize: '1rem',
-            display: 'inline-block',
-        },
-        '& span': {
-            fontSize: '1rem'
-        }
-    },
-    progess: {
-        padding: '1.5rem',
-        width: '100%'
-    },
-    text: {
-        textAlign: 'center',
-        '& h6': {
-            margin: ' 0 .5rem 0 1rem',
-            fontSize: '1rem'
-        },
-        '& span': {
-            fontSize: '.9rem'
-        }
-    }
-});
-
+import { useStyles } from '../styles/pages/allergyForecastPage'
 
 function AirQualityPage({ id, idChange, changeTab, findLocation }) {
     const classes = useStyles()
@@ -71,7 +22,6 @@ function AirQualityPage({ id, idChange, changeTab, findLocation }) {
         createColumns(air.mold_level, 'Mold',)
     ]
 
-
     return (
         <Page id={id} idChange={idChange} changeTab={changeTab} tab={5} findLocation={findLocation}>
             <div className={classes.airCard}>
@@ -90,7 +40,7 @@ function AirQualityPage({ id, idChange, changeTab, findLocation }) {
                                 return (
                                     <div className={classes.smallCont} key={`${i}-allergy-${aler.name}`} style={i === 3 ? { borderRight: 'none' } : {}}>
                                         <div className={classes.progess} >
-                                            <CircularProgressbar styles={{ path: { stroke: color }, text: { fill: 'black', fontSize: '2rem', fontFamily: 'Metabold' } }} value={aler.value} maxValue={4} text={aler.value} />
+                                            <CircularProgressbar styles={{ path: { stroke: color }, text: { fill: 'black', fontSize: '2rem', fontFamily: 'Metabold' } }} value={aler.value} minValue={0} maxValue={4} text={aler.value.toString()} />
                                         </div>
                                         <div className={classes.text}>
                                             <h6>{aler.name}</h6>

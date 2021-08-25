@@ -1,49 +1,9 @@
 import React, { useEffect } from 'react';
 import Page from '../components/layout/Page'
-import { makeStyles } from '@material-ui/core/styles';
+import { useStyles } from '../styles/pages/radarForecastPageStyles.js'
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { W_API_KEY } from '../keys'
-
-const useStyles = makeStyles({
-    todaysum: {
-        width: '60%',
-        marginTop: '1rem'
-    },
-    summaryCard: {
-        width: '60%',
-        marginTop: '1rem'
-    },
-    mapDiv: {
-        width: '60%',
-        minHeight: "60vh",
-        '& #logo-wrapper': {
-            top: 'initial',
-            bottom: '65px'
-        },
-        '& #logo-wrapper #logo': {
-            left: '90%',
-            top: '90%',
-        },
-        '& #mobile-ovr-select': {
-            display: 'none !important'
-        }
-    },
-    btnDiv: {
-        marginTop: '8px',
-
-    },
-    btnGroup: {
-        '& button': {
-            textTransform: 'none',
-            fontFamily: 'Meta',
-            fontSize: '1rem',
-            backgroundColor: '#1a357c',
-            color: 'white'
-        }
-    }
-});
-
 
 function RadarForecastPage(props) {
     const { id, findLocation, idChange, changeTab, } = props

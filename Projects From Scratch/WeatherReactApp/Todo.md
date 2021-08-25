@@ -23,13 +23,13 @@ React Weather Project
 - [ ] Remove Styles from components put in separate file
 - [ ] Make styles responsive
   - [x] Today Weather Page
-  - [ ] Radar Page
+  - [x] Radar Page
   - [x] Weekend Page
   - [x] Hourly Page
   - [x] Daily Page
-  - [ ] Allergy Page
-  - [ ] Alerts Page
-  - [ ] Air Quality Page
+  - [x] Allergy Page
+  - [x] Alerts Page
+  - [x] Air Quality Page
   - [ ] Welcome Page
   - [ ] Navbar
     - [ ] Search

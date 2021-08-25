@@ -1,45 +1,14 @@
 import React from 'react';
 import Page from '../components/layout/Page'
 import InfoCard from '../components/ui/InfoCard'
-import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { useStyles } from '../styles/pages/alertsForecastPageStyles.js'
 
-const useStyles = makeStyles({
-    todaysum: {
-        width: '60%',
-        marginBottom: '2rem'
-    },
-    summaryCard: {
-        width: '60%',
-        marginTop: '1rem'
-    },
-    accTitle: {
-        fontFamily: 'MetaBold',
-        marginLeft: '7px'
-    },
-    accDetail: {
-        backgroundColor: '#f1f1f1',
-        width: '100%',
-        padding: '10px',
-        '& h6': {
-            margin: 0
-        },
-        '& p': {
-            margin: '10px 0 10px 0',
-            fontSize: '1rem'
-        }
-    },
-    warn: {
-        '& svg': {
-            color: '#e6731f'
-        }
-    }
-});
 
 function stringCleaner(string) {
     if (string.includes('*')) {
@@ -71,7 +40,7 @@ function AlertsPage(props) {
                         id="panel1a-header"
                     >
                         <span className={classes.warn}> <FontAwesomeIcon icon={faExclamationCircle} size="sm" /></span>
-                        <span className={classes.accTitle}> {`  ${alert.event}`} </span>
+                        <span className={classes.accTitle}> {`${alert.event.replace(/\b\w/g, l => l.toUpperCase())} Alert `} </span>
                     </AccordionSummary>
                     <AccordionDetails key={`${alert.sender_name}-${i}`}>
                         <div className={classes.accDetail}>
