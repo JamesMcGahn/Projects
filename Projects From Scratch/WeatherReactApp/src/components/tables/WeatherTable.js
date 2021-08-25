@@ -17,7 +17,7 @@ function WeatherTable({ hourly, tableData, forecastTime, timeZoneOffset, tableTi
     const time = new Date(localTime * 1000).toLocaleTimeString('en-US', { timeStyle: 'short' })
 
     return (
-        <div className={classes.container} key={id}>
+        <div className={classes.container} key={`${id}-Table-Div`}>
             <Paper className={classes.paper}>
                 <Box margin={0} boxShadow={0} p={1} >
                     <div className={classes.headTitle}>
@@ -25,25 +25,25 @@ function WeatherTable({ hourly, tableData, forecastTime, timeZoneOffset, tableTi
                         <div><h4>As of {time}</h4></div>
                     </div>
                 </Box>
-                <TableContainer component={Paper} classes={{ root: classes.tableContainer }} key={`Table-Cont-${tableTitle}-${time}-${city}`}>
-                    <Table aria-label="hourly forecast table" key={`Table-${tableTitle}-${time}-${city}`}>
-                        <TableBody>
+                <TableContainer component={Paper} classes={{ root: classes.tableContainer }}>
+                    <Table aria-label="hourly forecast table" >
+                        <TableBody key={`Table-${tableTitle}-${time}-${id}`}>
                             {tableData.map((weather, i) => {
                                 const timeLocal = (weather.dt + timeZoneOffset)
                                 const listItemDay = new Date(timeLocal * 1000).getDay()
                                 const listItemHour = new Date(timeLocal * 1000).getHours()
                                 const bannerTime = new Date(timeLocal * 1000).toLocaleDateString('en-Us', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
                                 if (hourly && ((currentTime < listItemDay && listItemHour === 0) || i === 0)) {
-                                    return < >
-                                        <TableRow key={bannerTime} key={`header-row-${i}-${hourly}`}>
-                                            <TableCell align="left" colSpan={6} classes={{ root: classes.banner }} key={`header-dayDisplay-${i}`} >
+                                    return <React.Fragment key={`header-row-${i}-${tableTitle}`}>
+                                        <TableRow key={bannerTime}>
+                                            <TableCell align="left" colSpan={6} classes={{ root: classes.banner }} >
                                                 <h3> {bannerTime}</h3>
                                             </TableCell>
                                         </TableRow>
-                                        <WeatherTableRow key={`${i}-brow-${hourly}-${city}`} weather={weather} unit={unit} localHourTime={timeLocal} hourly={hourly} />
-                                    </>
+                                        <WeatherTableRow key={`${i}-brow-${tableTitle}-${city}`} weather={weather} unit={unit} localHourTime={timeLocal} hourly={hourly} />
+                                    </React.Fragment>
                                 } else {
-                                    return <WeatherTableRow key={`${i}-Rrow-${hourly}-${city}`} weather={weather} unit={unit} localHourTime={timeLocal} hourly={hourly} index={i} timezone={timezone} />
+                                    return <WeatherTableRow key={`${i}-Rrow-${tableTitle}-${city}`} weather={weather} unit={unit} localHourTime={timeLocal} hourly={hourly} index={i} timezone={timezone} />
                                 }
                             })}
                         </TableBody>

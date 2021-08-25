@@ -7,7 +7,7 @@ import { useStyles } from '../../styles/nav/historyBarStyles'
 
 export default function HistoryBar({ weather, removeLocation, idChange }) {
     const classes = useStyles();
-    const firstSix = [...weather].reverse().filter((item, index) => index <= 6)
+    const firstSix = weather ? weather.reverse().filter((item, index) => index <= 6) : []
 
     return (
         <div className={classes.root}>

@@ -92,10 +92,10 @@ function App(props) {
   }, [SearchResultLoc])
 
   useEffect(() => {
-    if (weatherData.findIndex(loc => loc.id === selectedLocation) !== -1) {
+    if (weatherData && weatherData.length > 0 && weatherData.findIndex(loc => loc.id === selectedLocation) !== -1) {
       history.push(`/today/${selectedLocation}`)
     }
-    else if (weatherData.length > 0) {
+    else if (weatherData && weatherData.length > 0) {
       let id = weatherData[weatherData.length - 1].id
       history.push(`/today/${id}`)
     } else {
@@ -141,10 +141,10 @@ function App(props) {
           <Route path='/' render={(routeProps) => (
             <>
               {
-                selectedLocation ?
+                weatherData && weatherData.length > 0 && selectedLocation ?
                   <Redirect to={`/today/${selectedLocation}`} />
                   :
-                  weatherData.length > 0 ? <Redirect to={`/today/${weatherData[weatherData.length - 1].id}`} />
+                  weatherData && weatherData.length > 0 ? <Redirect to={`/today/${weatherData[weatherData.length - 1].id}`} />
                     :
                     <Redirect to={`/welcome`} />
               }

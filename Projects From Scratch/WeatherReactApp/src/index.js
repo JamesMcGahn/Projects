@@ -6,12 +6,10 @@ import './index.css'
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <CssBaseline />
-      <App />
-    </BrowserRouter>
-  </React.StrictMode>,
+  <BrowserRouter>
+    <CssBaseline />
+    <App />
+  </BrowserRouter>,
   document.getElementById('root')
 );
 
