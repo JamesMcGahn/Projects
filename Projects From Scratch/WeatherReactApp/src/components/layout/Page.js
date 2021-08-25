@@ -18,6 +18,7 @@ function Page(props) {
     const { id, tab, idChange, changeTab, findLocation, styles } = props;
     let history = useHistory()
     useEffect(() => {
+        if (id === 'welcome') return changeTab(6)
         if (!id || findLocation(id).length === 0) {
             return history.push('/welcome')
         }

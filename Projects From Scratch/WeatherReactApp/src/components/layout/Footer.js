@@ -11,13 +11,17 @@ const useStyles = makeStyles({
         minHeight: '20vh',
         backgroundColor: 'white',
         display: 'flex',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+
     },
     iconsCont: {
         width: '100%',
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        margin: '5px 0 5px 0'
+
     },
     iconsText: {
         fontSize: '1.3rem',
@@ -34,21 +38,41 @@ const useStyles = makeStyles({
         },
     },
     center: {
-        width: '100%',
+        width: '50%',
         display: 'flex',
         alignItems: 'flex-end',
         '& span': {
             fontSize: '.8rem',
             marginBottom: '3px'
-        }
+        },
+        '@media (max-width: 650px)': {
+            width: '100%',
+            justifyContent: 'center',
+        },
     },
     right: {
-        width: '20%',
+        width: '50%',
         display: 'flex',
-        alignItems: 'center',
-        '& img': {
-            width: '60%',
+        justifyContent: 'flex-end',
+        '@media (max-width: 650px)': {
+            width: '100%',
+            justifyContent: 'center',
         }
+
+    },
+    imgCont: {
+        width: '30%',
+
+        '& img': {
+            width: '30%',
+        },
+        '@media (max-width: 650px)': {
+            width: '30%',
+            margin: '5px 0 5px 0',
+            '& img': {
+                width: '100%',
+            },
+        },
     }
 
 });
@@ -73,9 +97,11 @@ function Footer(props) {
                 <span>©2021 Copyright James McGahn</span>
             </div>
             <div className={classes.right}>
-                <Link to={`/`}>
-                    <img className={classes.logo} src="/images/ReactWeatherChannellogo.jpg" alt='logo' />
-                </Link>
+                <div className={classes.imgCont}>
+                    <Link to={`/`}>
+                        <img className={classes.logo} src="/images/ReactWeatherChannellogo.jpg" alt='logo' />
+                    </Link>
+                </div>
             </div>
         </div >
     );

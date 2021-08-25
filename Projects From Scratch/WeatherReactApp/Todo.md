@@ -30,12 +30,12 @@ React Weather Project
   - [x] Allergy Page
   - [x] Alerts Page
   - [x] Air Quality Page
-  - [ ] Welcome Page
+  - [x] Welcome Page
   - [x] Navbar
     - [x] Search
     - [x] HistoryBar
     - [x] Forecast Bar
-  - [ ] Footer
+  - [x] Footer
 - [ ] No Location / Welcome Page
 - [ ] Add country / state to city name display
 

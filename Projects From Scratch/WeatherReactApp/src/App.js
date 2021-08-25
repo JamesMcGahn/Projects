@@ -99,9 +99,8 @@ function App(props) {
       let id = weatherData[weatherData.length - 1].id
       history.push(`/today/${id}`)
     } else {
-      history.push(`/`)
+      history.push(`/welcome`)
     }
-
   }, [weatherData])
 
 

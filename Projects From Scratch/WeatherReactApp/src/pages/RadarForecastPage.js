@@ -10,7 +10,9 @@ function RadarForecastPage(props) {
     const classes = useStyles()
     const forecast = findLocation(id)
     const windyInit = window.windyInit
+    let timer
     const L = window.L
+    const W = window.W
     let lon, lat, city
     if (forecast.length > 0) {
         lon = forecast[0].lon
@@ -34,14 +36,22 @@ function RadarForecastPage(props) {
                 .setLatLng([lat, lon])
                 .setContent(`${city}`)
                 .openOn(map);
-
             changeOverlay = (type) => {
                 store.set('overlay', type, { forceChange: true })
             }
         });
     };
 
-    useEffect(() => { renderMap() }, [])
+    useEffect(() => {
+        if (timer) clearTimeout(timer)
+        renderMap()
+
+        timer = setTimeout(() => {
+            const play = document.getElementById('playpause')
+            if (play) play.click();
+        }, 3000)
+
+    }, [])
 
 
 
