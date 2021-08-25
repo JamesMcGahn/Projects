@@ -12,9 +12,6 @@ React Weather Project
   - [x] create map control buttons to change type of radar map
 - [x] Air Quality Forecast Page
 - [x] Pollen Forecast Page
-- [ ] Refactor / Clean up App File
-  - [ ] Pull out into Hooks
-  - [ ] use Context ?
 - [x] Error Card / Notification
 - [x] Layout Component
 - [x] Footer
@@ -37,21 +34,18 @@ React Weather Project
     - [x] Forecast Bar
   - [x] Footer
 - [x] No Location / Welcome Page
-- [ ] Add country / state to city name display
-
-### Air Quality Forecast Page
-
+- [x] Add country / state to city name display
 - [x] Update AirQuality Concentration Range Calucation Table with Pollutant-Specific Sub-indices - source --> https://www.airnow.gov/sites/default/files/2020-05/aqi-technical-assistance-document-sept2018.pdf
   - [x] Rewrite function to calucation highest pollutant
 - [x] Add legend for Aqi score and grading for Polluatant sub indices
-
-### Today Forecast Page
-
 - [x] Today Forecast Page
   - [x] Weather Detail Card
   - [x] Weather Hourly Forecast Card
   - [x] Weather Daily Forecast Card
-
-### Hourly Forecast Page
-
 - [x] Error Handling - if no data is passed
+
+Improvements
+
+- [ ] Refactor / Clean up App File
+  - [ ] Pull out into custom Hooks / Reducers
+  - [ ] use Context

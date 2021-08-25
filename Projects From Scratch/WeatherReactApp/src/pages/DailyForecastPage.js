@@ -12,6 +12,7 @@ function DailyForecastPage({ id, idChange, changeTab, findLocation }) {
                         forecastTime={weather.current.dt} timeZoneOffset={weather.timezone_offset}
                         tableTitle={'7 Day Weather'} city={weather.city}
                         unit={weather.unit} hourly={false} timezone={weather.timezone} id={id}
+                        state={weather.state} country={weather.country}
                     />
                 )}
         </Page>

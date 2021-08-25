@@ -10,7 +10,7 @@ import { TableRow } from '@material-ui/core';
 import { useStyles } from '../../styles/tables/weatherTableStyles'
 
 
-function WeatherTable({ hourly, tableData, forecastTime, timeZoneOffset, tableTitle, city, unit, timezone, id }) {
+function WeatherTable({ hourly, tableData, forecastTime, timeZoneOffset, tableTitle, city, unit, timezone, id, state, country }) {
     const classes = useStyles();
     const localTime = (forecastTime + timeZoneOffset)
     const currentTime = new Date(localTime * 1000).getDay()
@@ -21,7 +21,7 @@ function WeatherTable({ hourly, tableData, forecastTime, timeZoneOffset, tableTi
             <Paper className={classes.paper}>
                 <Box margin={0} boxShadow={0} p={1} >
                     <div className={classes.headTitle}>
-                        <div><span><h2>{tableTitle}</h2> <h3> - {city}</h3> </span></div>
+                        <div><span><h2>{tableTitle}</h2> <h3> - {`${city}, ${state ? `${state}, ${country} ` : `${country}`}`}</h3> </span></div>
                         <div><h4>As of {time}</h4></div>
                     </div>
                 </Box>

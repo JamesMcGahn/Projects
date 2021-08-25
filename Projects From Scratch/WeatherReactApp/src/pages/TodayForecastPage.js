@@ -23,7 +23,7 @@ function TodayForecastPage(props) {
                             icon={`http://openweathermap.org/img/wn/${forecast.current.weather[0].icon}@2x.png`}
                             min={forecast.daily[0].temp.min} max={forecast.daily[0].temp.max} rainChance={forecast.daily[0].pop}
                             alert={forecast.hasOwnProperty('alerts') ? forecast.alerts[0] : false}
-                            id={forecast.id}
+                            id={forecast.id} state={forecast.state} country={forecast.country}
                         />
                     </div>
                     <div className={classes.summaryCard}>

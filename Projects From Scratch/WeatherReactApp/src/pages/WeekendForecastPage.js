@@ -21,7 +21,7 @@ function DailyForecastPage({ id, idChange, changeTab, findLocation }) {
                         <WeatherTable tableData={weekendData} key={weather.city}
                             forecastTime={weather.current.dt} timeZoneOffset={weather.timezone_offset}
                             tableTitle={'Weekend Weather'} city={weather.city}
-                            unit={weather.unit} hourly={false} timezone={weather.timezone}
+                            unit={weather.unit} hourly={false} timezone={weather.timezone} state={weather.state} country={weather.country}
                         />
                     )
                 }
