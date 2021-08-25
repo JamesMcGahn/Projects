@@ -15,7 +15,7 @@ import axios from 'axios'
 import { OW_API_KEY } from '../../keys.js'
 import ClickOutsideWrapper from '../utils/ClickOutsideWrapper'
 
-function Navbar({ unit, setSearchResultLoc, setUnit }) {
+function Navbar({ unit, setSearchResultLoc, setUnit, setSnackBar }) {
     let history = useHistory();
     const classes = useStyles();
     const [showSearchResult, setShowSearchResults] = useState(false)
@@ -58,10 +58,11 @@ function Navbar({ unit, setSearchResultLoc, setUnit }) {
         }
         catch (e) {
             console.log('coords', e)
+            setShowSearchResults(false)
+            setSnackBar(true)
+
         }
     }
-
-
 
     return (
         <div className={classes.root} >
@@ -96,13 +97,12 @@ function Navbar({ unit, setSearchResultLoc, setUnit }) {
                                         <div className={classes.searchResults}>
                                             <List classes={{ root: classes.list }} component="nav" aria-label="main mailbox folders">
 
-                                                {searchResults.length ? searchResults.map((item, i) =>
+                                                {searchResults.length > 0 ? searchResults.map((item, i) =>
                                                     <ListItem button key={`${i}-search-result-item`}>
                                                         <ListItemText onClick={() => handleSearchResultClick(i)} primary={`${item.name}, ${item.state ? `${item.state}, ${item.country} ` : `${item.country}`}`} />
                                                     </ListItem>
                                                 )
                                                     : null
-
                                                 }
                                             </List>
                                         </div>

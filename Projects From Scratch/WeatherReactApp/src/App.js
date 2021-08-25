@@ -27,7 +27,7 @@ function App(props) {
   const [weatherData, setweatherData] = uselocalStoreHook()
   const [SearchResultLoc, setSearchResultLoc] = React.useState()
   const [selectedLocation, setSelectedLocation] = React.useState();
-
+  const [snackBar, setSnackBar] = React.useState(false);
   let history = useHistory()
 
   const findLocation = (id, setTab) => {
@@ -84,6 +84,7 @@ function App(props) {
       }
     } catch (e) {
       console.log(e)
+      setSnackBar(true)
     }
   }
 
@@ -107,6 +108,7 @@ function App(props) {
   return (
     <Layout unit={unit} setUnit={setUnit} setSearchResultLoc={setSearchResultLoc} weather={weatherData}
       id={selectedLocation} setTypeTabIndex={setTypeTabIndex} typeTabIndex={typeTabIndex} removeLocation={removeLocation} idChange={idChange}
+      snackBar={snackBar} setSnackBar={setSnackBar}
     >
       <Route render={({ location }) =>
         <Switch location={location}>

@@ -15,13 +15,13 @@ React Weather Project
 - [ ] Refactor / Clean up App File
   - [ ] Pull out into Hooks
   - [ ] use Context ?
-- [ ] Error Card / Notification
+- [x] Error Card / Notification
 - [x] Layout Component
 - [x] Footer
 - [x] Page Layout Component
 - [ ] Remove inline styles on HistoryBar Item
 - [ ] Remove Styles from components put in separate file
-- [ ] Make styles responsive
+- [x] Make styles responsive
   - [x] Today Weather Page
   - [x] Radar Page
   - [x] Weekend Page
@@ -36,7 +36,7 @@ React Weather Project
     - [x] HistoryBar
     - [x] Forecast Bar
   - [x] Footer
-- [ ] No Location / Welcome Page
+- [x] No Location / Welcome Page
 - [ ] Add country / state to city name display
 
 ### Air Quality Forecast Page
