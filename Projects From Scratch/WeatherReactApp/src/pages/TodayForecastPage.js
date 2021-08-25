@@ -1,33 +1,15 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import TodayWeatherSummary from '../components/forecastCards/TodayWeatherSummary.js';
 import TodayWeatherDaySummary from '../components/forecastCards/TodayWeatherDaySummary'
 import TodayWeatherDetail from '../components/forecastCards/TodayWeatherDetail'
 import TodayHourlyForecastSummary from '../components/forecastCards/TodayHourlyForecastSummary'
 import TodayDailyForecastSummary from '../components/forecastCards/TodayDailyForecastSummary'
 import Page from '../components/layout/Page'
-const useStyles = makeStyles((theme) => ({
-    todaysum: {
-        width: '60%',
-        marginTop: '1rem',
-        [theme.breakpoints.down('sm')]: {
-            width: '90%',
-        }
-    },
-    summaryCard: {
-        width: '60%',
-        marginTop: '1rem',
-        [theme.breakpoints.down('sm')]: {
-            width: '90%',
-        }
-    },
-
-}));
+import { useStyles } from '../styles/pages/TodayForecastPageStyles.js'
 
 function TodayForecastPage(props) {
     const { id, findLocation, idChange, changeTab, } = props
     const forecast = findLocation(id)
-
     const classes = useStyles()
 
     return (

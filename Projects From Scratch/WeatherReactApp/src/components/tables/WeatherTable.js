@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -8,61 +7,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import Paper from '@material-ui/core/Paper';
 import WeatherTableRow from './WeatherTableRow'
 import { TableRow } from '@material-ui/core';
+import { useStyles } from '../../styles/tables/weatherTableStyles'
 
-
-
-const useStyles = makeStyles((theme) => ({
-    banner: {
-        border: 'none',
-        lineHeight: 0,
-        padding: '.3rem'
-    },
-    paper: {
-        width: '100%',
-        marginTop: 0,
-    },
-    table: {
-        minWidth: 750,
-    },
-    visuallyHidden: {
-        border: 0,
-        clip: 'rect(0 0 0 0)',
-        height: 1,
-        margin: -1,
-        overflow: 'hidden',
-        padding: 0,
-        position: 'absolute',
-        top: 20,
-        width: 1,
-    },
-    container: {
-        width: '65%',
-    },
-    headTitle: {
-        width: '100%',
-        padding: '10px 0 0 15px ',
-        "& h2": {
-            margin: 0,
-            display: 'inline-block',
-        },
-        "& h3": {
-            display: 'inline-block',
-            fontWeight: 400,
-            fontSize: '1.1rem',
-            margin: 0,
-        },
-        "& h4": {
-            marginTop: '.5rem',
-            color: 'grey',
-            fontWeight: 400,
-            fontSize: '1rem'
-        }
-    },
-    tableContainer: {
-        padding: '0 1rem 0 1rem',
-        margin: 0
-    }
-}));
 
 function WeatherTable({ hourly, tableData, forecastTime, timeZoneOffset, tableTitle, city, unit, timezone, id }) {
     const classes = useStyles();

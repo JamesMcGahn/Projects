@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import Table from '@material-ui/core/Table';
-
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
@@ -12,65 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faWind } from '@fortawesome/free-solid-svg-icons'
 import DailyInnerTable from './DailyInnerTable'
 import HourlyInnerTable from './HourlyInnerTable';
-
-const useStyles = makeStyles({
-    root: {
-        display: props => props.open && !props.hourly ? 'none' : '',
-        '& > *': {
-            borderBottom: 'unset',
-        },
-
-
-    },
-    checkCell: {
-        width: '5rem',
-        paddingLeft: '1rem',
-    },
-    icon: {
-        width: '80%'
-    },
-    wind: {
-        width: '20%',
-    },
-    expandCol: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: "center",
-        alignContent: "center",
-        textAlign: "left",
-    },
-    faicon: {
-        width: '15%',
-        color: '#3f51b5',
-        marginRight: '1rem',
-        marginTop: "3px",
-
-    },
-    fatext: {
-        width: '50%',
-        marginBottom: '7px',
-        "& span": {
-            display: "block"
-        }
-    },
-    favalue: {
-        fontSize: '1rem',
-        fontWeight: 'bold'
-    },
-    tableCell: {
-        border: 0
-    },
-    maintbCell: {
-        borderBottom: '1px solid rgba(224, 224, 224, 1)',
-
-    },
-    smallCell: {
-        width: '1rem',
-    }
-
-});
-
-
+import { useStyles } from '../../styles/tables/weatherTableRowStyles'
 
 function WeatherTableRow({ weather, unit, localHourTime, hourly, index, timeZoneOffset, timezone }) {
 
@@ -103,11 +44,10 @@ function WeatherTableRow({ weather, unit, localHourTime, hourly, index, timeZone
             <TableRow className={classes.root}>
 
                 <TableCell align="left" size='medium' padding="checkbox" classes={{ paddingCheckbox: classes.checkCell }} >{hourly ? hourlyTime : dayTime}</TableCell>
-                <TableCell align="left" size='small' padding='normal'>{temp}</TableCell>
+                <TableCell align="center" size='small' padding='normal'>{temp}</TableCell>
                 <TableCell align="right" padding='checkbox'><img className={classes.icon} src={`http://openweathermap.org/img/wn/${icon}@2x.png`} alt={'ss'} /></TableCell>
-                <TableCell align="left" >{description}</TableCell>
-                <TableCell align="right" padding='none' classes={{ paddingNone: classes.wind }} >{description}</TableCell>
-                <TableCell align="right"> <FontAwesomeIcon icon={faWind} size="lg" />  {`${Math.ceil(weather.wind_speed)} ${unit === 'imperial' ? "mph " : "mps"}`}</TableCell>
+                <TableCell align="left" padding='none' classes={{ paddingNone: classes.wind }} >{description}</TableCell>
+                <TableCell align="center"> <FontAwesomeIcon icon={faWind} size="lg" />  {`${Math.ceil(weather.wind_speed)} ${unit === 'imperial' ? "mph " : "mps"}`}</TableCell>
                 <TableCell size='small' classes={{ sizeSmall: classes.smallCell }}>
                     <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
                         {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}

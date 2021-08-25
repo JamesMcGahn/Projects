@@ -3,98 +3,13 @@ import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faWind, faTint, faArrowUp, faArrowDown, faSun, faCloudMoon, faCloud } from '@fortawesome/free-solid-svg-icons'
-import { makeStyles } from '@material-ui/core/styles';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import IconButton from '@material-ui/core/IconButton';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import TableBody from '@material-ui/core/TableBody';
 import Divider from '@material-ui/core/Divider';
-
-const useStyles = makeStyles({
-    root: {
-
-    },
-    expandCol: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: "center",
-        alignContent: "center",
-        textAlign: "left",
-        width: "100%",
-        marginTop: '10px',
-        marginBottom: '10px'
-    },
-    header: {
-        display: 'flex',
-        flexDirection: 'column',
-        width: '100%',
-    },
-    headerIcons: {
-        display: 'flex',
-        flexDirection: 'row',
-        width: '100%',
-        justifyContent: 'space-between',
-    },
-    title: {
-        display: 'flex',
-        flexDirection: 'row',
-        width: '100%',
-        minHeight: "30px"
-    }
-    , date: {
-        width: '90%',
-        fontSize: "1rem"
-    },
-    temp: {
-        fontSize: "3.2rem",
-        lineHeight: "1",
-        fontFamily: 'MetaBold'
-    },
-    weatherIcon: {
-        width: '40%',
-        '& img': {
-            width: '50%',
-        }
-    },
-    openIcon: {
-        marginLeft: '100px'
-    },
-    littleIcons: {
-        width: '45%',
-        textAlign: 'center',
-        '& svg': {
-            fontSize: '1.2rem',
-            color: '#1b4de4',
-            marginRight: '5px',
-        }
-    },
-    iconOne: {
-        marginBottom: '1rem'
-    },
-    bottomContent: {
-        display: 'flex',
-        flexDirection: 'row',
-        width: '100%',
-    },
-    bottomCard: {
-        width: '90%',
-        '& svg': {
-            fontSize: '1.2rem',
-            color: '#1b4de4',
-            marginRight: '5px',
-        }
-    },
-    LeftRight: {
-        width: '50%',
-        display: 'flex',
-        flexDirection: 'row',
-        padding: '5px',
-    },
-    iconTitle: {
-        display: 'block'
-    }
-});
+import { useStyles } from '../../styles/tables/dailyInnerTableStyles'
 
 function DailyInnerTable({ dayTime, weather, unit, openRow, timezone }) {
     const classes = useStyles();
@@ -126,7 +41,7 @@ function DailyInnerTable({ dayTime, weather, unit, openRow, timezone }) {
     return (
         <TableBody>
 
-            <TableRow key={weather.dt}>
+            <TableRow key={weather.dt} classes={{ root: classes.tableRow }}>
                 {cellData.map((item, i) => {
                     return (
                         <TableCell align="center" padding='none' style={{ border: 'none' }} classes={{ root: classes.tableCell }} key={`${i}-hour-tc`}>

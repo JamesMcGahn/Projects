@@ -24,9 +24,9 @@ React Weather Project
 - [ ] Make styles responsive
   - [x] Today Weather Page
   - [ ] Radar Page
-  - [ ] Weekend Page
-  - [ ] Hourly Page
-  - [ ] Daily Page
+  - [x] Weekend Page
+  - [x] Hourly Page
+  - [x] Daily Page
   - [ ] Allergy Page
   - [ ] Alerts Page
   - [ ] Air Quality Page
