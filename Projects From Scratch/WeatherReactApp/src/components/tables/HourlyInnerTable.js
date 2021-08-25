@@ -21,8 +21,6 @@ function HourlyInnerTable({ weather, unit }) {
         createCellData(faSun, 'UV Index', `${weather.uvi} of 10`),
     ]
 
-    console.log(cellData)
-
     return (
         <TableBody >
             <TableRow key={`${weather.dt}-hour-tc-${weather.id}`} classes={{ root: classes.tableRow }}>

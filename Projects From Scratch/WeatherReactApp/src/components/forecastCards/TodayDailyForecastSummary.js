@@ -11,7 +11,7 @@ function TodayDailyForecastSummary({ weather }) {
         const convertTime = new Date(hourlyLocal * 1000)
 
         return createCardData(`${days[convertTime.getDay()]} ${convertTime.getDate()}`, `${Math.ceil(item.temp.max)}`,
-            `http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`, `${item.weather[0].description}`,
+            `https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`, `${item.weather[0].description}`,
             <> <FontAwesomeIcon icon={faTint} size="1x" /> {Math.ceil(item.pop)} % </>, `${Math.ceil(item.temp.min)}°`)
 
     }

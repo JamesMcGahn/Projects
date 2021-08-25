@@ -12,7 +12,6 @@ function RadarForecastPage(props) {
     const windyInit = window.windyInit
     let timer
     const L = window.L
-    const W = window.W
     let lon, lat, city
     if (forecast.length > 0) {
         lon = forecast[0].lon

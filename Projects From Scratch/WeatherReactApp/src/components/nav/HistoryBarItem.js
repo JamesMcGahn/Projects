@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom'
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -8,23 +8,25 @@ import { styles } from '../../styles/nav/historyBarStyles'
 function HistoryBarItem({ id, temp, city, icon, removeLocation, alert, idChange }) {
     const classes = styles()
     const [showDelete, setShowDelete] = React.useState(false)
-    let timer
+    const instance = useRef({ timer: 0 })
 
     const handleClick = (event) => {
         event.preventDefault();
         setShowDelete(true)
-        setTimeout(() => {
+        instance.current.timer = setTimeout(() => {
             setShowDelete(false)
         }, 5000);
     }
     const handleDelete = (event) => {
         event.preventDefault();
-        clearTimeout(timer)
+        clearTimeout(instance.current.timer)
         removeLocation(id)
     }
     useEffect(() => {
-        if (timer) clearTimeout(timer)
-    }, [timer])
+        return () => {
+            clearTimeout(instance.current.timer);
+        }
+    }, [])
 
     return (
         <>

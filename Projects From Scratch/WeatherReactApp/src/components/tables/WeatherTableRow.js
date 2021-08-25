@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import Table from '@material-ui/core/Table';
@@ -45,7 +44,7 @@ function WeatherTableRow({ weather, unit, localHourTime, hourly, index, timeZone
 
                 <TableCell align="left" size='medium' padding="checkbox" classes={{ paddingCheckbox: classes.checkCell }} >{hourly ? hourlyTime : dayTime}</TableCell>
                 <TableCell align="center" size='small' padding='normal'>{temp}</TableCell>
-                <TableCell align="right" padding='checkbox'><img className={classes.icon} src={`http://openweathermap.org/img/wn/${icon}@2x.png`} alt={'ss'} /></TableCell>
+                <TableCell align="right" padding='checkbox'><img className={classes.icon} src={`https://openweathermap.org/img/wn/${icon}@2x.png`} alt={'ss'} /></TableCell>
                 <TableCell align="left" padding='none' classes={{ paddingNone: classes.wind }} >{description}</TableCell>
                 <TableCell align="center"> <FontAwesomeIcon icon={faWind} size="lg" />  {`${Math.ceil(weather.wind_speed)} ${unit === 'imperial' ? "mph " : "mps"}`}</TableCell>
                 <TableCell size='small' classes={{ sizeSmall: classes.smallCell }}>

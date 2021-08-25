@@ -13,7 +13,7 @@ import AirQualityPage from './pages/AirQualityPage';
 import AllergyPage from './pages/AllergyPage';
 import { OW_API_KEY, AW_API_KEY } from './keys.js'
 import { Switch, Route, Redirect } from 'react-router-dom'
-import { uuid } from 'uuidv4';
+import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios'
 import { useHistory } from "react-router-dom";
 import uselocalStoreHook from './hooks/useLocalStoreHook'
@@ -72,7 +72,7 @@ function App(props) {
         const response = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=${unit}&appid=${OW_API_KEY}`);
         const { data } = response
         const newData = {
-          ...data, id: uuid(), city: name, unit: unit, country: country, state: state ? state : null,
+          ...data, id: uuidv4(), city: name, unit: unit, country: country, state: state ? state : null,
           air: await axios.get(`https://api.weatherbit.io/v2.0/current/airquality?lat=${lat}&lon=${lon}&key=${AW_API_KEY}`)
             .then(res => {
               return res.data.data[0] ? res.data.data[0] : null

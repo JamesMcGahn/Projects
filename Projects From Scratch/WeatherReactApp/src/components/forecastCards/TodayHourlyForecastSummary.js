@@ -11,7 +11,7 @@ function TodayHourlyForecastSummary({ weather }) {
         const convertTime = new Date(hourlyLocal * 1000).toLocaleTimeString('en-US', { timeStyle: 'short' })
 
         return createCardData(convertTime, `${Math.ceil(item.feels_like)}`,
-            `http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`, `${item.weather[0].description}`,
+            `https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`, `${item.weather[0].description}`,
             <> <FontAwesomeIcon icon={faCloud} size="1x" /> {item.clouds} % </>)
 
     }

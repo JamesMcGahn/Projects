@@ -5,7 +5,7 @@ import CardButton from '../ui/Button'
 import { useStyles } from '../../styles/ui/summaryCardStyles'
 
 function SummaryCard(props) {
-    const { cardTitle, cardData, unit, route, buttonColor, buttonText, iconColor, mobileWidth, mobileTextAlign } = props
+    const { cardTitle, cardData, unit, route, buttonColor, buttonText, iconColor, mobileWidth } = props
     const width = mobileWidth ? mobileWidth : cardData.length
     const classes = useStyles({ itemsLength: width, iconColor })
     return (

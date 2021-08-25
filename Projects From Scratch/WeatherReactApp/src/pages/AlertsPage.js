@@ -56,7 +56,7 @@ function AlertsPage(props) {
     }
 
     return (
-        <Page id={id} idChange={idChange} changeTab={changeTab} tab={4} findLocation={findLocation} >
+        <Page id={id} idChange={idChange} changeTab={changeTab} tab={6} findLocation={findLocation} >
             <div className={classes.todaysum}>
                 < InfoCard cardTitle={< span ><h2>Weather Alerts</h2> <h3> - {forecast[0].city}</h3> </span>} route={`/hourly/${id}`}
                     buttonColor={'#1b4de4'} buttonText={'Hourly Forecast'}

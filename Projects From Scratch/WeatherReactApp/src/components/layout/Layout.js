@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import MainNav from './MainNav';
 import SnackBarAlert from '../ui/SnackBar';
 import Footer from './Footer';

@@ -49,15 +49,13 @@ function Navbar({ unit, setSearchResultLoc, setUnit, setSnackBar }) {
             if (searchPlaceholder.length < 1) {
                 throw new Error('No search text')
             } else {
-                const res = await axios.get(`http://api.openweathermap.org/geo/1.0/direct?q=${searchPlaceholder}&limit=5&appid=${OW_API_KEY}`)
+                const res = await axios.get(`https://api.openweathermap.org/geo/1.0/direct?q=${searchPlaceholder}&limit=5&appid=${OW_API_KEY}`)
                 const { data } = res
-                console.log(data)
                 setSearchResults(data)
                 setShowSearchResults(true)
             }
         }
         catch (e) {
-            console.log('coords', e)
             setShowSearchResults(false)
             setSnackBar(true)
 

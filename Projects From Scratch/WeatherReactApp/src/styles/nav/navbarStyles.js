@@ -2,7 +2,10 @@ import { alpha, makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
     appbar: {
         backgroundColor: '#039',
-        color: 'white'
+        color: 'white',
+        '@media (max-width: 450px)': {
+            height: '20vh'
+        }
     },
     search: {
         position: 'relative',
@@ -42,7 +45,8 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: alpha(theme.palette.common.white, 0.15),
         '@media (max-width: 650px)': {
             margin: '.5rem 0 0 0',
-        }
+        },
+
     },
     iconCont: {
         display: 'flex',
@@ -88,6 +92,11 @@ const useStyles = makeStyles((theme) => ({
             top: '40%',
             left: '33%',
             minWidth: '185px',
+        },
+        '@media (max-width: 450px)': {
+            top: '90%',
+            left: '25%',
+            minWidth: '225px',
         }
     },
     list: {
@@ -95,7 +104,8 @@ const useStyles = makeStyles((theme) => ({
             backgroundColor: '#113076',
             color: 'white',
         }
-    }
+    },
+
 }));
 
 export { useStyles }
