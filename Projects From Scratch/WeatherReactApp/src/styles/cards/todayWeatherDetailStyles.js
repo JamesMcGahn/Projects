@@ -28,12 +28,18 @@ const useStyles = makeStyles((theme) => ({
             color: 'black',
             fontSize: '1.2rem'
         },
-        [theme.breakpoints.down('sm')]: {
+        '@media (max-width: 650px)': {
             flexDirection: 'column',
         }
     },
     table: {
-        width: '100%',
+        width: '30vw',
+        '@media (max-width: 950px)': {
+            width: '40vw',
+        },
+        '@media (max-width: 650px)': {
+            width: '80vw',
+        },
     },
     left: {
         minWidth: '29vw',
