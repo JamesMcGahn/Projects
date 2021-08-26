@@ -11,11 +11,13 @@ https://modest-bassi-5f6983.netlify.app
 React Weather Channel is a fully functional weather app. Users can search locations across the world and find weather information. The Weather App provides summaries for weather on the main page Today page. Forecasts are further broken down in the Hourly, Daily and Weekend Forecasts. Users can find a
 the radar for their location as well as the air qulity and allergy count. Location data is stored in local storage.
 
-Desktop
+#### Desktop
+
 ![](project_demo_1.gif)
 ![](project_demo_2.gif)
 
-Mobile
+#### Mobile
+
 ![](project_demo_3.gif)
 
 ## Tech

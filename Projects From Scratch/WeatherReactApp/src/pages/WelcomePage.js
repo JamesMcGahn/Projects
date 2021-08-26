@@ -11,7 +11,7 @@ function WelcomePage({ id, idChange, changeTab, findLocation }) {
                 <InfoCard cardTitle={'Welcome to React Weather Channel'} cardSubTitle={'Search a Location to Get Started'}  >
                     <div className={classes.text}>
                         <p>At React Weather Channel you can find everything from summaries to detailed forecasts for your location.</p>
-                        <p>Search a Location by entering a location in the search bar.</p>
+                        <p>Search a Location by entering a location in the search bar and clicking enter.</p>
                     </div>
                 </InfoCard>
             </div>
