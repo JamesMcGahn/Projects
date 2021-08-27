@@ -1,14 +1,7 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
-import classes from '../styles/Hero.module.css'
+import classes from '../styles/hero.module.css'
 function Hero({ h1, h2 }) {
-    let h4 = <h1 id={classes.h1}>h1</h1>
-
-
-    const SuperStrong = ({ children }) => {
-        return <span id={classes.h2}>{`${h2} `}</span>;
-    };
-
     return (
         <React.Fragment>
             <Container className={classes.hero} fluid>

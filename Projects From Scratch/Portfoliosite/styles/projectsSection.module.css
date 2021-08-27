@@ -1,0 +1,11 @@
+.projects {
+  min-height: 100vh;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.15));
+  border-top: 4px solid #b90504;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 3rem;
+}
