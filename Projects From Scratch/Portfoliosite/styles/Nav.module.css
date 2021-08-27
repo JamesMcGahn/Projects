@@ -3,5 +3,8 @@ div.container {
 }
 
 #nav {
-  background-color: black !important;
+  background-color: rgba(0, 0, 0, 0.1) !important;
+  z-index: 1;
+  position: absolute;
+  left: 78%;
 }

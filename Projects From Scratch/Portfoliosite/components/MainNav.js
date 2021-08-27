@@ -14,8 +14,8 @@ function MainNav(props) {
                     <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
                         <Nav className="ml-auto">
                             <Link href='/' passHref><Nav.Link>Home</Nav.Link></Link>
+                            <Link href='/#about' passHref><Nav.Link>About</Nav.Link></Link>
                             <Link href='/projects' passHref><Nav.Link>Projects</Nav.Link></Link>
-                            <Link href='/' passHref><Nav.Link>Home</Nav.Link></Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
