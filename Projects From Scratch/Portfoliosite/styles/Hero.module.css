@@ -1,0 +1,21 @@
+.hero {
+  height: 91vh;
+  background-color: #000;
+  background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 35%, rgba(0, 0, 0, 0.6) 100%), url('/img/hero4.jpeg');
+
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#h1 {
+  color: #fff;
+  font-size: 3rem;
+}
+
+#h2 {
+  color: #fff;
+  font-size: 2rem;
+}
