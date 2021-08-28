@@ -29,7 +29,7 @@
   font-size: 4rem;
   color: #b90504;
   font-size: 80px;
-  text-shadow: -1px -1px 0px #fdce52, 3px 3px 0px #fdce52;
+  text-shadow: -1px -1px 0px #000000, 3px 3px 0px #fdce52;
 }
 .card {
   width: 80vw;
@@ -100,7 +100,7 @@
 
 .skillsHeader {
   color: #fdce52;
-  text-shadow: -1px -1px 0px #fdce52, 3px 3px 0px #b90504;
+  text-shadow: -1px -1px 0px #000000, 3px 3px 0px #b90504;
   border-bottom: 4px solid #fdce52;
   text-align: center;
   position: relative;

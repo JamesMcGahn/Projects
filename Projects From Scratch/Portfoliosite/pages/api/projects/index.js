@@ -1,10 +1,12 @@
 import dbConnect from "../../../utils/dbConnect";
 import Project from "../../../models/Project.js"
 
-dbConnect();
+
 
 export default async (req, res) => {
     const { method } = req
+
+    await dbConnect()
 
     switch (method) {
         case 'GET':

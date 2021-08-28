@@ -1,0 +1,19 @@
+.addform {
+  min-height: 100vh;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 25%, rgba(0, 0, 0, 0.1) 100%);
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+}
+
+.card {
+  width: 80vw;
+  margin-top: 1rem;
+  min-height: 80vh;
+  background-color: #fff;
+  box-shadow: 13px 12px 0 #fdce52;
+  padding: 1rem;
+}

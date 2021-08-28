@@ -2,30 +2,31 @@ import mongoose from 'mongoose';
 
 const ProjectSchema = new mongoose.Schema({
     title: {
-        type: 'string',
+        type: String,
         required: [true, 'Add a Title'],
         trim: true,
     },
     description: {
-        type: 'string',
+        type: String,
         required: [true, 'Add a Description'],
         trim: true,
     },
+    stack: [{ type: String, required: true }],
     imageUrl: {
-        type: 'string',
+        type: String,
         required: [true, 'Add a Image Url'],
         trim: true,
     },
     gitUrl: {
-        type: 'string',
+        type: String,
         required: [true, 'Add a Image Url'],
         trim: true,
     },
     liveUrl: {
-        type: 'string',
+        type: String,
         required: [true, 'Add a Image Url'],
         trim: true,
     },
 })
 
-module.exports = mongoose.models.Project || mongoose.model('Project', ProjectSchema)
+module.exports = mongoose.models.Project ? mongoose.models.Project : mongoose.model('Project', ProjectSchema)
