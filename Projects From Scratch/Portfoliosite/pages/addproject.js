@@ -2,8 +2,6 @@ import React from 'react';
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/router'
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
 import classes from '../styles/addproject.module.css'
@@ -42,11 +40,9 @@ function AddProject(props) {
 
     const createProject = async () => {
         try {
-            console.log('creatuing')
-            const res = await axios.post('http://localhost:3000/api/projects',
+            const res = await axios.post(`${process.env.SERVER}/api/projects`,
                 form,
-                { headers: { "Content-Type": 'application/json' } }).then(res => router.push('/'))
-
+                { headers: { "Content-Type": 'application/json' } }).then(res => router.push('/projects'))
         } catch (e) {
             console.log(e)
         }

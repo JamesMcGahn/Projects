@@ -3,13 +3,14 @@ import Hero from '../components/Hero'
 import AboutSection from '../components/AboutSection'
 import ProjectsSection from '../components/ProjectsSection'
 import BreakSection from '../components/BreakSection'
+import { signIn, signOut, useSession } from 'next-auth/client'
 
 import axios from 'axios'
 export default function Home({ projects }) {
   return (
     <div>
       <Hero h1='James McGahn' h2='Frontend Developer' />
-
+      <button onClick={signIn}></button>
       <AboutSection />
       <BreakSection url='/img/textureBackground1.jpeg'>
       </BreakSection>
@@ -19,9 +20,8 @@ export default function Home({ projects }) {
 }
 
 
-Home.getInitialProps = async () => {
-  const res = await axios.get('http://localhost:3000/api/projects')
+export const getServerSideProps = async () => {
+  const res = await axios.get(`${process.env.SERVER}/api/projects/`)
   const { data } = await res.data
-  console.log(data)
-  return { projects: data }
+  return { props: { projects: data } }
 }

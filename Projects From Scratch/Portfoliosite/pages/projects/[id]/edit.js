@@ -63,7 +63,7 @@ function EditSingleProject({ project, id }) {
 export default EditSingleProject;
 
 export const getServerSideProps = async ({ query: { id } }) => {
-    const res = await axios.get(`http://localhost:3000/api/projects/${id}`)
+    const res = await axios.get(`${process.env.SERVER}/api/projects/${id}`)
     const { data } = await res.data
     return { props: { project: data, id: id } }
 }
