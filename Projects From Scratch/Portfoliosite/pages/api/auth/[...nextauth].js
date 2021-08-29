@@ -30,7 +30,7 @@ export default NextAuth({
                     if (valid) {
                         // Any object returned will be saved in `user` property of the JWT
                         console.log('success')
-                        return { email: username.email }
+                        return { email: username }
                     } else {
                         // If you return null or false then the credentials will be rejected
                         console.log('fail')

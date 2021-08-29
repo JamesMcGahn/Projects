@@ -7,10 +7,11 @@ import { signIn, signOut, useSession } from 'next-auth/client'
 
 import axios from 'axios'
 export default function Home({ projects }) {
+  const [session, loading] = useSession()
   return (
     <div>
       <Hero h1='James McGahn' h2='Frontend Developer' />
-      <button onClick={signIn}></button>
+      {!session ? <button onClick={signIn}>sign in</button> : <button onClick={signOut}>sign out</button>}
       <AboutSection />
       <BreakSection url='/img/textureBackground1.jpeg'>
       </BreakSection>

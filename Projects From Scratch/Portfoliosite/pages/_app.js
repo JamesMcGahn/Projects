@@ -5,6 +5,7 @@ import Layout from '../components/Layout'
 import { useRouter } from 'next/router'
 import NProgress from 'nprogress'
 import '../public/css/nprogress.css'
+import { Provider } from 'next-auth/client'
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
@@ -40,9 +41,11 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <title>James McGahn</title>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <Provider session={pageProps.session}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </Provider>
     </>
   )
 
