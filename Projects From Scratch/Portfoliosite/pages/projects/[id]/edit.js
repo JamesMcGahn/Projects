@@ -1,4 +1,5 @@
 import React from 'react';
+import { getSession } from 'next-auth/client'
 import { useState } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/router'
@@ -33,9 +34,9 @@ function EditSingleProject({ project, id }) {
     const createProject = async () => {
         try {
             console.log('creatuing')
-            const res = await axios.put(`http://localhost:3000/api/projects/${id}`,
+            const res = await axios.put(`http://localhost:3000/api/auth/projects/${id}`,
                 form,
-                { headers: { "Content-Type": 'application/json' } }).then(res => router.push('/'))
+                { headers: { "Content-Type": 'application/json' } }).then(res => router.push('/dashboard'))
 
         } catch (e) {
             console.log(e)
@@ -62,7 +63,18 @@ function EditSingleProject({ project, id }) {
 
 export default EditSingleProject;
 
-export const getServerSideProps = async ({ query: { id } }) => {
+export const getServerSideProps = async (context) => {
+    const session = await getSession(context)
+    if (!session) {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false
+            }
+
+        }
+    }
+    const { id } = context.query;
     const res = await axios.get(`${process.env.SERVER}/api/projects/${id}`)
     const { data } = await res.data
     return { props: { project: data, id: id } }

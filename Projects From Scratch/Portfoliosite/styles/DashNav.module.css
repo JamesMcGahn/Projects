@@ -2,7 +2,7 @@ div.container {
   padding: 0;
 }
 
-#nav {
+/* #nav {
   background-color: rgba(0, 0, 0, 0) !important;
   z-index: 1;
   position: absolute;
@@ -13,5 +13,5 @@ div.container {
   color: white;
   font-size: 1.3rem;
   text-shadow: -1px -1px 1px #ff00fc;
-}
+} */
 /* for active link styles -- check global sheet */

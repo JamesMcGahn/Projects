@@ -1,6 +1,6 @@
 import dbConnect from "../../../../utils/dbConnect"
 import Project from "../../../../models/Project"
-
+import { getSession } from 'next-auth/client'
 
 
 export default async (req, res) => {

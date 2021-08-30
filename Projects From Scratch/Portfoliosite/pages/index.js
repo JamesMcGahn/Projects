@@ -14,7 +14,7 @@ export default function Home({ projects }) {
   const [session, loading] = useSession()
   return (
     <div>
-      <Hero h1='James McGahn' h2='Frontend Developer' />
+      <Hero h1='' h2='' />
 
       <AboutSection />
       <BreakSection url='/img/breaker6.jpg'>

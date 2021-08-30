@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react'
+import { getSession } from 'next-auth/client'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import Row from 'react-bootstrap/Row';
@@ -40,7 +41,7 @@ function AddProject(props) {
 
     const createProject = async () => {
         try {
-            const res = await axios.post(`${process.env.SERVER}/api/projects`,
+            const res = await axios.post(`${process.env.SERVER}/api/auth/projects`,
                 form,
                 { headers: { "Content-Type": 'application/json' } }).then(res => router.push('/projects'))
         } catch (e) {
@@ -66,3 +67,17 @@ function AddProject(props) {
 }
 
 export default AddProject;
+
+export const getServerSideProps = async (context) => {
+    const session = await getSession(context)
+    if (!session) {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false
+            }
+
+        }
+    }
+    return { props: { session: session } }
+}

@@ -1,7 +1,7 @@
 .hero {
   height: 100vh;
-  background-color: #990000;
-  background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.35) 35%, rgba(0, 0, 0, 0.2) 100%), url('/img/hero5.jpg');
+  background-color: black;
+  background-image: url('/img/jmlogo3.jpg');
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;

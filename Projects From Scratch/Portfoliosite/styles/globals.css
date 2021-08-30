@@ -13,6 +13,5 @@ a {
 }
 
 a.nav-link.active {
-  color: #ffcc00 !important;
-  text-shadow: -1px -1px 0px #b90504, 3px 3px 0px #000000;
+  color: #ff00fc !important;
 }
