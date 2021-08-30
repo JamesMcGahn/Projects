@@ -8,7 +8,7 @@ function BreakSection({ children, url, color }) {
         <Container className={classes.break} style={{
             background: backgroundImage,
             backgroundAttachment: 'fixed',
-            backgroundPosition: 'center',
+            backgroundPosition: 'top',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover'
         }} fluid >

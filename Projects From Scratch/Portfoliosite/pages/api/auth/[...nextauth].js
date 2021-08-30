@@ -19,8 +19,6 @@ export default NextAuth({
                     await dbConnect();
                     console.log(credentials.username, 'username', credentials.password), 'pwass';
                     const username = credentials.username;
-                    const password = credentials.password;
-
                     const userFound = await User.findOne({ username });
                     console.log(userFound.password)
                     if (!userFound) {

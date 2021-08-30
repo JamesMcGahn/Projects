@@ -1,11 +1,98 @@
 .projects {
-  min-height: 100vh;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.15));
-  border-top: 4px solid #b90504;
+  /* min-height: 100vh; */
+  background: black;
+  background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.4) 35%, rgba(0, 0, 0, 0.25) 100%), url('/img/breaker.jpg');
+  /* background-image: url('/img/breaker.jpg'); */
+  border-top: 4px solid #ff00fc;
   background-position: center;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  padding: 3rem;
+  padding: 10% 5%;
+  border-bottom: 5px solid #b7e3fe;
+}
+.header {
+  position: absolute;
+  z-index: 20;
+  left: 5%;
+  top: 297.3%;
+}
+
+.header h2 {
+  font-size: 4rem;
+  color: #b7e3fe;
+  font-size: 80px;
+  text-shadow: -2px -2px 2px #75158f, 3px 3px 0px #3557c6;
+}
+
+/* .projectTile {
+  height: 95vh;
+} */
+.projectCard {
+  margin-top: 1rem;
+  height: 100% !important;
+  background-color: #fff;
+  background: linear-gradient(180deg, rgba(250, 250, 250, 0.8), rgba(250, 250, 250, 0.85));
+  box-shadow: 3px 4px 3px rgba(0, 0, 0, 0.7);
+  padding: 1rem;
+}
+
+span.badge {
+  margin-left: 3px;
+  /* background-color: 355766 !important; */
+  box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.7);
+}
+
+.description {
+  margin-top: 3px;
+}
+
+.btnDiv {
+  display: flex;
+  margin-top: 0.5rem;
+  justify-content: space-around;
+  margin: 1.2rem 0 0 0;
+}
+
+div.btnDiv button {
+  border-color: #3e4a87;
+  background-color: #3346bc !important;
+  box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.7);
+}
+div.btnDiv button a {
+  color: #fff;
+}
+
+div.btnDiv button:hover {
+  background-color: #3557c6 !important;
+  border-color: #b7e3fe;
+  color: #fff;
+}
+
+.viewAllDiv {
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
+  min-width: 100%;
+}
+
+#viewAllbtn {
+  display: inline-block;
+  width: 33.3%;
+}
+
+#viewAllbtn {
+  border-color: #3e4a87;
+  border-width: 3px;
+  /* background-color: #3346bc !important; */
+  box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.7);
+}
+#viewAllbtn a {
+  color: #fff;
+}
+#viewAllbtn:hover {
+  background-color: #3557c6 !important;
+  border-color: #b7e3fe;
+  color: #fff;
 }

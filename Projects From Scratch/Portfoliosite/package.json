@@ -15,7 +15,6 @@
     "@fortawesome/react-fontawesome": "^0.1.15",
     "axios": "^0.21.1",
     "bcrypt": "^5.0.1",
-    "bcryptjs": "^2.4.3",
     "bootstrap": "^5.1.0",
     "mongoose": "^6.0.2",
     "moongoose": "^0.0.5",
@@ -24,8 +23,7 @@
     "nprogress": "^0.2.0",
     "react": "17.0.2",
     "react-bootstrap": "^2.0.0-beta.6",
-    "react-dom": "17.0.2",
-    "typeit-react": "^2.0.1"
+    "react-dom": "17.0.2"
   },
   "devDependencies": {
     "eslint": "7.32.0",
