@@ -7,14 +7,22 @@ import Card from 'react-bootstrap/Card';
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
 import classes from '../styles/projectsSection.module.css'
-function ProjectsSection({ projects }) {
-    const firstThreeProjects = projects.filter((project, i) => i <= 2 ? project : null)
+function ProjectsSection({ projects, mainPage }) {
+    const projectData = mainPage ? projects : projects.filter((project, i) => i <= 2 ? project : null)
+
+    function truncateString(str) {
+        if (str.length < 200) return str
+
+        return `${str.substring(0, 200)}...`
+    }
+
+
     return (
         <Container className={classes.projects} id="projects" fluid>
             <div className={classes.header}><h2>Projects.</h2></div>
             <div className={classes.projectDiv}>
                 <Row id={classes.cardRow}>
-                    {firstThreeProjects.map((project, i) => {
+                    {projectData.map((project, i) => {
                         const img = <a><Card.Img variant="top" src="/img/headshot.jpg" /></a>
                         const button = <a>View Project</a>
                         return (
@@ -29,7 +37,7 @@ function ProjectsSection({ projects }) {
                                             <strong>Tech:</strong> {project.stack.map((tech, i) => <Badge bg="primary" className={classes.badge} key={i}>{tech}</Badge>)}
                                         </div>
                                         <div className={classes.description}>
-                                            <strong>Description:</strong>{` ${project.description}`}
+                                            <strong>Description:</strong>{` ${truncateString(project.description)}`}
                                         </div>
 
                                     </Card.Body>
@@ -42,9 +50,9 @@ function ProjectsSection({ projects }) {
                         )
                     })}
                 </Row>
-                <div className={classes.viewAllDiv}>
+                {mainPage && <div className={classes.viewAllDiv}>
                     <Button variant="primary" size="lg" id={classes.viewAllbtn}><Link href={`/projects/`} passHref>View All</Link></Button>
-                </div>
+                </div>}
             </div>
         </Container >
     );

@@ -27,14 +27,31 @@ function ProjectForm({ validated, handleSubmit, handleChange, form }) {
             </Form.Group>
             <Form.Group className="mb-3" controlId="description">
                 <Form.Label>Description</Form.Label>
-                <Form.Control type="text" placeholder="Description" name="description" value={form.description} onChange={handleChange} required />
+                <Form.Control as="textarea" rows={3} placeholder="Description" name="description" value={form.description} onChange={handleChange} required />
                 <Form.Control.Feedback type="invalid">
                     Add the Project's Description
+                </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="challenges">
+                <Form.Label>Challenges</Form.Label>
+                <Form.Control as="textarea" rows={3} placeholder="challenges" name="challenges" value={form.challenges} onChange={handleChange} required />
+                <Form.Control.Feedback type="invalid">
+                    Add the Project's Challenges
                 </Form.Control.Feedback>
             </Form.Group>
             <Form.Group className="mb-3" controlId="imageUrl">
                 <Form.Label>Image Url</Form.Label>
                 <Form.Control type="text" placeholder="Image Url" name="imageUrl" value={form.imageUrl} onChange={handleChange} required />
+                <Form.Control.Feedback type="invalid">
+                    Add the Project's Image
+                </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="adtlImg">
+                <Form.Label>Additional Image Url's</Form.Label>
+                <Form.Control type="text" placeholder="Additional Images" name="adtlImg" value={form.adtlImg} onChange={handleChange} />
+                <Form.Text className="text-muted">
+                    Make sure list is comma separated
+                </Form.Text>
                 <Form.Control.Feedback type="invalid">
                     Add the Project's Image
                 </Form.Control.Feedback>

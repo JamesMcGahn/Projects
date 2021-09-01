@@ -13,9 +13,11 @@ function AddProject(props) {
             title: "",
             stack: [],
             description: "",
+            challenges: "",
             imageUrl: "",
             gitUrl: "",
-            liveUrl: ""
+            liveUrl: "",
+            adtlImg: [],
         }
     )
     const [submitting, setSubmitting] = useState(false)
@@ -36,7 +38,7 @@ function AddProject(props) {
 
 
     const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.name === 'stack' ? e.target.value.split(',') : e.target.value })
+        setForm({ ...form, [e.target.name]: e.target.name === 'stack' || e.target.name === 'adtlImg' ? e.target.value.split(',') : e.target.value })
     }
 
     const createProject = async () => {

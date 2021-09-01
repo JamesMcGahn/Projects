@@ -13,6 +13,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import classes from '../styles/projectsSection.module.css'
 import ProjectCard from '../components/ProjectCard'
+import DashboardProjectTable from '../components/DashboardProjectTable'
 
 function dashboard({ session, projects }) {
     const [show, setShow] = useState(false);
@@ -21,6 +22,7 @@ function dashboard({ session, projects }) {
     const handleShow = () => setShow(true);
     const [modalItem, setModalItem] = useState({ id: '', title: '' });
     const router = useRouter()
+    console.log(projects)
 
     const handleDelete = (id, title) => {
         setShow(true)
@@ -45,6 +47,8 @@ function dashboard({ session, projects }) {
     return (
         <div>
             <Container className={classes.projects} id="projects" fluid>
+
+                <DashboardProjectTable projects={projects} handleDelete={handleDelete} />
                 <Row>
                     {projects.map((project, i) => {
 

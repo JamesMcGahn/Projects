@@ -6,7 +6,7 @@ div.container {
   background-color: rgba(0, 0, 0, 0) !important;
   z-index: 1;
   position: absolute;
-  left: 78%;
+  left: 70%;
 }
 
 #nav a {
@@ -15,3 +15,18 @@ div.container {
   text-shadow: -1px -1px 1px #ff00fc;
 }
 /* for active link styles -- check global sheet */
+@media (max-width: 991px) {
+  #nav {
+    left: 85%;
+  }
+}
+@media (max-width: 678px) {
+  #nav {
+    left: 80%;
+  }
+}
+@media (max-width: 567px) {
+  #nav {
+    left: 78%;
+  }
+}

@@ -15,3 +15,10 @@ a {
 a.nav-link.active {
   color: #ff00fc !important;
 }
+
+@media (max-width: 678px) {
+  #basic-navbar-nav.collapse.show {
+    background-color: rgba(0, 0, 0, 0.7) !important;
+    padding: 10%;
+  }
+}

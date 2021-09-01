@@ -24,7 +24,7 @@ export default function Home({ projects }) {
           <div className={classes.icon}><a href='' target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faEnvelope} /></a></div>
         </div>
       </BreakSection >
-      <ProjectsSection projects={projects} />
+      <ProjectsSection projects={projects} mainPage={true} />
       {!session ? <button onClick={signIn}>sign in</button> : <button onClick={signOut}>sign out</button>}
     </div >
   )
@@ -34,5 +34,6 @@ export default function Home({ projects }) {
 export const getServerSideProps = async () => {
   const res = await axios.get(`${process.env.SERVER}/api/projects/`)
   const { data } = await res.data
-  return { props: { projects: data } }
+
+  return { props: { projects: data, } }
 }

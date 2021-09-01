@@ -25,3 +25,13 @@
   margin-top: 0.1rem;
   text-shadow: -0.5px -0.5px 2px #990000, 3px 3px 0px #000000;
 }
+
+@media (max-width: 916px) {
+  .hero {
+    background-position: top;
+    background-size: contain;
+    width: 100%;
+    height: 0;
+    padding-top: 56%;
+  }
+}
