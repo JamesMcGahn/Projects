@@ -4,16 +4,25 @@ import { useRouter } from 'next/router'
 import classes from '../../styles/layout.module.css'
 import DashNav from './nav/DashNav';
 import Footer from './Footer'
+import { useSession } from "next-auth/client"
 function Layout({ children }) {
+    const [session, loading] = useSession()
     const router = useRouter()
     return (
-        <div>
-            {router.pathname === '/dashboard' || router.pathname === '/dashboard/addproject' || router.pathname === '/projects/[id]/edit' || router.pathname === '/addproject'
-                ? <DashNav /> : <MainNav />}
-            {children}
-            <Footer />
-        </div>
+        <>
+            {session
+                ? <DashNav /> : null}
+            <div>
+                {router.pathname === '/dashboard' || router.pathname === '/dashboard/addproject' || router.pathname === '/projects/[id]/edit' ?
+                    null :
+                    <MainNav />
+                }
+                {children}
+                <Footer />
+            </div>
+        </>
     );
 }
 
 export default Layout;
+

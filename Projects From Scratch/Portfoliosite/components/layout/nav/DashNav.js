@@ -4,12 +4,17 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import classes from '../../../styles/DashNav.module.css'
 import Link from 'next/link'
-
+import { useSession } from "next-auth/client"
 function DashNav(props) {
+    const [session, loading] = useSession()
+    console.log(session)
     return (
         <Container className={classes.container} fluid>
             <Navbar id={classes.nav} bg="dark" expand="lg" variant="dark">
                 <Container>
+                    <Navbar.Text>
+                        Signed in as: {session.user.email}
+                    </Navbar.Text>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
                         <Nav className="ml-auto">

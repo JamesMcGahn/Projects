@@ -12,11 +12,7 @@ export default NextAuth({
                 username: { label: "email", type: "text", placeholder: "bob@bob.com" },
                 password: { label: "password", type: "password", placeholder: "" }
             },
-            pages: {
-                signIn: '/dashboard/login',
-                signOut: '/auth/signout',
-                error: '/auth/error', // Error code passed in query string as ?error=
-            },
+
             async authorize(credentials, req) {
                 try {
                     await dbConnect();
@@ -25,24 +21,23 @@ export default NextAuth({
                     const userFound = await User.findOne({ username });
 
                     if (!userFound) {
-                        throw new Error('Username doesnt exist')
+                        return null
                     }
                     const valid = await bcrypt.compare(credentials.password, userFound.password)
                     if (valid) {
                         return { email: username }
                     } else {
-                        return '/'
+                        return '/dashboard/error'
                     }
                 } catch (e) {
                     console.log(e)
-                    return '/'
+                    return null
                 }
             }
         }),
     ],
     session: {
         jwt: true,
-        maxAge: 30 * 24 * 60 * 60,
     },
     callbacks: {
         async signIn(user, account, profile,) {
@@ -50,13 +45,13 @@ export default NextAuth({
             if (isAllowedToSignIn) {
                 return true
             } else {
-                return '/'
+                return false
             }
         },
-        async redirect(url, baseUrl) {
-            return url.startsWith(baseUrl)
-                ? '/dashboard'
-                : baseUrl
-        }
-    }
+    },
+    pages: {
+        signIn: '/dashboard/login',
+        signOut: '/auth/signout',
+        error: '/error',
+    },
 })

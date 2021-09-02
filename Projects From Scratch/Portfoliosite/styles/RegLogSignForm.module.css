@@ -31,3 +31,8 @@
   background-color: #b7e3fe;
   border-color: #ff00fc;
 }
+.formDiv button:focus {
+  background-color: #b7e3fe;
+  border-color: #b7e3fe;
+  box-shadow: 0 0 0 0.25rem #ff00fc;
+}
