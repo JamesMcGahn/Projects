@@ -1,0 +1,33 @@
+.formDiv {
+  padding: 10%;
+  min-height: 80vh;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.formDiv h3 {
+  color: #75158f;
+  text-shadow: -1px -1px 2px #ff00fc, 1px 1px 2px #b7e3fe;
+}
+
+.formDiv form {
+  width: 60%;
+  border: 3px solid #b7e3fe;
+  padding: 5% 10%;
+}
+.formDiv label {
+  color: #ff00fc;
+}
+
+.formDiv button {
+  background-color: #ff00fc;
+  border-color: #b7e3fe;
+}
+
+.formDiv button:hover {
+  background-color: #b7e3fe;
+  border-color: #ff00fc;
+}

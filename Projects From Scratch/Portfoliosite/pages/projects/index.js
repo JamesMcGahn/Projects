@@ -35,5 +35,5 @@ export default Projects;
 export const getStaticProps = async ({ params }) => {
     const res = await axios.get(`${process.env.SERVER}/api/projects/`)
     const { data } = await res.data
-    return { props: { projects: data } }
+    return { props: { projects: data }, revalidate: 3600 }
 }
