@@ -6,6 +6,11 @@ const ProjectSchema = new mongoose.Schema({
         required: [true, 'Add a Title'],
         trim: true,
     },
+    subtitle: {
+        type: String,
+        required: [true, 'Add a Subtitle'],
+        trim: true,
+    },
     description: {
         type: String,
         required: [true, 'Add a Description'],

@@ -4,8 +4,9 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
-import Badge from 'react-bootstrap/Badge';
+import ProjectBadge from '../../components/ui/ProjectBadge'
 import Button from 'react-bootstrap/Button';
+import ViewButton from '../ui/ViewButton';
 import classes from '../../styles/projectsSection.module.css'
 import LinkWrapper from '../utils/LinkWrapper';
 function ProjectsSection({ projects, mainPage }) {
@@ -35,16 +36,14 @@ function ProjectsSection({ projects, mainPage }) {
                                     <Card.Body>
                                         <span className={classes.title}> <h5><Link href={`/projects/${project._id}`}>{project.title}</Link></h5></span>
                                         <div>
-                                            <strong>Tech:</strong> {project.stack.map((tech, i) => <Badge bg="primary" className={classes.badge} key={i}>{tech}</Badge>)}
+                                            <strong>Tech:</strong> {project.stack.map((tech, i) => <ProjectBadge key={i}>{tech}</ProjectBadge>)}
                                         </div>
                                         <div className={classes.description}>
                                             <strong>Description:</strong>{` ${truncateString(project.description)}`}
                                         </div>
 
                                     </Card.Body>
-                                    <div className={classes.btnDiv}>
-                                        <LinkWrapper to={`/projects/${project._id}`}>    <Button variant="primary" size="lg" className={classes.view}>View Project</Button></LinkWrapper>
-                                    </div>
+                                    <ViewButton link={true} href={`/projects/${project._id}`}>View Project</ViewButton>
                                 </Card>
 
                             </Col>

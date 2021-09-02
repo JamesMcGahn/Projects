@@ -1,7 +1,5 @@
 .outerContainer {
   min-height: 100vh;
-  /* background: linear-gradient(180deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.15)); */
-  /* background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 25%, rgba(0, 0, 0, 0.1) 100%); */
   background: black;
   background-image: url('/img/breaker2.jpeg');
 
@@ -24,12 +22,6 @@
   display: flex;
   justify-content: center;
 }
-/* .header {
-  position: absolute;
-  z-index: 20;
-  left: 10%;
-  top: 113%;
-} */
 
 .header h2 {
   font-size: 4rem;
@@ -39,6 +31,7 @@
   /* margin-left: 8%; */
   margin-bottom: 15%;
 }
+
 .card {
   width: 80vw;
   margin-top: 1rem;
@@ -58,23 +51,6 @@
 
   display: inline-block;
 }
-/* .title {
-  border-top: 4px solid #b7e3fe;
-  position: relative;
-  padding-top: 10px;
-} */
-/* .title:after {
-  padding: 0;
-  margin: 0;
-  display: block;
-  content: '';
-  width: 50%;
-  height: 4px;
-  background-color: white;
-  position: absolute;
-  right: 0;
-  top: -4px;
-} */
 
 .bioText h5 {
   margin-top: 1px;

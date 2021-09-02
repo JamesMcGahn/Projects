@@ -7,9 +7,9 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
-import Badge from 'react-bootstrap/Badge';
+import ProjectBadge from '../../../components/ui/ProjectBadge';
 import Button from 'react-bootstrap/Button';
-import Link from 'next/link'
+import ViewButton from '../../../components/ui/ViewButton'
 import { useRouter } from 'next/router'
 import DefaultErrorPage from 'next/error'
 
@@ -39,7 +39,7 @@ function singleProject({ project, notFound }) {
                 <Card className={styles.card}>
                     <Card.Body>
                         <Row>
-                            <Col xs={12} md={5} >
+                            <Col xs={12} md={12} lg={5} >
                                 <Card className={styles.innerCard}>
                                     <Carousel controls={moreThanOneImg} indicators={moreThanOneImg}>
                                         <Carousel.Item>
@@ -62,38 +62,44 @@ function singleProject({ project, notFound }) {
                                             : null
                                         }
                                     </Carousel>
-                                    <Card.Body>
-                                        <div>
-                                            <strong>Tech Used:</strong> {project.stack.map((tech, i) => <Badge bg="primary" className={classes.badge} key={i}>{tech}</Badge>)}
-                                        </div>
-                                    </Card.Body>
+                                    <div className={classes.subtitle}>
+                                        <p>{project.subtitle}</p>
+                                    </div>
+                                    <div className={classes.buttonDiv}>
+
+                                        <ViewButton>Live Site</ViewButton>
+                                        <ViewButton>Code</ViewButton>
+                                    </div>
+
                                 </Card>
                             </Col>
-                            <Col xs={12} md={7} className={styles.rightCol}>
+                            <Col xs={12} md={12} lg={7} className={styles.rightCol}>
                                 <Card className={styles.innerCard}>
                                     <div className={classes.title}>
                                         <h4>{project.title}</h4>
                                     </div>
-                                    <div>
-
-                                        <Button>Live Site</Button>
-                                        <Button>Code</Button>
+                                    <div className={classes.projectInfo}>
+                                        <div className={classes.tech}>
+                                            <strong>Tech Used:</strong> {project.stack.map((tech, i) => <ProjectBadge key={i}>{tech}</ProjectBadge>)}
+                                        </div>
+                                        <div className={classes.description}>
+                                            <strong>Description:</strong>
+                                            <p>{project.description}</p>
+                                        </div>
+                                        <div className={classes.challenges}>
+                                            <strong>Challenges:</strong> <p>{project.challenges}</p>
+                                        </div>
                                     </div>
-                                    <div className={classes.description}>
-                                        <strong>Description:</strong> {project.description}
-                                    </div>
-                                    <div className={classes.challenges}>
-                                        <strong>Challenges:</strong> {project.challenges}
-                                    </div>
-
-
-
                                 </Card>
                             </Col>
                         </Row>
                     </Card.Body>
                 </Card>
+
             </Container>
+            <div className={classes.goBackBtnDiv}>
+                <ViewButton>Go Back</ViewButton>
+            </div>
         </Container>
     );
 }

@@ -7,13 +7,18 @@ function ProjectForm({ validated, handleSubmit, handleChange, form }) {
     return (
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="title">
-
                 <Form.Label>Title</Form.Label>
                 <Form.Control type="text" placeholder="Title" name="title" value={form.title} onChange={handleChange} required />
                 <Form.Control.Feedback type="invalid">
                     Enter a Title
                 </Form.Control.Feedback>
-
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="subtitle">
+                <Form.Label>Subtitle</Form.Label>
+                <Form.Control type="text" placeholder="Subtitle" name="subtitle" value={form.subtitle} onChange={handleChange} required />
+                <Form.Control.Feedback type="invalid">
+                    Enter a Subtitle
+                </Form.Control.Feedback>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Stack</Form.Label>

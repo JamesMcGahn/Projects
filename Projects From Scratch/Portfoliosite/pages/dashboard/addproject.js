@@ -11,6 +11,7 @@ function AddProject(props) {
     const [form, setForm] = useState(
         {
             title: "",
+            subtitle: "",
             stack: [],
             description: "",
             challenges: "",
