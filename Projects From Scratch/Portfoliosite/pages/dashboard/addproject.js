@@ -5,8 +5,8 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
-import classes from '../styles/addproject.module.css'
-import ProjectForm from '../components/ProjectForm'
+import classes from '../../styles/addproject.module.css'
+import ProjectForm from '../../components/dashboard/ProjectForm'
 function AddProject(props) {
     const [form, setForm] = useState(
         {

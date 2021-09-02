@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router'
 import axios from 'axios'
-import ProjectsSection from '../../components/ProjectsSection'
+import ProjectsSection from '../../components/sections/ProjectsSection'
 
 function Projects({ projects }) {
     const [show, setShow] = useState(false);

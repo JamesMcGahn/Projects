@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { getSession } from 'next-auth/client'
 import axios from 'axios'
-import DashNav from '../components/DashNav'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Container from 'react-bootstrap/Container';
@@ -11,9 +10,8 @@ import Card from 'react-bootstrap/Card';
 import Badge from 'react-bootstrap/Badge';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import classes from '../styles/projectsSection.module.css'
-import ProjectCard from '../components/ProjectCard'
-import DashboardProjectTable from '../components/DashboardProjectTable'
+import classes from '../../styles/projectsSection.module.css'
+import DashboardProjectTable from '../../components/dashboard/DashboardProjectTable'
 
 function dashboard({ session, projects }) {
     const [show, setShow] = useState(false);
@@ -46,16 +44,10 @@ function dashboard({ session, projects }) {
 
     return (
         <div>
-            <Container className={classes.projects} id="projects" fluid>
+            <Container fluid>
 
                 <DashboardProjectTable projects={projects} handleDelete={handleDelete} />
-                <Row>
-                    {projects.map((project, i) => {
 
-                        return <ProjectCard stack={project.stack} description={project.description}
-                            title={project.title} id={project._id} handleClose={handleClose} handleDelete={handleDelete} show={show} handleShow={handleShow} />
-                    })}
-                </Row>
                 <DeleteModal id={modalItem.id} title={modalItem.title} show={show} setShow={setShow} deleteProject={deleteProject} />
             </Container >
         </div >

@@ -6,7 +6,8 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
-import classes from '../styles/projectsSection.module.css'
+import classes from '../../styles/projectsSection.module.css'
+import LinkWrapper from '../utils/LinkWrapper';
 function ProjectsSection({ projects, mainPage }) {
     const projectData = mainPage ? projects : projects.filter((project, i) => i <= 2 ? project : null)
 
@@ -42,7 +43,7 @@ function ProjectsSection({ projects, mainPage }) {
 
                                     </Card.Body>
                                     <div className={classes.btnDiv}>
-                                        <Button variant="primary" size="lg" className={classes.view}><Link href={`/projects/${project._id}`} passHref>View Project</Link></Button>
+                                        <LinkWrapper to={`/projects/${project._id}`}>    <Button variant="primary" size="lg" className={classes.view}>View Project</Button></LinkWrapper>
                                     </div>
                                 </Card>
 
@@ -50,9 +51,11 @@ function ProjectsSection({ projects, mainPage }) {
                         )
                     })}
                 </Row>
-                {mainPage && <div className={classes.viewAllDiv}>
-                    <Button variant="primary" size="lg" id={classes.viewAllbtn}><Link href={`/projects/`} passHref>View All</Link></Button>
-                </div>}
+                {
+                    mainPage && <div className={classes.viewAllDiv}>
+                        <LinkWrapper to={'/projects/'}>  <Button variant="primary" size="lg" id={classes.viewAllbtn}>View All</Button></LinkWrapper>
+                    </div>
+                }
             </div>
         </Container >
     );

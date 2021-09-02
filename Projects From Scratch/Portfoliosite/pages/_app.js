@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/globals.css'
 import { useEffect } from 'react'
-import Layout from '../components/Layout'
+import Layout from '../components/layout/Layout'
 import { useRouter } from 'next/router'
 import NProgress from 'nprogress'
 import '../public/css/nprogress.css'

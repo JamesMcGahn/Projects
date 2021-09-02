@@ -1,6 +1,6 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
-import classes from '../styles/hero.module.css'
+import classes from '../../styles/hero.module.css'
 function Hero({ h1, h2 }) {
     return (
         <React.Fragment>

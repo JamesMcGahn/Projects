@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
 import classes from '../../../styles/addproject.module.css'
-import ProjectForm from '../../../components/ProjectForm'
+import ProjectForm from '../../../components/dashboard/ProjectForm'
 
 function EditSingleProject({ project, id }) {
     const [form, setForm] = useState(project)
