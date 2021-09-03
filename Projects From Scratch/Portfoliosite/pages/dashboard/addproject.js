@@ -39,7 +39,7 @@ function AddProject(props) {
 
 
     const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.name === 'stack' || e.target.name === 'adtlImg' ? e.target.value.split(',') : e.target.value })
+        setForm({ ...form, [e.target.name]: e.target.name === 'stack' || e.target.name === 'adtlImg' ? e.target.value.toLowerCase().split(',') : e.target.value })
     }
 
     const createProject = async () => {
