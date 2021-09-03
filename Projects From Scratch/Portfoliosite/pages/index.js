@@ -26,7 +26,6 @@ export default function Home({ projects }) {
         </div>
       </BreakSection >
       <ProjectsSection projects={projects} mainPage={true} />
-      {!session ? <button onClick={signIn}>sign in</button> : <button onClick={signOut}>sign out</button>}
     </div >
   )
 }

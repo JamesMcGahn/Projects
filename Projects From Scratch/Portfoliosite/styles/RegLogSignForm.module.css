@@ -1,5 +1,5 @@
 .formDiv {
-  padding: 10%;
+  padding: 7% 10% 10% 10%;
   min-height: 80vh;
   background-color: black;
   display: flex;
@@ -11,6 +11,13 @@
 .formDiv h3 {
   color: #75158f;
   text-shadow: -1px -1px 2px #ff00fc, 1px 1px 2px #b7e3fe;
+}
+.formDiv h1 {
+  font-size: 4rem;
+  color: #75158f;
+  font-size: 80px;
+  text-shadow: -2px -2px 2px #ff00fc, 3px 3px 0px #b7e3fe;
+  margin-bottom: 15px;
 }
 
 .formDiv form {
@@ -35,4 +42,16 @@
   background-color: #b7e3fe;
   border-color: #b7e3fe;
   box-shadow: 0 0 0 0.25rem #ff00fc;
+}
+
+.captcha {
+  margin-bottom: 10px;
+}
+
+.captchaMessage {
+  color: red;
+}
+
+.success {
+  color: #ff00fc;
 }
