@@ -32,7 +32,7 @@ function singleProject({ project, notFound }) {
 
     console.log(project)
     const img = <a><Card.Img variant="top" src="/img/headshot.jpg" /></a>
-    const moreThanOneImg = project.adtlImg.length > 1 ? true : false
+    const moreThanOneImg = project.imageUrl.length > 1 ? true : false
     return (
         <Container className={styles.outerContainer} fluid>
             <Container className={styles.container} fluid>
@@ -42,19 +42,12 @@ function singleProject({ project, notFound }) {
                             <Col xs={12} md={12} lg={5} >
                                 <Card className={styles.innerCard}>
                                     <Carousel controls={moreThanOneImg} indicators={moreThanOneImg}>
-                                        <Carousel.Item>
-                                            <img
-                                                className="d-block w-100"
-                                                src="/img/headshot.jpg"
-                                                alt="First slide"
-                                            />
-                                        </Carousel.Item>
-                                        {moreThanOneImg ? project.adtlImg.map((img) => (
+                                        {moreThanOneImg ? project.imageUrl.map((img) => (
                                             <Carousel.Item>
                                                 <img
                                                     className="d-block w-100"
-                                                    src="holder.js/800x400?text=Second slide&bg=282c34"
-                                                    alt="Second slide"
+                                                    src={`${img.url}`}
+                                                    alt={`${img.filename}`}
                                                 />
                                             </Carousel.Item>
 

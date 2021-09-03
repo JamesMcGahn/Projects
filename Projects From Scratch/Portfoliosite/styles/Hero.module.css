@@ -8,7 +8,7 @@
   background-size: cover;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
 }
 
@@ -24,6 +24,12 @@
   font-size: 1.7rem;
   margin-top: 0.1rem;
   text-shadow: -0.5px -0.5px 2px #990000, 3px 3px 0px #000000;
+}
+
+.chevron svg {
+  color: #ff00fc;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
 }
 
 @media (max-width: 916px) {

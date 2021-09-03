@@ -15,10 +15,9 @@ function AddProject(props) {
             stack: [],
             description: "",
             challenges: "",
-            imageUrl: "",
+            imageUrl: [],
             gitUrl: "",
             liveUrl: "",
-            adtlImg: [],
         }
     )
     const [submitting, setSubmitting] = useState(false)
@@ -39,14 +38,33 @@ function AddProject(props) {
 
 
     const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.name === 'stack' || e.target.name === 'adtlImg' ? e.target.value.toLowerCase().split(',') : e.target.value })
+
+        if (e.target.name === 'imageUrl' || e.target.name === 'adtlImg') {
+
+            setForm({ ...form, [e.target.name]: [...e.target.files] })
+        } else {
+            setForm({ ...form, [e.target.name]: e.target.value })
+        }
+
     }
 
     const createProject = async () => {
+        const sendForm = new FormData()
+
+        sendForm.append("title", form.title)
+        sendForm.append("subtitle", form.subtitle)
+        sendForm.append("stack", form.stack)
+        sendForm.append("description", form.description)
+        sendForm.append("challenges", form.challenges)
+        form.imageUrl.forEach((file) => sendForm.append('imageUrl', file))
+
+        sendForm.append("gitUrl", form.gitUrl)
+        sendForm.append("liveUrl", form.liveUrl)
+        // sendForm.append("adtlImg", form.adtlImg)
         try {
             const res = await axios.post(`${process.env.SERVER}/api/auth/projects`,
-                form,
-                { headers: { "Content-Type": 'application/json' } }).then(res => router.push('/projects'))
+                sendForm,
+                { headers: { 'content-type': 'multipart/form-data' } }).then(res => console.log(res.data))
         } catch (e) {
             console.log(e)
         }
@@ -62,6 +80,7 @@ function AddProject(props) {
                                 handleSubmit={handleSubmit}
                                 handleChange={handleChange}
                                 form={form} />
+
                     }
                 </Row>
             </Card>

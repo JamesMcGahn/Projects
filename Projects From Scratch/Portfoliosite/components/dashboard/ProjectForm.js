@@ -2,10 +2,10 @@ import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-
+// action={`${process.env.SERVER}/api/auth/projects`} encType="multipart/form-data"
 function ProjectForm({ validated, handleSubmit, handleChange, form }) {
     return (
-        <Form noValidate validated={validated} onSubmit={handleSubmit}>
+        <Form noValidate validated={validated} onSubmit={handleSubmit} >
             <Form.Group className="mb-3" controlId="title">
                 <Form.Label>Title</Form.Label>
                 <Form.Control type="text" placeholder="Title" name="title" value={form.title} onChange={handleChange} required />
@@ -46,17 +46,7 @@ function ProjectForm({ validated, handleSubmit, handleChange, form }) {
             </Form.Group>
             <Form.Group className="mb-3" controlId="imageUrl">
                 <Form.Label>Image Url</Form.Label>
-                <Form.Control type="text" placeholder="Image Url" name="imageUrl" value={form.imageUrl} onChange={handleChange} required />
-                <Form.Control.Feedback type="invalid">
-                    Add the Project's Image
-                </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="adtlImg">
-                <Form.Label>Additional Image Url's</Form.Label>
-                <Form.Control type="text" placeholder="Additional Images" name="adtlImg" value={form.adtlImg} onChange={handleChange} />
-                <Form.Text className="text-muted">
-                    Make sure list is comma separated
-                </Form.Text>
+                <Form.Control type="file" placeholder="Image Url" name="imageUrl" multiple onChange={handleChange} required />
                 <Form.Control.Feedback type="invalid">
                     Add the Project's Image
                 </Form.Control.Feedback>

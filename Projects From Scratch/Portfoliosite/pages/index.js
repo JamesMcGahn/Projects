@@ -6,9 +6,9 @@ import BreakSection from '../components/sections/BreakSection'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
-import { signIn, signOut, useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/client'
 import classes from '../styles/index.module.css'
-
+import LinkWrapper from '../components/utils/LinkWrapper'
 
 import axios from 'axios'
 export default function Home({ projects }) {
@@ -20,9 +20,9 @@ export default function Home({ projects }) {
       <AboutSection />
       <BreakSection url='/img/breaker6.jpg'>
         <div className={classes.iconSection}>
-          <div className={classes.icon}><a href='' target="_blank" rel="noopener noreferrer"> <FontAwesomeIcon icon={faGithub} /></a></div>
-          <div className={classes.icon}><a href='' target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faLinkedin} /></a></div>
-          <div className={classes.icon}><a href='' target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faEnvelope} /></a></div>
+          <div className={classes.icon}><a href='https://github.com/Almag3st' target="_blank" rel="noopener noreferrer"> <FontAwesomeIcon icon={faGithub} /></a></div>
+          <div className={classes.icon}><a href='https://www.linkedin.com/in/james-mcgahn-579067156/' target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faLinkedin} /></a></div>
+          <div className={classes.icon}><LinkWrapper to="/contact"><FontAwesomeIcon icon={faEnvelope} /></LinkWrapper></div>
         </div>
       </BreakSection >
       <ProjectsSection projects={projects} mainPage={true} />
@@ -30,10 +30,8 @@ export default function Home({ projects }) {
   )
 }
 
-
-export const getServerSideProps = async () => {
+export const getStaticProps = async ({ params }) => {
   const res = await axios.get(`${process.env.SERVER}/api/projects/`)
   const { data } = await res.data
-
-  return { props: { projects: data, } }
+  return { props: { projects: data }, revalidate: 3600 }
 }

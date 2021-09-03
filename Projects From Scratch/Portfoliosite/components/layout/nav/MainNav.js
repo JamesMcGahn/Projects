@@ -16,6 +16,7 @@ function MainNav(props) {
                             <Link href='/' passHref><Nav.Link>Home</Nav.Link></Link>
                             <Link href='/#about' passHref><Nav.Link>About</Nav.Link></Link>
                             <Link href='/projects' passHref><Nav.Link>Projects</Nav.Link></Link>
+                            <Link href='/contact' passHref><Nav.Link>Contact</Nav.Link></Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

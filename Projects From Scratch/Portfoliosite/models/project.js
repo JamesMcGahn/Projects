@@ -22,11 +22,10 @@ const ProjectSchema = new mongoose.Schema({
         trim: true,
     },
     stack: [{ type: String, required: true }],
-    imageUrl: {
-        type: String,
-        required: [true, 'Add a Image Url'],
-        trim: true,
-    },
+    imageUrl: [{
+        url: String,
+        filename: String,
+    }],
     gitUrl: {
         type: String,
         required: [true, 'Add a Image Url'],
@@ -37,7 +36,7 @@ const ProjectSchema = new mongoose.Schema({
         required: [true, 'Add a Image Url'],
         trim: true,
     },
-    adtlImg: [{ type: String, required: false }],
+
 })
 
 module.exports = mongoose.models.Project ? mongoose.models.Project : mongoose.model('Project', ProjectSchema)

@@ -11,14 +11,14 @@ import classes from '../../styles/projectsSection.module.css'
 import LinkWrapper from '../utils/LinkWrapper';
 
 function ProjectsSection({ projects, mainPage }) {
-    const initialProjects = mainPage ? projects : projects.filter((project, i) => i <= 2 ? project : null)
+    const initialProjects = mainPage ? projects.filter((project, i) => i <= 2 ? project : null) : projects
     const [projectData, setProjectData] = useState(initialProjects)
 
     function handleChange(val) {
         console.log(val)
         if (val === 'all') return setProjectData(projects)
 
-        const data = initialProjects.filter(project => project.stack.includes(val))
+        const data = projects.filter(project => project.stack.includes(val))
         return setProjectData(data)
     }
 
@@ -38,8 +38,8 @@ function ProjectsSection({ projects, mainPage }) {
                 {!mainPage && <Row className="justify-content-end">
                     <Col xs='auto' >
                         <div className={classes.select}>
-                            <label for="cars">Choose Tech:</label>
-                            <select name="cars" id="cars" onChange={(e) => handleChange(e.target.value)}>
+                            <label htmlFor="tech">Choose Tech:</label>
+                            <select name="tech" id="tech" onChange={(e) => handleChange(e.target.value)}>
                                 {options.map((option) => (<option value={option.toLowerCase()} key={option}>{option} </option>))}
                             </select>
                         </div>
