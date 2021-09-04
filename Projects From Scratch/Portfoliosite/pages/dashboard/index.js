@@ -28,7 +28,10 @@ function dashboard({ session, projects }) {
         try {
             setShow(false)
             const res = await axios.delete(`http://localhost:3000/api/auth/projects/${id}`,
-                { headers: { "Content-Type": 'application/json' } }).then(res => router.replace(router.asPath))
+                { headers: { "Content-Type": 'application/json' } }).then(res => {
+                    console.log(res)
+                    router.replace(router.asPath)
+                })
         } catch (e) {
             console.log(e)
         }
@@ -73,7 +76,7 @@ const DeleteModal = ({ id, title, show, setShow, deleteProject }) => {
             <Modal.Header closeButton>
                 <Modal.Title>Delete {title}</Modal.Title>
             </Modal.Header>
-            <Modal.Body>Are you sure you want to delete this {title}</Modal.Body>
+            <Modal.Body>Are you sure you want to delete this Project {title}</Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
                     Cancel

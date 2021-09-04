@@ -35,9 +35,7 @@ function EditSingleProjectImages({ project, id }) {
         }
     }
 
-
     const handleChange = (e) => {
-        console.log(e.target.value)
         if (e.target.name === 'imageUrl') {
             setForm({ ...form, [e.target.name]: [...e.target.files] })
         }
@@ -59,7 +57,10 @@ function EditSingleProjectImages({ project, id }) {
             const res = await axios.put(`${process.env.SERVER}/api/auth/projects/${id}/images`,
                 sendForm,
                 { headers: { 'content-type': 'multipart/form-data' } }).then(res => {
-                    setForm({ ...form, deleteImage: [] })
+                    setForm({
+                        imageUrl: [],
+                        deleteImage: []
+                    })
                     router.replace(router.asPath)
                 })
 
@@ -85,22 +86,23 @@ function EditSingleProjectImages({ project, id }) {
                         Submit
                     </Button>
 
-
-                    <Row>
-                        {project.imageUrl.map((img, i) => (
-                            <Col xs={6} md={4}>
-                                <Image src={img.url} thumbnail />
-                                <Form.Check
-                                    type='checkbox'
-                                    label='Delete'
-                                    id={`${i}-img`}
-                                    name='delete[]'
-                                    value={`${img.filename}`}
-                                    onChange={handleChange}
-                                />
-                            </Col>
-                        ))}
-                    </Row>
+                    {project.imageUrl.length > 0 &&
+                        <Row>
+                            {project.imageUrl.map((img, i) => (
+                                <Col xs={6} md={4}>
+                                    <Image src={img.url} thumbnail />
+                                    <Form.Check
+                                        type='checkbox'
+                                        label='Delete'
+                                        id={`${i}-img`}
+                                        name='delete[]'
+                                        value={`${img.filename}`}
+                                        onChange={handleChange}
+                                    />
+                                </Col>
+                            ))}
+                        </Row>
+                    }
                 </Form>
             </Card>
         </div>

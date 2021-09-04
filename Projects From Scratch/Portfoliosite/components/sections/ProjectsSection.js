@@ -47,7 +47,7 @@ function ProjectsSection({ projects, mainPage }) {
                 </Row>}
                 <Row id={classes.cardRow}>
                     {projectData.map((project, i) => {
-                        const img = <a><Card.Img variant="top" src={project.imageUrl} /></a>
+                        const img = <a><Card.Img variant="top" src={project.imageUrl[0].url} /></a>
                         const button = <a>View Project</a>
                         return (
 

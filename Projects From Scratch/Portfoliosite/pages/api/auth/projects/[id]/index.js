@@ -31,20 +31,15 @@ export default async (req, res) => {
                 break;
             case 'DELETE':
                 try {
-                    const deletedProj = await Project.findByIdAndDelete(id, async function (err, project) {
-                        try {
-                            console.log(project.imageUrl)
-                            for (let pic of project.imageUrl) {
-                                console.log(pic, '--------picname')
-                                cloudinary.uploader.destroy(pic.filename)
-                            }
-                        } catch (err) {
-                            console.log(err)
-                        }
 
-                    })
-                    res.status(200).json({ success: true, data: deletedProj })
+                    const project = await Project.findByIdAndDelete(id)
+                    let images = project.imageUrl
+                    for (let pic of images) {
+                        await cloudinary.uploader.destroy(pic.filename)
+                    }
+                    res.status(200).json({ success: true })
                 } catch (err) {
+                    console.log(err)
                     res.status(400).json({ success: false })
                 }
                 break;
