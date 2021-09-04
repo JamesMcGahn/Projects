@@ -26,8 +26,8 @@
 }
 
 .select label {
-  color: #ff00fc;
-  text-shadow: -2px -1px 1px #b7e3fe;
+  color: #b7e3fe;
+  text-shadow: 2px 2px 3px black;
   margin-right: 7px;
   font-size: 1.3rem;
 }
@@ -48,17 +48,16 @@
   /* margin-bottom: 15%; */
 }
 
-/* .projectTile {
-  height: 95vh;
-} */
+.projectTile {
+  margin-bottom: 1.5rem;
+}
 .projectCard {
   margin-top: 1rem;
   height: 100% !important;
   background-color: #fff;
   background: linear-gradient(180deg, rgba(250, 250, 250, 0.8), rgba(250, 250, 250, 0.85));
   box-shadow: 3px 4px 3px rgba(0, 0, 0, 0.7);
-  padding: 1rem;
-  /* border: 4px solid #b7e3fe; */
+  padding: 1rem 1rem 0 1rem;
 }
 
 .body {

@@ -2,8 +2,7 @@ import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-// action={`${process.env.SERVER}/api/auth/projects`} encType="multipart/form-data"
-function ProjectForm({ validated, handleSubmit, handleChange, form }) {
+function ProjectForm({ validated, handleSubmit, handleChange, form, edit }) {
     return (
         <Form noValidate validated={validated} onSubmit={handleSubmit} >
             <Form.Group className="mb-3" controlId="title">
@@ -44,13 +43,13 @@ function ProjectForm({ validated, handleSubmit, handleChange, form }) {
                     Add the Project's Challenges
                 </Form.Control.Feedback>
             </Form.Group>
-            <Form.Group className="mb-3" controlId="imageUrl">
+            {edit ? null : <Form.Group className="mb-3" controlId="imageUrl">
                 <Form.Label>Image Url</Form.Label>
                 <Form.Control type="file" placeholder="Image Url" name="imageUrl" multiple onChange={handleChange} required />
                 <Form.Control.Feedback type="invalid">
                     Add the Project's Image
                 </Form.Control.Feedback>
-            </Form.Group>
+            </Form.Group>}
             <Form.Group className="mb-3" controlId="gitUrl">
                 <Form.Label>Git Url</Form.Label>
                 <Form.Control type="text" placeholder="Git Url" name="gitUrl" value={form.gitUrl} onChange={handleChange} required />

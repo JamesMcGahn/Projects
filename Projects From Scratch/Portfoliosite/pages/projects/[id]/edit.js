@@ -28,7 +28,7 @@ function EditSingleProject({ project, id }) {
 
 
     const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.name === 'stack' || e.target.name === 'adtlImg' ? e.target.value.split(',') : e.target.value })
+        setForm({ ...form, [e.target.name]: e.target.name === 'stack' ? e.target.value.split(',') : e.target.value })
     }
 
     const createProject = async () => {
@@ -52,7 +52,8 @@ function EditSingleProject({ project, id }) {
                             : <ProjectForm validated={validated}
                                 handleSubmit={handleSubmit}
                                 handleChange={handleChange}
-                                form={form} />
+                                form={form}
+                                edit={true} />
                     }
                 </Row>
             </Card>

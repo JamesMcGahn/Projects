@@ -1,0 +1,9 @@
+.container {
+  min-height: 100vh;
+  padding: 3rem 2.5rem 20px 2.5rem;
+  background-color: #150937;
+}
+
+.table {
+  margin-bottom: 0;
+}

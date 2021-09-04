@@ -2,15 +2,12 @@ import React, { useState } from 'react';
 import { getSession } from 'next-auth/client'
 import axios from 'axios'
 import { useRouter } from 'next/router'
-import Link from 'next/link'
+
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Card from 'react-bootstrap/Card';
-import Badge from 'react-bootstrap/Badge';
+import Card from 'react-bootstrap/Card'
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import classes from '../../styles/projectsSection.module.css'
+import classes from '../../styles/dashboard.module.css'
 import DashboardProjectTable from '../../components/dashboard/DashboardProjectTable'
 
 function dashboard({ session, projects }) {
@@ -20,15 +17,11 @@ function dashboard({ session, projects }) {
     const handleShow = () => setShow(true);
     const [modalItem, setModalItem] = useState({ id: '', title: '' });
     const router = useRouter()
-    console.log(projects)
+
 
     const handleDelete = (id, title) => {
         setShow(true)
         setModalItem({ id: id, title: title })
-        console.log('hi')
-
-        // deleteProject(id)
-        // console.log(id)
     }
 
     const deleteProject = async (id) => {
@@ -43,14 +36,16 @@ function dashboard({ session, projects }) {
 
 
     return (
-        <div>
-            <Container fluid>
 
-                <DashboardProjectTable projects={projects} handleDelete={handleDelete} />
+        <Container className={classes.container} fluid>
+            <div className={classes.table}>
+                <Card>
+                    <DashboardProjectTable projects={projects} handleDelete={handleDelete} />
+                </Card>
+            </div>
+            <DeleteModal id={modalItem.id} title={modalItem.title} show={show} setShow={setShow} deleteProject={deleteProject} />
+        </Container >
 
-                <DeleteModal id={modalItem.id} title={modalItem.title} show={show} setShow={setShow} deleteProject={deleteProject} />
-            </Container >
-        </div >
     );
 }
 export default dashboard;
@@ -86,6 +81,7 @@ const DeleteModal = ({ id, title, show, setShow, deleteProject }) => {
                 <Button variant="primary" onClick={() => deleteProject(id)}>
                     Delete {id}
                 </Button>
+
             </Modal.Footer>
         </Modal >
     )

@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios'
-import styles from '../../../styles/aboutSection.module.css'
 import classes from '../../../styles/singleProject.module.css'
 import Carousel from 'react-bootstrap/Carousel'
 import Container from 'react-bootstrap/Container';
@@ -12,6 +11,7 @@ import Button from 'react-bootstrap/Button';
 import ViewButton from '../../../components/ui/ViewButton'
 import { useRouter } from 'next/router'
 import DefaultErrorPage from 'next/error'
+import LinkWrapper from '../../../components/utils/LinkWrapper';
 
 
 function singleProject({ project, notFound }) {
@@ -30,17 +30,17 @@ function singleProject({ project, notFound }) {
         </>)
     }
 
-    console.log(project)
+
     const img = <a><Card.Img variant="top" src="/img/headshot.jpg" /></a>
     const moreThanOneImg = project.imageUrl.length > 1 ? true : false
     return (
-        <Container className={styles.outerContainer} fluid>
-            <Container className={styles.container} fluid>
-                <Card className={styles.card}>
+        <Container className={classes.outerContainer} fluid>
+            <Container className={classes.container} fluid>
+                <Card className={classes.card}>
                     <Card.Body>
                         <Row>
                             <Col xs={12} md={12} lg={5} >
-                                <Card className={styles.innerCard}>
+                                <Card className={classes.innerCard}>
                                     <Carousel controls={moreThanOneImg} indicators={moreThanOneImg}>
                                         {moreThanOneImg ? project.imageUrl.map((img) => (
                                             <Carousel.Item>
@@ -48,6 +48,7 @@ function singleProject({ project, notFound }) {
                                                     className="d-block w-100"
                                                     src={`${img.url}`}
                                                     alt={`${img.filename}`}
+                                                    style={{ minHeight: '200px' }}
                                                 />
                                             </Carousel.Item>
 
@@ -56,6 +57,7 @@ function singleProject({ project, notFound }) {
                                         }
                                     </Carousel>
                                     <div className={classes.subtitle}>
+                                        <strong>Summary:</strong>
                                         <p>{project.subtitle}</p>
                                     </div>
                                     <div className={classes.buttonDiv}>
@@ -66,8 +68,8 @@ function singleProject({ project, notFound }) {
 
                                 </Card>
                             </Col>
-                            <Col xs={12} md={12} lg={7} className={styles.rightCol}>
-                                <Card className={styles.innerCard}>
+                            <Col xs={12} md={12} lg={7} className={classes.rightCol}>
+                                <Card className={classes.innerCard}>
                                     <div className={classes.title}>
                                         <h4>{project.title}</h4>
                                     </div>
@@ -91,7 +93,7 @@ function singleProject({ project, notFound }) {
 
             </Container>
             <div className={classes.goBackBtnDiv}>
-                <ViewButton>Go Back</ViewButton>
+                <LinkWrapper to='/projects'> <ViewButton>Go Back</ViewButton></LinkWrapper>
             </div>
         </Container>
     );

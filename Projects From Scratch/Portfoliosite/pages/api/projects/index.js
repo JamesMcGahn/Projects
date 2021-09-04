@@ -1,7 +1,5 @@
-import dbConnect from "../../../utils/dbConnect";
+import dbConnect from '../../../utils/dbConnect'
 import Project from "../../../models/Project.js"
-
-
 
 export default async (req, res) => {
     const { method } = req

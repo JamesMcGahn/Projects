@@ -4,12 +4,13 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import classes from '../../../styles/Nav.module.css'
 import Link from 'next/link'
-
+import { useRouter } from 'next/router'
 function MainNav(props) {
+    const router = useRouter()
     return (
         <Container className={classes.container} fluid>
             <Navbar id={classes.nav} bg="dark" expand="lg" variant="dark">
-                <Container>
+                <Container style={router.pathname === '/projects' ? { background: 'rgba(0, 0, 0, 0.5)' } : {}}>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
                         <Nav className="ml-auto">
