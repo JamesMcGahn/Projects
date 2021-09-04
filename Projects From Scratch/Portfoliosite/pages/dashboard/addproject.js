@@ -7,6 +7,8 @@ import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
 import classes from '../../styles/addproject.module.css'
 import ProjectForm from '../../components/dashboard/ProjectForm'
+import Loading from '../../components/ui/Loading'
+
 function AddProject(props) {
     const [form, setForm] = useState(
         {
@@ -60,11 +62,13 @@ function AddProject(props) {
 
         sendForm.append("gitUrl", form.gitUrl)
         sendForm.append("liveUrl", form.liveUrl)
-        // sendForm.append("adtlImg", form.adtlImg)
         try {
             const res = await axios.post(`${process.env.SERVER}/api/auth/projects`,
                 sendForm,
-                { headers: { 'content-type': 'multipart/form-data' } }).then(res => console.log(res.data))
+                { headers: { 'content-type': 'multipart/form-data' } }).then(res => {
+                    console.log(res.data)
+                    router.push(`/projects/${res.data.project}`)
+                })
         } catch (e) {
             console.log(e)
         }
@@ -75,7 +79,8 @@ function AddProject(props) {
             <Card className={classes.card}>
                 <Row md='12'>
                     {
-                        submitting ? 'loading'
+                        submitting ?
+                            <Loading />
                             : <ProjectForm validated={validated}
                                 handleSubmit={handleSubmit}
                                 handleChange={handleChange}

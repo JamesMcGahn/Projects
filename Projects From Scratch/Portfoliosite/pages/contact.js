@@ -84,11 +84,13 @@ function contact(props) {
                 <ReactLoading type='bars' color='#ffffff' height={100} width={100} />
                 :
                 <MailerForm handleChange={handleChange} handleSubmit={handleSubmit} validated={validated}>
-                    <div className={classes.captcha}>
+                    <div className={classes.captcha} >
                     // TODO PUT REAL KEY IN
                         <ReCAPTCHA
                             sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
                             onChange={onChange}
+                            size='compact'
+                            theme='dark'
                         />
                         {!captcha ? <div className={classes.captchaMessage}>Fill out captcha</div> : null}
                     </div>

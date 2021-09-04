@@ -30,3 +30,13 @@ div.container {
     left: 77%;
   }
 }
+@media (max-width: 478px) {
+  #nav {
+    left: 68%;
+  }
+}
+@media (max-width: 320px) {
+  #nav {
+    left: 60%;
+  }
+}

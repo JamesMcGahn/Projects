@@ -39,10 +39,10 @@ function singleProject({ project, notFound }) {
                 <Card className={classes.card}>
                     <Card.Body>
                         <Row>
-                            <Col xs={12} md={12} lg={5} >
+                            <Col xs={12} md={12} lg={5} className={classes.leftCol} >
                                 <Card className={classes.innerCard}>
                                     <Carousel controls={moreThanOneImg} indicators={moreThanOneImg}>
-                                        {moreThanOneImg ? project.imageUrl.map((img) => (
+                                        {project.imageUrl.map((img) => (
                                             <Carousel.Item>
                                                 <img
                                                     className="d-block w-100"
@@ -53,7 +53,6 @@ function singleProject({ project, notFound }) {
                                             </Carousel.Item>
 
                                         ))
-                                            : null
                                         }
                                     </Carousel>
                                     <div className={classes.subtitle}>
@@ -61,9 +60,8 @@ function singleProject({ project, notFound }) {
                                         <p>{project.subtitle}</p>
                                     </div>
                                     <div className={classes.buttonDiv}>
-
-                                        <ViewButton>Live Site</ViewButton>
-                                        <ViewButton>Code</ViewButton>
+                                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer"><ViewButton link={false}>Live Site</ViewButton></a>
+                                        <a href={project.gitUrl} target="_blank" rel="noopener noreferrer"> <ViewButton link={false}>Code</ViewButton></a>
                                     </div>
 
                                 </Card>

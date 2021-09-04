@@ -133,14 +133,22 @@
   }
   .bio {
     padding: 0;
+    margin-bottom: 1rem;
   }
 }
 @media (max-width: 397px) {
+  .header h2 {
+    font-size: 3rem;
+  }
+  .container {
+    width: 100vw;
+  }
   .about {
     padding: 3rem 0 0 0;
   }
   .card {
     width: 100%;
+    box-shadow: none;
   }
   .icons svg {
     font-size: 2rem;

@@ -9,13 +9,13 @@ import Button from 'react-bootstrap/Button';
 import ViewButton from '../ui/ViewButton';
 import classes from '../../styles/projectsSection.module.css'
 import LinkWrapper from '../utils/LinkWrapper';
+import Image from 'react-bootstrap/Image';
 
 function ProjectsSection({ projects, mainPage }) {
     const initialProjects = mainPage ? projects.filter((project, i) => i <= 2 ? project : null) : projects
     const [projectData, setProjectData] = useState(initialProjects)
 
     function handleChange(val) {
-        console.log(val)
         if (val === 'all') return setProjectData(projects)
 
         const data = projects.filter(project => project.stack.includes(val))
@@ -35,7 +35,7 @@ function ProjectsSection({ projects, mainPage }) {
         <Container className={classes.projects} id="projects" fluid>
             <div className={classes.header}><h2>Projects.</h2></div>
             <div className={classes.projectDiv}>
-                {!mainPage && <Row className="justify-content-end">
+                {!mainPage && <Row className="justify-content-start">
                     <Col xs='auto' >
                         <div className={classes.select}>
                             <label htmlFor="tech">Choose Tech:</label>
@@ -47,14 +47,15 @@ function ProjectsSection({ projects, mainPage }) {
                 </Row>}
                 <Row id={classes.cardRow}>
                     {projectData.map((project, i) => {
-                        const img = <a><Card.Img variant="top" src={project.imageUrl[0].url} /></a>
-                        const button = <a>View Project</a>
+                        const img = <a><Image variant="top" src={project.imageUrl[0].url} fluid /></a>
                         return (
 
                             <Col xs={12} md={6} lg={4} className={classes.projectTile} key={project._id} >
 
                                 <Card className={classes.projectCard} >
-                                    <Link href={`/projects/${project._id}`} passHref>{img}</Link>
+                                    <div className={classes.projectImg}>
+                                        <Link href={`/projects/${project._id}`} passHref>{img}</Link>
+                                    </div>
                                     <div className={classes.body}>
                                         <span className={classes.title}> <h5><Link href={`/projects/${project._id}`}>{project.title}</Link></h5></span>
                                         <div>

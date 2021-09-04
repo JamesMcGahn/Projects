@@ -122,3 +122,36 @@ span.badge {
   color: #75158f;
   font-size: 1.2rem;
 }
+
+@media (max-width: 973px) {
+  .rightCol {
+    margin-top: 10px;
+  }
+  .leftCol {
+    margin: 0;
+    padding: 0;
+  }
+  .subtitle {
+    padding: 1.5rem 2rem 0 2rem;
+  }
+}
+
+@media (max-width: 490px) {
+  .card {
+    width: 100vw;
+    box-shadow: none;
+  }
+}
+
+@media (max-width: 281px) {
+  .outerContainer {
+    padding-top: 15%;
+  }
+  .card div {
+    padding: 0;
+  }
+
+  .buttonDiv {
+    flex-direction: column;
+  }
+}

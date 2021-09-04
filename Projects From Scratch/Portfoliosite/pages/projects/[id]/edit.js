@@ -7,7 +7,7 @@ import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
 import classes from '../../../styles/addproject.module.css'
 import ProjectForm from '../../../components/dashboard/ProjectForm'
-
+import Loading from '../../../components/ui/Loading'
 function EditSingleProject({ project, id }) {
     const [form, setForm] = useState(project)
     const [submitting, setSubmitting] = useState(false)
@@ -48,7 +48,7 @@ function EditSingleProject({ project, id }) {
             <Card className={classes.card}>
                 <Row md='12'>
                     {
-                        submitting ? 'loading'
+                        submitting ? <Loading />
                             : <ProjectForm validated={validated}
                                 handleSubmit={handleSubmit}
                                 handleChange={handleChange}

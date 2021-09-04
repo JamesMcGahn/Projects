@@ -20,9 +20,8 @@
 }
 
 .select {
-  min-width: 300px;
-  text-align: center;
-  margin: 1.3rem 0 1.3rem 0;
+  margin-top: 10%;
+  display: flex;
 }
 
 .select label {
@@ -104,4 +103,29 @@
 #viewAllbtn:hover {
   background-color: #b7e3fe !important;
   border-color: #b7e3fe;
+}
+
+@media (max-width: 477px) {
+  .projects {
+    padding-top: 10%;
+  }
+}
+
+@media (max-width: 397px) {
+  .projects {
+    padding-top: 14%;
+  }
+  .header h2 {
+    font-size: 3rem;
+  }
+  .projectDiv {
+    width: 100%;
+  }
+  .select {
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+  .select select {
+    width: 100%;
+  }
 }

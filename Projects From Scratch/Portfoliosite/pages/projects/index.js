@@ -9,7 +9,6 @@ function Projects({ projects }) {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const router = useRouter()
-    console.log(projects)
 
     return (
         <div>
@@ -20,16 +19,6 @@ function Projects({ projects }) {
 
 export default Projects;
 
-// export async function getStaticPaths() {
-//     const res = await axios.get(`${process.env.SERVER}/api/projects/`)
-//     const { data } = await res.data
-
-//     const paths = data.map((project) => ({
-//         params: { id: project._id },
-//     }))
-
-//     return { paths, fallback: false }
-// }
 
 
 export const getStaticProps = async ({ params }) => {

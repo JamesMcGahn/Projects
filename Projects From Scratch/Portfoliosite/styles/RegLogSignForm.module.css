@@ -55,3 +55,36 @@
 .success {
   color: #ff00fc;
 }
+
+@media (max-width: 925px) {
+  .formDiv {
+    padding: 6% 0% 10% 0%;
+  }
+}
+
+@media (max-width: 1000px) {
+  .formDiv form {
+    width: 80%;
+    border: 3px solid #b7e3fe;
+    padding: 5% 10%;
+  }
+}
+@media (max-width: 580px) {
+  .formDiv {
+    padding: 14% 0% 10% 0%;
+  }
+  .formDiv h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .formDiv {
+    padding: 19% 0% 10% 0%;
+  }
+  .formDiv form {
+    width: 100%;
+    border: 3px solid #b7e3fe;
+    padding: 5% 10%;
+  }
+}
