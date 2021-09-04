@@ -44,10 +44,10 @@ function ProjectForm({ validated, handleSubmit, handleChange, form, edit }) {
                 </Form.Control.Feedback>
             </Form.Group>
             {edit ? null : <Form.Group className="mb-3" controlId="imageUrl">
-                <Form.Label>Image Url</Form.Label>
+                <Form.Label>Images</Form.Label>
                 <Form.Control type="file" placeholder="Image Url" name="imageUrl" multiple onChange={handleChange} required />
                 <Form.Control.Feedback type="invalid">
-                    Add the Project's Image
+                    Add the Project's Images
                 </Form.Control.Feedback>
             </Form.Group>}
             <Form.Group className="mb-3" controlId="gitUrl">

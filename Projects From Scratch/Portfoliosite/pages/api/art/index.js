@@ -1,14 +1,16 @@
 import dbConnect from '../../../utils/dbConnect'
-import Project from "../../../models/Project.js"
+import Art from "../../../models/Art.js"
 
 export default async (req, res) => {
     const { method } = req
+
+    await dbConnect()
+
     switch (method) {
         case 'GET':
             try {
-                await dbConnect()
-                const projects = await Project.find({})
-                res.status(200).json({ success: true, data: projects })
+                const art = await Art.find({})
+                res.status(200).json({ success: true, data: art })
             } catch (err) {
                 res.status(400).json({ success: false })
             }

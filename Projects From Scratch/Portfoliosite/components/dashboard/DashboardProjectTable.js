@@ -6,7 +6,7 @@ import classes from '../../styles/dashBoardProjectTable.module.css'
 
 function DashboardProjectTable({ projects, handleDelete }) {
     const handleModalDelete = (id, title) => {
-        handleDelete(id, title)
+        handleDelete(id, title, 'project')
     }
 
     return (

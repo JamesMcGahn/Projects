@@ -6,7 +6,7 @@ div.container {
   background-color: rgba(0, 0, 0, 0) !important;
   z-index: 1;
   position: absolute;
-  left: 65%;
+  left: 55%;
 }
 
 #nav a {
@@ -18,6 +18,10 @@ div.container {
 @media (max-width: 991px) {
   #nav {
     left: 80%;
+  }
+  #innerCont {
+    background: rgba(0, 0, 0, 0.5);
+    padding-bottom: 10px;
   }
 }
 @media (max-width: 678px) {
@@ -37,6 +41,6 @@ div.container {
 }
 @media (max-width: 320px) {
   #nav {
-    left: 60%;
+    left: 6%;
   }
 }

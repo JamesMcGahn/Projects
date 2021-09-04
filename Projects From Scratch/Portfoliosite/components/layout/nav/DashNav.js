@@ -21,6 +21,7 @@ function DashNav(props) {
                             <Link href='/' passHref><Nav.Link>Home</Nav.Link></Link>
                             <Link href='/dashboard' passHref><Nav.Link>Dashboard</Nav.Link></Link>
                             <Link href='/dashboard/addproject' passHref><Nav.Link>Add Project</Nav.Link></Link>
+                            <Link href='/dashboard/addart' passHref><Nav.Link>Add Art</Nav.Link></Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

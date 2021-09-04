@@ -9,25 +9,28 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import classes from '../../styles/dashboard.module.css'
 import DashboardProjectTable from '../../components/dashboard/DashboardProjectTable'
+import DashboardImageTable from '../../components/dashboard/DashboardImageTable'
 
-function dashboard({ session, projects }) {
+function dashboard({ projects, art }) {
     const [show, setShow] = useState(false);
     // const [displayProjects, setdisplayProjects] = useState(projects);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const [modalItem, setModalItem] = useState({ id: '', title: '' });
+    const [modalItem, setModalItem] = useState({ id: '', title: '', type: '' });
     const router = useRouter()
 
 
-    const handleDelete = (id, title) => {
+    const handleDelete = (id, title, type) => {
         setShow(true)
-        setModalItem({ id: id, title: title })
+        setModalItem({ id: id, title: title, type: type })
     }
 
-    const deleteProject = async (id) => {
+    const deleteProject = async (id, type) => {
         try {
             setShow(false)
-            const res = await axios.delete(`http://localhost:3000/api/auth/projects/${id}`,
+            const path = type === 'project' ? 'projects' : 'art'
+
+            const res = await axios.delete(`http://localhost:3000/api/auth/${path}/${id}`,
                 { headers: { "Content-Type": 'application/json' } }).then(res => {
                     console.log(res)
                     router.replace(router.asPath)
@@ -46,7 +49,12 @@ function dashboard({ session, projects }) {
                     <DashboardProjectTable projects={projects} handleDelete={handleDelete} />
                 </Card>
             </div>
-            <DeleteModal id={modalItem.id} title={modalItem.title} show={show} setShow={setShow} deleteProject={deleteProject} />
+            <div className={classes.imgTable}>
+                <Card>
+                    <DashboardImageTable art={art} handleDelete={handleDelete} />
+                </Card>
+            </div>
+            <DeleteModal id={modalItem.id} title={modalItem.title} type={modalItem.type} show={show} setShow={setShow} deleteProject={deleteProject} />
         </Container >
 
     );
@@ -66,10 +74,12 @@ export const getServerSideProps = async (context) => {
     }
     const res = await axios.get(`${process.env.SERVER}/api/projects/`)
     const { data } = await res.data
-    return { props: { session: session, projects: data } }
+    const artRes = await axios.get(`${process.env.SERVER}/api/art/`)
+    const art = await artRes.data.data
+    return { props: { session: session, projects: data, art: art } }
 }
 
-const DeleteModal = ({ id, title, show, setShow, deleteProject }) => {
+const DeleteModal = ({ id, title, type, show, setShow, deleteProject }) => {
     const handleClose = () => setShow(false);
     return (
         <Modal show={show} onHide={handleClose}>
@@ -81,7 +91,7 @@ const DeleteModal = ({ id, title, show, setShow, deleteProject }) => {
                 <Button variant="secondary" onClick={handleClose}>
                     Cancel
                 </Button>
-                <Button variant="primary" onClick={() => deleteProject(id)}>
+                <Button variant="primary" onClick={() => deleteProject(id, type)}>
                     Delete
                 </Button>
 
