@@ -8,7 +8,6 @@ import { signOut } from "next-auth/client"
 import { useSession } from "next-auth/client"
 function DashNav(props) {
     const [session, loading] = useSession()
-    console.log(session)
     return (
         <Container className={classes.container} fluid>
             <Navbar id={classes.nav} bg="dark" expand="lg" variant="dark">

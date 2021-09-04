@@ -13,7 +13,8 @@ function Layout({ children }) {
             {session
                 ? <DashNav /> : null}
             <div>
-                {router.pathname === '/dashboard' || router.pathname === '/dashboard/addproject' || router.pathname === '/projects/[id]/edit' ?
+                {router.pathname === '/dashboard' || router.pathname === '/dashboard/addproject' ||
+                    router.pathname === '/projects/[id]/edit' || router.pathname === '/projects/[id]/images' ?
                     null :
                     <MainNav />
                 }
