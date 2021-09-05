@@ -12,9 +12,6 @@ function SiteMap(props) {
 
 export default SiteMap;
 
-import dbConnect from '../utils/dbConnect'
-import Project from '../models/Project'
-
 const createSitemap = (projects) => `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
         ${projects
@@ -33,7 +30,7 @@ export async function getServerSideProps({ res }) {
     const response = await axios.get(`${process.env.SERVER}/api/projects/`)
     const { data } = await response.data
     res.setHeader('Content-Type', 'text/xml');
-    res.write(createSitemap(JSON.parse(JSON.stringify(data))));
+    res.write(createSitemap(data));
     res.end();
     return { props: {} }
 }

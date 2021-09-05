@@ -12,11 +12,12 @@ import LinkWrapper from '../utils/LinkWrapper';
 import Image from 'react-bootstrap/Image';
 
 function ProjectsSection({ projects, mainPage }) {
-    const initialProjects = mainPage ? projects.filter((project, i) => i <= 2 ? project : null).reverse() : projects.reverse();
+    const reverse = [...projects].reverse();
+    const initialProjects = mainPage ? projects.filter((project, i) => i <= 2 ? project : null).reverse() : reverse
     const [projectData, setProjectData] = useState(initialProjects)
 
     function handleChange(val) {
-        if (val === 'all') return setProjectData(projects)
+        if (val === 'all') return setProjectData(initialProjects)
 
         const data = projects.filter(project => project.stack.includes(val))
         return setProjectData(data)
