@@ -78,7 +78,7 @@ function EditSingleProjectImages({ project, id }) {
                         <Form.Label>Image Url</Form.Label>
                         <Form.Control type="file" placeholder="Image Url" name="imageUrl" multiple onChange={handleChange} />
                         <Form.Control.Feedback type="invalid">
-                            Add the Project's Image
+                            Add the Project&apos;s Image
                         </Form.Control.Feedback>
                     </Form.Group>
 
@@ -89,8 +89,8 @@ function EditSingleProjectImages({ project, id }) {
                     {project.imageUrl.length > 0 &&
                         <Row>
                             {project.imageUrl.map((img, i) => (
-                                <Col xs={6} md={4}>
-                                    <Image src={img.url} thumbnail />
+                                <Col xs={6} md={4} key={i}>
+                                    <Image src={img.url} thumbnail alt="project image" />
                                     <Form.Check
                                         type='checkbox'
                                         label='Delete'

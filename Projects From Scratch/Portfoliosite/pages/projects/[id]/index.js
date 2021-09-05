@@ -14,7 +14,7 @@ import DefaultErrorPage from 'next/error'
 import LinkWrapper from '../../../components/utils/LinkWrapper';
 import Modal from 'react-bootstrap/Modal';
 
-function singleProject({ project, notFound }) {
+function SingleProject({ project, notFound }) {
     const router = useRouter()
     const [show, setShow] = useState(false);
     if (router.isFallback) {
@@ -87,7 +87,7 @@ function singleProject({ project, notFound }) {
     );
 }
 
-export default singleProject;
+export default SingleProject;
 
 export async function getStaticPaths() {
     const res = await axios.get(`${process.env.SERVER}/api/projects/`)
@@ -101,11 +101,14 @@ export async function getStaticPaths() {
 }
 
 
-export const getStaticProps = async ({ params }) => {
+import dbConnect from '../../../utils/dbConnect'
+import Project from "../../../models/Project"
+export async function getStaticProps(context) {
     try {
-        const res = await axios.get(`${process.env.SERVER}/api/projects/${params.id}`)
-        let { data } = await res.data
-        return { props: { project: data, notFound: false }, revalidate: 3600 }
+        await dbConnect()
+        const id = context.params.id
+        const project = await Project.findById(id)
+        return { props: { project: project, notFound: false }, revalidate: 3600 }
     }
     catch {
         return { props: { project: [], notFound: true }, revalidate: 3600 }

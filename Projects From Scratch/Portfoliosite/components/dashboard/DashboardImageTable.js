@@ -23,7 +23,7 @@ function DashboardImageTable({ art, handleDelete }) {
             <tbody>
                 {art.map(art => (
                     <tr className="d-flex" key={art.title}>
-                        <td className="col-4"> <div className={classes.img}><Image variant="top" src={art.imageUrl[0].url} thumbnail /></div></td>
+                        <td className="col-4"> <div className={classes.img}><Image variant="top" src={art.imageUrl[0].url} thumbnail alt="project image" /></div></td>
                         <td className="col-4">{art.title}</td>
 
                         <td className="col-4">

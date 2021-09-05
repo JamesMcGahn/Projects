@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import ReCAPTCHA from "react-google-recaptcha";
 import axios from 'axios'
-import classes from '../styles/RegLogSignForm.module.css'
-import MailerForm from '../components/forms/MailerForm'
+import classes from '../../styles/RegLogSignForm.module.css'
+import MailerForm from '../../components/forms/MailerForm'
 import ReactLoading from 'react-loading';
-function contact(props) {
+
+function ContactPage() {
     const [validated, setValidated] = useState(false);
     const [captcha, setCaptcha] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -75,6 +76,8 @@ function contact(props) {
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value })
     }
+
+
     return (
         <div className={classes.formDiv} >
             <h1>Contact</h1>
@@ -85,7 +88,7 @@ function contact(props) {
                 :
                 <MailerForm handleChange={handleChange} handleSubmit={handleSubmit} validated={validated}>
                     <div className={classes.captcha} >
-                    // TODO PUT REAL KEY IN
+
                         <ReCAPTCHA
                             sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
                             onChange={onChange}
@@ -100,4 +103,4 @@ function contact(props) {
     );
 }
 
-export default contact;
+export default ContactPage;

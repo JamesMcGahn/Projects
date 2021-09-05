@@ -29,7 +29,7 @@ export const config = {
 
 const upload = pify(multer({ storage }).array('imageUrl'))
 
-export default async (req, res) => {
+export default async function projectPost(req, res) {
     const { method } = req
     const session = await getSession({ req })
     if (session) {

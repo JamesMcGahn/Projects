@@ -4,7 +4,7 @@ import { getCsrfToken } from "next-auth/client"
 import classes from '../../styles/RegLogSignForm.module.css'
 
 import RegLogSignForm from '../../components/forms/RegLogSignForm'
-function login(props) {
+function Login(props) {
     const [validated, setValidated] = useState(false);
     const [form, setForm] = useState();
     const router = useRouter()
@@ -32,7 +32,7 @@ function login(props) {
     );
 }
 
-export default login;
+export default Login;
 
 export async function getServerSideProps(context) {
     return {

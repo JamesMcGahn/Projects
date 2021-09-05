@@ -38,42 +38,42 @@ function ProjectForm({ validated, handleSubmit, handleChange, form, edit }) {
                     Make sure list is comma separated
                 </Form.Text>
                 <Form.Control.Feedback type="invalid">
-                    Add the Project's Stack
+                    Add the Project&apos;s Stack
                 </Form.Control.Feedback>
             </Form.Group>
             <Form.Group className="mb-3" controlId="description">
                 <Form.Label>Description</Form.Label>
                 <Form.Control as="textarea" rows={3} placeholder="Description" name="description" value={form.description} onChange={handleChange} required />
                 <Form.Control.Feedback type="invalid">
-                    Add the Project's Description
+                    Add the Project&apos;s Description
                 </Form.Control.Feedback>
             </Form.Group>
             <Form.Group className="mb-3" controlId="challenges">
                 <Form.Label>Challenges</Form.Label>
                 <Form.Control as="textarea" rows={3} placeholder="challenges" name="challenges" value={form.challenges} onChange={handleChange} required />
                 <Form.Control.Feedback type="invalid">
-                    Add the Project's Challenges
+                    Add the Project&apos;s Challenges
                 </Form.Control.Feedback>
             </Form.Group>
             {edit ? null : <Form.Group className="mb-3" controlId="imageUrl">
                 <Form.Label>Images</Form.Label>
                 <Form.Control type="file" placeholder="Image Url" name="imageUrl" multiple onChange={handleChange} required />
                 <Form.Control.Feedback type="invalid">
-                    Add the Project's Images
+                    Add the Project&apos;s Images
                 </Form.Control.Feedback>
             </Form.Group>}
             <Form.Group className="mb-3" controlId="gitUrl">
                 <Form.Label>Git Url</Form.Label>
                 <Form.Control type="text" placeholder="Git Url" name="gitUrl" value={form.gitUrl} onChange={handleChange} required />
                 <Form.Control.Feedback type="invalid">
-                    Add the Project's Git URL
+                    Add the Project&apos;s Git URL
                 </Form.Control.Feedback>
             </Form.Group>
             <Form.Group className="mb-3" controlId="liveUrl">
                 <Form.Label>Live Url</Form.Label>
                 <Form.Control type="text" placeholder="Live Url" name="liveUrl" value={form.liveUrl} onChange={handleChange} required />
                 <Form.Control.Feedback type="invalid">
-                    Add the Project's Live URL
+                    Add the Project&apos;s Live URL
                 </Form.Control.Feedback>
             </Form.Group>
             <Button variant="primary" type="submit">

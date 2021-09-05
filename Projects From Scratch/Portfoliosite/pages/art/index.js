@@ -6,10 +6,10 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import axios from 'axios'
 import Modal from 'react-bootstrap/Modal';
-import classes from '../styles/art.module.css'
+import classes from '../../styles/art.module.css'
 import Image from 'react-bootstrap/Image';
 
-function art({ art }) {
+function Art({ art }) {
     const [show, setShow] = useState(false);
     const [modalItem, setModalItem] = useState({ title: '', img: '' });
 
@@ -32,7 +32,7 @@ function art({ art }) {
                             <Col xs={12} md={6} lg={4} className={classes.projectTile} key={art._id} >
                                 <Card className={classes.projectCard} onClick={() => handleClick(art.title, art.imageUrl[0].url)}>
                                     <div className={classes.projectImg}>
-                                        <Image variant="top" src={art.imageUrl[0].url} fluid />
+                                        <Image variant="top" src={art.imageUrl[0].url} fluid alt={art.title} />
                                     </div>
                                 </Card>
                             </Col>
@@ -45,7 +45,7 @@ function art({ art }) {
     );
 }
 
-export default art;
+export default Art;
 
 export const getStaticProps = async ({ params }) => {
     const res = await axios.get(`${process.env.SERVER}/api/art/`)
@@ -61,7 +61,7 @@ const DisplayModal = ({ img, title, show, setShow, }) => {
                 <Modal.Title>{title}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <Image variant="top" src={`${img}`} fluid />
+                <Image variant="top" src={`${img}`} fluid alt={title} />
             </Modal.Body>
         </Modal >
     )

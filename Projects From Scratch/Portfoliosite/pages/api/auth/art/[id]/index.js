@@ -9,7 +9,7 @@ cloudinary.config({
 });
 
 
-export default async (req, res) => {
+export default async function artIdProtectDel(req, res) {
     const {
         query: { id },
         method

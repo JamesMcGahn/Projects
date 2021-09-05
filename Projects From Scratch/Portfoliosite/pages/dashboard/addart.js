@@ -9,7 +9,7 @@ import classes from '../../styles/addproject.module.css'
 import ArtForm from '../../components/dashboard/ArtForm'
 import Loading from '../../components/ui/Loading'
 
-function addArt(props) {
+function AddArt(props) {
     const [form, setForm] = useState(
         {
             title: "",
@@ -79,7 +79,7 @@ function addArt(props) {
     );
 }
 
-export default addArt;
+export default AddArt;
 
 export const getServerSideProps = async (context) => {
     const session = await getSession(context)

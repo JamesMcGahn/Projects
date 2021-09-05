@@ -11,7 +11,7 @@ import classes from '../../styles/dashboard.module.css'
 import DashboardProjectTable from '../../components/dashboard/DashboardProjectTable'
 import DashboardImageTable from '../../components/dashboard/DashboardImageTable'
 
-function dashboard({ projects, art }) {
+function Dashboard({ projects, art }) {
     const [show, setShow] = useState(false);
     // const [displayProjects, setdisplayProjects] = useState(projects);
     const handleClose = () => setShow(false);
@@ -59,7 +59,7 @@ function dashboard({ projects, art }) {
 
     );
 }
-export default dashboard;
+export default Dashboard;
 
 export const getServerSideProps = async (context) => {
     const session = await getSession(context)

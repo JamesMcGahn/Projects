@@ -1,12 +1,9 @@
 import React from 'react';
-import { useRouter } from 'next/router'
-import classes from '../styles/error.module.css'
-import LinkWrapper from '../components/utils/LinkWrapper'
+import classes from '../../styles/error.module.css'
+import LinkWrapper from '../../components/utils/LinkWrapper'
 import Button from 'react-bootstrap/Button'
 
-function error(props) {
-    const router = useRouter()
-    console.log(router.query)
+function Error() {
     return (
         <div className={classes.error}>
             <div className={classes.message}>
@@ -22,4 +19,4 @@ function error(props) {
     );
 }
 
-export default error;
+export default Error;

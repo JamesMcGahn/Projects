@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export default async (req, res) => {
+export default async function captcha(req, res) {
     const { method } = req
 
 

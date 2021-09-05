@@ -9,7 +9,7 @@ cloudinary.config({
 });
 
 
-export default async (req, res) => {
+export default async function projectUpdate(req, res) {
     const {
         query: { id },
         method

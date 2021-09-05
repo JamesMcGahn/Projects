@@ -3,7 +3,7 @@ import Art from "../../../models/Art.js"
 
 
 
-export default async (req, res) => {
+export default async function artId(req, res) {
     const {
         query: { id },
         method

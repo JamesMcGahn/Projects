@@ -18,7 +18,7 @@ function ProjectCard({ stack, description, title, id, handleClose, handleDelete,
                 <Link href={`/projects/${id}`} passHref>{img}</Link>
                 <Card.Body>
                     <span className={classes.title}> <h5><Link href={`/projects/${id}`}>{title}</Link></h5></span>
-                    <div>Tech: {stack?.map((tech, i) => <ProjectBadge>{tech}</ProjectBadge>)}</div>
+                    <div>Tech: {stack?.map((tech, i) => <ProjectBadge key={`${tech}-${i}`}>{tech}</ProjectBadge>)}</div>
                     <div>{description}</div>
                 </Card.Body>
             </Card>

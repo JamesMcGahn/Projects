@@ -1,7 +1,7 @@
 import dbConnect from '../../../utils/dbConnect'
 import Art from "../../../models/Art.js"
 
-export default async (req, res) => {
+export default async function art(req, res) {
     const { method } = req
 
     await dbConnect()

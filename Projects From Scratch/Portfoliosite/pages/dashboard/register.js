@@ -4,7 +4,7 @@ import RegLogSignForm from '../../components/forms/RegLogSignForm'
 import axios from 'axios'
 import { getSession } from 'next-auth/client'
 import classes from '../../styles/RegLogSignForm.module.css'
-function login(props) {
+function Register(props) {
     const [validated, setValidated] = useState(false);
     const [form, setForm] = useState({
         username: '',
@@ -43,7 +43,7 @@ function login(props) {
     );
 }
 
-export default login;
+export default Register;
 
 export const getServerSideProps = async (context) => {
     const session = await getSession(context)

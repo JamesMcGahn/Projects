@@ -19,10 +19,11 @@ function Projects({ projects }) {
 
 export default Projects;
 
+import dbConnect from '../../utils/dbConnect'
+import Project from "../../models/Project"
 
-
-export const getStaticProps = async ({ params }) => {
-    const res = await axios.get(`${process.env.SERVER}/api/projects/`)
-    const { data } = await res.data
-    return { props: { projects: data }, revalidate: 3600 }
+export async function getStaticProps(context) {
+    await dbConnect()
+    const projects = await Project.find({})
+    return { props: { projects: projects }, revalidate: 3600 }
 }

@@ -28,7 +28,7 @@ export const config = {
 }
 const upload = pify(multer({ storage }).array('imageUrl'))
 
-export default async (req, res) => {
+export default async function imagesUpdate(req, res) {
     const {
         query: { id },
         method

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export default async (req, res) => {
+export default async function mailer(req, res) {
     const { method } = req
 
     switch (method) {
