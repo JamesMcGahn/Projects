@@ -19,9 +19,9 @@ function ContactPage() {
     });
 
     async function onChange(value) {
-        console.log("Captcha value:", value);
+
         try {
-            const res = await axios.post(`${process.env.SERVER}/api/captcha`, {
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/captcha`, {
                 headers: { "Content-Type": 'application/json' },
                 data: {
                     response: value

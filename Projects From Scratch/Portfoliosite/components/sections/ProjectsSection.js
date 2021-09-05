@@ -12,7 +12,7 @@ import LinkWrapper from '../utils/LinkWrapper';
 import Image from 'react-bootstrap/Image';
 
 function ProjectsSection({ projects, mainPage }) {
-    const initialProjects = mainPage ? projects.filter((project, i) => i <= 2 ? project : null) : projects
+    const initialProjects = mainPage ? projects.filter((project, i) => i <= 2 ? project : null).reverse() : projects.reverse();
     const [projectData, setProjectData] = useState(initialProjects)
 
     function handleChange(val) {
@@ -46,7 +46,7 @@ function ProjectsSection({ projects, mainPage }) {
                     </Col>
                 </Row>}
                 <Row id={classes.cardRow}>
-                    {projectData.reverse().map((project, i) => {
+                    {projectData.map((project, i) => {
                         const img = <a><Image variant="top" src={project.imageUrl[0]?.url} fluid alt="project image" /></a>
                         return (
 
