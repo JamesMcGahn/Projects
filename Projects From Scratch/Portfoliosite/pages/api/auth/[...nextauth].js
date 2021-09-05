@@ -16,7 +16,6 @@ export default NextAuth({
             async authorize(credentials, req) {
                 try {
                     await dbConnect();
-                    console.log(credentials.username, 'username', credentials.password), 'pwass';
                     const username = credentials.username;
                     const userFound = await User.findOne({ username });
 
@@ -36,9 +35,6 @@ export default NextAuth({
             }
         }),
     ],
-    session: {
-        jwt: true,
-    },
     callbacks: {
         async signIn(user, account, profile,) {
             const isAllowedToSignIn = user.email === process.env.LOGIN
@@ -54,4 +50,11 @@ export default NextAuth({
         signOut: '/auth/signout',
         error: '/error',
     },
+    session: {
+        jwt: true,
+    },
+    jwt: {
+        signingKey: process.env.JWT_SIGNING_PRIVATE_KEY,
+    },
 })
+

@@ -9,10 +9,11 @@ export default async (req, res) => {
                 const value = req.body.data
                 const token = process.env.MAILER_TOKEN
                 const user = process.env.MAILER_USER
+                const service = process.env.MAILER_SERVICE
 
                 const mailer = await axios.post('https://api.emailjs.com/api/v1.0/email/send',
                     {
-                        service_id: 'service_1zio5sh',
+                        service_id: `${service}`,
                         template_id: 'template_5ubdfn4',
                         user_id: `${user}`,
                         accessToken: `${token}`,

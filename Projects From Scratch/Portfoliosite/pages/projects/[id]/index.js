@@ -130,8 +130,8 @@ const ImgCarousel = ({ project }) => {
 
     return (
         <Carousel controls={moreThanOneImg} indicators={moreThanOneImg}>
-            {project.imageUrl.map((img) => (
-                <Carousel.Item>
+            {project.imageUrl.map((img, i) => (
+                <Carousel.Item key={`${i}-img`}>
                     <img
                         className="d-block w-100"
                         src={`${img.url}`}

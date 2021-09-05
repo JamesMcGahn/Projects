@@ -14,7 +14,9 @@ function Layout({ children }) {
                 ? <DashNav /> : null}
             <div>
                 {router.pathname === '/dashboard' || router.pathname === '/dashboard/addproject' ||
-                    router.pathname === '/projects/[id]/edit' || router.pathname === '/projects/[id]/images' ?
+                    router.pathname === '/projects/[id]/edit' || router.pathname === '/projects/[id]/images'
+                    || router.pathname === '/dashboard/addart'
+                    ?
                     null :
                     <MainNav />
                 }

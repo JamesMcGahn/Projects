@@ -12,7 +12,7 @@
   padding-top: 5%;
   padding-bottom: 5%;
   border-bottom: 5px solid #ff00fc;
-  min-height: 100%;
+  /* min-height: 100%; */
 }
 
 .projectDiv {
@@ -36,6 +36,7 @@
   font-size: 1.1rem;
   border: 2px solid #ff00fc;
   box-shadow: 2px 2px 5px #b7e3fe;
+  margin-bottom: 15px;
 }
 
 .header h2 {
@@ -61,16 +62,32 @@
   padding: 1rem 1rem 0 1rem;
 }
 
-.body {
-  margin-bottom: 10px;
-  margin-top: 10px;
+.title {
+  margin-top: 1rem;
+  margin-bottom: 5px;
 }
-/* .projectCard:hover {
-  border: 4px solid #ff00fc;
-} */
+.title h5 {
+  font-weight: 700;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100%;
+}
 
 .description {
-  margin-top: 7px;
+  margin-top: 15px;
+}
+/* .tech {
+  margin-bottom: 15px;
+  margin-top: 15px;
+} */
+
+.viewBtn {
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .viewAllDiv {

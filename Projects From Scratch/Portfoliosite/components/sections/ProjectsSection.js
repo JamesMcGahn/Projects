@@ -28,7 +28,7 @@ function ProjectsSection({ projects, mainPage }) {
         return `${str.substring(0, 200)}...`
     }
 
-    const options = ['All', 'Bootstrap', 'Material UI', 'MongoDb', 'Next.Js', 'React', 'PHP']
+    const options = ['All', 'Bootstrap', 'Material-UI', 'MongoDb', 'Next.Js', 'React', 'PHP']
 
 
     return (
@@ -47,7 +47,7 @@ function ProjectsSection({ projects, mainPage }) {
                 </Row>}
                 <Row id={classes.cardRow}>
                     {projectData.reverse().map((project, i) => {
-                        const img = <a><Image variant="top" src={project.imageUrl[0].url} fluid /></a>
+                        const img = <a><Image variant="top" src={project.imageUrl[0]?.url} fluid /></a>
                         return (
 
                             <Col xs={12} md={6} lg={4} className={classes.projectTile} key={project._id} >
@@ -56,9 +56,10 @@ function ProjectsSection({ projects, mainPage }) {
                                     <div className={classes.projectImg}>
                                         <Link href={`/projects/${project._id}`} passHref>{img}</Link>
                                     </div>
+                                    <span className={classes.title}> <h5><Link href={`/projects/${project._id}`}>{project.title}</Link></h5></span>
                                     <div className={classes.body}>
-                                        <span className={classes.title}> <h5><Link href={`/projects/${project._id}`}>{project.title}</Link></h5></span>
-                                        <div>
+
+                                        <div className={classes.tech}>
                                             <strong>Tech:</strong> {project.stack.map((tech, i) => <ProjectBadge key={i}>{tech}</ProjectBadge>)}
                                         </div>
                                         <div className={classes.description}>
@@ -66,7 +67,9 @@ function ProjectsSection({ projects, mainPage }) {
                                         </div>
 
                                     </div>
-                                    <ViewButton link={true} href={`/projects/${project._id}`}>View Project</ViewButton>
+                                    <div className={classes.viewBtn}>
+                                        <ViewButton link={true} href={`/projects/${project._id}`}>View Project</ViewButton>
+                                    </div>
                                 </Card>
 
                             </Col>

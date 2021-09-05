@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const connect = {}
 
 async function dbConnect() {
-    if (connect.isConnected) {
+    if (mongoose.connection.readyState === 1) {
         return
     }
     const db = await mongoose.connect(process.env.MONGO_URI, {
@@ -11,8 +11,6 @@ async function dbConnect() {
         useUnifiedTopology: true
     })
 
-    connect.isConnected = db.connections[0].readyState;
-    console.log(connect.isConnected)
 }
 
 export default dbConnect
