@@ -66,7 +66,7 @@ function AddProject(props) {
         sendForm.append("gitUrl", form.gitUrl)
         sendForm.append("liveUrl", form.liveUrl)
         try {
-            const res = await axios.post(`${process.env.SERVER}/api/auth/projects`,
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/auth/projects`,
                 sendForm,
                 { headers: { 'content-type': 'multipart/form-data' } }).then(res => {
                     console.log(res.data)

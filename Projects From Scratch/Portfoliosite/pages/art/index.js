@@ -5,7 +5,8 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Modal from 'react-bootstrap/Modal';
 import classes from '../../styles/art.module.css'
-import Image from 'react-bootstrap/Image';
+import Image from 'next/image';
+import BootImage from 'react-bootstrap/Image'
 
 function ArtPage({ art }) {
     const [show, setShow] = useState(false);
@@ -30,7 +31,7 @@ function ArtPage({ art }) {
                             <Col xs={12} md={6} lg={4} className={classes.projectTile} key={art._id} >
                                 <Card className={classes.projectCard} onClick={() => handleClick(art.title, art.imageUrl[0].url)}>
                                     <div className={classes.projectImg}>
-                                        <Image variant="top" src={art.imageUrl[0].url} fluid alt={art.title} />
+                                        <Image variant="top" src={art.imageUrl[0].url} layout='fill' alt={art.title} />
                                     </div>
                                 </Card>
                             </Col>
@@ -62,7 +63,7 @@ const DisplayModal = ({ img, title, show, setShow, }) => {
                 <Modal.Title>{title}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <Image variant="top" src={`${img}`} fluid alt={title} />
+                <BootImage variant="top" src={`${img}`} fluid alt={title} />
             </Modal.Body>
         </Modal >
     )

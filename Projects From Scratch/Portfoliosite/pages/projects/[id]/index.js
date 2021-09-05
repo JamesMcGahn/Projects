@@ -94,7 +94,7 @@ import Project from "../../../models/Project"
 
 export async function getStaticPaths() {
     try {
-        const res = await axios.get(`${process.env.SERVER}/api/projects/`)
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/projects/`)
         const { data } = await res.data
         const paths = data.map((project) => ({
             params: { id: project._id },

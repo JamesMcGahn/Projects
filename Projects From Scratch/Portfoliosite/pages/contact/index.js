@@ -45,7 +45,7 @@ function ContactPage() {
         } else {
             try {
                 setLoading(true)
-                const res = await axios.post(`${process.env.SERVER}/api/mailer`, {
+                const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/mailer`, {
                     headers: { "Content-Type": 'application/json' },
                     data: form
                 }).then(res => {
@@ -90,7 +90,7 @@ function ContactPage() {
                     <div className={classes.captcha} >
 
                         <ReCAPTCHA
-                            sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                            sitekey="6Lc55RkUAAAAAOPJdIsuhK5bnstiQD8H3t9rV_ml"
                             onChange={onChange}
                             size='compact'
                             theme='dark'

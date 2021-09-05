@@ -27,7 +27,7 @@ function Login(props) {
     return (
         <div className={classes.formDiv} >
             <div><h3>Login</h3></div>
-            <RegLogSignForm action={`${process.env.SERVER}/api/auth/callback/credentials`} method={'POST'} handleChange={handleChange} validated={validated} handleSubmit={handleSubmit} csrfToken={csrfToken} />
+            <RegLogSignForm action={`${process.env.NEXT_PUBLIC_SERVER}/api/auth/callback/credentials`} method={'POST'} handleChange={handleChange} validated={validated} handleSubmit={handleSubmit} csrfToken={csrfToken} />
         </div >
     );
 }

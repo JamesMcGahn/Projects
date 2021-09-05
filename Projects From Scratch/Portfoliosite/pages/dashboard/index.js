@@ -30,7 +30,7 @@ function Dashboard({ projects, art }) {
             setShow(false)
             const path = type === 'project' ? 'projects' : 'art'
 
-            const res = await axios.delete(`http://localhost:3000/api/auth/${path}/${id}`,
+            const res = await axios.delete(`${process.env.NEXT_PUBLIC_SERVER}/api/auth/${path}/${id}`,
                 { headers: { "Content-Type": 'application/json' } }).then(res => {
                     console.log(res)
                     router.replace(router.asPath)

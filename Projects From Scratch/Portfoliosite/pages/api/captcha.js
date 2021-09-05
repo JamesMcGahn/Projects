@@ -9,8 +9,8 @@ export default async function captcha(req, res) {
         case 'POST':
             try {
                 const value = req.body.data.response
-                // TODO PUT REAL KEY IN
-                const captcha = await axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe&response=${value}`, {
+
+                const captcha = await axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=${process.env.CAPTCHA_SECRET}&response=${value}`, {
                     headers: { "Content-Type": 'application/x-www-form-urlencoded' },
                 })
                 console.log(captcha.data.success)

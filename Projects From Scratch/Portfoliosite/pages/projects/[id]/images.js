@@ -124,7 +124,7 @@ export const getServerSideProps = async (context) => {
         }
     }
     const { id } = context.query;
-    const res = await axios.get(`${process.env.SERVER}/api/projects/${id}`)
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/projects/${id}`)
     const { data } = await res.data
     return { props: { project: data, id: id } }
 }
