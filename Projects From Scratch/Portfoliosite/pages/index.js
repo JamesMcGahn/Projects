@@ -30,9 +30,11 @@ export default function Home({ projects }) {
   )
 }
 
-export const getStaticProps = async ({ params }) => {
-  const res = await axios.get(`${process.env.SERVER}/api/projects/`)
-  const { data } = await res.data
-  const projects = data.filter(proj => proj.mainPage === true)
-  return { props: { projects: projects }, revalidate: 3600 }
+import dbConnect from '../utils/dbConnect'
+import Project from '../models/Project'
+
+export async function getStaticProps(context) {
+  await dbConnect()
+  const projects = await Project.find({ mainPage: true }).lean()
+  return { props: { projects: JSON.parse(JSON.stringify(projects)) }, revalidate: 3600 }
 }

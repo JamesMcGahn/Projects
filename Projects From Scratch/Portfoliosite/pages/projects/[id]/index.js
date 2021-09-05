@@ -89,26 +89,29 @@ function SingleProject({ project, notFound }) {
 
 export default SingleProject;
 
-export async function getStaticPaths() {
-    const res = await axios.get(`${process.env.SERVER}/api/projects/`)
-    const { data } = await res.data
-
-    const paths = data.map((project) => ({
-        params: { id: project._id },
-    }))
-
-    return { paths, fallback: true, }
-}
-
-
 import dbConnect from '../../../utils/dbConnect'
 import Project from "../../../models/Project"
+
+export async function getStaticPaths() {
+    try {
+        const res = await axios.get(`${process.env.SERVER}/api/projects/`)
+        const { data } = await res.data
+        const paths = data.map((project) => ({
+            params: { id: project._id },
+        }))
+        return { paths, fallback: true, }
+    } catch (e) {
+        const paths = []
+        return { paths, fallback: true, }
+    }
+}
+
 export async function getStaticProps(context) {
     try {
         await dbConnect()
         const id = context.params.id
-        const project = await Project.findById(id)
-        return { props: { project: project, notFound: false }, revalidate: 3600 }
+        const project = await Project.findById(id).lean();
+        return { props: { project: JSON.parse(JSON.stringify(project)), notFound: false }, revalidate: 3600 }
     }
     catch {
         return { props: { project: [], notFound: true }, revalidate: 3600 }

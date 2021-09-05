@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
-import Link from 'next/link'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
-import axios from 'axios'
 import Modal from 'react-bootstrap/Modal';
 import classes from '../../styles/art.module.css'
 import Image from 'react-bootstrap/Image';
 
-function Art({ art }) {
+function ArtPage({ art }) {
     const [show, setShow] = useState(false);
     const [modalItem, setModalItem] = useState({ title: '', img: '' });
 
@@ -45,12 +43,15 @@ function Art({ art }) {
     );
 }
 
-export default Art;
+export default ArtPage;
 
-export const getStaticProps = async ({ params }) => {
-    const res = await axios.get(`${process.env.SERVER}/api/art/`)
-    const { data } = await res.data
-    return { props: { art: data }, revalidate: 3600 }
+
+import dbConnect from '../../utils/dbConnect'
+import Art from "../../models/Art"
+export const getStaticProps = async (context) => {
+    await dbConnect()
+    const art = await Art.find({}).lean();
+    return { props: { art: JSON.parse(JSON.stringify(art)) }, revalidate: 3600 }
 }
 
 const DisplayModal = ({ img, title, show, setShow, }) => {

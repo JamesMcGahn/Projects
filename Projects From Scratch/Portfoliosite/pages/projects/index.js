@@ -24,6 +24,7 @@ import Project from "../../models/Project"
 
 export async function getStaticProps(context) {
     await dbConnect()
-    const projects = await Project.find({})
-    return { props: { projects: projects }, revalidate: 3600 }
+    const projects = await Project.find({}).lean()
+
+    return { props: { projects: JSON.parse(JSON.stringify(projects)) }, revalidate: 3600 }
 }

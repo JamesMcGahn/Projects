@@ -24,7 +24,7 @@ function Register(props) {
 
     const register = async () => {
         try {
-            const res = await axios.post(`${process.env.SERVER}/api/auth/signup`,
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/auth/signup`,
                 form,
                 { headers: { "Content-Type": 'application/json' } }).then(res => router.push('/dashboard'))
         } catch (e) {

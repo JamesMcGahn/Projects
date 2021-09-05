@@ -17,7 +17,7 @@ export default async function signUp(req, res) {
 
             const user = new User({ username, password })
             await user.save();
-            return res.status(400).json({ success: 'true' })
+            return res.status(200).json({ success: 'true' })
         }
     }
     else {
