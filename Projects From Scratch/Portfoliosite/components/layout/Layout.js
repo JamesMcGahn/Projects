@@ -1,7 +1,6 @@
 import React from 'react';
 import MainNav from './nav/MainNav'
 import { useRouter } from 'next/router'
-import classes from '../../styles/layout.module.css'
 import DashNav from './nav/DashNav';
 import Footer from './Footer'
 import { useSession } from "next-auth/client"
