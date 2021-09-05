@@ -33,5 +33,6 @@ export default function Home({ projects }) {
 export const getStaticProps = async ({ params }) => {
   const res = await axios.get(`${process.env.SERVER}/api/projects/`)
   const { data } = await res.data
-  return { props: { projects: data }, revalidate: 3600 }
+  const projects = data.filter(proj => proj.mainPage === true)
+  return { props: { projects: projects }, revalidate: 3600 }
 }

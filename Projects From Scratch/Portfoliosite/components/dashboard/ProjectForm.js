@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 function ProjectForm({ validated, handleSubmit, handleChange, form, edit }) {
+
     return (
         <Form noValidate validated={validated} onSubmit={handleSubmit} >
             <Form.Group className="mb-3" controlId="title">
@@ -11,6 +12,17 @@ function ProjectForm({ validated, handleSubmit, handleChange, form, edit }) {
                 <Form.Control.Feedback type="invalid">
                     Enter a Title
                 </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="mainPage">
+                <Form.Label>Main Page</Form.Label>
+                <Form.Check
+                    type='checkbox'
+                    id={`mainPage`}
+                    name='mainPage'
+                    value={form.mainPage}
+                    onChange={handleChange}
+                    checked={form.mainPage}
+                />
             </Form.Group>
             <Form.Group className="mb-3" controlId="subtitle">
                 <Form.Label>Subtitle</Form.Label>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios'
 import classes from '../../../styles/singleProject.module.css'
 import Carousel from 'react-bootstrap/Carousel'
@@ -12,11 +12,11 @@ import ViewButton from '../../../components/ui/ViewButton'
 import { useRouter } from 'next/router'
 import DefaultErrorPage from 'next/error'
 import LinkWrapper from '../../../components/utils/LinkWrapper';
-
+import Modal from 'react-bootstrap/Modal';
 
 function singleProject({ project, notFound }) {
     const router = useRouter()
-
+    const [show, setShow] = useState(false);
     if (router.isFallback) {
         return <div>Loading...</div>
     }
@@ -32,7 +32,7 @@ function singleProject({ project, notFound }) {
 
 
     const img = <a><Card.Img variant="top" src="/img/headshot.jpg" /></a>
-    const moreThanOneImg = project.imageUrl.length > 1 ? true : false
+
     return (
         <Container className={classes.outerContainer} fluid>
             <Container className={classes.container} fluid>
@@ -41,22 +41,11 @@ function singleProject({ project, notFound }) {
                         <Row>
                             <Col xs={12} md={12} lg={5} className={classes.leftCol} >
                                 <Card className={classes.innerCard}>
-                                    <Carousel controls={moreThanOneImg} indicators={moreThanOneImg}>
-                                        {project.imageUrl.map((img) => (
-                                            <Carousel.Item>
-                                                <img
-                                                    className="d-block w-100"
-                                                    src={`${img.url}`}
-                                                    alt={`${img.filename}`}
-                                                    style={{ minHeight: '200px' }}
-                                                />
-                                            </Carousel.Item>
-
-                                        ))
-                                        }
-                                    </Carousel>
+                                    <div onClick={() => setShow(true)}>
+                                        <ImgCarousel project={project} />
+                                    </div>
                                     <div className={classes.subtitle}>
-                                        <strong>Summary:</strong>
+                                        <strong>Summary: </strong>
                                         <p>{project.subtitle}</p>
                                     </div>
                                     <div className={classes.buttonDiv}>
@@ -93,6 +82,7 @@ function singleProject({ project, notFound }) {
             <div className={classes.goBackBtnDiv}>
                 <LinkWrapper to='/projects'> <ViewButton>Go Back</ViewButton></LinkWrapper>
             </div>
+            <DisplayModal show={show} setShow={setShow} project={project} />
         </Container>
     );
 }
@@ -122,4 +112,35 @@ export const getStaticProps = async ({ params }) => {
     }
 
 
+}
+
+const DisplayModal = ({ show, setShow, project }) => {
+    const handleClose = () => setShow(false);
+    return (
+        <Modal show={show} onHide={handleClose} size="lg">
+            <Modal.Body>
+                <ImgCarousel project={project} />
+            </Modal.Body>
+        </Modal >
+    )
+}
+
+const ImgCarousel = ({ project }) => {
+    const moreThanOneImg = project.imageUrl.length > 1 ? true : false
+
+    return (
+        <Carousel controls={moreThanOneImg} indicators={moreThanOneImg}>
+            {project.imageUrl.map((img) => (
+                <Carousel.Item>
+                    <img
+                        className="d-block w-100"
+                        src={`${img.url}`}
+                        alt={`${img.filename}`}
+                        style={{ minHeight: '200px' }}
+                    />
+                </Carousel.Item>
+            ))
+            }
+        </Carousel>
+    )
 }

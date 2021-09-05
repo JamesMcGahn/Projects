@@ -16,8 +16,8 @@
 
   background-repeat: repeat-x;
   background-position: bottom !important;
-  border-top: 4px solid #ff00fc;
-  border-bottom: 5px solid #b7e3fe;
+  border-top: 4px solid #b7e3fe;
+  border-bottom: 5px solid #ff00fc;
   background-position: center;
   display: flex;
   flex-direction: column;

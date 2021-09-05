@@ -26,7 +26,7 @@ function art({ art }) {
             <div className={classes.artDiv}>
 
                 <Row id={classes.cardRow}>
-                    {art.map((art, i) => {
+                    {art.reverse().map((art, i) => {
 
                         return (
                             <Col xs={12} md={6} lg={4} className={classes.projectTile} key={art._id} >

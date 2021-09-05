@@ -6,6 +6,9 @@ const ProjectSchema = new mongoose.Schema({
         required: [true, 'Add a Title'],
         trim: true,
     },
+    mainPage: {
+        type: Boolean,
+    },
     subtitle: {
         type: String,
         required: [true, 'Add a Subtitle'],

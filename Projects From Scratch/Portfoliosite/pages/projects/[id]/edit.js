@@ -28,7 +28,15 @@ function EditSingleProject({ project, id }) {
 
 
     const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.name === 'stack' ? e.target.value.split(',') : e.target.value })
+        if (e.target.name === 'mainPage') {
+            setForm({ ...form, [e.target.name]: e.target.checked })
+        }
+        else if (e.target.name === 'stack') {
+            setForm({ ...form, [e.target.name]: e.target.value.split(',').map(item => item.trim().toLowerCase()) })
+        }
+        else {
+            setForm({ ...form, [e.target.name]: e.target.value })
+        }
     }
 
     const createProject = async () => {

@@ -46,7 +46,7 @@ function ProjectsSection({ projects, mainPage }) {
                     </Col>
                 </Row>}
                 <Row id={classes.cardRow}>
-                    {projectData.map((project, i) => {
+                    {projectData.reverse().map((project, i) => {
                         const img = <a><Image variant="top" src={project.imageUrl[0].url} fluid /></a>
                         return (
 

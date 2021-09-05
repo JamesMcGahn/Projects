@@ -14,6 +14,7 @@ function AddProject(props) {
         {
             title: "",
             subtitle: "",
+            mainPage: false,
             stack: [],
             description: "",
             challenges: "",
@@ -42,8 +43,9 @@ function AddProject(props) {
     const handleChange = (e) => {
 
         if (e.target.name === 'imageUrl' || e.target.name === 'adtlImg') {
-
             setForm({ ...form, [e.target.name]: [...e.target.files] })
+        } else if (e.target.name === 'mainPage') {
+            setForm({ ...form, [e.target.name]: e.target.checked })
         } else {
             setForm({ ...form, [e.target.name]: e.target.value })
         }
@@ -54,6 +56,7 @@ function AddProject(props) {
         const sendForm = new FormData()
 
         sendForm.append("title", form.title)
+        sendForm.append("mainPage", form.mainPage)
         sendForm.append("subtitle", form.subtitle)
         sendForm.append("stack", form.stack)
         sendForm.append("description", form.description)
