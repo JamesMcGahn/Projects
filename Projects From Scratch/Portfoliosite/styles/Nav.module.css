@@ -23,9 +23,9 @@ div.container {
     padding-bottom: 10px;
   }
 }
-@media (max-width: 678px) {
+@media (max-width: 750px) {
   #nav {
-    left: 80%;
+    left: 75%;
   }
 }
 @media (max-width: 567px) {
@@ -35,7 +35,7 @@ div.container {
 }
 @media (max-width: 478px) {
   #nav {
-    left: 68%;
+    left: 64%;
   }
 }
 @media (max-width: 320px) {
