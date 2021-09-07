@@ -41,8 +41,7 @@ function EditSingleProject({ project, id }) {
 
     const createProject = async () => {
         try {
-            console.log('creatuing')
-            const res = await axios.put(`${NEXT_PUBLIC_SERVER}/api/auth/projects/${id}`,
+            const res = await axios.put(`${process.env.NEXT_PUBLIC_SERVER}/api/auth/projects/${id}`,
                 form,
                 { headers: { "Content-Type": 'application/json' } }).then(res => router.push('/dashboard'))
 

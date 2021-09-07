@@ -54,7 +54,7 @@ function EditSingleProjectImages({ project, id }) {
         form.imageUrl.forEach((file) => sendForm.append('imageUrl', file))
         form.deleteImage.forEach((name) => sendForm.append('delete[]', name))
         try {
-            const res = await axios.put(`${process.env.SERVER}/api/auth/projects/${id}/images`,
+            const res = await axios.put(`${process.env.NEXT_PUBLIC_SERVER}/api/auth/projects/${id}/images`,
                 sendForm,
                 { headers: { 'content-type': 'multipart/form-data' } }).then(res => {
                     setForm({
