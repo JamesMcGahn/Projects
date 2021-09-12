@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import MiniProductCard from '../cards/MiniProductCard'
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+
 const useStyles = makeStyles((theme) => ({
     container: {
         display: 'flex',
@@ -17,51 +19,60 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
+
+    },
+    slider: {
+        width: '100%',
+        color: 'black',
+        display: 'flex',
+        alignItems: 'center',
         '& svg': {
             color: 'black',
             fontSize: '2rem'
         },
         '& svg:hover': {
+            background: 'black',
+            color: 'white',
             cursor: 'pointer'
         }
-    },
-    slider: {
-
-        width: '100%',
-        height: '350px',
-        color: 'black',
-        display: 'flex',
-        // flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'stretch',
-
     },
 }));
 
 function FeaturedItemsCarousel({ products }) {
     const classes = useStyles();
+    const matches = useMediaQuery('(max-width:548px)');
+    const length = products.length
+    const [maxDisplay, setMaxDisplay] = useState(3)
     const [current, setCurrent] = useState({
         min: 0,
-        max: 3,
+        max: maxDisplay,
     })
-    const [imageHover, setimageHover] = useState(0);
 
-    const length = products.length
+    if (matches && maxDisplay !== 0) {
+        setCurrent({ min: 0, max: 0 })
+        setMaxDisplay(0)
+    } else if (!matches && maxDisplay !== 3) {
+        setCurrent({ min: 0, max: 3 })
+        setMaxDisplay(3)
+    }
+
 
     const handlePrevious = () => {
-        current.min === 0 ? setCurrent({ min: length - 4, max: length - 1 }) : setCurrent({ min: current.min - 1, max: current.max - 1 })
+
+        current.min === 0 ? setCurrent({ min: (length - 1) - maxDisplay, max: length - 1 }) : setCurrent({ min: current.min - 1, max: current.max - 1 })
 
     }
     const handleNext = () => {
-        current.max === length - 1 ? setCurrent({ min: 0, max: 3 }) : setCurrent({ min: current.min + 1, max: current.max + 1 })
+        current.max === length - 1 ? setCurrent({ min: 0, max: maxDisplay }) : setCurrent({ min: current.min + 1, max: current.max + 1 })
     }
 
     return (
         <div className={classes.container}>
             <div className={classes.title}>
-                <ChevronLeftIcon onClick={handlePrevious} /> <h2>Featured Items</h2><ChevronRightIcon onClick={handleNext} />
+                <h2>Featured Items</h2>
             </div>
             <div className={classes.slider}>
+                <ChevronLeftIcon onClick={handlePrevious} />
                 {products.map((item, index) => {
                     return (
                         index >= current.min && index <= current.max ?
@@ -70,7 +81,7 @@ function FeaturedItemsCarousel({ products }) {
                 }
                 )
                 }
-
+                <ChevronRightIcon onClick={handleNext} />
             </div>
         </div>
     );

@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
   heroCont: {
     width: '100%',
-    height: '60vh',
+    height: '70vh',
     padding: '2rem',
     outline: ' 2px solid black',
     outlineOffset: '-2rem',

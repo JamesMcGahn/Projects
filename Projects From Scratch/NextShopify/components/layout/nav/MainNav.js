@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
         color: 'black',
         display: 'flex',
         padding: '.5rem',
-        borderBottom: '1px solid grey'
+        borderBottom: '1px solid grey',
     },
     logo: {
         width: '25%'
@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
         zIndex: 10,
         padding: '2rem',
         borderBottom: '1px solid grey',
-        backgroundColor: 'white'
+        backgroundColor: 'white',
     }
 }));
 

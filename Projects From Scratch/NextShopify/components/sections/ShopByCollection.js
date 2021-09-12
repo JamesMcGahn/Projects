@@ -24,12 +24,20 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
         flexWrap: 'wrap',
     },
-    title: {
-        margin: '0 .1rem',
+    tile: {
+        width: props => `${(100 / props.length) - 2}%`,
+        marginLeft: '.1rem',
         '& p': {
             fontWeight: 'bold',
         }
+    },
+    img: {
+        '& img': {
+            width: '100%',
+        }
+
     }
+
 }));
 
 
@@ -41,24 +49,26 @@ const tiles = [
     createTiles('Title 1', 'https://n.nordstrommedia.com/id/f477f59e-065c-456f-b8b2-80f6a950775a.jpeg?h=365&w=268'),
     createTiles('Title 1', 'https://n.nordstrommedia.com/id/f477f59e-065c-456f-b8b2-80f6a950775a.jpeg?h=365&w=268'),
     createTiles('Title 1', 'https://n.nordstrommedia.com/id/f477f59e-065c-456f-b8b2-80f6a950775a.jpeg?h=365&w=268'),
-    createTiles('Title 1', 'https://n.nordstrommedia.com/id/f477f59e-065c-456f-b8b2-80f6a950775a.jpeg?h=365&w=268'),
 ]
 
 function ShopbyCollection(props) {
-    const classes = useStyles();
+    const length = tiles.length
+    const classes = useStyles({ length });
     return (
         <div className={classes.container}>
             <h4>Shop by Collections</h4>
             <div className={classes.tileContainer}>
                 {tiles.map((tile, key) => {
-                    return (<div className={classes.title} key={key}>
-                        <img src={`${tile.img}`} alt={`${tile.title}`} />
+                    return (<div className={classes.tile} key={key}>
+                        <div className={classes.img}>
+                            <img src={`${tile.img}`} alt={`${tile.title}`} />
+                        </div>
                         <p>{tile.title}</p>
                     </div>
                     )
                 })}
             </div>
-        </div>
+        </div >
     );
 }
 

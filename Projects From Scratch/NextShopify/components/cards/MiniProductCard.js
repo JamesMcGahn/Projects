@@ -3,23 +3,21 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     item: {
+        height: 'inherit',
         display: 'flex',
-        minHeight: '350px',
         flexDirection: 'column',
-        width: '100%',
-        height: '100%',
-        padding: '1rem',
-        outline: ' 2px solid black',
-        outlineOffset: '-1rem',
+        padding: '0 .25rem',
     },
     itemImg: {
         width: '100%',
+        height: '100%',
         padding: '0 1rem',
         '& img': {
-            width: '100%',
+            width: '80%',
         }
     },
     description: {
+        height: '100%',
         padding: '0 1rem',
     }
 }));
