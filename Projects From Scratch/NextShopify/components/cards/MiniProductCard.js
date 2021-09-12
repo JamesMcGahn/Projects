@@ -22,10 +22,10 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function MiniProductCard({ item, key }) {
+function MiniProductCard({ item }) {
     const classes = useStyles();
     return (
-        <div className={classes.item} key={key}>
+        <div className={classes.item}>
             <div className={classes.itemImg}  >
                 <img src={item.node.images.edges[0].node.originalSrc}
                     onMouseOver={e => (e.currentTarget.src = item.node.images?.edges[1].node.originalSrc ? item.node.images.edges[1].node.originalSrc : item.node.images.edges[0].node.originalSrc)}

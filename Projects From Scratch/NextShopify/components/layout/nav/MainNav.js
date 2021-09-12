@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import { ShopifyContext } from '../../../contexts/shopifyContext'
+import Link from 'next/link'
+
 const useStyles = makeStyles((theme) => ({
     container: {
         width: '100%',
@@ -42,37 +45,59 @@ const useStyles = makeStyles((theme) => ({
     expandedMenu: {
         position: 'absolute',
         width: '100%',
+        maxHeight: '300px',
         zIndex: 10,
         padding: '2rem',
         borderBottom: '1px solid grey',
         backgroundColor: 'white',
+        display: 'flex',
+    },
+    expandedMenuNav: {
+        width: '50%',
+        display: 'flex',
+        flexDirection: 'column',
+        flexWrap: 'wrap'
+    },
+    collectionItem: {
+        padding: '.5rem',
+    },
+    featuredCollections: {
+        width: '50%',
     }
+
 }));
 
-function MainNav(props) {
+function MainNav() {
     const classes = useStyles();
-    const [linkHover, setLinkHover] = useState(false)
-    const [overMenu, setOverMenu] = useState(false)
-    const open = linkHover || overMenu
+    const { collectionList } = useContext(ShopifyContext)
+    const [open, setOpen] = useState(false)
+    const timer = useRef(null)
+
 
     const handleMouseIn = (e) => {
         console.log(e.target.id)
-        setLinkHover(true);
-    };
-
-    const handleMouseOut = () => {
-        setTimeout(() => {
-            setLinkHover(false);
-        }, 1000)
-
+        setOpen(true);
     };
 
     const handleMenuIn = (e) => {
-        setOverMenu(true)
+        clearTimeout(timer.current)
+        setOpen(true)
     }
-    const handleMenuOut = () => {
-        setOverMenu(false)
+
+    const closeMenu = () => {
+        timer.current = setTimeout(() => {
+            setOpen(false)
+        }, 750)
     }
+
+    const handleMouseOut = () => {
+        closeMenu()
+    };
+
+    const handleOnClick = () => {
+        setOpen(false)
+    }
+
 
     return (
         <React.Fragment>
@@ -91,11 +116,17 @@ function MainNav(props) {
                     <ShoppingCartIcon />
                 </div>
             </div>
-            {open && <div className={classes.expandedMenu} onMouseOver={handleMenuIn} onMouseOut={handleMenuOut}>
+            {open && <div className={classes.expandedMenu} onMouseOver={handleMenuIn} onMouseOut={handleMouseOut}>
                 {/* shop drop down goes here */}
-                lorem ipsum dolor sit amet, consectetur
-                lorem ipsum dolor sit amet, consectetur
-                lorem ipsum dolor sit amet, consectetur
+                <div className={classes.expandedMenuNav}>
+                    {collectionList ? collectionList.map(item => (
+                        <div className={classes.collectionItem} key={item.handle}><Link href={`/shop/collection/${item.handle}`} ><a onClick={handleOnClick}>{item.title}</a></Link></div>
+                    ))
+                        : <h1>loading</h1>}
+                </div>
+                <div className={classes.featuredCollections}>
+
+                </div>
             </div>
             }
         </React.Fragment>
@@ -103,3 +134,5 @@ function MainNav(props) {
 }
 
 export default MainNav;
+
+

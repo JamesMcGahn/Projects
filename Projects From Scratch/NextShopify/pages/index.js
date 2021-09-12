@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { ShopifyContext } from '../contexts/shopifyContext'
 import Hero from '../components/ui/Hero'
 // import client from '../utils/shopifyConnect'
@@ -7,7 +7,7 @@ import FeaturedCollection from '../components/sections/FeaturedCollection'
 import MainButton from '../components/ui/MainButton'
 import ShopByCollection from '../components/sections/ShopByCollection'
 import { client, gql } from '../utils/appolloClient'
-
+import { collectionByHandle } from '../utils/graphQLQueries'
 import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -43,13 +43,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function Home({ products }) {
-  const { cart, setCart } = useContext(ShopifyContext)
+export default function Home({ products, }) {
+  const { cart, setCart, collections } = useContext(ShopifyContext)
   // const initial = JSON.parse(products)
   // const [prodos, setProducts] = useState(initial)
   const classes = useStyles();
 
-  console.log(products)
+
+
   return (
     <div className={classes.container}>
       <div className={classes.heroCont}>
@@ -83,42 +84,12 @@ export default function Home({ products }) {
 
 
 export async function getStaticProps(context) {
-  const collection = `
-query {
-  collectionByHandle(handle: "home-page-featured") {
-    products(first: 20){
-      edges {
-        node{
-          id
-          title
-          handle
-          productType
-          vendor
-    			priceRange {
-            minVariantPrice{
-              amount
-            }
-            maxVariantPrice{
-              amount
-            }
-          }
-          images(first: 2){
-            edges{
-              node{
-                originalSrc
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-`
+  const collection = collectionByHandle('home-page-featured')
 
   const { data } = await client.query({
     query: gql`${collection}`,
   });
+
   const products = data.collectionByHandle.products.edges
   return {
     props: { products: products },

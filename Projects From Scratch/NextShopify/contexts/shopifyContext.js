@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react'
-import client from '../utils/shopifyConnect'
-
+// import client from '../utils/shopifyConnect'
+import { client, gql } from '../utils/appolloClient'
 export const ShopifyContext = createContext()
 
 
@@ -9,6 +9,41 @@ export const ShopifyContext = createContext()
 export function ShopifyContextProvider(props) {
 
     const [cart, setCart] = useState({ checkout: {}, cartOpen: false })
+    const [collectionList, setCollectionList] = useState()
+
+    const handleCollectionList = (list) => {
+
+    }
+
+    useEffect(() => {
+        async function getCollections() {
+            const tacos = await client.query({
+                query: gql`{
+            collections(first: 50){
+            edges{
+              node {
+                handle
+                title
+                image {
+                  originalSrc
+                  altText
+                }
+              }
+            }
+          } 
+          }`
+            })
+            const collectionsList = tacos.data.collections.edges
+            const collections = collectionsList.map(col => {
+                return { handle: col.node.handle, image: col.node.image, title: col.node.title }
+            })
+            const cleanedList = collections.filter(item => !item.title.toLowerCase().includes('home'))
+            setCollectionList(cleanedList)
+        }
+        getCollections()
+    }, [])
+
+
 
 
     // useEffect(() => {
@@ -20,7 +55,7 @@ export function ShopifyContextProvider(props) {
     // }, [])
 
     return (
-        <ShopifyContext.Provider value={{ cart, setCart, client }} >
+        <ShopifyContext.Provider value={{ cart, setCart, handleCollectionList, collectionList }} >
             {props.children}
         </ShopifyContext.Provider>
     )
