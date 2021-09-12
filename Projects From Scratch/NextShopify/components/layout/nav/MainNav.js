@@ -44,13 +44,16 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         zIndex: 10,
         padding: '2rem',
-        borderBottom: '1px solid grey'
+        borderBottom: '1px solid grey',
+        backgroundColor: 'white'
     }
 }));
 
 function MainNav(props) {
     const classes = useStyles();
     const [linkHover, setLinkHover] = useState(false)
+    const [overMenu, setOverMenu] = useState(false)
+    const open = linkHover || overMenu
 
     const handleMouseIn = (e) => {
         console.log(e.target.id)
@@ -58,9 +61,18 @@ function MainNav(props) {
     };
 
     const handleMouseOut = () => {
-        setLinkHover(false);
+        setTimeout(() => {
+            setLinkHover(false);
+        }, 1000)
+
     };
 
+    const handleMenuIn = (e) => {
+        setOverMenu(true)
+    }
+    const handleMenuOut = () => {
+        setOverMenu(false)
+    }
 
     return (
         <React.Fragment>
@@ -68,7 +80,8 @@ function MainNav(props) {
                 <div className={classes.logo}></div>
                 <div className={classes.nav}>
                     <ul className={classes.list}>
-                        <li onMouseOver={handleMouseIn} onMouseOut={handleMouseOut} id="shop">Shop</li>
+                        <li onMouseOver={handleMouseIn} onMouseOut={handleMouseOut} id="shop">Shop
+                        </li>
                         <li>Blog</li>
                         <li>About</li>
                         <li>Contact</li>
@@ -78,7 +91,7 @@ function MainNav(props) {
                     <ShoppingCartIcon />
                 </div>
             </div>
-            {linkHover && <div className={classes.expandedMenu}>
+            {open && <div className={classes.expandedMenu} onMouseOver={handleMenuIn} onMouseOut={handleMenuOut}>
                 {/* shop drop down goes here */}
                 lorem ipsum dolor sit amet, consectetur
                 lorem ipsum dolor sit amet, consectetur
