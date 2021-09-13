@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import MiniProductCard from '../cards/MiniProductCard'
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-
+import ProductCarousel from '../ui/ProductCarousel'
 const useStyles = makeStyles((theme) => ({
     container: {
         display: 'flex',
@@ -38,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function FeaturedItemsCarousel({ products }) {
+function FeaturedItems({ products }) {
     const classes = useStyles();
     const matches = useMediaQuery('(max-width:548px)');
     const length = products.length
@@ -56,35 +54,16 @@ function FeaturedItemsCarousel({ products }) {
         setMaxDisplay(3)
     }
 
-
-    const handlePrevious = () => {
-
-        current.min === 0 ? setCurrent({ min: (length - 1) - maxDisplay, max: length - 1 }) : setCurrent({ min: current.min - 1, max: current.max - 1 })
-
-    }
-    const handleNext = () => {
-        current.max === length - 1 ? setCurrent({ min: 0, max: maxDisplay }) : setCurrent({ min: current.min + 1, max: current.max + 1 })
-    }
-
     return (
         <div className={classes.container}>
             <div className={classes.title}>
                 <h2>Featured Items</h2>
             </div>
-            <div className={classes.slider}>
-                <ChevronLeftIcon onClick={handlePrevious} />
-                {products.map((item, index) => {
-                    return (
-                        index >= current.min && index <= current.max ?
-                            <MiniProductCard item={item} key={index} /> : null
-                    )
-                }
-                )
-                }
-                <ChevronRightIcon onClick={handleNext} />
-            </div>
+            <ProductCarousel current={current} setCurrent={setCurrent} data={products} maxDisplay={maxDisplay}>
+                <MiniProductCard />
+            </ProductCarousel>
         </div>
     );
 }
 
-export default FeaturedItemsCarousel;
+export default FeaturedItems;

@@ -2,7 +2,7 @@ import { useContext, useState, useEffect } from 'react'
 import { ShopifyContext } from '../contexts/shopifyContext'
 import Hero from '../components/ui/Hero'
 // import client from '../utils/shopifyConnect'
-import FeaturedItemsCarousel from '../components/sections/FeaturedItemsCarousel'
+import FeaturedItems from '../components/sections/FeaturedItems'
 import FeaturedCollection from '../components/sections/FeaturedCollection'
 import MainButton from '../components/ui/MainButton'
 import ShopByCollection from '../components/sections/ShopByCollection'
@@ -62,7 +62,7 @@ export default function Home({ products, }) {
         </Hero>
       </div>
       <div className={classes.featuredItems}>
-        <FeaturedItemsCarousel products={products} />
+        <FeaturedItems products={products} />
       </div>
       <div className={classes.featuredCollection}>
         <FeaturedCollection color='#fca311' image='https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/464e8d65-3a82-472a-aa2c-de53b2dfe7f2/wearallday-shoe-XpS7nX.png' >

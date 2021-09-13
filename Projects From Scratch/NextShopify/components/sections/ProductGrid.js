@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import MiniProductCard from '../../components/cards/MiniProductCard'
+import Link from 'next/link'
 const useStyles = makeStyles((theme) => ({
     itemGrid: {
         width: '100%',
@@ -20,9 +21,14 @@ function ProductGrid({ products, title, hasMoreItems, getMoreItems }) {
             <h1>{title}</h1>
             <div className={classes.itemGrid}>
                 {products.map((item, index) => {
+                    console.log(item)
                     return (
                         <div className={classes.item} key={index}>
-                            <MiniProductCard item={item} />
+                            <Link href={`/shop/product/${item.node.handle}`}>
+                                <a>
+                                    <MiniProductCard item={item} />
+                                </a>
+                            </Link>
                         </div>
                     )
                 }
