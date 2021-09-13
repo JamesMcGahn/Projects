@@ -41,13 +41,13 @@ function AboutSection(props) {
                                     <div className={classes.skillList}>
                                         <h6>Core Skills:</h6>
                                         <ul>
-                                            <li> HTML5, CSS3, Liquid, Javascript (ES6+), React (Hooks), </li>
-                                            <li> Next.js, Material UI, Bootstrap, Figma, Bootstrap, Photoshop,</li>
+                                            <li> HTML5, CSS3, Liquid, Javascript, React, MongoDB, GraphQL </li>
+                                            <li> Next.js, Material UI, Figma, Bootstrap, Photoshop,</li>
                                             <li> Illustrator, Affinity, Zendesk, Wordpress</li>
                                         </ul>
                                         <h6>I Also Have Some Experience:</h6>
                                         <ul>
-                                            <li> PHP, Express, Mongo, PostgreSQL, MySQL, Premiere </li>
+                                            <li> PHP, Express,PostgreSQL, MySQL, Premiere </li>
                                         </ul>
                                     </div>
                                 </Card>
