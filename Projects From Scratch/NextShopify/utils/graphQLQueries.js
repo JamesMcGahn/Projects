@@ -1,5 +1,5 @@
 export const allCategories = () => {
-    return `{
+  return `{
         collections(first: 50){
         edges{
           node {
@@ -11,9 +11,9 @@ export const allCategories = () => {
 }`
 }
 
-export const firstHundredProductHandles = () => {
-    return `{
-        products(first: 100){
+export const getProductHandles = (amount) => {
+  return `{
+        products(first: ${amount}){
           edges {
             node{
               handle         
@@ -25,7 +25,7 @@ export const firstHundredProductHandles = () => {
 }
 
 export const productByHandle = (handle) => {
-    return `{
+  return `{
         productByHandle(handle: "${handle}") {
             title
             description
@@ -34,6 +34,7 @@ export const productByHandle = (handle) => {
             variants(first: 12) {
               edges {
                 node {
+                  id
                   availableForSale
                   title
                   priceV2{
@@ -68,13 +69,46 @@ export const productByHandle = (handle) => {
       `
 }
 
-
-
-
-
+export const getProducts = (amount) => {
+  return `
+  query {
+      products(first: ${amount}){
+      pageInfo{
+        hasNextPage
+        hasPreviousPage
+      }
+        edges {
+          cursor
+          node{
+            id
+            title
+            handle
+            vendor
+            productType
+                  priceRange {
+              minVariantPrice{
+                amount
+              }
+              maxVariantPrice{
+                amount
+              }
+            }
+            images(first: 2){
+              edges{
+                node{
+                  originalSrc
+                }
+              }
+            }
+          }
+        }
+      }
+    }   
+  `
+}
 
 export const collectionByHandle = (handle) => {
-    return `
+  return `
     query {
       collectionByHandle(handle: "${handle}") {
           title

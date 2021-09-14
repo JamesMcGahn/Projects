@@ -79,7 +79,7 @@ function ImageFeaturedCarousel({ data }) {
             <div className={classes.imgThumbs}>
                 {data.map((item, index) => {
 
-                    return <div className={index === current.current ? classes.activeThumb : classes.thumb}><img src={`${item.node.originalSrc}`} onClick={() => handleClick(index)} /></div>
+                    return <div key={index} className={index === current.current ? classes.activeThumb : classes.thumb}><img src={`${item.node.originalSrc}`} onClick={() => handleClick(index)} /></div>
                 }
                 )
                 }

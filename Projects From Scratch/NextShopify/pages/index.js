@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { ShopifyContext } from '../contexts/shopifyContext'
 import Hero from '../components/ui/Hero'
 // import client from '../utils/shopifyConnect'
