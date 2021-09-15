@@ -3,9 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
     btn: {
         padding: '.8rem 1.2rem',
-        backgroundColor: 'black',
-        color: 'white',
-        border: '1px solid black',
+        backgroundColor: props => props.backgroundColor,
+        color: props => props.color,
+        border: props => props.border,
         cursor: 'pointer',
         boxShadow: '3px 2px 5px rgb(0,0,0, 0.4)'
     },
@@ -21,8 +21,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function MainButton({ children }) {
-    const classes = useStyles();
+function MainButton({ children, backgroundColor, color, border }) {
+    const classes = useStyles({ backgroundColor, color, border });
     return (
         <div className={classes.btnDiv}>
             <button className={classes.btn}>

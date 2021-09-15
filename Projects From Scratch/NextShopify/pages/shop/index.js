@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { client, gql } from '../../utils/appolloClient'
 import ProductGrid from '../../components/sections/ProductGrid'
+import { getProducts } from '../../utils/graphQLQueries'
 
 import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
@@ -98,41 +99,7 @@ query {
 export default ShopPage;
 
 export async function getStaticProps(context) {
-  const initalItems = `
-                query {
-                    products(first: 20){
-                    pageInfo{
-                      hasNextPage
-                      hasPreviousPage
-                    }
-                      edges {
-                        cursor
-                        node{
-                          id
-                          title
-                          handle
-                          vendor
-                          productType
-                                priceRange {
-                            minVariantPrice{
-                              amount
-                            }
-                            maxVariantPrice{
-                              amount
-                            }
-                          }
-                          images(first: 2){
-                            edges{
-                              node{
-                                originalSrc
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }   
-                `
+  const initalItems = getProducts(20)
 
   const { data } = await client.query({
     query: gql`${initalItems}`,

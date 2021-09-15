@@ -5,17 +5,12 @@ import { getProductHandles, productByHandle } from '../../../utils/graphQLQuerie
 import { makeStyles } from '@material-ui/core/styles';
 import { useRouter } from 'next/router'
 import ImageFeaturedCarousel from '../../../components/ui/ImageFeaturedCarousel'
+import DefaultErrorPage from 'next/error'
+import Container from '../../../components/layout/Container'
 
 const useStyles = makeStyles((theme) => ({
     container: {
-        margin: 0,
-        padding: '0 2rem',
-        width: '100%',
-        color: 'black',
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'flex-start',
+
     },
     left: {
         width: '45%'
@@ -35,7 +30,7 @@ function SingleProduct({ product, notFound }) {
     const classes = useStyles()
 
     if (router.isFallback) {
-        return <div>Loading...</div>
+        return <div>Loading...</div> //TODO: loading comp
     }
     if (notFound) {
         return (<>
@@ -45,7 +40,7 @@ function SingleProduct({ product, notFound }) {
             <DefaultErrorPage statusCode={404} />
         </>)
     }
-    const { setAddedToCartItem } = useContext(ShopifyContext)
+    const { addedToCartItems, setAddedToCartItems, getCart } = useContext(ShopifyContext)
     const [maxDisplay, setMaxDisplay] = useState(2)
     const [current, setCurrent] = useState({
         min: 0,
@@ -72,9 +67,11 @@ function SingleProduct({ product, notFound }) {
             image: product.images.edges[0].node.originalSrc,
             title: product.title,
             price: selectedVariant.node.priceV2.amount,
-            variantTitle: selectedVariant.node.title
+            variantTitle: selectedVariant.node.title,
+            quantity: 1
         }
-        setAddedToCartItem(item)
+        setAddedToCartItems([item, ...addedToCartItems])
+        getCart()
         router.push('/addedtocart')
     }
 
@@ -86,7 +83,7 @@ function SingleProduct({ product, notFound }) {
 
 
     return (
-        <div className={classes.container}>
+        <Container margin='0' padding='0 2rem' width='100%' color='black' justifyContent='flex-start' alignItems='flex-start'>
             <div className={classes.left}><ImageFeaturedCarousel data={product.images.edges}></ImageFeaturedCarousel></div>
             <div className={classes.right}>
                 <h1 className={classes.title}>{product.title}</h1>
@@ -116,7 +113,7 @@ function SingleProduct({ product, notFound }) {
                     Add to Cart
                 </button>
             </div>
-        </div>
+        </Container>
     );
 }
 

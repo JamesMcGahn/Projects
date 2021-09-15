@@ -3,16 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { ShopifyContext } from '../../../contexts/shopifyContext'
 import Link from 'next/link'
+import Container from '../Container'
 
 const useStyles = makeStyles((theme) => ({
-    container: {
-        width: '100%',
-        minHeight: '10vh',
-        color: 'black',
-        display: 'flex',
-        padding: '.5rem',
-        borderBottom: '1px solid grey',
-    },
     logo: {
         width: '25%'
     },
@@ -41,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
             fontSize: '2rem',
         }
     },
-
     expandedMenu: {
         position: 'absolute',
         width: '100%',
@@ -51,12 +43,6 @@ const useStyles = makeStyles((theme) => ({
         borderBottom: '1px solid grey',
         backgroundColor: 'white',
         display: 'flex',
-    },
-    expandedMenuNav: {
-        width: '50%',
-        display: 'flex',
-        flexDirection: 'column',
-        flexWrap: 'wrap'
     },
     collectionItem: {
         padding: '.5rem',
@@ -101,11 +87,12 @@ function MainNav() {
 
     return (
         <React.Fragment>
-            <div className={classes.container}>
+            <Container width='100%' color='black' display='flex' padding='.5rem' borderBottom='1px solid grey'>
                 <div className={classes.logo}></div>
                 <div className={classes.nav}>
                     <ul className={classes.list}>
-                        <li onMouseOver={handleMouseIn} onMouseOut={handleMouseOut} id="shop">Shop
+                        <li onMouseOver={handleMouseIn} onMouseOut={handleMouseOut} id="shop">
+                            <Link href={`/shop`} ><a onClick={handleOnClick}>Shop</a></Link>
                         </li>
                         <li>Blog</li>
                         <li>About</li>
@@ -115,15 +102,15 @@ function MainNav() {
                 <div className={classes.icons}>
                     <ShoppingCartIcon />
                 </div>
-            </div>
+            </Container>
             {open && <div className={classes.expandedMenu} onMouseOver={handleMenuIn} onMouseOut={handleMouseOut}>
                 {/* shop drop down goes here */}
-                <div className={classes.expandedMenuNav}>
+                <Container width='50%' flexWrap='wrap' flexDirection='column'>
                     {collectionList ? collectionList.map(item => (
                         <div className={classes.collectionItem} key={item.handle}><Link href={`/shop/collection/${item.handle}`} ><a onClick={handleOnClick}>{item.title}</a></Link></div>
                     ))
                         : <h1>loading</h1>}
-                </div>
+                </Container>
                 <div className={classes.featuredCollections}>
 
                 </div>

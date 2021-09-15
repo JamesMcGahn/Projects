@@ -5,6 +5,10 @@ export const allCategories = () => {
           node {
             handle
             title
+            image {
+              originalSrc
+              altText
+            }
           }
         }
       } 
@@ -146,4 +150,52 @@ export const collectionByHandle = (handle) => {
       }
     }
     `
+}
+
+export const createCart = () => {
+  return `
+  mutation createCart($cartInput: CartInput) {
+    cartCreate(input: $cartInput) {
+      cart {
+        id
+        createdAt
+        updatedAt
+        lines(first:10) {
+          edges {
+            node {
+              id
+              merchandise {
+                ... on ProductVariant {
+                  id
+                }
+              }
+            }
+          }
+  
+        }
+        attributes {
+          key
+          value
+        }
+        estimatedCost {
+          totalAmount {
+            amount
+            currencyCode
+          }
+          subtotalAmount {
+            amount
+            currencyCode
+          }
+          totalTaxAmount {
+            amount
+            currencyCode
+          }
+          totalDutyAmount {
+            amount
+            currencyCode
+          }
+        }
+      }
+    }
+  }`
 }

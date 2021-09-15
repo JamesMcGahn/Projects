@@ -9,17 +9,9 @@ import ShopByCollection from '../components/sections/ShopByCollection'
 import { client, gql } from '../utils/appolloClient'
 import { collectionByHandle } from '../utils/graphQLQueries'
 import { makeStyles } from '@material-ui/core/styles';
+import Container from '../components/layout/Container'
+
 const useStyles = makeStyles((theme) => ({
-  container: {
-    margin: 0,
-    padding: '0',
-    width: '100%',
-    color: 'black',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-  },
   heroCont: {
     width: '100%',
     height: '70vh',
@@ -52,7 +44,7 @@ export default function Home({ products, }) {
 
 
   return (
-    <div className={classes.container}>
+    <Container margin='0' padding='0' width='100%' color='black' flexDirection='column' justifyContent='flex-start' alignItems='center'>
       <div className={classes.heroCont}>
         <Hero image='https://assets.wordstream.com/s3fs-public/styles/simple_image/public/images/hero-image-food.jpg?GaIXC9DcxzJfdbOiCkhPs2bnIToTOtEq&itok=qZ04kL12' >
           {/* call to action 
@@ -71,14 +63,14 @@ export default function Home({ products, }) {
             eu rhoncus felis pulvinar. In interdum tellus massa, quis tincidunt felis eleifend ac.
             In tempor tellus sit amet nisl tempor bibendum. Ut ultrices dolor eget leo porta, id facilisis velit tempor.
             Curabitur nec luctus arcu, quis euismod leo. Proin ultricies mollis augue id dapibus. </p>
-          <MainButton >Shop Now</MainButton>
+          <MainButton backgroundColor='black' color='white' border='1px solid black'>Shop Now</MainButton>
         </FeaturedCollection>
       </div>
       <div className={classes.shopByCollection}>
         <ShopByCollection />
       </div>
 
-    </div>
+    </ Container >
   )
 }
 

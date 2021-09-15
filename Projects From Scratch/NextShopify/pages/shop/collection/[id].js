@@ -2,7 +2,25 @@ import React from 'react';
 import { client, gql } from '../../../utils/appolloClient'
 import { collectionByHandle, allCategories } from '../../../utils/graphQLQueries'
 import ProductGrid from '../../../components/sections/ProductGrid';
-function Collections({ collection, title }) {
+import { useRouter } from 'next/router'
+import DefaultErrorPage from 'next/error'
+
+function Collections({ notFound, collection, title }) {
+    const router = useRouter()
+    if (router.isFallback) {
+        return <div>Loading...</div>
+    }
+    if (notFound) {
+        return (<>
+            <head>
+                <meta name="robots" content="noindex" />
+            </head>
+            <DefaultErrorPage statusCode={404} />
+        </>)
+    }
+
+
+
     console.log(collection)
     return (
         <div>
@@ -35,16 +53,20 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
-    const id = context.params.id
-    const collection = collectionByHandle(id)
+    try {
+        const id = context.params.id
+        const collection = collectionByHandle(id)
 
-    const { data } = await client.query({
-        query: gql`${collection}`,
-    });
-    console.log(data)
-    const products = data.collectionByHandle.products.edges
-    const title = data.collectionByHandle.title
-    console.log(products)
+        const { data } = await client.query({
+            query: gql`${collection}`,
+        });
+        console.log(data)
+        const products = data.collectionByHandle.products.edges
+        const title = data.collectionByHandle.title
+        console.log(products)
 
-    return { props: { collection: products, title: title, notFound: false }, revalidate: 3600 }
+        return { props: { collection: products, title: title, notFound: false }, revalidate: 3600 }
+    } catch (e) {
+        return { props: { collection: [], title: '', notFound: true }, revalidate: 3600 }
+    }
 }

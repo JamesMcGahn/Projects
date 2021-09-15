@@ -2,14 +2,14 @@ import React, { createContext, useState, useEffect } from 'react'
 // import client from '../utils/shopifyConnect'
 import { client, gql } from '../utils/appolloClient'
 export const ShopifyContext = createContext()
-
+import { createCart, allCategories } from '../utils/graphQLQueries'
 
 
 
 export function ShopifyContextProvider(props) {
 
   const [cart, setCart] = useState({ checkout: {}, cartOpen: false })
-  const [addedToCartItem, setAddedToCartItem] = useState()
+  const [addedToCartItems, setAddedToCartItems] = useState([])
   const [collectionList, setCollectionList] = useState()
 
   const handleCollectionList = (list) => {
@@ -18,23 +18,11 @@ export function ShopifyContextProvider(props) {
 
   useEffect(() => {
     async function getCollections() {
-      const tacos = await client.query({
-        query: gql`{
-            collections(first: 50){
-            edges{
-              node {
-                handle
-                title
-                image {
-                  originalSrc
-                  altText
-                }
-              }
-            }
-          } 
-          }`
+      const categorySchema = allCategories()
+      const categories = await client.query({
+        query: gql`${categorySchema}`
       })
-      const collectionsList = tacos.data.collections.edges
+      const collectionsList = categories.data.collections.edges
       const collections = collectionsList.map(col => {
         return { handle: col.node.handle, image: col.node.image, title: col.node.title }
       })
@@ -44,7 +32,25 @@ export function ShopifyContextProvider(props) {
     getCollections()
   }, [])
 
-
+  const getCart = async () => {
+    const currentCart = {
+      "cartInput": {
+        "lines": [
+          {
+            "quantity": 1,
+            "merchandiseId": "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC80MDcwNTIyNTAzMTg3Mw=="
+          }
+        ],
+      }
+    }
+    const cartschema = createCart()
+    const carts = await client.mutate({
+      mutation: gql`${cartschema}`,
+      variables: currentCart
+    })
+    const cartData = carts.data.cartCreate.cart
+    setCart(cartData)
+  }
 
 
   // useEffect(() => {
@@ -56,7 +62,7 @@ export function ShopifyContextProvider(props) {
   // }, [])
 
   return (
-    <ShopifyContext.Provider value={{ cart, setCart, handleCollectionList, collectionList, addedToCartItem, setAddedToCartItem }} >
+    <ShopifyContext.Provider value={{ cart, setCart, handleCollectionList, collectionList, addedToCartItems, setAddedToCartItems, getCart }} >
       {props.children}
     </ShopifyContext.Provider>
   )

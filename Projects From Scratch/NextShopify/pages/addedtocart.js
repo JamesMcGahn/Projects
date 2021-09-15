@@ -3,31 +3,45 @@ import { ShopifyContext } from '../contexts/shopifyContext'
 import { client, gql } from '../utils/appolloClient'
 import { getProducts } from '../utils/graphQLQueries'
 import ProductGrid from '../components/sections/ProductGrid'
+import Container from '../components/layout/Container'
+import MainButton from '../components/ui/MainButton'
+import { makeStyles } from '@material-ui/core/styles';
+import Link from 'next/link'
+
+
+const useStyles = makeStyles((theme) => ({
+    cartProductImage: {
+        width: '100%',
+    }
+}));
+
+
+
 
 function addedToCart({ products }) {
-    const { addedToCartItem } = useContext(ShopifyContext)
-
-    // id: selectedVariant.node.id,
-    // image: product.images.edges[0].node.originalSrc,
-    // title: product.title,
-    // price: selectedVariant.node.priceV2.amount,
-    // variantTitle: selectedVariant.node.title
-
-
+    const { addedToCartItems } = useContext(ShopifyContext)
+    const classes = useStyles();
     return (
-        <div>
-            {addedToCartItem ?
-                <div>
+        <Container flexDirection="column" width="100%">
+            {addedToCartItems[0] ?
+                <Container width="100%" justifyContent="center">
+                    <Container width="25%">
+                        <img className={classes.cartProductImage} src={addedToCartItems[0].image} />
+                    </Container>
                     <div>
-                        <img src={addedToCartItem.image} />
+                        <h1>Added to Cart:</h1>
+                        <h2>{`${addedToCartItems[0].title} `}</h2>
+                        <span>{`Brand: ${addedToCartItems[0].vendor}`} </span>
+                        <span>{`Style: ${addedToCartItems[0].variantTitle}`}</span>
+                        <span>{`Total: ${addedToCartItems[0].price}`}</span>
+                        <MainButton backgroundColor='black' color='white' border='1px solid black'>
+                            <Link href='/shop'>Continue Shopping</Link>
+                        </MainButton>
+                        <MainButton backgroundColor='black' color='white' border='1px solid black'>
+                            <Link href='/cart'>Go To Cart</Link>
+                        </MainButton>
                     </div>
-                    <div>
-                        <h1>{`${addedToCartItem.title} Added to Cart`}</h1>
-                        <span>{`Brand: ${addedToCartItem.vendor}`} </span>
-                        <span>{`Style: ${addedToCartItem.variantTitle}`}</span>
-                        <span>{`Total: ${addedToCartItem.price}`}</span>
-                    </div>
-                </div>
+                </Container>
                 : null
             }
 
@@ -36,7 +50,7 @@ function addedToCart({ products }) {
             <ProductGrid title="Check Out More Items" products={products} hasMoreItems={false} getMoreItems={false}>
 
             </ProductGrid>
-        </div>
+        </Container>
     );
 }
 

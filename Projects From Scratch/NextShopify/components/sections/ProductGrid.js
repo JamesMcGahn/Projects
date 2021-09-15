@@ -14,11 +14,12 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function ProductGrid({ products, title, hasMoreItems, getMoreItems }) {
+function ProductGrid({ products, title, hasMoreItems, getMoreItems, children }) {
     const classes = useStyles()
     return (
         <React.Fragment>
             <h1>{title}</h1>
+            {children}
             <div className={classes.itemGrid}>
                 {products.map((item, index) => {
                     console.log(item)
