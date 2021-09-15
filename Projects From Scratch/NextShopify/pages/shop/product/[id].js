@@ -26,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
 
 function SingleProduct({ product, notFound }) {
     const router = useRouter()
-    console.log(product)
     const classes = useStyles()
 
     if (router.isFallback) {
@@ -40,7 +39,7 @@ function SingleProduct({ product, notFound }) {
             <DefaultErrorPage statusCode={404} />
         </>)
     }
-    const { addedToCartItems, setAddedToCartItems, getCart } = useContext(ShopifyContext)
+    const { addedToCartItems, setAddedToCartItems, addToCart } = useContext(ShopifyContext)
     const [maxDisplay, setMaxDisplay] = useState(2)
     const [current, setCurrent] = useState({
         min: 0,
@@ -53,7 +52,6 @@ function SingleProduct({ product, notFound }) {
     const maxPrice = product.priceRange.maxVariantPrice.amount
 
     const handleVariantClick = (id) => {
-        console.log('click')
         const selected = variants.filter(variant => variant.node.id === id)
         setSelectedVariant(selected[0])
     }
@@ -71,7 +69,7 @@ function SingleProduct({ product, notFound }) {
             quantity: 1
         }
         setAddedToCartItems([item, ...addedToCartItems])
-        getCart()
+        addToCart(item.id, item.quantity)
         router.push('/addedtocart')
     }
 
@@ -100,13 +98,17 @@ function SingleProduct({ product, notFound }) {
                     }
                 </div>
                 <div>
-                    {variants.map(variant => {
-                        return (
-                            <button onClick={() => handleVariantClick(variant.node.id)} disabled={variant.node.availableForSale ? false : true}>
-                                {variant.node.title}
-                            </button>
-                        )
-                    })}
+                    {//TODO Color Selected Variant Different  
+                    }
+                    {
+                        variants.map(variant => {
+                            return (
+                                <button onClick={() => handleVariantClick(variant.node.id)} disabled={variant.node.availableForSale ? false : true} key={variant.node.title}>
+                                    {variant.node.title}
+                                </button>
+                            )
+                        })
+                    }
                 </div>
                 {error && <div>Make Sure to Select a Variant.</div>}
                 <button onClick={handleAddToCart} >

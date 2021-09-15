@@ -152,50 +152,95 @@ export const collectionByHandle = (handle) => {
     `
 }
 
-export const createCart = () => {
-  return `
-  mutation createCart($cartInput: CartInput) {
-    cartCreate(input: $cartInput) {
-      cart {
+const cartFragment = `cart {
+  id
+  createdAt
+  updatedAt
+  lines(first:10) {
+    edges {
+      node {
         id
-        createdAt
-        updatedAt
-        lines(first:10) {
-          edges {
-            node {
-              id
-              merchandise {
-                ... on ProductVariant {
-                  id
+        quantity
+        merchandise {
+          ... on ProductVariant {
+            id
+            sku
+            title
+            product {
+              title
+              images(first: 1){
+                edges{
+                  node{
+                    originalSrc
+                  }
                 }
               }
             }
           }
-  
-        }
-        attributes {
-          key
-          value
-        }
-        estimatedCost {
-          totalAmount {
-            amount
-            currencyCode
-          }
-          subtotalAmount {
-            amount
-            currencyCode
-          }
-          totalTaxAmount {
-            amount
-            currencyCode
-          }
-          totalDutyAmount {
-            amount
-            currencyCode
-          }
         }
       }
     }
+
+  }
+  attributes {
+    key
+    value
+  }
+  estimatedCost {
+    totalAmount {
+      amount
+      currencyCode
+    }
+    subtotalAmount {
+      amount
+      currencyCode
+    }
+    totalTaxAmount {
+      amount
+      currencyCode
+    }
+    totalDutyAmount {
+      amount
+      currencyCode
+    }
+  }
+}`
+
+
+export const createCart = () => {
+  return `
+  mutation createCart($cartInput: CartInput) {
+    cartCreate(input: $cartInput) {
+      ${cartFragment}
+    }
   }`
+}
+
+
+export const updateCart = () => {
+  return `mutation cartLinesUpdate($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
+    cartLinesUpdate(cartId: $cartId, lines: $lines) {
+      ${cartFragment}
+      userErrors {
+        code
+        field
+        message
+      }
+    }
+  }
+  `
+}
+
+export const addLineToCart = () => {
+  return `mutation cartLinesAdd($lines: [CartLineInput!]!, $cartId: ID!) {
+    cartLinesAdd(lines: $lines, cartId: $cartId) {
+      ${cartFragment}
+      userErrors {
+        code
+        field
+        message
+      }
+    }
+  }
+  `
 }

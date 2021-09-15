@@ -1,4 +1,5 @@
 import React from 'react';
+import Container from '../layout/Container'
 
 import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
@@ -57,7 +58,7 @@ function ShopbyCollection(props) {
     return (
         <div className={classes.container}>
             <h4>Shop by Collections</h4>
-            <div className={classes.tileContainer}>
+            <Container margin='0' padding='0' width='100%' color='black' justifyContent='center' alignItems='center' textAlign='center' flexWrap='wrap'>
                 {tiles.map((tile, key) => {
                     return (<div className={classes.tile} key={key}>
                         <div className={classes.img}>
@@ -67,7 +68,7 @@ function ShopbyCollection(props) {
                     </div>
                     )
                 })}
-            </div>
+            </Container>
         </div >
     );
 }

@@ -8,7 +8,7 @@ function Cart(props) {
 
     const handleCheckout = async () => {
         //TODO Make API
-
+        // TODO pull query out 
 
         const { data } = await client.query({
             query: gql`query checkoutURL {

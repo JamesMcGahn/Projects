@@ -22,7 +22,6 @@ function ProductGrid({ products, title, hasMoreItems, getMoreItems, children }) 
             {children}
             <div className={classes.itemGrid}>
                 {products.map((item, index) => {
-                    console.log(item)
                     return (
                         <div className={classes.item} key={index}>
                             <Link href={`/shop/product/${item.node.handle}`}>
