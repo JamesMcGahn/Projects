@@ -16,12 +16,13 @@ const useStyles = makeStyles((theme) => ({
         borderTop: props => props.borderTop,
         flexWrap: props => props.flexWrap,
         minHeight: props => props.minHeight,
+        border: props => props.border
     },
 }));
 
 
-function Container({ margin, padding, width, flexDirection, justifyContent, alignItems, background, children, height, color, borderBottom, borderTop, flexWrap, minHeight, ...rest }) {
-    const classes = useStyles({ margin, padding, width, flexDirection, justifyContent, alignItems, background, height, color, borderBottom, borderTop, flexWrap, minHeight, })
+function Container({ margin, padding, width, flexDirection, justifyContent, alignItems, background, children, height, color, borderBottom, borderTop, flexWrap, minHeight, border, ...rest }) {
+    const classes = useStyles({ margin, padding, width, flexDirection, justifyContent, alignItems, background, height, color, borderBottom, borderTop, flexWrap, minHeight, border })
 
     return (
         <div className={classes.container} {...rest}>

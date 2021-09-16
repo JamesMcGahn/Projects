@@ -7,7 +7,8 @@ const useStyles = makeStyles((theme) => ({
         color: props => props.color,
         border: props => props.border,
         cursor: 'pointer',
-        boxShadow: '3px 2px 5px rgb(0,0,0, 0.4)'
+        boxShadow: '3px 2px 5px rgb(0,0,0, 0.4)',
+        width: props => props.width
     },
     btnDiv: {
         '& button:active': {
@@ -21,14 +22,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function MainButton({ children, backgroundColor, color, border }) {
-    const classes = useStyles({ backgroundColor, color, border });
+function MainButton({ children, backgroundColor, color, border, width, ...rest }) {
+    const classes = useStyles({ backgroundColor, color, border, width });
     return (
         <div className={classes.btnDiv}>
-            <button className={classes.btn}>
+            <button className={classes.btn} {...rest}>
                 {children}
             </button>
-        </div>
+        </div >
     );
 }
 

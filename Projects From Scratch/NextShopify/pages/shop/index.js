@@ -29,8 +29,6 @@ const useStyles = makeStyles((theme) => ({
 
 
 function ShopPage({ products, hasNext, cursor }) {
-  console.log(hasNext)
-  console.log(cursor)
   const [productsList, setProductsList] = useState(products)
   const [itemCursor, setitemCursor] = useState(productsList[productsList.length - 1].cursor)
   const [hasMoreItems, setHasMoreItems] = useState(hasNext)

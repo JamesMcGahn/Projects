@@ -164,10 +164,14 @@ const cartFragment = `cart {
         merchandise {
           ... on ProductVariant {
             id
+            priceV2 {
+              amount 
+            }
             sku
             title
             product {
               title
+              vendor
               images(first: 1){
                 edges{
                   node{
