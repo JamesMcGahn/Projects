@@ -56,7 +56,7 @@ function ShopbyCollection(props) {
     const length = tiles.length
     const classes = useStyles({ length });
     return (
-        <div className={classes.container}>
+        <Container width='100%' display='flex' flexDirection='column' justifyContent='flex-start' alignItems='center'>
             <h4>Shop by Collections</h4>
             <Container display='flex' margin='0' padding='0' width='100%' color='black' justifyContent='center' alignItems='center' flexWrap=' wrap'>
                 {tiles.map((tile, key) => {
@@ -69,7 +69,7 @@ function ShopbyCollection(props) {
                     )
                 })}
             </Container>
-        </div >
+        </Container >
     );
 }
 

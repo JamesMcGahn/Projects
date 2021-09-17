@@ -12,7 +12,7 @@ export default NextAuth({
             },
 
             async authorize(credentials, req) {
-                console.log('hi')
+
                 try {
                     const input = {
                         "input": {
@@ -39,8 +39,11 @@ export default NextAuth({
                     })
                     console.log(data.customerAccessTokenCreate.customerAccessToken)
                     console.log(data.customerAccessTokenCreate.customerUserErrors)
+
                     if (data.customerAccessTokenCreate.customerUserErrors.length > 0) {
                         return '/'
+                    } else {
+                        return { email: credentials.email }
                     }
                 } catch (e) {
                     console.log(e)
@@ -59,5 +62,6 @@ export default NextAuth({
     jwt: {
         signingKey: process.env.JWT_SIGNING_PRIVATE_KEY,
     },
+    secret: process.env.CSRF_SECRET
 })
 

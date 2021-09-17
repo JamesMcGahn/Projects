@@ -2,21 +2,21 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
     container: {
-        margin: props => props.margin ? props.margin : '',
-        padding: props => props.padding ? props.padding : '',
-        width: props => props.width ? props.width : '',
-        background: props => props.background ? props.background : '',
-        display: props => props.display ? props.display : '',
-        flexDirection: props => props.flexDirection ? props.flexDirection : '',
-        justifyContent: props => props.justifyContent ? props.justifyContent : '',
-        alignItems: props => props.alignItems ? props.alignItems : '',
-        height: props => props.height ? props.height : '',
-        color: props => props.color ? props.color : '',
-        borderBottom: props => props.borderBottom ? props.borderBottom : '',
-        borderTop: props => props.borderTop ? props.borderTop : '',
-        flexWrap: props => props.flexWrap ? props.flexWrap : '',
-        minHeight: props => props.minHeight ? props.minHeight : '',
-        border: props => props.border ? props.border : '',
+        margin: props => props.margin,
+        padding: props => props.padding,
+        width: props => props.width,
+        background: props => props.background,
+        display: props => props.display,
+        flexDirection: props => props.flexDirection,
+        justifyContent: props => props.justifyContent,
+        alignItems: props => props.alignItems,
+        height: props => props.height,
+        color: props => props.color,
+        borderBottom: props => props.borderBottom,
+        borderTop: props => props.borderTop,
+        flexWrap: props => props.flexWrap,
+        minHeight: props => props.minHeight,
+        border: props => props.border
     },
 }));
 
