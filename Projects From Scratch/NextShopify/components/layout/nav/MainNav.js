@@ -87,7 +87,7 @@ function MainNav() {
 
     return (
         <React.Fragment>
-            <Container width='100%' color='black' display='flex' padding='.5rem' borderBottom='1px solid grey'>
+            <Container id='mainNav' width='100%' color='black' display='flex' padding='.5rem' borderBottom='1px solid grey'>
                 <div className={classes.logo}></div>
                 <div className={classes.nav}>
                     <ul className={classes.list}>
@@ -105,7 +105,7 @@ function MainNav() {
             </Container>
             {open && <div className={classes.expandedMenu} onMouseOver={handleMenuIn} onMouseOut={handleMouseOut}>
                 {/* shop drop down goes here */}
-                <Container width='50%' flexWrap='wrap' flexDirection='column'>
+                <Container display='flex' width='50%' flexWrap='wrap' flexDirection='column'>
                     {collectionList ? collectionList.map(item => (
                         <div className={classes.collectionItem} key={item.handle}><Link href={`/shop/collection/${item.handle}`} ><a onClick={handleOnClick}>{item.title}</a></Link></div>
                     ))

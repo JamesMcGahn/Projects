@@ -81,7 +81,7 @@ function SingleProduct({ product, notFound }) {
 
 
     return (
-        <Container margin='0' padding='0 2rem' width='100%' color='black' justifyContent='flex-start' alignItems='flex-start'>
+        <Container display='flex' margin='0' padding='0 2rem' width='100%' color='black' justifyContent='flex-start' alignItems='flex-start'>
             <div className={classes.left}><ImageFeaturedCarousel data={product.images.edges}></ImageFeaturedCarousel></div>
             <div className={classes.right}>
                 <h1 className={classes.title}>{product.title}</h1>

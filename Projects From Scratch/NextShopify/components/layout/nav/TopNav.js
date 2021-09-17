@@ -10,7 +10,7 @@ import Container from '../../layout/Container'
 function TopNav(props) {
     const classes = useStyles();
     return (
-        <Container width='100%' background='black' color='white' minHeight='3vh' color='white' padding='.5rem'>
+        <Container width='100%' background='black' color='white' minHeight='3vh' color='white' padding='.5rem' display='flex' >
             <div className={classes.social}>
                 <FacebookIcon />
                 <TwitterIcon />

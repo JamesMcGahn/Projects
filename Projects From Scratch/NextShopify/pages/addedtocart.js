@@ -22,9 +22,9 @@ function addedToCart({ products }) {
     const { addedToCartItems } = useContext(ShopifyContext)
     const classes = useStyles();
     return (
-        <Container flexDirection="column" width="100%">
+        <Container flexDirection="column" width="100%" display='flex'>
             {addedToCartItems[0] ?
-                <Container width="100%" justifyContent="center">
+                <Container width="100%" justifyContent="center" display='flex'>
                     <Container width="25%">
                         <img className={classes.cartProductImage} src={addedToCartItems[0].image} />
                     </Container>

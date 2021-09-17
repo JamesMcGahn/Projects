@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 function Cart(props) {
-    const { addedToCartItems, cart } = useContext(ShopifyContext)
+    const { cart } = useContext(ShopifyContext)
     const classes = useStyles();
 
     const handleCheckout = async () => {
@@ -34,6 +34,8 @@ function Cart(props) {
 
     // TODO remove item
     // TODO adjust quanity
+    // FEATURE add save for later?
+
 
     console.log(cart)
 
@@ -42,20 +44,20 @@ function Cart(props) {
 
 
             <Container >
-                <Container width="80%" flexDirection="column" padding="1rem">
+                <Container width="80%" flexDirection="column" padding="1rem" display='flex'>
                     <Container>
                         <h1>Shopping Cart</h1>
                     </Container>
-                    <Container width='100%' flexDirection="column">
+                    <Container width='100%' flexDirection="column" display='flex'>
                         {!cart ? <h1>add some items</h1> :
 
                             cart.lines.edges.map(line => {
                                 return (
-                                    <Container alignItems="center" key={line.node.id} borderBottom="1px solid black" padding="0.5rem">
+                                    <Container display='flex' alignItems="center" key={line.node.id} borderBottom="1px solid black" padding="0.5rem">
                                         <Container width='15%' >
                                             <img className={classes.lineImage} src={line.node.merchandise.product.images.edges[0].node.originalSrc} alt={line.node.merchandise.sku} />
                                         </Container>
-                                        <Container width='75%' flexDirection='column' padding="0 1rem">
+                                        <Container display='flex' width='75%' flexDirection='column' padding="0 1rem">
                                             <Container>
                                                 <span>{line.node.merchandise.product.title}</span>
                                             </Container>
@@ -68,7 +70,7 @@ function Cart(props) {
                                                 Qty {line.node.quantity}
                                             </Container>
                                         </Container>
-                                        <Container width='10%' padding="0 1rem" justifyContent="flex-end">
+                                        <Container display='flex' width='10%' padding="0 1rem" justifyContent="flex-end">
                                             <Container>
                                                 {`$${line.node.merchandise.priceV2.amount}`}
                                             </Container>
@@ -78,18 +80,18 @@ function Cart(props) {
                             })}
                     </Container>
                     {!cart ? null :
-                        <Container justifyContent="flex-end" padding="0 1.9rem" width="100%">
+                        <Container display='flex' justifyContent="flex-end" padding="0 1.9rem" width="100%">
                             <h4>{`Subtotal: $${cart.estimatedCost.subtotalAmount.amount}`}</h4>
                         </Container>
                     }
                 </Container>
                 {!cart ? null :
-                    <Container width='20%' flexDirection='column'>
-                        <Container border="1px solid black" padding="1rem" minHeight="150px" flexDirection="column">
+                    <Container display='flex' width='20%' flexDirection='column'>
+                        <Container display='flex' border="1px solid black" padding="1rem" minHeight="150px" flexDirection="column">
                             <Container>
                                 <span> {`Subtotal (${cart.lines.edges.length}  ${cart.lines.edges.length > 1 ? `Items` : `Item`}): $${cart.estimatedCost.subtotalAmount.amount}`}</span>
                             </Container>
-                            <Container width="100%" padding="1rem" flexDirection="column">
+                            <Container display='flex' width="100%" padding="1rem" flexDirection="column">
                                 <MainButton backgroundColor="black" color="white" width="100%" onClick={handleCheckout}>Checkout</MainButton>
                             </Container>
                         </Container>

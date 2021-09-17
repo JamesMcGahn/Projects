@@ -37,14 +37,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Home({ products, }) {
   const { cart, setCart, collections } = useContext(ShopifyContext)
-  // const initial = JSON.parse(products)
-  // const [prodos, setProducts] = useState(initial)
   const classes = useStyles();
 
-
-
   return (
-    <Container margin='0' padding='0' width='100%' color='black' flexDirection='column' justifyContent='flex-start' alignItems='center'>
+    <Container display='flex' margin='0' padding='0' width='100%' color='black' flexDirection='column' justifyContent='flex-start' alignItems='center'>
       <div className={classes.heroCont}>
         <Hero image='https://assets.wordstream.com/s3fs-public/styles/simple_image/public/images/hero-image-food.jpg?GaIXC9DcxzJfdbOiCkhPs2bnIToTOtEq&itok=qZ04kL12' >
           {/* call to action 

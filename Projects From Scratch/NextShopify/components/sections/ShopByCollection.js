@@ -58,7 +58,7 @@ function ShopbyCollection(props) {
     return (
         <div className={classes.container}>
             <h4>Shop by Collections</h4>
-            <Container margin='0' padding='0' width='100%' color='black' justifyContent='center' alignItems='center' textAlign='center' flexWrap='wrap'>
+            <Container display='flex' margin='0' padding='0' width='100%' color='black' justifyContent='center' alignItems='center' flexWrap=' wrap'>
                 {tiles.map((tile, key) => {
                     return (<div className={classes.tile} key={key}>
                         <div className={classes.img}>

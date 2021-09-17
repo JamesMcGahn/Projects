@@ -1,22 +1,47 @@
 import NextAuth from "next-auth";
 import Providers from "next-auth/providers";
-import dbConnect from "../../../utils/dbConnect";
-import User from "../../../models/User.js"
-
+import { client, gql } from '../../../utils/appolloClient'
 
 export default NextAuth({
     providers: [
         Providers.Credentials({
             name: "Login",
             credentials: {
-                username: { label: "email", type: "text", placeholder: "" },
+                email: { label: "email", type: "text", placeholder: "" },
                 password: { label: "password", type: "password", placeholder: "" }
             },
 
             async authorize(credentials, req) {
+                console.log('hi')
                 try {
-
-
+                    const input = {
+                        "input": {
+                            "email": `${credentials.email}`,
+                            "password": `${credentials.password}`,
+                        }
+                    }
+                    const { data } = await client.mutate({
+                        mutation: gql`mutation customerAccessTokenCreate($input: CustomerAccessTokenCreateInput!) {
+                            customerAccessTokenCreate(input: $input) {
+                              customerAccessToken {
+                                accessToken
+                                expiresAt
+                              }
+                              customerUserErrors {
+                                code
+                                field
+                                message
+                              }
+                            }
+                          }
+                          `,
+                        variables: input
+                    })
+                    console.log(data.customerAccessTokenCreate.customerAccessToken)
+                    console.log(data.customerAccessTokenCreate.customerUserErrors)
+                    if (data.customerAccessTokenCreate.customerUserErrors.length > 0) {
+                        return '/'
+                    }
                 } catch (e) {
                     console.log(e)
                     return null
@@ -24,20 +49,9 @@ export default NextAuth({
             }
         }),
     ],
-    callbacks: {
-        // async signIn(user, account, profile,) {
-        //     const isAllowedToSignIn = user.email === process.env.LOGIN
-        //     if (isAllowedToSignIn) {
-        //         return true
-        //     } else {
-        //         return false
-        //     }
-        // },
-    },
     pages: {
-        signIn: '',
+        signIn: '/login',
         signOut: '',
-        error: '',
     },
     session: {
         jwt: true,
