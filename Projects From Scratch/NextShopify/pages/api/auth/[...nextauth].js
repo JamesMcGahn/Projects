@@ -1,6 +1,9 @@
 import NextAuth from "next-auth";
 import Providers from "next-auth/providers";
 import { client, gql } from '../../../utils/appolloClient'
+import dbConnect from "../../../utils/dbConnect";
+import User from "../../../Models/User"
+import CryptoJS from 'crypto-js'
 
 export default NextAuth({
     providers: [
@@ -12,14 +15,15 @@ export default NextAuth({
             },
 
             async authorize(credentials, req) {
-
+                const email = credentials.email
                 try {
                     const input = {
                         "input": {
-                            "email": `${credentials.email}`,
+                            "email": `${email}`,
                             "password": `${credentials.password}`,
                         }
                     }
+
                     const { data } = await client.mutate({
                         mutation: gql`mutation customerAccessTokenCreate($input: CustomerAccessTokenCreateInput!) {
                             customerAccessTokenCreate(input: $input) {
@@ -37,17 +41,25 @@ export default NextAuth({
                           `,
                         variables: input
                     })
-                    console.log(data.customerAccessTokenCreate.customerAccessToken)
-                    console.log(data.customerAccessTokenCreate.customerUserErrors)
+
+
 
                     if (data.customerAccessTokenCreate.customerUserErrors.length > 0) {
-                        return '/'
+                        throw new Error('error message')
                     } else {
-                        return { email: credentials.email }
+                        const token = data.customerAccessTokenCreate.customerAccessToken.accessToken
+                        const encryptedToken = CryptoJS.AES.encrypt(`${token}`, `${process.env.TOKEN_SECRET}`).toString()
+                        console.log('token as string', encryptedToken)
+                        await dbConnect();
+                        const user = await User.findOne({ email });
+                        const { firstName, lastName } = user
+                        user.token = encryptedToken
+                        await user.save();
+                        return { email: credentials.email, firstName: firstName, lastName: lastName }
                     }
                 } catch (e) {
                     console.log(e)
-                    return null
+                    throw new Error('error message')
                 }
             }
         }),
@@ -55,6 +67,8 @@ export default NextAuth({
     pages: {
         signIn: '/login',
         signOut: '',
+        error: '/login',
+        newUser: null
     },
     session: {
         jwt: true,

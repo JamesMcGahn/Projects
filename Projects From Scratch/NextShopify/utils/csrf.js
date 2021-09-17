@@ -1,4 +1,4 @@
-import { createHash } from 'crypto';
+import CryptoJS from 'crypto-js'
 const crsf = async (req, res) => {
     if (!req.headers.cookie) return false
     if (!req?.headers['xsrf-token']) return false
@@ -11,9 +11,9 @@ const crsf = async (req, res) => {
 
         const reqToken = req.headers['xsrf-token']
 
-        const generatedHash = createHash('sha256').update(`${reqToken}${secret}`).digest('hex')
+        const createdHash = CryptoJS.SHA256(`${reqToken}${secret}`).toString(CryptoJS.enc.Hex)
 
-        if (csrfTokenHash === generatedHash && csrfTokenValue === reqToken) {
+        if (csrfTokenHash === createdHash && csrfTokenValue === reqToken) {
             return true
         }
     } catch (err) {
