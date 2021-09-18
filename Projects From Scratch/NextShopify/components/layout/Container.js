@@ -17,40 +17,44 @@ const useStyles = makeStyles((theme) => ({
         flexWrap: props => props.flexWrap,
         minHeight: props => props.minHeight,
         border: props => props.border,
-        [theme.breakpoints.down('xs')]: {
-            flexDirection: props => props.xsFlexD,
-            width: props => props.xsWidth,
-            margin: props => props.xsMargin,
-            padding: props => props.xsPadding,
-            alignItems: props => props.xsAlignItems,
+        [theme.breakpoints.down('lg')]: {
+            flexDirection: props => props.lgFlexD,
+            width: props => props.lgWidth,
+            margin: props => props.lgMargin,
+            paddingRight: props => props.lgPadding,
+            alignItems: props => props.lgAlignItems,
+        },
+        [theme.breakpoints.down('md')]: {
+            flexDirection: props => props.mdFlexD,
+            width: props => props.mdWidth,
+            margin: props => props.mdMargin,
+            padding: props => props.mdPadding,
+            alignItems: props => props.mdAlignItems,
         },
         [theme.breakpoints.down('sm')]: {
             flexDirection: props => props.smFlexD,
             width: props => props.smWidth,
             margin: props => props.smMargin,
             padding: props => props.smPadding,
+            alignItems: props => props.smAlignItems,
         },
-        [theme.breakpoints.down('md')]: {
-            flexDirection: props => props.mdFlexD,
-            width: props => props.mdWidth,
-            margin: props => props.mdMargin,
-            padding: props => props.mdPadding
-        },
-        [theme.breakpoints.down('lg')]: {
-            flexDirection: props => props.lgFlexD,
-            width: props => props.lgWidth,
-            margin: props => props.lgMargin,
-            paddingRight: props => props.lgPadding
+        [theme.breakpoints.down('xs')]: {
+            flexDirection: props => props.xsFlexD,
+            width: props => props.xsWidth,
+            margin: props => props.xsMargin,
+            padding: props => props.xsPadding,
+            alignItems: props => props.xsAlignItems,
         }
     },
 }));
 
 
-function Container({ xsAlignItems, xsMargin, xsPadding, smPadding, smMargin, mdMargin, mdPadding, lgMargin, lgPadding,
-    xsFlexD, xsWidth, smFlexD, smWidth, mdFlexD, mdWidth, lgFlexD, lgWidth, id,
+function Container({ lgAlignItems, mdAlignItems, smAlignItems, xsAlignItems, xsMargin, xsPadding, smPadding, smMargin, mdMargin, mdPadding,
+    lgMargin, lgPadding, xsFlexD, xsWidth, smFlexD, smWidth, mdFlexD, mdWidth, lgFlexD, lgWidth, id,
     display, margin, padding, width, flexDirection, justifyContent, alignItems, background, children,
     height, color, borderBottom, borderTop, flexWrap, minHeight, border, ...rest }) {
     const classes = useStyles({
+        lgAlignItems, mdAlignItems, smAlignItems,
         xsAlignItems, xsMargin, xsPadding, smPadding, smMargin, mdMargin, mdPadding, lgMargin, lgPadding,
         xsFlexD, xsWidth, smFlexD, smWidth, mdFlexD, mdWidth, lgFlexD,
         lgWidth, id, display, margin, padding, width, flexDirection, justifyContent, alignItems,

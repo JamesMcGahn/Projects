@@ -7,30 +7,31 @@ import { useRouter } from 'next/router'
 import ImageFeaturedCarousel from '../../../components/ui/ImageFeaturedCarousel'
 import DefaultErrorPage from 'next/error'
 import Container from '../../../components/layout/Container'
+import MainButton from '../../../components/ui/MainButton'
+import MainBadge from '../../../components/ui/MainBadge'
+import Loading from '../../../components/sections/Loading'
 
 const useStyles = makeStyles((theme) => ({
-    container: {
-
+    title: {
+        marginBottom: '1px',
     },
-    left: {
-        width: '45%'
+    vendor: {
+        margin: '5px 0 0 0',
+        fontSize: '1.2rem',
     },
-    right: {
-        width: '65%',
-        display: 'flex',
-        flexDirection: 'column',
+    itemInfo: {
+        fontSize: '1.2rem',
     }
 }));
-
-
 
 function SingleProduct({ product, notFound }) {
     const router = useRouter()
     const classes = useStyles()
 
     if (router.isFallback) {
-        return <div>Loading...</div> //TODO: loading comp
+        return <Loading></Loading>
     }
+    // TODO: Not Found Page - 
     if (notFound) {
         return (<>
             <head>
@@ -53,7 +54,7 @@ function SingleProduct({ product, notFound }) {
 
     const handleVariantClick = (id) => {
         const selected = variants.filter(variant => variant.node.id === id)
-        setSelectedVariant(selected[0])
+        setSelectedVariant(...selected)
     }
 
     const handleAddToCart = () => {
@@ -79,42 +80,67 @@ function SingleProduct({ product, notFound }) {
         }
     }, [])
 
+    useEffect(() => {
+        if (error) {
+            setTimeout(() => setError(false), 3000)
+        }
+    }, [error])
+
 
     return (
-        <Container display='flex' margin='0' padding='0 2rem' width='100%' color='black' justifyContent='flex-start' alignItems='flex-start'>
-            <div className={classes.left}><ImageFeaturedCarousel data={product.images.edges}></ImageFeaturedCarousel></div>
-            <div className={classes.right}>
-                <h1 className={classes.title}>{product.title}</h1>
-                <h2 className={classes.vendor}>{product.vendor}</h2>
-                <p>{product.description}</p>
-                <div>
-                    {!selectedVariant ?
-                        minPrice === maxPrice ? `$ ${maxPrice}` : `From $${minPrice}-$${maxPrice}`
-                        :
-                        <div>
-                            <span>{`$${selectedVariant.node.priceV2.amount}`}</span>
-                            <span>{`${selectedVariant.node.sku}`}</span>
-                        </div>
-                    }
-                </div>
-                <div>
-                    {//TODO Color Selected Variant Different  
-                    }
+        <Container mdFlexD='column' mdWidth='100%' display='flex' margin='0' padding='1rem 2rem' width='100%' color='black' justifyContent='center' alignItems='flex-start'>
+            <Container width='45%' mdWidth='100%' margin='0 1rem 0 0'>
+                <ImageFeaturedCarousel data={product.images.edges}></ImageFeaturedCarousel>
+            </Container>
+            <Container width='45%' mdWidth='100%' display='flex' flexDirection='column' mdAlignItems='center'>
+                <Container>
+                    <h1 className={classes.title}>{product.title}</h1>
+                    <h2 className={classes.vendor}>{product.vendor}</h2>
+                </Container>
+
+                <Container margin='2rem 0 1rem 0' width='100%'>
+                    {product.description}
+                </Container>
+                <Container display='flex' flexDirection='row' flexWrap='wrap' margin='2rem 0 1rem 0' width='100%' >
                     {
                         variants.map(variant => {
+                            const selected = variant.node.id === selectedVariant?.node.id
                             return (
-                                <button onClick={() => handleVariantClick(variant.node.id)} disabled={variant.node.availableForSale ? false : true} key={variant.node.title}>
-                                    {variant.node.title}
-                                </button>
+                                <Container margin='0 0 0 3px'>
+                                    <MainBadge color={selected ? 'black' : 'white'} backgroundColor={selected ? 'white' : 'black'} onClick={() => handleVariantClick(variant.node.id)} disabled={variant.node.availableForSale ? false : true} key={variant.node.title}>
+                                        {variant.node.title}
+                                    </MainBadge>
+                                </Container>
                             )
                         })
                     }
-                </div>
-                {error && <div>Make Sure to Select a Variant.</div>}
-                <button onClick={handleAddToCart} >
-                    Add to Cart
-                </button>
-            </div>
+                </Container>
+                <Container display='flex' flexDirection='row' flexWrap='wrap' margin='2rem 0 1rem 0' width='100%' >
+                    {!selectedVariant ?
+                        <span className={classes.itemInfo}>{minPrice === maxPrice ? `Price: $ ${maxPrice}` : `From $${minPrice}-$${maxPrice}`}</span>
+                        :
+                        <Container>
+                            <Container>
+                                <span className={classes.itemInfo}>{`Price: $${selectedVariant.node.priceV2.amount}`}</span>
+                            </Container>
+                            <Container margin='10px 0 0 0'>
+                                <span className={classes.itemInfo}>{`SKU: ${selectedVariant.node.sku}`}</span>
+                            </Container>
+                        </Container>
+                    }
+                </Container>
+
+
+                {error && <div>Make Sure to Select a Variant Before Adding To Cart</div>}
+
+                <Container display='flex' flexDirection='row' width='100%' margin='1rem 0' justifyContent='center'>
+                    <Container width='50%'>
+                        <MainButton color='white' backgroundColor='black' width='100%' onClick={handleAddToCart} >
+                            Add to Cart
+                        </MainButton>
+                    </Container>
+                </Container>
+            </Container>
         </Container>
     );
 }

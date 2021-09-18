@@ -20,13 +20,22 @@ const useStyles = makeStyles((theme) => ({
             cursor: 'pointer'
         }
     },
+    featuredImgCont: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '90%',
+    },
     featuredImg: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         '& img': {
-            width: '80%',
+            width: '75%',
         }
+    },
+    icon: {
+        width: '5%',
     },
     imgThumbs: {
         margin: '10px 0',
@@ -71,11 +80,12 @@ function ImageFeaturedCarousel({ data }) {
 
     return (
         <div className={classes.slider}>
-            <div className={classes.featuredImg}>
-                <ChevronLeftIcon onClick={handlePrevious} />
-                <img src={`${data[current.current].node.originalSrc}`} />
-                <ChevronRightIcon onClick={handleNext} />
+            <div className={classes.featuredImgCont}>
+                <div className={classes.icon}> <ChevronLeftIcon onClick={handlePrevious} /></div>
+                <div className={classes.featuredImg}><img src={`${data[current.current].node.originalSrc}`} /></div>
+                <div className={classes.icon}> <ChevronRightIcon onClick={handleNext} />  </div>
             </div>
+
             <div className={classes.imgThumbs}>
                 {data.map((item, index) => {
 

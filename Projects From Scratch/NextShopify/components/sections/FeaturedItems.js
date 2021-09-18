@@ -10,7 +10,8 @@ const useStyles = makeStyles((theme) => ({
 
 function FeaturedItems({ products }) {
     const classes = useStyles();
-    const matches = useMediaQuery('(max-width:548px)');
+    const matches = useMediaQuery('(max-width:550px)');
+    const smMatches = useMediaQuery('(max-width:720px)');
     const [maxDisplay, setMaxDisplay] = useState(3)
     const [current, setCurrent] = useState({
         min: 0,
@@ -20,7 +21,10 @@ function FeaturedItems({ products }) {
     if (matches && maxDisplay !== 0) {
         setCurrent({ min: 0, max: 0 })
         setMaxDisplay(0)
-    } else if (!matches && maxDisplay !== 3) {
+    } else if (!matches && smMatches && maxDisplay !== 1) {
+        setCurrent({ min: 0, max: 1 })
+        setMaxDisplay(1)
+    } else if (!matches && !smMatches && maxDisplay !== 3) {
         setCurrent({ min: 0, max: 3 })
         setMaxDisplay(3)
     }

@@ -2,18 +2,11 @@ import React, { useState } from 'react';
 import { client, gql } from '../../utils/appolloClient'
 import ProductGrid from '../../components/sections/ProductGrid'
 import { getProducts } from '../../utils/graphQLQueries'
-
+import Container from '../../components/layout/Container'
 import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   container: {
-    margin: 0,
-    padding: '0',
-    width: '100%',
-    color: 'black',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
+
   },
   itemGrid: {
     width: '100%',
@@ -86,11 +79,9 @@ query {
 
 
   return (
-    <div className={classes.container}>
-      <ProductGrid title="Shop" products={productsList} hasMoreItems={hasMoreItems} getMoreItems={getMoreItems}>
-
-      </ProductGrid>
-    </div>
+    <Container margin='0' padding='1rem' width='100%' color='black' display='flex' flexDirection='column' justifyContent='flex-start' alignItems='center' >
+      <ProductGrid title="Shop" products={productsList} hasMoreItems={hasMoreItems} getMoreItems={getMoreItems} />
+    </Container >
   );
 }
 
