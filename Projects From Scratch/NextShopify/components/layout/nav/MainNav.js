@@ -91,6 +91,7 @@ function MainNav() {
                 <div className={classes.logo}></div>
                 <div className={classes.nav}>
                     <ul className={classes.list}>
+                        <li> <Link href={`/`} ><a>Home</a></Link></li>
                         <li onMouseOver={handleMouseIn} onMouseOut={handleMouseOut} id="shop">
                             <Link href={`/shop`} ><a onClick={handleOnClick}>Shop</a></Link>
                         </li>

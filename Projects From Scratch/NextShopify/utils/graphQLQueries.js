@@ -248,3 +248,20 @@ export const addLineToCart = () => {
   }
   `
 }
+
+export const getCustomerToken = () => {
+  return `mutation customerAccessTokenCreate($input: CustomerAccessTokenCreateInput!) {
+    customerAccessTokenCreate(input: $input) {
+      customerAccessToken {
+        accessToken
+        expiresAt
+      }
+      customerUserErrors {
+        code
+        field
+        message
+      }
+    }
+  }
+  `
+}

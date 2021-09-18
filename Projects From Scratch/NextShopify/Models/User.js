@@ -15,7 +15,7 @@ const UserSchema = new Schema({
         required: [true, 'Last Name required']
     },
     token: {
-        type: Array,
+        type: String,
     }
 })
 

@@ -1,6 +1,7 @@
 import NextAuth from "next-auth";
 import Providers from "next-auth/providers";
 import { client, gql } from '../../../utils/appolloClient'
+import { getCustomerToken } from '../../../utils/graphQLQueries'
 import dbConnect from "../../../utils/dbConnect";
 import User from "../../../Models/User"
 import CryptoJS from 'crypto-js'
@@ -23,39 +24,24 @@ export default NextAuth({
                             "password": `${credentials.password}`,
                         }
                     }
-
+                    const getCustomerTokenSchema = getCustomerToken()
                     const { data } = await client.mutate({
-                        mutation: gql`mutation customerAccessTokenCreate($input: CustomerAccessTokenCreateInput!) {
-                            customerAccessTokenCreate(input: $input) {
-                              customerAccessToken {
-                                accessToken
-                                expiresAt
-                              }
-                              customerUserErrors {
-                                code
-                                field
-                                message
-                              }
-                            }
-                          }
-                          `,
+                        mutation: gql`${getCustomerTokenSchema}`,
                         variables: input
                     })
-
-
-
                     if (data.customerAccessTokenCreate.customerUserErrors.length > 0) {
                         throw new Error('error message')
                     } else {
                         const token = data.customerAccessTokenCreate.customerAccessToken.accessToken
-                        const encryptedToken = CryptoJS.AES.encrypt(`${token}`, `${process.env.TOKEN_SECRET}`).toString()
-                        console.log('token as string', encryptedToken)
+                        console.log('this is the token', token)
+
+                        const encryptedToken = CryptoJS.AES.encrypt(`${token}`, `${process.env.TOKEN_SECRET}`)
                         await dbConnect();
                         const user = await User.findOne({ email });
                         const { firstName, lastName } = user
                         user.token = encryptedToken
                         await user.save();
-                        return { email: credentials.email, firstName: firstName, lastName: lastName }
+                        return { email: email, name: `${firstName} ${lastName}` }
                     }
                 } catch (e) {
                     console.log(e)
@@ -69,6 +55,9 @@ export default NextAuth({
         signOut: '',
         error: '/login',
         newUser: null
+    },
+    callbacks: {
+
     },
     session: {
         jwt: true,

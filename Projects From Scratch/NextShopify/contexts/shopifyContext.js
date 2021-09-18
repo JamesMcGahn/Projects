@@ -1,17 +1,17 @@
 import React, { createContext, useState, useEffect } from 'react'
 // import client from '../utils/shopifyConnect'
 import { client, gql } from '../utils/appolloClient'
+
+import { createCart, updateCart, addLineToCart, allCategories, } from '../utils/graphQLQueries'
+
+
 export const ShopifyContext = createContext()
-import { createCart, updateCart, addLineToCart, allCategories } from '../utils/graphQLQueries'
-
-
-
 export function ShopifyContextProvider(props) {
 
   const [cart, setCart] = useState(false)
   const [addedToCartItems, setAddedToCartItems] = useState([])
   const [collectionList, setCollectionList] = useState()
-
+  const [user, setUser] = useState()
   const handleCollectionList = (list) => {
 
   }
