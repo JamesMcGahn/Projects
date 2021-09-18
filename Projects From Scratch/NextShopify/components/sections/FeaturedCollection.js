@@ -14,7 +14,7 @@ function FeaturedCollection({ image, children, color }) {
         <Container xsFlexD='column' width='100%' minHeight='100%' color='black' display='flex'
             flexDirection='row' padding='.5rem' background={color} padding='2rem'>
 
-            <Container width='40%' padding='2rem' xsWidth='100%' xsPadding='1rem'>
+            <Container width='40%' padding='2rem' xsWidth='100%' xsPadding='1rem' display='flex' alignItems='center'>
                 <img className={classes.image} src={image} alt="featured-collection" />
             </Container>
 

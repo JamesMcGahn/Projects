@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
             width: props => props.xsWidth,
             margin: props => props.xsMargin,
             padding: props => props.xsPadding,
+            alignItems: props => props.xsAlignItems,
         },
         [theme.breakpoints.down('sm')]: {
             flexDirection: props => props.smFlexD,
@@ -45,12 +46,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function Container({ xsMargin, xsPadding, smPadding, smMargin, mdMargin, mdPadding, lgMargin, lgPadding,
+function Container({ xsAlignItems, xsMargin, xsPadding, smPadding, smMargin, mdMargin, mdPadding, lgMargin, lgPadding,
     xsFlexD, xsWidth, smFlexD, smWidth, mdFlexD, mdWidth, lgFlexD, lgWidth, id,
     display, margin, padding, width, flexDirection, justifyContent, alignItems, background, children,
     height, color, borderBottom, borderTop, flexWrap, minHeight, border, ...rest }) {
     const classes = useStyles({
-        xsMargin, xsPadding, smPadding, smMargin, mdMargin, mdPadding, lgMargin, lgPadding,
+        xsAlignItems, xsMargin, xsPadding, smPadding, smMargin, mdMargin, mdPadding, lgMargin, lgPadding,
         xsFlexD, xsWidth, smFlexD, smWidth, mdFlexD, mdWidth, lgFlexD,
         lgWidth, id, display, margin, padding, width, flexDirection, justifyContent, alignItems,
         background, height, color, borderBottom, borderTop, flexWrap, minHeight, border

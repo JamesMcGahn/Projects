@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { makeStyles } from '@material-ui/core/styles';
-
+import Link from 'next/link'
 const useStyles = makeStyles((theme) => ({
-
     slider: {
         width: '100%',
         color: 'black',
@@ -38,7 +37,14 @@ function ProductCarousel({ children, data, current, setCurrent, maxDisplay }) {
             <ChevronLeftIcon onClick={handlePrevious} />
             {data.map((item, index) => {
                 if (index >= current.min && index <= current.max) {
-                    return React.cloneElement(children, { item: item, key: index })
+                    console.log(item)
+                    return (
+                        <Link href={`/shop/product/${item.node.handle}`}>
+                            <a>
+                                {React.cloneElement(children, { item: item, key: index })}
+                            </a>
+                        </Link>
+                    )
                 }
             }
             )

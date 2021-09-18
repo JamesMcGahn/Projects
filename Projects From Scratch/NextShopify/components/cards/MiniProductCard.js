@@ -1,43 +1,43 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import Container from '../layout/Container'
+
 
 const useStyles = makeStyles((theme) => ({
-    item: {
-        height: 'inherit',
-        display: 'flex',
-        flexDirection: 'column',
-        padding: '0 .25rem',
-    },
     itemImg: {
-        width: '100%',
-        height: '100%',
-        padding: '0 1rem',
-        '& img': {
-            width: '80%',
-        }
+        width: '80%',
+        [theme.breakpoints.down('xs')]: {
+            width: '100%'
+        },
     },
-    description: {
-        height: '100%',
-        padding: '0 1rem',
+    title: {
+        margin: '0',
+        padding: '3px 0',
+        fontSize: '.8rem'
+    },
+    lineItem: {
+        margin: '0',
+        padding: '3px 0',
+        fontSize: '.8rem'
     }
 }));
 
 function MiniProductCard({ item }) {
     const classes = useStyles();
     return (
-        <div className={classes.item}>
-            <div className={classes.itemImg}  >
-                <img src={item.node.images.edges[0].node.originalSrc}
+        <Container height='inherit' display='flex' flexDirection='column' padding='0 .25rem' xsAlignItems='center'>
+            <Container width='100%' height='100%' padding='0 1rem' >
+                <img className={classes.itemImg} src={item.node.images.edges[0].node.originalSrc}
                     onMouseOver={e => (e.currentTarget.src = item.node.images?.edges[1].node.originalSrc ? item.node.images.edges[1].node.originalSrc : item.node.images.edges[0].node.originalSrc)}
                     onMouseOut={e => (e.currentTarget.src = item.node.images.edges[0].node.originalSrc)}
                 />
-            </div>
-            <div className={classes.description}>
-                <h6>{item.node.title}</h6>
-                <p>{item.node.vendor}</p>
-                <p>{item.node.priceRange.maxVariantPrice.amount === item.node.priceRange.minVariantPrice.amount ? `$` : `From: $`}{`${item.node.priceRange.minVariantPrice.amount} USD`}</p>
-            </div>
-        </div>
+            </Container>
+            <Container height='100%' padding='0 1rem' display='flex' flexDirection='column' xsAlignItems='center'>
+                <h6 className={classes.title}>{item.node.title}</h6>
+                <p className={classes.lineItem}>{item.node.vendor}</p>
+                <p className={classes.lineItem}>{item.node.priceRange.maxVariantPrice.amount === item.node.priceRange.minVariantPrice.amount ? `$` : `From: $`}{`${item.node.priceRange.minVariantPrice.amount} USD`}</p>
+            </Container>
+        </Container>
     );
 }
 
