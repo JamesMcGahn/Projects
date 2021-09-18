@@ -61,7 +61,6 @@ function MainNav() {
 
 
     const handleMouseIn = (e) => {
-        console.log(e.target.id)
         setOpen(true);
     };
 
@@ -105,7 +104,6 @@ function MainNav() {
                 </div>
             </Container>
             {open && <div className={classes.expandedMenu} onMouseOver={handleMenuIn} onMouseOut={handleMouseOut}>
-                {/* shop drop down goes here */}
                 <Container display='flex' width='50%' flexWrap='wrap' flexDirection='column'>
                     {collectionList ? collectionList.map(item => (
                         <div className={classes.collectionItem} key={item.handle}><Link href={`/shop/collection/${item.handle}`} ><a onClick={handleOnClick}>{item.title}</a></Link></div>

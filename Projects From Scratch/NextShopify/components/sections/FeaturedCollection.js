@@ -1,45 +1,36 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import Container from '../layout/Container'
+
 const useStyles = makeStyles((theme) => ({
-    container: {
-        width: '100%',
-        minHeight: '100%',
-        color: 'black',
-        display: 'flex',
-        flexDirection: 'row',
-        padding: '.5rem',
-        backgroundColor: props => props.color,
-        padding: '2rem'
-    },
     image: {
-        width: '40%',
-        padding: '2rem',
-        '& img': {
-            maxWidth: "100%",
-            maxHeight: '100%',
-        }
-    },
-    description: {
-        width: '60%',
-        padding: '5rem 3rem 5rem 3rem',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center'
+        width: "100%",
     }
 }));
 
 function FeaturedCollection({ image, children, color }) {
     const classes = useStyles({ color });
     return (
-        <div className={classes.container}>
-            <div className={classes.image}>
-                <img src={image} alt="featured-collection" />
-            </div>
-            <div className={classes.description}>
+        <Container xsFlexD='column' width='100%' minHeight='100%' color='black' display='flex'
+            flexDirection='row' padding='.5rem' background={color} padding='2rem'>
+
+            <Container width='40%' padding='2rem' xsWidth='100%' xsPadding='1rem'>
+                <img className={classes.image} src={image} alt="featured-collection" />
+            </Container>
+
+            <Container width='60%'
+                padding='5rem 3rem 5rem 3rem'
+                display='flex'
+                flexDirection='column'
+                justifyContent='center'
+                alignItems='center'
+                xsWidth='100%'
+                xsPadding='0'>
+
                 {children}
-            </div>
-        </div>
+
+            </Container>
+        </Container >
     );
 }
 
