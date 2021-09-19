@@ -45,7 +45,7 @@ function addedToCart({ products }) {
                             <span className={classes.lineItem}><h2>{`${addedToCartItems[0].title} `}</h2></span>
                             <span className={classes.lineItem}>{`Brand: ${addedToCartItems[0].vendor}`} </span>
                             <span className={classes.lineItem}>{`Style: ${addedToCartItems[0].variantTitle}`}</span>
-                            <span className={classes.lineItem}>{`Total: $${addedToCartItems[0].price}`}</span>
+                            <span className={classes.lineItem}>{`Total: $${Number(addedToCartItems[0].price).toFixed(2)}`}</span>
                         </Container>
                         <Container width='100%' display='flex' flexDirection='row' xsFlexD='column'>
 

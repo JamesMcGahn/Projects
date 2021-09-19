@@ -35,7 +35,7 @@ function MiniProductCard({ item }) {
             <Container height='100%' padding='0 1rem' display='flex' flexDirection='column' xsAlignItems='center'>
                 <h6 className={classes.title}>{item.node.title}</h6>
                 <p className={classes.lineItem}>{item.node.vendor}</p>
-                <p className={classes.lineItem}>{item.node.priceRange.maxVariantPrice.amount === item.node.priceRange.minVariantPrice.amount ? `$` : `From: $`}{`${item.node.priceRange.minVariantPrice.amount} USD`}</p>
+                <p className={classes.lineItem}>{item.node.priceRange.maxVariantPrice.amount === item.node.priceRange.minVariantPrice.amount ? `$` : `From: $`}{`${Number(item.node.priceRange.minVariantPrice.amount).toFixed(2)} USD`}</p>
             </Container>
         </Container>
     );

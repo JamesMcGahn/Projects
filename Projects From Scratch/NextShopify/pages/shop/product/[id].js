@@ -123,11 +123,11 @@ function SingleProduct({ product, notFound }) {
                 </Container>
                 <Container display='flex' flexDirection='row' flexWrap='wrap' margin='1rem 0 1rem 0' width='100%' >
                     {!selectedVariant ?
-                        <span className={classes.itemInfo}>{minPrice === maxPrice ? `Price: $ ${maxPrice}` : `From $${minPrice}-$${maxPrice}`}</span>
+                        <span className={classes.itemInfo}>{minPrice === maxPrice ? `Price: $ ${Number(maxPrice).toFixed(2)}` : `From $${Number(minPrice).toFixed(2)}-$${Number(maxPrice).toFixed(2)}`}</span>
                         :
                         <Container>
                             <Container>
-                                <span className={classes.itemInfo}>{`Price: $${selectedVariant.node.priceV2.amount}`}</span>
+                                <span className={classes.itemInfo}>{`Price: $${Number(selectedVariant.node.priceV2.amount).toFixed(2)}`}</span>
                             </Container>
                             <Container margin='10px 0 0 0'>
                                 <span className={classes.itemInfo}>{`SKU: ${selectedVariant.node.sku}`}</span>
