@@ -16,6 +16,9 @@ const UserSchema = new Schema({
     },
     token: {
         type: String,
+    },
+    cartId: {
+        type: String,
     }
 })
 

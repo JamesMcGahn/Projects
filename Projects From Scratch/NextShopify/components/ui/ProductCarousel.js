@@ -39,7 +39,7 @@ function ProductCarousel({ children, data, current, setCurrent, maxDisplay }) {
                 if (index >= current.min && index <= current.max) {
                     console.log(item)
                     return (
-                        <Link href={`/shop/product/${item.node.handle}`}>
+                        <Link href={`/shop/product/${item.node.handle}`} key={index}>
                             <a>
                                 {React.cloneElement(children, { item: item, key: index })}
                             </a>

@@ -157,11 +157,15 @@ function MainNav() {
                     {open && <div className={classes.expandedMenu} onMouseOver={handleMenuIn} onMouseOut={handleMouseOut}>
                         <Container display='flex' width='50%' flexWrap='wrap' flexDirection='column'>
                             {collectionList ? collectionList.map(item => (
-                                <div className={classes.collectionItem} key={item.handle}><Link href={`/shop/collection/${item.handle}`} >
-                                    <a onClick={handleOnClick}>{item.title}</a></Link>
+                                <div className={classes.collectionItem} key={item.node.handle}><Link href={`/shop/collection/${item.node.handle}`} >
+                                    <a onClick={handleOnClick}>{item.node.title}</a></Link>
                                 </div>
                             ))
                                 : <h1>loading</h1>}
+
+                            {
+                                //TODO add loading component
+                            }
                         </Container>
                         <div className={classes.featuredCollections}>
 

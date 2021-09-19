@@ -3,7 +3,7 @@ import User from "../../../Models/User"
 import CryptoJS from 'crypto-js'
 import { getSession } from 'next-auth/client'
 
-const register = async (req, res) => {
+const getUser = async (req, res) => {
     const session = await getSession({ req })
     if (req.method == "GET" && session) {
         const email = req.query.email;
@@ -19,17 +19,16 @@ const register = async (req, res) => {
                 lastName: user.lastName,
                 email: user.email,
                 token: token,
+                cartId: user.cartId ? user.cartId : null,
             }
-
             return res.status(200).json({ success: true, errors: false, data: data })
         } catch (err) {
             console.log(err)
-            return res.status(400).json({ success: false })
+            return res.status(400).json({ success: false, errors: true, })
         }
     }
     else {
-        res.status(500).json({ message: 'Not A Valid Request' });
+        res.status(500).json({ success: false, errors: true, message: 'Not A Valid Request' });
     }
-
 }
-export default register
+export default getUser

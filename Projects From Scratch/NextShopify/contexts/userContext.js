@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react'
+import React, { createContext, useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 
 import { useSession } from "next-auth/client"
@@ -8,14 +8,28 @@ export function UserContextProvider(props) {
 
     const [session, loading] = useSession()
     const [user, setUser] = useState(false)
-    const ham = 'cheese'
+
+    const updateCartId = async (id) => {
+        if (session) {
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/user/updateCartId`, {
+                email: user.email,
+                cartId: id
+            })
+            if (!res.data.errors && res.data.success) {
+                setUser({ ...user, cartId: id })
+            }
+        }
+    }
+
+
+
 
     useEffect(() => {
         if (session && !user) {
             const email = session.user.email
             console.log(email)
             async function getUser() {
-                const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/user/getuser`, {
+                const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/user/getUser`, {
                     params: {
                         email: email
                     }
@@ -26,6 +40,7 @@ export function UserContextProvider(props) {
                     lastName: data.lastName,
                     email: data.email,
                     token: data.token,
+                    cartId: data.cartId
                 })
             }
             getUser()
@@ -34,7 +49,7 @@ export function UserContextProvider(props) {
 
 
     return (
-        <UserContext.Provider value={{ user }} >
+        <UserContext.Provider value={{ user, updateCartId }} >
             {props.children}
         </UserContext.Provider>
     )

@@ -67,7 +67,7 @@ function TopNav(props) {
                         {session ?
                             <Container padding='0 1rem'>Log In</Container>
                             :
-                            <Container padding='0 1rem'>Log In</Container>
+                            <Container padding='0 1rem'>Log Out</Container>
                         }
                     </Container>
                 </React.Fragment>
@@ -96,7 +96,7 @@ function TopNav(props) {
                                     </Container>
                                     <Container padding='0 1rem'>Log Out</Container>
                                 </React.Fragment>
-                                : <Container padding='0 1rem'>Log In</Container>
+                                : <Container padding='0 1rem'><li><Link href={`/login `}><a>Login</a></Link></li></Container>
                             }
                         </Container>
                     </div>
