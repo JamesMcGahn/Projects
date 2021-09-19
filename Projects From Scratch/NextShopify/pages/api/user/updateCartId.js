@@ -12,7 +12,6 @@ const register = async (req, res) => {
             const user = await User.findOne({ email });
             user.cartId = cartId;
             await user.save();
-            console.log('update', user)
             return res.status(200).json({ success: true, errors: false })
         } catch (err) {
             console.log(err)

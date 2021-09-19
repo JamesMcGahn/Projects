@@ -37,7 +37,6 @@ function ProductCarousel({ children, data, current, setCurrent, maxDisplay }) {
             <ChevronLeftIcon onClick={handlePrevious} />
             {data.map((item, index) => {
                 if (index >= current.min && index <= current.max) {
-                    console.log(item)
                     return (
                         <Link href={`/shop/product/${item.node.handle}`} key={index}>
                             <a>

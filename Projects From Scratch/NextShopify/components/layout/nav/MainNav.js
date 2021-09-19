@@ -10,6 +10,7 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Collapse from '@material-ui/core/Collapse';
 import CartBadge from '../../ui/CartBadge'
+import { useRouter } from 'next/router'
 
 const useStyles = makeStyles((theme) => ({
     logo: {
@@ -71,7 +72,7 @@ function MainNav() {
     const [open, setOpen] = useState(false)
     const timer = useRef(null)
     const [NavOpen, setNavOpen] = React.useState(false);
-
+    const router = useRouter()
 
     function IsMobile() {
         const size = useMediaQuery(
@@ -151,7 +152,7 @@ function MainNav() {
                             </ul>
                         </div>
                         <div className={classes.icons}>
-                            <CartBadge cartLength={cart?.lines?.edges.length} />
+                            <Link href={`/cart`} ><a><CartBadge cartLength={cart?.lines?.edges.length} /></a></Link>
                         </div>
                     </Container>
                     {open && <div className={classes.expandedMenu} onMouseOver={handleMenuIn} onMouseOut={handleMouseOut}>

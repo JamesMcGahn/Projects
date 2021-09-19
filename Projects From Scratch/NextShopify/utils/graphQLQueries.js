@@ -190,6 +190,11 @@ const cartFragment = `cart {
     key
     value
   }
+  buyerIdentity {
+    email
+    phone
+    countryCode
+  }
   estimatedCost {
     totalAmount {
       amount
@@ -251,17 +256,84 @@ export const addLineToCart = () => {
 
 export const getCustomerToken = () => {
   return `mutation customerAccessTokenCreate($input: CustomerAccessTokenCreateInput!) {
-    customerAccessTokenCreate(input: $input) {
-      customerAccessToken {
-        accessToken
-        expiresAt
-      }
-      customerUserErrors {
-        code
-        field
-        message
+      customerAccessTokenCreate(input: $input) {
+        customerAccessToken {
+          accessToken
+          expiresAt
+        }
+        customerUserErrors {
+          code
+          field
+          message
+        }
       }
     }
+    `
+}
+export const getCustomerCart = (id) => {
+  return `query{
+    cart(id: "${id}"){
+      id
+      createdAt
+      updatedAt
+      lines(first:10) {
+        edges {
+          node {
+            id
+            quantity
+            merchandise {
+              ... on ProductVariant {
+                id
+                priceV2 {
+                  amount 
+                }
+                sku
+                title
+                product {
+                  title
+                  vendor
+                  images(first: 1){
+                    edges{
+                      node{
+                        originalSrc
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+    
+      }
+      attributes {
+        key
+        value
+      }
+      buyerIdentity {
+        email
+        phone
+        countryCode
+      }
+      estimatedCost {
+        totalAmount {
+          amount
+          currencyCode
+        }
+        subtotalAmount {
+          amount
+          currencyCode
+        }
+        totalTaxAmount {
+          amount
+          currencyCode
+        }
+        totalDutyAmount {
+          amount
+          currencyCode
+        }
+      }
+      }
   }
   `
 }

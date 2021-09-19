@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 function Cart(props) {
-    const { cart } = useContext(ShopifyContext)
+    const { cart, isCartLoading } = useContext(ShopifyContext)
     const classes = useStyles();
 
     const handleCheckout = async () => {
@@ -42,9 +42,7 @@ function Cart(props) {
     // TODO remove item
     // TODO adjust quanity
     // FEATURE add save for later?
-
-
-    console.log(cart)
+    // TODO add loading comp
 
     return (
         <Container padding="1rem">
@@ -54,8 +52,10 @@ function Cart(props) {
                         <h1>Shopping Cart</h1>
                     </Container>
                     <Container width='100%' flexDirection="column" display='flex'>
-                        {!cart ? <h1>add some items</h1> :
-
+                        {!cart ? isCartLoading ?
+                            'loading'
+                            : <h1>add some items</h1>
+                            :
                             cart.lines.edges.map(line => {
                                 const lineAmount = line.node.merchandise.priceV2.amount
                                 return (
@@ -83,7 +83,9 @@ function Cart(props) {
                                         </Container >
                                     </Container>
                                 )
-                            })}
+                            })
+
+                        }
                     </Container>
                     {!cart ? null :
                         <Container display='flex' justifyContent="flex-end" padding="0 1.9rem" width="100%">

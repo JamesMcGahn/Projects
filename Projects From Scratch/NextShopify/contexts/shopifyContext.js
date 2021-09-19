@@ -1,21 +1,39 @@
 import React, { createContext, useState, useEffect, useContext } from 'react'
 import { UserContext } from '../contexts/userContext'
-import { client, gql } from '../utils/appolloClient'
 import { useSession } from "next-auth/client"
-import { createCart, updateCart, addLineToCart, allCategories, } from '../utils/graphQLQueries'
 import axios from 'axios'
 
 export const ShopifyContext = createContext()
 export function ShopifyContextProvider(props) {
-  const { updateCartId } = useContext(UserContext)
+  const { updateCartId, user } = useContext(UserContext)
   const [cart, setCart] = useState(false)
   const [addedToCartItems, setAddedToCartItems] = useState([])
   const [collectionList, setCollectionList] = useState()
-  const [user, setUser] = useState()
   const [session, loading] = useSession()
-  const handleCollectionList = (list) => {
+  const [isCartLoading, setIsCartLoading] = useState(false)
 
+
+  async function getCart(cartId) {
+    try {
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/shopify/getCart`, {
+        params: {
+          cartId: cartId
+        }
+      })
+      const { data } = res.data
+      setCart(data)
+    } catch (error) {
+      console.log(error)
+    }
   }
+
+
+  const getToken = async () => {
+    const { data } = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/auth/csrf`)
+    const { csrfToken } = data
+    return csrfToken
+  }
+
 
   useEffect(() => {
 
@@ -24,21 +42,32 @@ export function ShopifyContextProvider(props) {
       const { data } = res.data
       const cleanedList = data.filter(item => !item.node.title.toLowerCase().includes('home'))
       setCollectionList(cleanedList)
+      setIsCartLoading(false)
     }
     getCollections()
   }, [])
 
-  const addToCart = async (id, qty) => {
+  useEffect(() => {
     if (!cart) {
-      const getToken = async () => {
-        const { data } = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/auth/csrf`)
-        const { csrfToken } = data
-        return csrfToken
+      if (session && user.cartId) {
+        setIsCartLoading(true)
+        getCart(user.cartId)
       }
+    }
+  }, [session, user])
+
+
+
+
+
+  const addToCart = async (merchId, qty) => {
+    if (!cart) {
       const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/shopify/makeCart`,
         {
-          id: id,
-          qty: qty
+          merchId: merchId,
+          qty: qty,
+          email: user.email ? user.email : null,
+          accessToken: user.token ? user.token : null
         },
         {
           headers: {
@@ -49,54 +78,49 @@ export function ShopifyContextProvider(props) {
       )
       const { data } = res.data
       setCart(data)
-      if (session) {
-        updateCartId(id)
-      }
+      if (session) updateCartId(data.id)
     } else {
-      const isItemInCart = cart.lines.edges.filter(item => item.node.merchandise.id === id)
-      //TODO move to server call
+      const isItemInCart = cart.lines.edges.filter(item => item.node.merchandise.id === merchId)
       if (isItemInCart.length > 0) {
-        const updateCartScema = updateCart()
-        const updatedItems = {
-          "cartId": `${cart.id}`,
-          "lines": [
-            {
-              "id": `${isItemInCart[0].node.id}`,
-              "quantity": isItemInCart[0].node.quantity + qty,
-              "merchandiseId": `${isItemInCart[0].node.merchandise.id}`
+        const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/shopify/updateCartLines`,
+          {
+            cartId: cart.id,
+            lineId: `${isItemInCart[0].node.id}`,
+            qty: isItemInCart[0].node.quantity + qty,
+            merchId: `${isItemInCart[0].node.merchandise.id}`
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              'XSRF-TOKEN': await getToken()
             }
-          ]
-        }
-        const carts = await client.mutate({
-          mutation: gql`${updateCartScema}`,
-          variables: updatedItems
-        })
-        const cartData = carts.data.cartLinesUpdate.cart
-        setCart(cartData)
+          }
+        )
+        const { data } = res.data
+        setCart(data)
       } else {
-        const addedItems = {
-          "cartId": `${cart.id}`,
-          "lines": [
-            {
-              "quantity": qty,
-              "merchandiseId": `${id}`
+        const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/shopify/addCartLines`,
+          {
+            cartId: cart.id,
+            qty: qty,
+            merchId: merchId,
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              'XSRF-TOKEN': await getToken()
             }
-          ],
-        }
-        const addLineCartSchema = addLineToCart()
-        const carts = await client.mutate({
-          mutation: gql`${addLineCartSchema}`,
-          variables: addedItems
-        })
-        const cartData = carts.data.cartLinesAdd.cart
-        setCart(cartData)
+          }
+        )
+        const { data } = res.data
+        setCart(data)
       }
     }
   }
 
 
   return (
-    <ShopifyContext.Provider value={{ cart, setCart, handleCollectionList, collectionList, addedToCartItems, setAddedToCartItems, addToCart }} >
+    <ShopifyContext.Provider value={{ cart, setCart, collectionList, addedToCartItems, setAddedToCartItems, addToCart, isCartLoading }} >
       {props.children}
     </ShopifyContext.Provider>
   )

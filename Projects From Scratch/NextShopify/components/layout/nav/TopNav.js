@@ -87,7 +87,7 @@ function TopNav(props) {
                                 <React.Fragment>
                                     <Container margin='0 2% 0 0' >
                                         <span className={classes.accountDivName} >
-                                            {`Hi ${user.firstName}`}
+                                            {`Hi ${user.firstName ? user.firstName : ''}`}
                                         </span>
                                         <div className={classes.AccountInnerDiv} >
                                             <span onMouseOver={handleMouseIn} onMouseOut={handleMouseOut}>{`Account & Lists`}</span>

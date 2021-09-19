@@ -25,22 +25,26 @@ export function UserContextProvider(props) {
 
 
     useEffect(() => {
-        if (session && !user) {
+        if (!loading && session && !user) {
             const email = session.user.email
             async function getUser() {
-                const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/user/getUser`, {
-                    params: {
-                        email: email
-                    }
-                })
-                const { data } = res.data
-                setUser({
-                    firstName: data.firstName,
-                    lastName: data.lastName,
-                    email: data.email,
-                    token: data.token,
-                    cartId: data.cartId
-                })
+                try {
+                    const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/user/getUser`, {
+                        params: {
+                            email: email
+                        }
+                    })
+                    const { data } = res.data
+                    setUser({
+                        firstName: data.firstName,
+                        lastName: data.lastName,
+                        email: data.email,
+                        token: data.token,
+                        cartId: data.cartId
+                    })
+                } catch (e) {
+                    console.log(e)
+                }
             }
             getUser()
         }

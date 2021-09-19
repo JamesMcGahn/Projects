@@ -5,18 +5,40 @@ import { createCart } from '../../../utils/graphQLQueries'
 const makeCart = async (req, res) => {
     const validateCSRF = await csrf(req, res)
     if (req.method == "POST" && validateCSRF) {
-        const { id, qty } = req.body
+        const { merchId, qty, accessToken, email } = req.body
         try {
-            const addedItems = {
-                "cartInput": {
-                    "lines": [
-                        {
-                            "quantity": qty,
-                            "merchandiseId": `${id}`
+            const addedItems = accessToken ?
+                {
+                    "cartInput": {
+                        "lines": [
+                            {
+                                "quantity": qty,
+                                "merchandiseId": `${merchId}`
+                            }
+                        ],
+                        "buyerIdentity": {
+                            "customerAccessToken": `${accessToken}`,
+                            "email": `${email}`
                         }
-                    ],
+                    }
                 }
-            }
+                :
+                {
+                    "cartInput": {
+                        "lines": [
+                            {
+                                "quantity": qty,
+                                "merchandiseId": `${merchId}`
+                            }
+                        ],
+                    }
+                }
+
+
+
+
+
+
             const cartschema = createCart()
             const carts = await client.mutate({
                 mutation: gql`${cartschema}`,
