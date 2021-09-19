@@ -14,6 +14,9 @@ import Loading from '../../../components/sections/Loading'
 const useStyles = makeStyles((theme) => ({
     title: {
         marginBottom: '1px',
+        [theme.breakpoints.down('sm')]: {
+            fontSize: '1.4rem',
+        }
     },
     vendor: {
         margin: '5px 0 0 0',
@@ -88,26 +91,29 @@ function SingleProduct({ product, notFound }) {
 
 
     return (
-        <Container mdFlexD='column' mdWidth='100%' display='flex' margin='0' padding='1rem 2rem' width='100%' color='black' justifyContent='center' alignItems='flex-start'>
+        <Container smFlexD='column' display='flex' margin='0' padding='1rem 2rem' width='100%' color='black' justifyContent='center' alignItems='flex-start'>
             <Container width='45%' mdWidth='100%' margin='0 1rem 0 0'>
                 <ImageFeaturedCarousel data={product.images.edges}></ImageFeaturedCarousel>
             </Container>
-            <Container width='45%' mdWidth='100%' display='flex' flexDirection='column' mdAlignItems='center'>
+            <Container width='45%' mdWidth='100%' display='flex' flexDirection='column' >
                 <Container>
                     <h1 className={classes.title}>{product.title}</h1>
                     <h2 className={classes.vendor}>{product.vendor}</h2>
                 </Container>
 
-                <Container margin='2rem 0 1rem 0' width='100%'>
-                    {product.description}
+                <Container margin='2rem 0 1rem 0' width='100%' display='flex' >
+                    <Container mdWidth='100%'>{product.description}</Container>
                 </Container>
-                <Container display='flex' flexDirection='row' flexWrap='wrap' margin='2rem 0 1rem 0' width='100%' >
+                <Container display='flex' flexDirection='row' flexWrap='wrap' margin='1rem 0 1rem 0' width='100%' >
                     {
                         variants.map(variant => {
                             const selected = variant.node.id === selectedVariant?.node.id
+                            const isAvailable = variant.node.availableForSale
                             return (
-                                <Container margin='0 0 0 3px'>
-                                    <MainBadge color={selected ? 'black' : 'white'} backgroundColor={selected ? 'white' : 'black'} onClick={() => handleVariantClick(variant.node.id)} disabled={variant.node.availableForSale ? false : true} key={variant.node.title}>
+                                <Container margin='0 0 5px 3px' key={variant.node.id}>
+                                    <MainBadge color={selected ? 'gold' : 'white'} border={isAvailable ? selected ? '1px solid gold' : null : '1px solid gray'}
+                                        backgroundColor={isAvailable ? 'black' : 'gray'} hoverBackgroundColor={isAvailable ? null : 'gray'}
+                                        onClick={() => handleVariantClick(variant.node.id)} disabled={isAvailable ? false : true} key={variant.node.title}>
                                         {variant.node.title}
                                     </MainBadge>
                                 </Container>
@@ -115,7 +121,7 @@ function SingleProduct({ product, notFound }) {
                         })
                     }
                 </Container>
-                <Container display='flex' flexDirection='row' flexWrap='wrap' margin='2rem 0 1rem 0' width='100%' >
+                <Container display='flex' flexDirection='row' flexWrap='wrap' margin='1rem 0 1rem 0' width='100%' >
                     {!selectedVariant ?
                         <span className={classes.itemInfo}>{minPrice === maxPrice ? `Price: $ ${maxPrice}` : `From $${minPrice}-$${maxPrice}`}</span>
                         :

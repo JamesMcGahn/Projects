@@ -5,18 +5,7 @@ import { getProducts } from '../../utils/graphQLQueries'
 import Container from '../../components/layout/Container'
 import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
-  container: {
 
-  },
-  itemGrid: {
-    width: '100%',
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  item: {
-    width: '25%',
-    padding: '1rem',
-  }
 }));
 
 
@@ -28,7 +17,7 @@ function ShopPage({ products, hasNext, cursor }) {
   const classes = useStyles()
 
 
-  console.log(itemCursor)
+  //TODO pull out query & make api call
   const loadMore = `
 query {
     products(first: 20, after: "${itemCursor}"){
