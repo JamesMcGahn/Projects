@@ -2,8 +2,11 @@ import React, { createContext, useState, useEffect, useContext } from 'react'
 import { UserContext } from '../contexts/userContext'
 import { useSession } from "next-auth/client"
 import axios from 'axios'
+import { getCRSFToken } from '../helpers/getCRSFToken'
+
 
 export const ShopifyContext = createContext()
+
 export function ShopifyContextProvider(props) {
   const { updateCartId, user } = useContext(UserContext)
   const [cart, setCart] = useState(false)
@@ -11,7 +14,6 @@ export function ShopifyContextProvider(props) {
   const [collectionList, setCollectionList] = useState()
   const [session, loading] = useSession()
   const [isCartLoading, setIsCartLoading] = useState(false)
-
 
   async function getCart(cartId) {
     try {
@@ -28,15 +30,7 @@ export function ShopifyContextProvider(props) {
   }
 
 
-  const getToken = async () => {
-    const { data } = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/auth/csrf`)
-    const { csrfToken } = data
-    return csrfToken
-  }
-
-
   useEffect(() => {
-
     async function getCollections() {
       const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/shopify/getCollections`)
       const { data } = res.data
@@ -56,10 +50,6 @@ export function ShopifyContextProvider(props) {
     }
   }, [session, user])
 
-
-
-
-
   const addToCart = async (merchId, qty) => {
     if (!cart) {
       const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/shopify/makeCart`,
@@ -72,7 +62,7 @@ export function ShopifyContextProvider(props) {
         {
           headers: {
             'Content-Type': 'application/json',
-            'XSRF-TOKEN': await getToken()
+            'XSRF-TOKEN': await getCRSFToken()
           }
         }
       )
@@ -92,7 +82,7 @@ export function ShopifyContextProvider(props) {
           {
             headers: {
               'Content-Type': 'application/json',
-              'XSRF-TOKEN': await getToken()
+              'XSRF-TOKEN': await getCRSFToken()
             }
           }
         )
@@ -108,7 +98,7 @@ export function ShopifyContextProvider(props) {
           {
             headers: {
               'Content-Type': 'application/json',
-              'XSRF-TOKEN': await getToken()
+              'XSRF-TOKEN': await getCRSFToken()
             }
           }
         )

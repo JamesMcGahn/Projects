@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Container from '../components/layout/Container'
-import { useRouter } from 'next/router'
-import { getCsrfToken } from "next-auth/client"
-
+import { getCRSFToken } from '../helpers/getCRSFToken';
 
 function Register(props) {
 
@@ -14,13 +12,10 @@ function Register(props) {
     const [submitted, setSubmitted] = useState(false)
     const [formResponse, setFormResponse] = useState({ error: false, message: '', code: '' })
     const [token, setToken] = useState()
+
     useEffect(() => {
-        const getToken = async () => {
-            const { data } = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/auth/csrf`)
-            const { csrfToken } = data
-            setToken(csrfToken)
-        }
-        getToken()
+        const token = getCRSFToken()
+        setToken(token)
     }, [])
 
 

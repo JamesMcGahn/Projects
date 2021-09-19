@@ -25,7 +25,7 @@ export function UserContextProvider(props) {
 
 
     useEffect(() => {
-        if (!loading && session && !user) {
+        if (session && !user) {
             const email = session.user.email
             async function getUser() {
                 try {
