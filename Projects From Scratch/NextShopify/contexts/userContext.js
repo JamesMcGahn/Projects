@@ -27,7 +27,6 @@ export function UserContextProvider(props) {
     useEffect(() => {
         if (session && !user) {
             const email = session.user.email
-            console.log(email)
             async function getUser() {
                 const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/user/getUser`, {
                     params: {

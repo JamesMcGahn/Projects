@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
 
 function MainNav() {
     const classes = useStyles();
-    const { collectionList } = useContext(ShopifyContext)
+    const { collectionList, cart } = useContext(ShopifyContext)
     const [open, setOpen] = useState(false)
     const timer = useRef(null)
     const [NavOpen, setNavOpen] = React.useState(false);
@@ -151,7 +151,7 @@ function MainNav() {
                             </ul>
                         </div>
                         <div className={classes.icons}>
-                            <CartBadge />
+                            <CartBadge cartLength={cart?.lines?.edges.length} />
                         </div>
                     </Container>
                     {open && <div className={classes.expandedMenu} onMouseOver={handleMenuIn} onMouseOut={handleMouseOut}>

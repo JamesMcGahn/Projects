@@ -1,7 +1,7 @@
-import { client, gql } from '../../utils/appolloClient'
-import csrf from '../../utils/csrf';
-import dbConnect from "../../utils/dbConnect";
-import User from "../../Models/User"
+import { client, gql } from '../../../utils/appolloClient'
+import csrf from '../../../utils/csrf';
+import dbConnect from "../../../utils/dbConnect";
+import User from "../../../Models/User"
 
 const register = async (req, res) => {
     const validateCSRF = await csrf(req, res)
@@ -33,8 +33,6 @@ const register = async (req, res) => {
               }`,
                 variables: input
             })
-            console.log(data.customerCreate.customerUserErrors)
-            console.log(data.customerCreate)
             if (data.customerCreate.customerUserErrors.length === 0) {
                 await dbConnect();
                 const isUser = await User.findOne({ email });

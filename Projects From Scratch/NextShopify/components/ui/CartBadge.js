@@ -15,10 +15,10 @@ const StyledBadge = withStyles((theme) => ({
     },
 }))(Badge);
 
-function CartBadge(props) {
+function CartBadge({ cartLength }) {
     return (
         <IconButton aria-label="cart">
-            <StyledBadge badgeContent={4}>
+            <StyledBadge badgeContent={cartLength}>
                 <ShoppingCartIcon />
             </StyledBadge>
         </IconButton>

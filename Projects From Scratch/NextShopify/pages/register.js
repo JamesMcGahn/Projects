@@ -15,12 +15,12 @@ function Register(props) {
     const [formResponse, setFormResponse] = useState({ error: false, message: '', code: '' })
     const [token, setToken] = useState()
     useEffect(() => {
-        const ham = async () => {
+        const getToken = async () => {
             const { data } = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/auth/csrf`)
             const { csrfToken } = data
             setToken(csrfToken)
         }
-        ham()
+        getToken()
     }, [])
 
 
@@ -29,7 +29,7 @@ function Register(props) {
         setLoading(true)
         e.preventDefault();
         try {
-            const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/register`,
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/user/register`,
                 {
                     firstName: form.firstName,
                     lastName: form.lastName,
@@ -45,9 +45,6 @@ function Register(props) {
                 }
             )
             setLoading(false)
-            // console.log(res.data)
-            // console.log(res.data.data.customerCreate.customerUserErrors[0].message)
-            // console.log(res.data.data.customerCreate.customerUserErrors[0].code)
             if (res.data.errors === false) {
                 const email = res.data.data.customer.email
                 const firstName = res.data.data.customer.firstName
