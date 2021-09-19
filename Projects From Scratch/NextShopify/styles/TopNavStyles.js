@@ -12,6 +12,9 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
         '& p': {
             margin: 0
+        },
+        [theme.breakpoints.down('xs')]: {
+            display: 'none'
         }
     },
     nav: {
@@ -32,7 +35,8 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'flex-end',
-        margin: 0,
+        alignItems: 'center',
+        margin: '0 2% 0 0',
         listStyle: 'none',
         '& li': {
             margin: ' 0 .5rem 0 .5rem'
@@ -40,17 +44,28 @@ const useStyles = makeStyles((theme) => ({
     },
     expandedMenu: {
         position: 'absolute',
-        width: '20%',
-        maxHeight: '100px',
+        width: '30%',
+        maxHeight: '200px',
         zIndex: 10,
-        top: '7%',
+        top: '9.1%',
         left: '70%',
         padding: '10px',
         border: '1px solid grey',
         backgroundColor: 'white',
         display: 'flex',
     },
-
+    accountDivName: {
+        fontSize: '.8rem',
+        margin: '0 0 0 0'
+    },
+    accountDivItem: {
+        display: 'block'
+    },
+    AccountInnerDiv: {
+        margin: '0 0 0 0',
+        display: 'flex',
+        alignItems: 'center',
+    }
 }));
 
 export { useStyles }

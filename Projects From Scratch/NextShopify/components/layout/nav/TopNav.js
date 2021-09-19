@@ -7,31 +7,15 @@ import Link from 'next/link'
 import Container from '../../layout/Container'
 import { useSession } from "next-auth/client"
 import { UserContext } from '../../../contexts/userContext'
-import { makeStyles } from '@material-ui/core/styles';
-
-const Styles = makeStyles((theme) => ({
-    expandedMenu: {
-        position: 'absolute',
-        width: '20%',
-        maxHeight: '100px',
-        zIndex: 10,
-        top: '7%',
-        left: '70%',
-        padding: '2rem',
-        borderBottom: '1px solid grey',
-        backgroundColor: 'white',
-        display: 'flex',
-    },
-}));
-
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import json2mq from 'json2mq';
 
 
 function TopNav(props) {
     const classes = useStyles();
-    const styles = Styles();
     const [session, loading] = useSession()
     const { user } = useContext(UserContext)
-
     const [open, setOpen] = useState(false)
     const timer = useRef(null)
 
@@ -48,7 +32,7 @@ function TopNav(props) {
     const closeMenu = () => {
         timer.current = setTimeout(() => {
             setOpen(false)
-        }, 750)
+        }, 1000)
     }
 
     const handleMouseOut = () => {
@@ -59,35 +43,73 @@ function TopNav(props) {
         setOpen(false)
     }
 
+    function IsMobile() {
+        const size = useMediaQuery(
+            json2mq({
+                maxWidth: 700,
+            }),
+        );
+        return size
+    }
+    let mobile = IsMobile()
+
     return (
-        <Container width='100%' background='black' color='white' minHeight='3vh' color='white' padding='.5rem' display='flex' >
-            <div className={classes.social}>
-                <FacebookIcon />
-                <TwitterIcon />
-                <InstagramIcon />
-            </div>
-            <div className={classes.message}>
-                <p>Free Shipping On All Orders $65+</p>
-            </div>
-            <div className={classes.nav}>
-                <ul className={classes.list}>
-                    {session ?
-                        <React.Fragment>
-                            <li onMouseOver={handleMouseIn} onMouseOut={handleMouseOut}>{`Welcome Back ${user.firstName}`}</li>
-                            <li>Log Out</li>
-                        </React.Fragment>
-                        : null
+        <Container width='100%' background='black' color='white' minHeight='3vh' color='white' padding='.5rem' display='flex' alignItems='center' justifyContent='center'>
+            {mobile ?
+                <React.Fragment>
+                    <Container width='33%'>
+
+                    </Container>
+                    <Container width='33%' textAlign='center'>
+                        Store Name
+                    </Container>
+                    <Container width='33%' textAlign='right'>
+                        {session ?
+                            <Container padding='0 1rem'>Log In</Container>
+                            :
+                            <Container padding='0 1rem'>Log In</Container>
+                        }
+                    </Container>
+                </React.Fragment>
+                :
+                <React.Fragment>
+                    <div className={classes.social}>
+                        <FacebookIcon />
+                        <TwitterIcon />
+                        <InstagramIcon />
+                    </div>
+                    <div className={classes.message}>
+                        <p>Free Shipping On Orders $65+</p>
+                    </div>
+                    <div className={classes.nav}>
+                        <Container className={classes.list}  >
+                            {session ?
+                                <React.Fragment>
+                                    <Container margin='0 2% 0 0' >
+                                        <span className={classes.accountDivName} >
+                                            {`Hi ${user.firstName}`}
+                                        </span>
+                                        <div className={classes.AccountInnerDiv} >
+                                            <span onMouseOver={handleMouseIn} onMouseOut={handleMouseOut}>{`Account & Lists`}</span>
+                                            <ArrowDropDownIcon />
+                                        </div>
+                                    </Container>
+                                    <Container padding='0 1rem'>Log Out</Container>
+                                </React.Fragment>
+                                : <Container padding='0 1rem'>Log In</Container>
+                            }
+                        </Container>
+                    </div>
+                    {open && <div className={classes.expandedMenu} onMouseOver={handleMenuIn} onMouseOut={handleMouseOut}>
+                        <Container display='flex' width='100%' flexWrap='wrap' flexDirection='column' color='black'>
+                            <ul className={classes.listCol}>
+                                <li><Link href={`/ `} ><a>Account</a></Link></li>
+                                <li>Wishlist</li>
+                            </ul>
+                        </Container>
+                    </div>
                     }
-                </ul>
-            </div>
-            {open && <div className={classes.expandedMenu} onMouseOver={handleMenuIn} onMouseOut={handleMouseOut}>
-                <Container display='flex' width='50%' flexWrap='wrap' flexDirection='column' color='black'>
-                    <ul className={classes.listCol}>
-                        <li><Link href={`/`} ><a >Account</a></Link></li>
-                        <li>Wishlist</li>
-                    </ul>
-                </Container>
-            </div>
+                </React.Fragment>
             }
         </Container>
     );

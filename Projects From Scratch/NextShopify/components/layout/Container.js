@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
         flexWrap: props => props.flexWrap,
         minHeight: props => props.minHeight,
         border: props => props.border,
+        textAlign: props => props.textAlign,
         [theme.breakpoints.down('lg')]: {
             flexDirection: props => props.lgFlexD,
             width: props => props.lgWidth,
@@ -49,12 +50,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function Container({ lgAlignItems, mdAlignItems, smAlignItems, xsAlignItems, xsMargin, xsPadding, smPadding, smMargin, mdMargin, mdPadding,
+function Container({ textAlign, lgAlignItems, mdAlignItems, smAlignItems, xsAlignItems, xsMargin, xsPadding, smPadding, smMargin, mdMargin, mdPadding,
     lgMargin, lgPadding, xsFlexD, xsWidth, smFlexD, smWidth, mdFlexD, mdWidth, lgFlexD, lgWidth, id,
     display, margin, padding, width, flexDirection, justifyContent, alignItems, background, children,
     height, color, borderBottom, borderTop, flexWrap, minHeight, border, ...rest }) {
     const classes = useStyles({
-        lgAlignItems, mdAlignItems, smAlignItems,
+        textAlign, lgAlignItems, mdAlignItems, smAlignItems,
         xsAlignItems, xsMargin, xsPadding, smPadding, smMargin, mdMargin, mdPadding, lgMargin, lgPadding,
         xsFlexD, xsWidth, smFlexD, smWidth, mdFlexD, mdWidth, lgFlexD,
         lgWidth, id, display, margin, padding, width, flexDirection, justifyContent, alignItems,

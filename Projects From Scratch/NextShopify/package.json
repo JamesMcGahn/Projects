@@ -17,6 +17,7 @@
     "crypto": "^1.0.1",
     "crypto-js": "^4.1.1",
     "graphql": "^15.5.3",
+    "json2mq": "^0.2.0",
     "mongoose": "^6.0.6",
     "next": "11.1.2",
     "next-auth": "^3.29.0",
