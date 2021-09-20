@@ -1,8 +1,22 @@
 import { client, gql } from '../../../utils/appolloClient'
+import { getCustomerCart, createCart } from '../../../utils/graphQLQueries'
 import csrf from '../../../utils/csrf';
-import { createCart } from '../../../utils/graphQLQueries'
 
-const makeCart = async (req, res) => {
+const getCart = async (req, res) => {
+    if (req.method == "GET") {
+        const cartId = req.query.cartId
+        try {
+            const getCartSchema = getCustomerCart(cartId)
+            const cart = await client.query({
+                query: gql`${getCartSchema}`,
+            })
+            const carts = cart.data.cart
+            return res.status(200).json({ success: true, errors: false, data: carts })
+        } catch (err) {
+            console.log(err)
+            return res.status(400).json({ success: false, errors: true, })
+        }
+    }
     const validateCSRF = await csrf(req, res)
     if (req.method == "POST" && validateCSRF) {
         const { merchId, qty, accessToken, email } = req.body
@@ -33,12 +47,6 @@ const makeCart = async (req, res) => {
                         ],
                     }
                 }
-
-
-
-
-
-
             const cartschema = createCart()
             const carts = await client.mutate({
                 mutation: gql`${cartschema}`,
@@ -56,4 +64,6 @@ const makeCart = async (req, res) => {
     }
 
 }
-export default makeCart
+
+
+export default getCart

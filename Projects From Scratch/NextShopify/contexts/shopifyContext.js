@@ -17,7 +17,7 @@ export function ShopifyContextProvider(props) {
 
   async function getCart(cartId) {
     try {
-      const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/shopify/getCart`, {
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/shopify/cart`, {
         params: {
           cartId: cartId
         }
@@ -32,7 +32,7 @@ export function ShopifyContextProvider(props) {
 
   useEffect(() => {
     async function getCollections() {
-      const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/shopify/getCollections`)
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/shopify/collections`)
       const { data } = res.data
       const cleanedList = data.filter(item => !item.node.title.toLowerCase().includes('home'))
       setCollectionList(cleanedList)
@@ -52,7 +52,7 @@ export function ShopifyContextProvider(props) {
 
   const addToCart = async (merchId, qty) => {
     if (!cart) {
-      const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/shopify/makeCart`,
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/shopify/cart`,
         {
           merchId: merchId,
           qty: qty,
@@ -72,7 +72,7 @@ export function ShopifyContextProvider(props) {
     } else {
       const isItemInCart = cart.lines.edges.filter(item => item.node.merchandise.id === merchId)
       if (isItemInCart.length > 0) {
-        const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/shopify/updateCartLines`,
+        const res = await axios.put(`${process.env.NEXT_PUBLIC_SERVER}/api/shopify/cartLines`,
           {
             cartId: cart.id,
             lineId: `${isItemInCart[0].node.id}`,
@@ -89,7 +89,7 @@ export function ShopifyContextProvider(props) {
         const { data } = res.data
         setCart(data)
       } else {
-        const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/shopify/addCartLines`,
+        const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/shopify/cartLines`,
           {
             cartId: cart.id,
             qty: qty,
