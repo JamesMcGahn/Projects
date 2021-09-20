@@ -10,6 +10,7 @@ import { UserContext } from '../../../contexts/userContext'
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import json2mq from 'json2mq';
+import { signOut } from "next-auth/client"
 
 
 function TopNav(props) {
@@ -65,9 +66,9 @@ function TopNav(props) {
                     </Container>
                     <Container width='33%' textAlign='right'>
                         {session ?
-                            <Container padding='0 1rem'>Log In</Container>
+                            <Container padding='0 1rem'><a href='/' onClick={() => signOut()}>Log Out</a></Container>
                             :
-                            <Container padding='0 1rem'>Log Out</Container>
+                            <Container padding='0 1rem'> <Link href={`/login`} ><a>Log In</a></Link></Container>
                         }
                     </Container>
                 </React.Fragment>
@@ -90,11 +91,12 @@ function TopNav(props) {
                                             {`Hi ${user.firstName ? user.firstName : ''}`}
                                         </span>
                                         <div className={classes.AccountInnerDiv} >
-                                            <span onMouseOver={handleMouseIn} onMouseOut={handleMouseOut}>{`Account & Lists`}</span>
+                                            <span onMouseOver={handleMouseIn} onMouseOut={handleMouseOut}>
+                                                <Link href={`/account`} ><a onClick={handleOnClick}>Account &amp; Lists</a></Link>{``}</span>
                                             <ArrowDropDownIcon />
                                         </div>
                                     </Container>
-                                    <Container padding='0 1rem'>Log Out</Container>
+                                    <Container padding='0 1rem'><a href='/' onClick={() => signOut()}>Log Out</a></Container>
                                 </React.Fragment>
                                 : <Container padding='0 1rem'><li><Link href={`/login `}><a>Login</a></Link></li></Container>
                             }
@@ -103,7 +105,7 @@ function TopNav(props) {
                     {open && <div className={classes.expandedMenu} onMouseOver={handleMenuIn} onMouseOut={handleMouseOut}>
                         <Container display='flex' width='100%' flexWrap='wrap' flexDirection='column' color='black'>
                             <ul className={classes.listCol}>
-                                <li><Link href={`/ `} ><a>Account</a></Link></li>
+                                <li><Link href={`/account`} ><a>Account</a></Link></li>
                                 <li>Wishlist</li>
                             </ul>
                         </Container>

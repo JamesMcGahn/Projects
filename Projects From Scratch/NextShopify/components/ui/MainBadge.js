@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
         border: props => props.border ? props.border : '1px solid black',
         borderRadius: '10px',
         cursor: 'pointer',
-        boxShadow: '2px 2px 1px rgb(0,0,0, 0.3)',
+        boxShadow: '2px 2px 1px rgba(0,0,0, 0.3)',
         width: props => props.width
     },
     btnDiv: {
@@ -16,8 +16,8 @@ const useStyles = makeStyles((theme) => ({
             border: '1px solid black'
         },
         '& button:hover': {
-            backgroundColor: props => props.hoverBackgroundColor ? props.hoverBackgroundColor : 'rgb(0,0,0, 0.9)',
-            border: '1px solid rgb(0,0,0, 0.9)',
+            backgroundColor: props => props.hoverBackgroundColor ? props.hoverBackgroundColor : 'rgba(29, 29, 29, 0.5)',
+            border: '1px solid rgba(29, 29, 29, 0.5)',
         }
     }
 }));

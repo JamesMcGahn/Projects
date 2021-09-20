@@ -8,9 +8,9 @@ const StyledBadge = withStyles((theme) => ({
     badge: {
         right: -3,
         top: 13,
-        border: `2px solid gold`,
+        border: `2px solid #A08C5B`,
         padding: '0 4px',
-        background: 'gold',
+        background: '#A08C5B',
         color: 'black'
     },
 }))(Badge);

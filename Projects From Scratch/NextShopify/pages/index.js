@@ -14,8 +14,9 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     height: '70vh',
     padding: '2rem',
-    outline: ' 2px solid black',
+    outline: ' 4px solid black',
     outlineOffset: '-2rem',
+
   },
 }));
 
@@ -29,23 +30,16 @@ export default function Home({ products, }) {
         <Hero image='https://assets.wordstream.com/s3fs-public/styles/simple_image/public/images/hero-image-food.jpg?GaIXC9DcxzJfdbOiCkhPs2bnIToTOtEq&itok=qZ04kL12' >
         </Hero>
       </div>
-      <Container>
-        <FeaturedItems products={products} />
-      </Container>
-      <Container>
-        <FeaturedCollection color='#fca311'
-          image='https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/464e8d65-3a82-472a-aa2c-de53b2dfe7f2/wearallday-shoe-XpS7nX.png'
-          title='lorem ipsum dolor sit amet'
-          pText='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ornare est ut risus feugiat,
+      <FeaturedItems products={products} />
+      <FeaturedCollection color='#CBB682'
+        image='https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/464e8d65-3a82-472a-aa2c-de53b2dfe7f2/wearallday-shoe-XpS7nX.png'
+        title='lorem ipsum dolor sit amet'
+        pText='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ornare est ut risus feugiat,
           eu rhoncus felis pulvinar. In interdum tellus massa, quis tincidunt felis eleifend ac.
           In tempor tellus sit amet nisl tempor bibendum. Ut ultrices dolor eget leo porta, id facilisis velit tempor.
           Curabitur nec luctus arcu, quis euismod leo. Proin ultricies mollis augue id dapibus.'
-        />
-      </Container>
-      <Container>
-        <ShopByCollection />
-      </Container>
-
+      />
+      <ShopByCollection />
     </ Container >
   )
 }
