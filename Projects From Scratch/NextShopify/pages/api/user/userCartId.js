@@ -2,7 +2,7 @@ import dbConnect from "../../../utils/dbConnect";
 import User from "../../../Models/User"
 import { getSession } from 'next-auth/client'
 
-const register = async (req, res) => {
+const userCartId = async (req, res) => {
     const session = await getSession({ req })
     if (req.method == "POST" && session) {
         const { email, cartId } = req.body;
@@ -23,4 +23,4 @@ const register = async (req, res) => {
     }
 
 }
-export default register
+export default userCartId

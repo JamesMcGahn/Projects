@@ -2,7 +2,7 @@ import { client, gql } from '../../../utils/appolloClient'
 import { getCustomerCart, createCart } from '../../../utils/graphQLQueries'
 import csrf from '../../../utils/csrf';
 
-const getCart = async (req, res) => {
+const cart = async (req, res) => {
     if (req.method == "GET") {
         const cartId = req.query.cartId
         try {
@@ -66,4 +66,4 @@ const getCart = async (req, res) => {
 }
 
 
-export default getCart
+export default cart

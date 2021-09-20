@@ -2,7 +2,7 @@ import { client, gql } from '../../../utils/appolloClient'
 import csrf from '../../../utils/csrf';
 import { addLineToCart, updateCart } from '../../../utils/graphQLQueries'
 
-const updateCartLines = async (req, res) => {
+const cartLines = async (req, res) => {
     const validateCSRF = await csrf(req, res)
     if (req.method == "POST" && validateCSRF) {
         const { cartId, qty, merchId } = req.body
@@ -57,6 +57,5 @@ const updateCartLines = async (req, res) => {
     else {
         res.status(500).json({ message: 'Not A Valid Request' });
     }
-
 }
-export default updateCartLines
+export default cartLines

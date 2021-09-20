@@ -11,7 +11,7 @@ export function UserContextProvider(props) {
 
     const updateCartId = async (id) => {
         if (session) {
-            const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/user/updateCartId`, {
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/user/userCartId`, {
                 email: user.email,
                 cartId: id
             })
@@ -29,7 +29,7 @@ export function UserContextProvider(props) {
             const email = session.user.email
             async function getUser() {
                 try {
-                    const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/user/getUser`, {
+                    const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/user/user`, {
                         params: {
                             email: email
                         }
