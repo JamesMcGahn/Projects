@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
     outline: ' 4px solid black',
     outlineOffset: '-2rem',
     marginBottom: '2rem',
+    backgroundColor: '#1d1d1d'
   },
 }));
 

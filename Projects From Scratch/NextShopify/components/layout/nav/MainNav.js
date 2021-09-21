@@ -28,7 +28,29 @@ const useStyles = makeStyles((theme) => ({
         margin: 0,
         listStyle: 'none',
         '& li': {
-            margin: ' 0 3% 0 3%'
+            margin: ' 0 3% 0 3%',
+            fontFamily: 'Cinzel Decorative, cursive, arial',
+            fontSize: '1.3rem'
+        },
+        '& a': {
+            position: 'relative',
+        },
+
+        '& a:before': {
+            content: '""',
+            position: 'absolute',
+            width: '100%',
+            height: '2px',
+            bottom: 0,
+            left: 0,
+            backgroundColor: '#CBB682',
+            visibility: 'hidden',
+            transform: 'scaleX(0)',
+            transition: 'all 0.3s ease-in-out',
+        },
+        '& a:hover:before': {
+            visibility: 'visible',
+            transform: 'scaleX(1)',
         }
     },
     icons: {
@@ -62,6 +84,9 @@ const useStyles = makeStyles((theme) => ({
     },
     svg: {
         color: 'black',
+    },
+    activeItem: {
+        fontWeight: 'bold',
     }
 
 }));
@@ -107,13 +132,14 @@ function MainNav() {
         setOpen(false)
     }
 
-
-
+    const { pathname } = useRouter()
+    const patchMatch = pathname.match(/(?<=\/)[a-z]+(?=\/)|(?<=\/)[a-z]+/)
+    const onPage = patchMatch === null ? 'home' : patchMatch[0]
     return (
         <React.Fragment>
 
             {mobile
-                ? <Container display='flex' alignItems="center" flexDirection='column' width='100%' background='gold'>
+                ? <Container display='flex' alignItems="center" flexDirection='column' width='100%' background='#CBB682'>
                     <IconButton className={classes.svg} aria-label="expand row" size="small" color='black' onClick={() => setOpen(!open)}>
                         {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                     </IconButton>
@@ -138,17 +164,17 @@ function MainNav() {
                 :
 
                 <React.Fragment>
-                    <Container id='mainNav' width='100%' color='black' display='flex' padding='.5rem' borderBottom='1px solid grey'>
+                    <Container id='mainNav' width='100%' color='black' display='flex' padding='.5rem' borderBottom='2px solid #CBB682'>
                         <div className={classes.logo}></div>
                         <div className={classes.nav}>
                             <ul className={classes.list}>
-                                <li><Link href={`/`} ><a>Home</a></Link></li>
+                                <li><Link href={`/`} ><a className={onPage === 'home' ? classes.activeItem : ''}>Home</a></Link></li>
                                 <li onMouseOver={handleMouseIn} onMouseOut={handleMouseOut} id="shop">
-                                    <Link href={`/shop`} ><a onClick={handleOnClick}>Shop</a></Link>
+                                    <Link href={`/shop`} ><a className={onPage === 'shop' ? classes.activeItem : ''} onClick={handleOnClick}>Shop</a></Link>
                                 </li>
-                                <li>Blog</li>
-                                <li>About</li>
-                                <li>Contact</li>
+                                <li className={onPage === 'blog' ? classes.activeItem : ''}>Blog</li>
+                                <li className={onPage === 'about' ? classes.activeItem : ''}>About</li>
+                                <li className={onPage === 'contact' ? classes.activeItem : ''}>Contact</li>
                             </ul>
                         </div>
                         <div className={classes.icons}>
