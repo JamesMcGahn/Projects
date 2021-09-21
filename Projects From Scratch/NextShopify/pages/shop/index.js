@@ -68,8 +68,10 @@ query {
 
 
   return (
-    <Container margin='0' padding='1rem' width='100%' color='black' display='flex' flexDirection='column' justifyContent='flex-start' alignItems='center' >
-      <ProductGrid title="Shop" products={productsList} hasMoreItems={hasMoreItems} getMoreItems={getMoreItems} />
+    <Container margin='0' padding='2rem' width='100%' color='black' display='flex' flexDirection='column' justifyContent='flex-start' alignItems='center' background='#1d1d1d' >
+      <Container background='#fff'>
+        <ProductGrid title="Shop" products={productsList} hasMoreItems={hasMoreItems} getMoreItems={getMoreItems} />
+      </Container>
     </Container >
   );
 }

@@ -12,7 +12,7 @@ import Container from '../components/layout/Container'
 const useStyles = makeStyles((theme) => ({
   heroCont: {
     width: '100%',
-    height: '75vh',
+    height: '73vh',
     padding: '2rem',
     outline: ' 4px solid black',
     outlineOffset: '-2rem',
@@ -22,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Home({ products, }) {
-  const { cart, setCart, collections } = useContext(ShopifyContext)
   const classes = useStyles();
 
   return (
@@ -31,7 +30,7 @@ export default function Home({ products, }) {
         <Hero image='https://assets.wordstream.com/s3fs-public/styles/simple_image/public/images/hero-image-food.jpg?GaIXC9DcxzJfdbOiCkhPs2bnIToTOtEq&itok=qZ04kL12' >
         </Hero>
       </div>
-      <FeaturedItems products={products} />
+      <FeaturedItems data={products} title='Featured Items' />
       <FeaturedCollection color='#CBB682'
         image='https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/464e8d65-3a82-472a-aa2c-de53b2dfe7f2/wearallday-shoe-XpS7nX.png'
         title='lorem ipsum dolor sit amet'

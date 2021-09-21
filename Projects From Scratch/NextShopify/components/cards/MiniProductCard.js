@@ -5,7 +5,7 @@ import Container from '../layout/Container'
 
 const useStyles = makeStyles((theme) => ({
     itemImg: {
-        width: '80%',
+        width: '100%',
         [theme.breakpoints.down('xs')]: {
             width: '100%'
         },
@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     title: {
         margin: '0',
         padding: '3px 0',
-        fontSize: '.8rem'
+        fontSize: '1rem',
     },
     lineItem: {
         margin: '0',
