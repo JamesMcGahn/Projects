@@ -8,6 +8,7 @@ export function UserContextProvider(props) {
 
     const [session, loading] = useSession()
     const [user, setUser] = useState(false)
+    const [orders, setOrderData] = useState(false)
 
     const updateCartId = async (id) => {
         if (session) {
@@ -20,6 +21,22 @@ export function UserContextProvider(props) {
             }
         }
     }
+
+    const getOrdersData = async () => {
+        try {
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/user/orders`, {
+                params: {
+                    token: user.token
+                }
+            })
+            const { data } = res.data
+            setOrderData(data)
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+
 
 
 
@@ -52,7 +69,7 @@ export function UserContextProvider(props) {
 
 
     return (
-        <UserContext.Provider value={{ user, updateCartId }} >
+        <UserContext.Provider value={{ user, updateCartId, getOrdersData, orders }} >
             {props.children}
         </UserContext.Provider>
     )

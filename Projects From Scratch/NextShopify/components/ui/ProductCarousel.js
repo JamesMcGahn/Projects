@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
         color: 'black',
         display: 'flex',
         alignItems: 'center',
+        padding: '0 1rem',
         '& svg': {
             color: 'black',
             fontSize: '2rem'

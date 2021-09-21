@@ -26,6 +26,12 @@ function Login(props) {
         setForm({ ...form, [e.target.name]: e.target.value })
     }
 
+    //TODO: Style Form
+    //TODO: Form validation
+    //TODO: add from register workflow to handle params
+    //TODO: handle bad login
+
+
     return (
         <Container>
             <form method="POST" action={`${process.env.NEXT_PUBLIC_SERVER}/api/auth/callback/credentials`} onSubmit={handleChange} noValidate>

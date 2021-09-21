@@ -337,3 +337,78 @@ export const getCustomerCart = (id) => {
   }
   `
 }
+
+export const getCustomerOrders = (token) => {
+  return `{
+    customer(customerAccessToken: "${token}") {
+      orders(first: 10) {
+        pageInfo{
+          hasNextPage
+          hasPreviousPage
+        }
+        edges {
+          cursor
+          node {
+            id
+            orderNumber
+            processedAt
+            financialStatus
+            fulfillmentStatus
+            successfulFulfillments(first: 3){
+              trackingInfo{
+                number
+                url
+              }
+              trackingCompany
+            }
+            email
+            currentTotalPrice {
+              amount
+            }
+            shippingAddress{
+              name
+              address1
+              address2
+              city
+              provinceCode
+              zip
+              countryCodeV2
+            }
+            
+            
+            lineItems(first: 15) {
+              edges {
+                node {
+                  originalTotalPrice {
+                    amount
+                  }
+                  quantity
+                  variant {
+                    id
+                    priceV2 {
+                      amount
+                    }
+                    sku
+                    title
+                    product {
+                      title
+                      vendor
+                      images(first: 1) {
+                        edges {
+                          node {
+                            originalSrc
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  `
+}

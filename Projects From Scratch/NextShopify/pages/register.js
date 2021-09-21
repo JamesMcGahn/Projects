@@ -24,7 +24,7 @@ function Register(props) {
         setLoading(true)
         e.preventDefault();
         try {
-            const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/user/register`,
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/auth/register`,
                 {
                     firstName: form.firstName,
                     lastName: form.lastName,
@@ -67,6 +67,7 @@ function Register(props) {
 
     //TODO: Style Form
     //TODO: Form validation
+    //TODO: call fn to check if user has anything in local storage - probably add method in shopify or user context?
 
     return (
         <Container>

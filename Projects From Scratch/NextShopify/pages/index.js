@@ -12,11 +12,11 @@ import Container from '../components/layout/Container'
 const useStyles = makeStyles((theme) => ({
   heroCont: {
     width: '100%',
-    height: '70vh',
+    height: '75vh',
     padding: '2rem',
     outline: ' 4px solid black',
     outlineOffset: '-2rem',
-
+    marginBottom: '2rem',
   },
 }));
 
