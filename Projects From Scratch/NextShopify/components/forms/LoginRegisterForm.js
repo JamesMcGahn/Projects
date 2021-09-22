@@ -22,7 +22,8 @@ const useStyles = makeStyles((theme) => ({
     error: {
         backgroundColor: '#CBB682',
         border: '1px solid black',
-        padding: '3px 4px'
+        padding: '3px 4px',
+        marginLeft: '8px',
     }
 }));
 

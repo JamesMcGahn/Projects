@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from 'react'
 import axios from 'axios'
-
+import useLocalStorageState from '../hooks/useLocalStorage'
 import { useSession } from "next-auth/client"
 
 export const UserContext = createContext()
@@ -9,6 +9,7 @@ export function UserContextProvider(props) {
     const [session, loading] = useSession()
     const [user, setUser] = useState(false)
     const [orders, setOrderData] = useState(false)
+    const [localCartID, setlocalCartId] = useLocalStorageState("user_cart", {})
 
     const updateCartId = async (id) => {
         if (session) {
@@ -19,6 +20,9 @@ export function UserContextProvider(props) {
             if (!res.data.errors && res.data.success) {
                 setUser({ ...user, cartId: id })
             }
+        }
+        else if (!session) {
+            setlocalCartId({ cartId: id })
         }
     }
 
@@ -69,7 +73,7 @@ export function UserContextProvider(props) {
 
 
     return (
-        <UserContext.Provider value={{ user, updateCartId, getOrdersData, orders }} >
+        <UserContext.Provider value={{ user, updateCartId, getOrdersData, orders, localCartID }} >
             {props.children}
         </UserContext.Provider>
     )

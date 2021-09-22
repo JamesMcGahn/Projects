@@ -3,17 +3,19 @@ import { UserContext } from '../contexts/userContext'
 import { useSession } from "next-auth/client"
 import axios from 'axios'
 import { getCRSFToken } from '../helpers/getCRSFToken'
-
+import useLocalStorageState from '../hooks/useLocalStorage'
 
 export const ShopifyContext = createContext()
 
 export function ShopifyContextProvider(props) {
-  const { updateCartId, user } = useContext(UserContext)
+  const { updateCartId, user, localCartID } = useContext(UserContext)
   const [cart, setCart] = useState(false)
   const [addedToCartItems, setAddedToCartItems] = useState([])
   const [collectionList, setCollectionList] = useState()
   const [session, loading] = useSession()
   const [isCartLoading, setIsCartLoading] = useState(false)
+  const [history, setHistory] = useLocalStorageState("browser_history", [])
+
 
   async function getCart(cartId) {
     try {
@@ -37,20 +39,29 @@ export function ShopifyContextProvider(props) {
       const cleanedList = data.filter(item => !item.node.title.toLowerCase().includes('home'))
       setCollectionList(cleanedList)
       setIsCartLoading(false)
+      console.log('cart ', localCartID.cartId)
+      console.log(`${session ? 'true' : false}`)
     }
     getCollections()
+
   }, [])
 
+
   useEffect(() => {
-    if (!cart) {
-      if (session && user.cartId) {
-        setIsCartLoading(true)
-        getCart(user.cartId)
-      }
+    // if customer is logged in -- check & get their cartID from user 
+    // else if - customer is a guest -- check & get their cart from local
+    if (!cart && session && user.cartId) {
+      setIsCartLoading(true)
+      getCart(user.cartId)
+
+    } else if (!cart && !session && localCartID?.cartId) {
+      setIsCartLoading(true)
+      getCart(localCartID.cartId)
     }
   }, [session, user])
 
   const addToCart = async (merchId, qty) => {
+    // if no cart, make the cart and add the items
     if (!cart) {
       const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/cart/cart`,
         {
@@ -68,8 +79,9 @@ export function ShopifyContextProvider(props) {
       )
       const { data } = res.data
       setCart(data)
-      if (session) updateCartId(data.id)
+      updateCartId(data.id)
     } else {
+      // if there is a cart, check to see if the item is already in the cart. if it is add the additional qty
       const isItemInCart = cart.lines.edges.filter(item => item.node.merchandise.id === merchId)
       if (isItemInCart.length > 0) {
         const res = await axios.put(`${process.env.NEXT_PUBLIC_SERVER}/api/cart/cartLines`,
@@ -89,6 +101,7 @@ export function ShopifyContextProvider(props) {
         const { data } = res.data
         setCart(data)
       } else {
+        // the item is not in the cart, so add the item to the cart
         const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/cart/cartLines`,
           {
             cartId: cart.id,
@@ -110,7 +123,7 @@ export function ShopifyContextProvider(props) {
 
 
   return (
-    <ShopifyContext.Provider value={{ cart, setCart, collectionList, addedToCartItems, setAddedToCartItems, addToCart, isCartLoading }} >
+    <ShopifyContext.Provider value={{ cart, setCart, collectionList, addedToCartItems, setAddedToCartItems, addToCart, isCartLoading, }} >
       {props.children}
     </ShopifyContext.Provider>
   )
