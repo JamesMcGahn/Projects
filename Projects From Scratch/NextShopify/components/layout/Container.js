@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
         minHeight: props => props.minHeight,
         border: props => props.border,
         textAlign: props => props.textAlign,
+        boxShadow: props => props.boxShadow,
         [theme.breakpoints.down('lg')]: {
             flexDirection: props => props.lgFlexD,
             width: props => props.lgWidth,
@@ -45,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
             margin: props => props.xsMargin,
             padding: props => props.xsPadding,
             alignItems: props => props.xsAlignItems,
+            display: props => props.xsDisplay,
         }
     },
 }));
@@ -53,13 +55,13 @@ const useStyles = makeStyles((theme) => ({
 function Container({ textAlign, lgAlignItems, mdAlignItems, smAlignItems, xsAlignItems, xsMargin, xsPadding, smPadding, smMargin, mdMargin, mdPadding,
     lgMargin, lgPadding, xsFlexD, xsWidth, smFlexD, smWidth, mdFlexD, mdWidth, lgFlexD, lgWidth, id,
     display, margin, padding, width, flexDirection, justifyContent, alignItems, background, children,
-    height, color, borderBottom, borderTop, flexWrap, minHeight, border, ...rest }) {
+    height, color, borderBottom, borderTop, flexWrap, minHeight, border, boxShadow, xsDisplay, ...rest }) {
     const classes = useStyles({
         textAlign, lgAlignItems, mdAlignItems, smAlignItems,
         xsAlignItems, xsMargin, xsPadding, smPadding, smMargin, mdMargin, mdPadding, lgMargin, lgPadding,
         xsFlexD, xsWidth, smFlexD, smWidth, mdFlexD, mdWidth, lgFlexD,
         lgWidth, id, display, margin, padding, width, flexDirection, justifyContent, alignItems,
-        background, height, color, borderBottom, borderTop, flexWrap, minHeight, border
+        background, height, color, borderBottom, borderTop, flexWrap, minHeight, border, boxShadow, xsDisplay
     })
     { console.log }
     return (

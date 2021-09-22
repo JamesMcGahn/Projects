@@ -3,6 +3,7 @@ import { useSession } from "next-auth/client"
 import Container from '../../components/layout/Container'
 import { makeStyles } from '@material-ui/core/styles';
 import Link from 'next/link'
+import LoginToSee from '../../components/sections/LoginToSee'
 
 const useStyles = makeStyles((theme) => ({
     tileDiv: {
@@ -27,12 +28,15 @@ const useStyles = makeStyles((theme) => ({
         marginRight: '10px',
         marginBottom: '10px',
         justifyContent: 'center',
-        boxShadow: '1px 3px 5px rgba(0, 0, 0, 0.3)',
+        boxShadow: '2px 2px 5px rgba(0,0,0, 0.8)',
         '& h6': {
             fontSize: '1.1rem',
         },
         [theme.breakpoints.down('sm')]: {
             width: '33%',
+        },
+        [theme.breakpoints.down('xs')]: {
+            width: '45%',
         }
 
     },
@@ -56,8 +60,9 @@ function Account(props) {
 
                 </Container>
                 :
-                <Container>
-                </Container>
+                <div>
+                    <LoginToSee title='Log In To View Your Orders' message="It doesn't appear that you are logged in. Please Log in to view your orders." />
+                </div>
             }
         </Container >
     );

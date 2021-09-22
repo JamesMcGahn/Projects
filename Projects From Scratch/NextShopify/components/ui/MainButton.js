@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
         color: props => props.color,
         border: props => props.border ? props.border : '1px solid black',
         cursor: 'pointer',
-        boxShadow: '3px 2px 5px rgb(0,0,0, 0.4)',
+        boxShadow: '3px 2px 5px rgba(0,0,0, 0.4)',
         width: props => props.width
     },
     btnDiv: {
@@ -15,15 +15,16 @@ const useStyles = makeStyles((theme) => ({
             border: '1px solid #e5e5e5'
         },
         '& button:hover': {
-            backgroundColor: 'rgb(0,0,0, 0.9)',
-            border: '1px solid rgb(0,0,0, 0.9)',
+            backgroundColor: 'rgba(0,0,0, 0.9)',
+            border: '1px solid rgba(0,0,0, 0.9)',
+            color: props => props.hoverColor ? props.hoverColor : 'black'
         }
     }
 }));
 
 
-function MainButton({ children, backgroundColor, color, border, width, ...rest }) {
-    const classes = useStyles({ backgroundColor, color, border, width });
+function MainButton({ children, hoverColor, backgroundColor, color, border, width, ...rest }) {
+    const classes = useStyles({ hoverColor, backgroundColor, color, border, width });
     return (
         <div className={classes.btnDiv}>
             <button className={classes.btn} {...rest}>

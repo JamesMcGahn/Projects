@@ -9,9 +9,9 @@ import PageTitle from '../ui/PageTitle'
 function ProductGrid({ products, title, hasMoreItems, getMoreItems, }) {
 
     return (
-        <Container width='100%' padding='1rem' display='flex' flexDirection='column'>
-            <PageTitle title='Shop' />
-            <Container width='100%' display='flex' flexDirection='row' flexWrap='wrap'>
+        <Container width='100%' padding='1rem' display='flex' flexDirection='column' boxShadow='2px 2px 5px rgba(0,0,0, 0.8)' >
+            <PageTitle title={title} />
+            <Container width='100%' display='flex' flexDirection='row' flexWrap='wrap' >
                 {products.map((item, index) => {
                     return (
                         <Container display='block' width='25%' xsWidth="100%" smWidth="50%" mdWidth='33%' padding='1rem' key={index}>

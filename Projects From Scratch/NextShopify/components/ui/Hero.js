@@ -10,7 +10,6 @@ const useStyles = makeStyles((theme) => ({
         backgroundImage: props => props.heroImage,
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
-        backgroundAttachment: 'fixed',
         backgroundPosition: 'center',
     },
 }));

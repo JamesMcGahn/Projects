@@ -362,7 +362,16 @@ export const getCustomerOrders = (token) => {
               trackingCompany
             }
             email
-            currentTotalPrice {
+            subtotalPriceV2 {
+              amount
+            }
+            totalShippingPriceV2{
+              amount
+            }
+            totalTaxV2{
+              amount
+            }
+            totalPriceV2 {
               amount
             }
             shippingAddress{

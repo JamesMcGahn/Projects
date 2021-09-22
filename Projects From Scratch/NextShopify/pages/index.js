@@ -12,10 +12,7 @@ import Container from '../components/layout/Container'
 const useStyles = makeStyles((theme) => ({
   heroCont: {
     width: '100%',
-    height: '73vh',
-    padding: '2rem',
-    outline: ' 4px solid black',
-    outlineOffset: '-2rem',
+    height: '75vh',
     marginBottom: '2rem',
     backgroundColor: '#1d1d1d'
   },
@@ -27,7 +24,7 @@ export default function Home({ products, }) {
   return (
     <Container display='flex' margin='0' padding='0' width='100%' color='black' flexDirection='column' justifyContent='flex-start' alignItems='center'>
       <div className={classes.heroCont}>
-        <Hero image='https://assets.wordstream.com/s3fs-public/styles/simple_image/public/images/hero-image-food.jpg?GaIXC9DcxzJfdbOiCkhPs2bnIToTOtEq&itok=qZ04kL12' >
+        <Hero image='/images/halfpipe.jpeg' >
         </Hero>
       </div>
       <FeaturedItems data={products} title='Featured Items' />

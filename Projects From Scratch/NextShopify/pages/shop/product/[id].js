@@ -35,7 +35,7 @@ function SingleProduct({ product, notFound }) {
         return <Loading></Loading>
     }
     // TODO: Not Found Page - 
-    if (notFound) {
+    if (notFound || !product) {
         return (<>
             <head>
                 <meta name="robots" content="noindex" />
@@ -181,7 +181,7 @@ export async function getStaticProps(context) {
         const product = data.productByHandle
         return { props: { product: product, notFound: false }, revalidate: 3600 }
     } catch {
-        return { props: { product: [], notFound: true }, revalidate: 3600 }
+        return { props: { product: false, notFound: true }, revalidate: 3600 }
     }
 
 }
