@@ -30,7 +30,7 @@ export default NextAuth({
                         variables: input
                     })
                     if (data.customerAccessTokenCreate.customerUserErrors.length > 0) {
-                        throw new Error('error message')
+                        throw new Error('error')
                     } else {
                         const token = data.customerAccessTokenCreate.customerAccessToken.accessToken
                         console.log('this is the token', token)
@@ -45,7 +45,7 @@ export default NextAuth({
                     }
                 } catch (e) {
                     console.log(e)
-                    throw new Error('error message')
+                    throw new Error('error')
                 }
             }
         }),

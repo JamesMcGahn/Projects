@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
         alignItems: props => props.alignItems,
         height: props => props.height,
         color: props => props.color,
-        borderBottom: props => props.borderBottom,
+        borderBottom: props => props.borderBottom ? props.borderBottom : '0',
         borderTop: props => props.borderTop,
         flexWrap: props => props.flexWrap,
         minHeight: props => props.minHeight,
@@ -63,7 +63,6 @@ function Container({ textAlign, lgAlignItems, mdAlignItems, smAlignItems, xsAlig
         lgWidth, id, display, margin, padding, width, flexDirection, justifyContent, alignItems,
         background, height, color, borderBottom, borderTop, flexWrap, minHeight, border, boxShadow, xsDisplay
     })
-    { console.log }
     return (
         <div className={classes.container} {...rest}>
             {children}

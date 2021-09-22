@@ -1,48 +1,59 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getCsrfToken } from "next-auth/client"
-import axios from 'axios';
 import Container from '../components/layout/Container'
 import { useRouter } from 'next/router'
+import LoginRegisterForm from '../components/forms/LoginRegisterForm'
 
 function Login(props) {
     const { csrfToken } = props
+    const router = useRouter()
     const [form, setForm] = useState(
         { email: '', password: '', }
     );
-    const [loading, setLoading] = useState(false)
-    const [submitted, setSubmitted] = useState(false)
-    const [formResponse, setFormResponse] = useState()
 
-    const handleSubmit = async (e) => {
-        setLoading(true)
-        // e.preventDefault();
-        // console.log('send')
-        // const data = { ...form, csrfToken: csrfToken }
-        // const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/auth/callback/credentials`, data, { headers: { "Content-Type": "multipart/form-data" } })
-        // setLoading(false)
+    useEffect(() => {
+        if (router.query?.email) {
+            setForm({ ...form, email: router.query.email })
+        }
+        if (router.query.error) {
+            setErrors({ error: true, message: 'Login Failed. Try Again?' })
+        }
+    }, [])
+
+    const [errors, setErrors] = useState({ error: false, message: '' })
+
+    const handleSubmit = (e) => {
+        const regex = new RegExp(/^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/)
+        // checks for common mistakes (spaces, missing period. etc)
+        if (!regex.test(form.email) || !e.currentTarget.checkValidity()) {
+            e.preventDefault();
+            if (!regex.test(form.email)) {
+                setErrors({ error: true, message: 'Double Check Your Email' })
+                return
+            }
+            if (!e.currentTarget.checkValidity()) {
+                setErrors({ error: true, message: 'Make sure to input your login and password.' })
+                return
+            }
+        }
     }
-
+    // 
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value })
+        if (errors.error) {
+            setErrors({ error: false, message: '' })
+        }
     }
 
-    //TODO: Style Form
-    //TODO: Form validation
-    //TODO: add from register workflow to handle params
-    //TODO: handle bad login
-
-
     return (
-        <Container>
-            <form method="POST" action={`${process.env.NEXT_PUBLIC_SERVER}/api/auth/callback/credentials`} onSubmit={handleChange} noValidate>
-                <input name='csrfToken' type='hidden' defaultValue={csrfToken} />
-                <label htmlFor="email">Email:</label>
-                <input type="email" id="email" name="email" required onChange={handleChange} />
-                <label htmlFor="password">Password:</label>
-                <input type="password" id="password" name="password" required onChange={handleChange} />
-                <button>Create Account </button>
-            </form>
-        </Container>
+        <Container margin='0' minHeight='80vh' padding='2rem' width='100%' color='black' display='flex' flexDirection='column' justifyContent='flex-start' alignItems='center' background='#1d1d1d' >
+            <Container background='#fff' width='30%' smWidth='100%'>
+
+                <LoginRegisterForm method="POST"
+                    handleSubmit={handleSubmit} csrfToken={csrfToken} form={form} handleChange={handleChange} errors={errors}
+                    action={`${process.env.NEXT_PUBLIC_SERVER}/api/auth/callback/credentials`} />
+            </Container >
+        </Container >
     );
 }
 
