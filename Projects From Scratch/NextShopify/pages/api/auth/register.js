@@ -7,7 +7,7 @@ import User from "../../../Models/User"
 const register = async (req, res) => {
     const validateCSRF = await csrf(req, res)
     if (req.method == "POST" && validateCSRF) {
-        const { firstName, lastName, email, password, cartId } = req.body;
+        const { firstName, lastName, email, password, cartId, history } = req.body;
         try {
             const input = {
                 "input": {
@@ -30,7 +30,7 @@ const register = async (req, res) => {
                     return res.status(500).json({ success: 'User Already Exists' })
                 }
 
-                const user = new User({ email, firstName, lastName, cartId })
+                const user = new User({ email, firstName, lastName, cartId, history })
                 await user.save();
 
                 const customer = { email: email }

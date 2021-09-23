@@ -10,9 +10,7 @@ const orders = async (req, res) => {
             const data = await client.query({
                 query: gql`${customerOrdersSchema}`,
             })
-            console.log(data)
             const { orders } = data.data.customer
-            console.log(orders)
             return res.status(200).json({ success: true, errors: false, data: orders })
         } catch (err) {
             console.log(err)

@@ -14,7 +14,7 @@ export function ShopifyContextProvider(props) {
   const [collectionList, setCollectionList] = useState()
   const [session, loading] = useSession()
   const [isCartLoading, setIsCartLoading] = useState(false)
-  const [history, setHistory] = useLocalStorageState("browser_history", [])
+
 
 
   async function getCart(cartId) {
@@ -39,8 +39,6 @@ export function ShopifyContextProvider(props) {
       const cleanedList = data.filter(item => !item.node.title.toLowerCase().includes('home'))
       setCollectionList(cleanedList)
       setIsCartLoading(false)
-      console.log('cart ', localCartID.cartId)
-      console.log(`${session ? 'true' : false}`)
     }
     getCollections()
 

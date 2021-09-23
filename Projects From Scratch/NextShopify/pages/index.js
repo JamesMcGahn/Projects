@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { ShopifyContext } from '../contexts/shopifyContext'
+import { UserContext } from '../contexts/userContext'
 import Hero from '../components/ui/Hero'
 import FeaturedItems from '../components/sections/FeaturedItems'
 import FeaturedCollection from '../components/sections/FeaturedCollection'
@@ -16,11 +17,14 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: '2rem',
     backgroundColor: '#1d1d1d'
   },
+  history: {
+    maxHeight: '200px'
+  }
 }));
 
 export default function Home({ products, }) {
   const classes = useStyles();
-
+  const { history } = useContext(UserContext)
   return (
     <Container display='flex' margin='0' padding='0' width='100%' color='black' flexDirection='column' justifyContent='flex-start' alignItems='center'>
       <div className={classes.heroCont}>
@@ -37,6 +41,12 @@ export default function Home({ products, }) {
           Curabitur nec luctus arcu, quis euismod leo. Proin ultricies mollis augue id dapibus.'
       />
       <ShopByCollection />
+      {history?.length > 3 ?
+
+        <FeaturedItems data={history} title='Recent Browsing History' />
+
+        : null
+      }
     </ Container >
   )
 }

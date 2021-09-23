@@ -32,10 +32,9 @@ function ProductCarousel({ children, data, current, setCurrent, maxDisplay }) {
     const handleNext = () => {
         current.max === length - 1 ? setCurrent({ min: 0, max: maxDisplay }) : setCurrent({ min: current.min + 1, max: current.max + 1 })
     }
-
     return (
         <div className={classes.slider}>
-            <ChevronLeftIcon onClick={handlePrevious} />
+            {length === 4 ? null : <ChevronLeftIcon onClick={handlePrevious} />}
             {data.map((item, index) => {
                 if (index >= current.min && index <= current.max) {
                     return (
@@ -49,7 +48,8 @@ function ProductCarousel({ children, data, current, setCurrent, maxDisplay }) {
             }
             )
             }
-            <ChevronRightIcon onClick={handleNext} />
+            {length === 4 ? null : <ChevronRightIcon onClick={handleNext} />}
+
         </div>
     );
 }

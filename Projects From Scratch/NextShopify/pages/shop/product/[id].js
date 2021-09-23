@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { ShopifyContext } from '../../../contexts/shopifyContext'
+import { UserContext } from '../../../contexts/userContext'
 import { client, gql } from '../../../utils/appolloClient'
 import { getProductHandles, productByHandle } from '../../../utils/graphQLQueries'
 import { makeStyles } from '@material-ui/core/styles';
@@ -27,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function SingleProduct({ product, notFound }) {
+function SingleProduct({ product, notFound, id }) {
     const router = useRouter()
     const classes = useStyles()
 
@@ -43,7 +44,8 @@ function SingleProduct({ product, notFound }) {
             <DefaultErrorPage statusCode={404} />
         </>)
     }
-    const { addedToCartItems, setAddedToCartItems, addToCart } = useContext(ShopifyContext)
+    const { addedToCartItems, setAddedToCartItems, addToCart, } = useContext(ShopifyContext)
+    const { saveCustomerHistory } = useContext(UserContext)
     const [maxDisplay, setMaxDisplay] = useState(2)
     const [current, setCurrent] = useState({
         min: 0,
@@ -81,6 +83,19 @@ function SingleProduct({ product, notFound }) {
         if (variants.length === 1) {
             setSelectedVariant(variants[0])
         }
+        if (product) {
+            const productSummary = {
+                node: {
+                    handle: id,
+                    title: product.title,
+                    images: product.images,
+                    vendor: product.vendor,
+                    priceRange: product.priceRange
+                }
+            }
+            saveCustomerHistory(productSummary)
+        }
+
     }, [])
 
     useEffect(() => {
@@ -179,7 +194,7 @@ export async function getStaticProps(context) {
             query: gql`${prodByHandleQuery}`,
         });
         const product = data.productByHandle
-        return { props: { product: product, notFound: false }, revalidate: 3600 }
+        return { props: { product: product, id: id, notFound: false }, revalidate: 3600 }
     } catch {
         return { props: { product: false, notFound: true }, revalidate: 3600 }
     }

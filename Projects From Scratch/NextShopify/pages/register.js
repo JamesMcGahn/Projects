@@ -16,7 +16,7 @@ function Register(props) {
     const [loading, setLoading] = useState(false)
     const [errors, setErrors] = useState({ error: false, message: '' })
     const [token, setToken] = useState()
-    const { localCartID, setLocalCartId } = useContext(UserContext)
+    const { localCartID, setLocalCartId, history } = useContext(UserContext)
 
     useEffect(() => {
         getCRSFToken().then(token => {
@@ -51,7 +51,8 @@ function Register(props) {
                     lastName: form.lastName,
                     email: form.email,
                     password: form.password,
-                    cartId: localCartID?.cartId ? localCartID.cartId : ''
+                    cartId: localCartID?.cartId ? localCartID.cartId : '',
+                    history: history?.length > 0 ? history : []
                 },
                 {
                     headers: {

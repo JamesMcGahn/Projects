@@ -29,7 +29,6 @@ function Orders(props) {
         if (!orders && user.token) {
             setDataLoading(true)
             getOrdersData()
-            console.log(orders)
             setDataLoading(false)
         }
     }, [session, user])
@@ -64,7 +63,6 @@ function Orders(props) {
 
                         {
                             orders.edges.map(ord => {
-                                console.log(ord)
                                 const order = ord.node
                                 const orderDate = new Date(order.processedAt).toLocaleDateString('en-US', {})
                                 return (

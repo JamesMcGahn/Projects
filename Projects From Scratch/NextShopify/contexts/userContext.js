@@ -9,11 +9,14 @@ export function UserContextProvider(props) {
     const [session, loading] = useSession()
     const [user, setUser] = useState(false)
     const [orders, setOrderData] = useState(false)
+
     const [localCartID, setLocalCartId] = useLocalStorageState("user_cart", {})
+    const [localHistory, setLocalHistory] = useLocalStorageState("browser_history", [])
+    const [history, setHistory] = useState(localHistory)
 
     const updateCartId = async (id) => {
         if (session) {
-            const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/user/userCartId`, {
+            const res = await axios.put(`${process.env.NEXT_PUBLIC_SERVER}/api/user/user`, {
                 email: user.email,
                 cartId: id
             })
@@ -40,7 +43,24 @@ export function UserContextProvider(props) {
         }
     }
 
-
+    const saveCustomerHistory = async (product) => {
+        if (history.length > 0 && history[0].node.handle === product.node.handle) return
+        let newHistory = [product, ...history]
+        if (user) {
+            setHistory(newHistory)
+            try {
+                await axios.put(`${process.env.NEXT_PUBLIC_SERVER}/api/user/user`, {
+                    email: user.email,
+                    history: product
+                })
+            } catch (e) {
+                console.log(e)
+            }
+        } else if (!user) {
+            setHistory(newHistory)
+            setLocalHistory(newHistory)
+        }
+    }
 
 
 
@@ -61,8 +81,9 @@ export function UserContextProvider(props) {
                         lastName: data.lastName,
                         email: data.email,
                         token: data.token,
-                        cartId: data.cartId
+                        cartId: data.cartId,
                     })
+                    setHistory(data.history)
                 } catch (e) {
                     console.log(e)
                 }
@@ -73,7 +94,7 @@ export function UserContextProvider(props) {
 
 
     return (
-        <UserContext.Provider value={{ user, updateCartId, getOrdersData, orders, localCartID, setLocalCartId }} >
+        <UserContext.Provider value={{ user, updateCartId, getOrdersData, orders, localCartID, setLocalCartId, history, saveCustomerHistory }} >
             {props.children}
         </UserContext.Provider>
     )

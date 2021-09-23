@@ -19,9 +19,6 @@ function Collections({ notFound, collection, title }) {
         </>)
     }
 
-
-
-    console.log(collection)
     return (
         <div>
             <ProductGrid title={title} products={collection} />
@@ -60,10 +57,10 @@ export async function getStaticProps(context) {
         const { data } = await client.query({
             query: gql`${collection}`,
         });
-        console.log(data)
+
         const products = data.collectionByHandle.products.edges
         const title = data.collectionByHandle.title
-        console.log(products)
+
 
         return { props: { collection: products, title: title, notFound: false }, revalidate: 3600 }
     } catch (e) {

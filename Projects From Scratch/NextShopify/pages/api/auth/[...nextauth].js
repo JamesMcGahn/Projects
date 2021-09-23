@@ -33,8 +33,6 @@ export default NextAuth({
                         throw new Error('error')
                     } else {
                         const token = data.customerAccessTokenCreate.customerAccessToken.accessToken
-                        console.log('this is the token', token)
-
                         const encryptedToken = CryptoJS.AES.encrypt(`${token}`, `${process.env.TOKEN_SECRET}`)
                         await dbConnect();
                         const user = await User.findOne({ email });

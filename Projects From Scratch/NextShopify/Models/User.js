@@ -19,6 +19,9 @@ const UserSchema = new Schema({
     },
     cartId: {
         type: String,
+    },
+    history: {
+        type: Array,
     }
 })
 
