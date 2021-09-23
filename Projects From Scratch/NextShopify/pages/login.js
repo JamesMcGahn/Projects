@@ -3,6 +3,7 @@ import { getCsrfToken } from "next-auth/client"
 import Container from '../components/layout/Container'
 import { useRouter } from 'next/router'
 import LoginRegisterForm from '../components/forms/LoginRegisterForm'
+import PageTitle from '../components/ui/PageTitle';
 
 function Login(props) {
     const { csrfToken } = props
@@ -47,8 +48,8 @@ function Login(props) {
 
     return (
         <Container margin='0' minHeight='80vh' padding='2rem' width='100%' color='black' display='flex' flexDirection='column' justifyContent='flex-start' alignItems='center' background='#1d1d1d' >
+            <PageTitle title='Login' color='white' />
             <Container background='#fff' width='30%' smWidth='100%'>
-
                 <LoginRegisterForm method="POST"
                     handleSubmit={handleSubmit} csrfToken={csrfToken} form={form} handleChange={handleChange} errors={errors}
                     action={`${process.env.NEXT_PUBLIC_SERVER}/api/auth/callback/credentials`} />

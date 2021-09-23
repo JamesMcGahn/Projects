@@ -9,7 +9,7 @@ export function UserContextProvider(props) {
     const [session, loading] = useSession()
     const [user, setUser] = useState(false)
     const [orders, setOrderData] = useState(false)
-    const [localCartID, setlocalCartId] = useLocalStorageState("user_cart", {})
+    const [localCartID, setLocalCartId] = useLocalStorageState("user_cart", {})
 
     const updateCartId = async (id) => {
         if (session) {
@@ -22,7 +22,7 @@ export function UserContextProvider(props) {
             }
         }
         else if (!session) {
-            setlocalCartId({ cartId: id })
+            setLocalCartId({ cartId: id })
         }
     }
 
@@ -73,7 +73,7 @@ export function UserContextProvider(props) {
 
 
     return (
-        <UserContext.Provider value={{ user, updateCartId, getOrdersData, orders, localCartID }} >
+        <UserContext.Provider value={{ user, updateCartId, getOrdersData, orders, localCartID, setLocalCartId }} >
             {props.children}
         </UserContext.Provider>
     )

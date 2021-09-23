@@ -421,3 +421,38 @@ export const getCustomerOrders = (token) => {
   }
   `
 }
+
+export const updateCartBuyer = () => {
+  return `mutation cartBuyerIdentityUpdate($cartId: ID!, $buyerIdentity: CartBuyerIdentityInput!) {
+    cartBuyerIdentityUpdate(cartId: $cartId, buyerIdentity: $buyerIdentity) {
+      cart {
+        id
+        buyerIdentity {
+          email
+          phone
+          countryCode
+        }
+      }
+    }
+  }
+  `
+}
+
+export const createCustomer = () => {
+  return `
+  mutation customerCreate($input: CustomerCreateInput!) {
+    customerCreate(input: $input) {
+      customerUserErrors {
+        code
+        field
+        message
+      }
+      customer {
+        firstName  
+        id
+        email
+      }
+    }
+  }
+  `
+}

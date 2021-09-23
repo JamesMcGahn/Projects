@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function LoginRegister({ action, method, csrfToken, form, handleChange, handleSubmit, errors }) {
+function LoginRegister({ action, method, csrfToken, form, handleChange, handleSubmit, errors, isRegister }) {
     const classes = useStyles()
     return (
         <Container width='100%' padding='2rem' background='#494949' border='2px solid #CBB682'>
@@ -35,6 +35,19 @@ function LoginRegister({ action, method, csrfToken, form, handleChange, handleSu
 
             <form method={method} action={action} onSubmit={handleSubmit} action={action} noValidate>
                 <input name='csrfToken' type='hidden' defaultValue={csrfToken} />
+                {isRegister ?
+                    <React.Fragment>
+                        <div className={classes.inputItem}>
+                            <label htmlFor="firstName">First Name: </label>
+                            <input type="text" id="firstName" name="firstName" value={form.firstName} required onChange={handleChange} />
+                        </div>
+                        <div className={classes.inputItem}>
+                            <label htmlFor="lastName">Last Name: </label>
+                            <input type="text" id="lastName" name="lastName" value={form.lastName} required onChange={handleChange} />
+                        </div>
+                    </React.Fragment>
+                    : null
+                }
                 <div className={classes.inputItem}>
                     <label htmlFor="email">Email: </label>
                     <input type="email" id="email" name="email" value={form.email} required onChange={handleChange} />

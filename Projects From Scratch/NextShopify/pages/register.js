@@ -1,35 +1,57 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import Container from '../components/layout/Container'
 import { getCRSFToken } from '../helpers/getCRSFToken';
+import { UserContext } from '../contexts/userContext'
+import LoginRegisterForm from '../components/forms/LoginRegisterForm';
+import Loading from '../components/ui/Loading'
+import PageTitle from '../components/ui/PageTitle';
+import { useRouter } from 'next/router'
 
 function Register(props) {
-
+    const router = useRouter()
     const [form, setForm] = useState(
-        { firstName: '', lastName: '', email: '' }
+        { firstName: '', lastName: '', email: '', password: '' }
     );
     const [loading, setLoading] = useState(false)
-    const [submitted, setSubmitted] = useState(false)
-    const [formResponse, setFormResponse] = useState({ error: false, message: '', code: '' })
+    const [errors, setErrors] = useState({ error: false, message: '' })
     const [token, setToken] = useState()
+    const { localCartID, setLocalCartId } = useContext(UserContext)
 
     useEffect(() => {
-        const token = getCRSFToken()
-        setToken(token)
+        getCRSFToken().then(token => {
+            setToken(token)
+        })
+
     }, [])
 
 
-
     const handleSubmit = async (e) => {
-        setLoading(true)
+
         e.preventDefault();
+
+        const regex = new RegExp(/^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/)
+        // checks for common mistakes (spaces, missing period. etc)
+
+        if (!form.email || !form.lastName || !form.firstName || !form.password) {
+            setErrors({ error: true, message: 'Make sure to fill out all fields...' })
+            return
+        }
+        if (!regex.test(form.email)) {
+            setErrors({ error: true, message: 'Double Check Your Email' })
+            return
+        }
+
+        setLoading(true)
+
         try {
             const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/auth/register`,
                 {
                     firstName: form.firstName,
                     lastName: form.lastName,
                     email: form.email,
-                    password: form.password
+                    password: form.password,
+                    cartId: localCartID?.cartId ? localCartID.cartId : ''
                 },
                 {
                     headers: {
@@ -41,59 +63,37 @@ function Register(props) {
             )
             setLoading(false)
             if (res.data.errors === false) {
-                const email = res.data.data.customer.email
-                const firstName = res.data.data.customer.firstName
-                router.push(`/login?email=${email}&firstName=${firstName}`)
+                setLocalCartId({})
+                const email = res.data.data.email
+                router.push(`/login?email=${email}`)
             } else if (res.data.errors === true) {
-                setSubmitted(true)
                 const message = await res.data.data.customerCreate.customerUserErrors[0].message
                 const code = await res.data.data.customerCreate.customerUserErrors[0].code
-                setFormResponse({ error: true, message: message, code: code })
+                setErrors({ error: true, message: message })
             }
         } catch (e) {
             setLoading(false)
             console.error(e)
-            setFormResponse({ error: true, message: 'Oppsss... Something went wrong.. Try again', code: 'O No' })
+            setErrors({ error: true, message: 'Something went wrong. Try again' })
         }
-
-
-
-
     }
 
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value })
     }
 
-    //TODO: Style Form
-    //TODO: Form validation
-    //TODO: call fn to check if user has anything in local storage - probably add method in shopify or user context?
-
     return (
-        <Container>
-            {!loading && formResponse.error === true ? <h1>{`${formResponse.code} - ${formResponse.message}`}</h1> : null}
-
-            <form onSubmit={handleSubmit} noValidate>
-                <label htmlFor="firstName">First name:</label>
-                <input type="text" id="firstName" name="firstName" required onChange={handleChange} />
-                <label htmlFor="lastName">Last name:</label>
-                <input type="text" id="lastName" name="lastName" required onChange={handleChange} />
-                <label htmlFor="email">Email:</label>
-                <input type="email" id="email" name="email" required onChange={handleChange} />
-                <label htmlFor="password">Password:</label>
-                <input type="password" id="password" name="password" required onChange={handleChange} />
-                <button>Create Account </button>
-            </form>
+        <Container margin='0' minHeight='80vh' padding='2rem' width='100%' color='black' display='flex' flexDirection='column' justifyContent='flex-start' alignItems='center' background='#1d1d1d' >
+            <PageTitle title='Register' color='white' />
+            <Container background='#fff' width='30%' smWidth='100%'>
+                {loading ? <Loading />
+                    :
+                    <LoginRegisterForm form={form} handleChange={handleChange} handleSubmit={handleSubmit} errors={errors} isRegister />
+                }
+            </Container>
         </Container>
     );
 }
 
 export default Register;
 
-// export async function getServerSideProps(context) {
-//     return {
-//         props: {
-//             csrfToken: await getCsrfToken(context)
-//         }
-//     }
-// }

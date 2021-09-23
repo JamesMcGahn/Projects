@@ -5,11 +5,12 @@ const useStyles = makeStyles((theme) => ({
     title: {
         position: 'relative',
         display: 'inline-block',
-        fontSize: props => props.fontSize ? props.fontSize : '2.2rem'
+        fontSize: props => props.fontSize ? props.fontSize : '2.2rem',
 
     },
 
     titleDiv: {
+        color: props => props.color ? props.color : 'black',
         marginBottom: 0,
         padding: "1rem",
         fontFamily: 'Cinzel Decorative, cursive, arial',
@@ -37,8 +38,8 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function PageTitle({ title, fontSize }) {
-    const classes = useStyles(fontSize)
+function PageTitle({ title, fontSize, color }) {
+    const classes = useStyles({ fontSize, color })
     return (
         <div className={classes.titleDiv} ><span className={classes.title} >{title}</span></div >
     );

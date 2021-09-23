@@ -98,7 +98,11 @@ function TopNav(props) {
                                     </Container>
                                     <Container padding='0 1rem'><a href='/' onClick={() => signOut()}>Log Out</a></Container>
                                 </React.Fragment>
-                                : <Container padding='0 1rem'><li><Link href={`/login `}><a>Login</a></Link></li></Container>
+                                :
+                                <React.Fragment>
+                                    <Container padding='0 1rem'><li><Link href={`/login `}><a>Login</a></Link></li></Container>
+                                    <Container padding='0'><li><Link href={`/register `}><a>Register</a></Link></li></Container>
+                                </React.Fragment>
                             }
                         </Container>
                     </div>
