@@ -31,10 +31,10 @@ function FeaturedItems({ data, title }) {
 
     return (
         <Container display='flex' flexDirection='column' height='100%' justifyContent='center' margin="0 0 2rem 0">
-            <Container width='100%' height='100%' display='flex' flexDirection='row' alignItems='center' justifyContent='center'>
+            <Container width='100%' display='flex' flexDirection='row' alignItems='center' justifyContent='center'>
                 <h2>{title}</h2>
             </Container>
-            <ProductCarousel current={current} setCurrent={setCurrent} data={data} maxDisplay={maxDisplay}>
+            <ProductCarousel current={current} setCurrent={setCurrent} data={data} maxDisplay={maxDisplay} smMatches={smMatches} matches={matches}>
                 <MiniProductCard />
             </ProductCarousel>
         </Container>

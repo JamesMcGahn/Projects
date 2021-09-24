@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 const createTiles = (title, img) => ({ title: title, img: img });
-
+//TODO: data call ? constants
 const tiles = [
     createTiles('Title 1', 'https://n.nordstrommedia.com/id/f477f59e-065c-456f-b8b2-80f6a950775a.jpeg?h=365&w=268'),
     createTiles('Title 1', 'https://n.nordstrommedia.com/id/f477f59e-065c-456f-b8b2-80f6a950775a.jpeg?h=365&w=268'),

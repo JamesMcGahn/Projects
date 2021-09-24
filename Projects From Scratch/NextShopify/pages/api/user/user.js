@@ -6,7 +6,6 @@ import { getSession } from 'next-auth/client'
 const user = async (req, res) => {
     const session = await getSession({ req })
 
-    console.log('hit')
     if (req.method == "GET" && session) {
         const email = req.query.email;
         try {

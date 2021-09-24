@@ -66,6 +66,7 @@ function SingleProduct({ product, notFound, id }) {
 
         if (!selectedVariant) return setError(true)
         const item = {
+            productId: product.id,
             id: selectedVariant.node.id,
             vendor: product.vendor,
             image: product.images.edges[0].node.originalSrc,

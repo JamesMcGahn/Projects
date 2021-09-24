@@ -25,14 +25,14 @@ const useStyles = makeStyles((theme) => ({
 function MiniProductCard({ item }) {
     const classes = useStyles();
     return (
-        <Container height='inherit' display='flex' flexDirection='column' padding='0 .25rem' xsAlignItems='center'>
-            <Container width='100%' height='100%' padding='0 1rem' >
+        <Container height='inherit' display='flex' flexDirection='column' padding='0 .25rem' xsAlignItems='center' width='100%'>
+            <Container width='100%' padding='0 1rem' >
                 <img className={classes.itemImg} src={item.node.images.edges[0].node.originalSrc}
                     onMouseOver={e => (e.currentTarget.src = item.node.images?.edges[1].node.originalSrc ? item.node.images.edges[1].node.originalSrc : item.node.images.edges[0].node.originalSrc)}
                     onMouseOut={e => (e.currentTarget.src = item.node.images.edges[0].node.originalSrc)}
                 />
             </Container>
-            <Container height='100%' padding='0 1rem' display='flex' flexDirection='column' xsAlignItems='center'>
+            <Container width='100%' padding='0 1rem' display='flex' flexDirection='column' xsAlignItems='center'>
                 <h6 className={classes.title}>{item.node.title}</h6>
                 <p className={classes.lineItem}>{item.node.vendor}</p>
                 <p className={classes.lineItem}>{item.node.priceRange.maxVariantPrice.amount === item.node.priceRange.minVariantPrice.amount ? `$` : `From: $`}{`${Number(item.node.priceRange.minVariantPrice.amount).toFixed(2)} USD`}</p>

@@ -34,7 +34,7 @@ function Cart(props) {
             }
         }`,
         });
-        console.log(data)
+
 
         window.open(data.cart.checkoutUrl, '_blank', 'noopener,noreferrer')
     }

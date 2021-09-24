@@ -35,6 +35,7 @@ export const productByHandle = (handle) => {
             description
             productType
             vendor
+            id
             variants(first: 12) {
               edges {
                 node {
@@ -451,6 +452,32 @@ export const createCustomer = () => {
         firstName  
         id
         email
+      }
+    }
+  }
+  `
+}
+
+export const productReccommendations = (id) => {
+  return `query {
+    productRecommendations(productId: "${id}") {
+      title
+      handle
+      priceRange {
+        maxVariantPrice {
+          amount
+        }
+        minVariantPrice {
+          amount
+        }
+      }
+      images(first: 2) {
+        edges {
+          node {
+            altText
+            originalSrc
+          }
+        }
       }
     }
   }
