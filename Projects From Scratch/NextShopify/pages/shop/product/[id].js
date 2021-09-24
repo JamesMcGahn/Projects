@@ -107,7 +107,13 @@ function SingleProduct({ product, notFound, id }) {
 
     return (
         <Container smFlexD='column' display='flex' margin='0' padding='1rem 2rem' width='100%' color='black' justifyContent='center' alignItems='flex-start'>
+
             <Container width='45%' mdWidth='100%' margin='0 1rem 0 0'>
+                <Container xsWidth='100%'>
+                    <MainButton color='white' backgroundColor='black' width='30%' hoverColor='white' onClick={() => router.back()} >
+                        Go Back
+                    </MainButton>
+                </Container>
                 <ImageFeaturedCarousel data={product.images.edges}></ImageFeaturedCarousel>
             </Container>
             <Container width='45%' mdWidth='100%' display='flex' flexDirection='column' >
@@ -126,8 +132,9 @@ function SingleProduct({ product, notFound, id }) {
                             const isAvailable = variant.node.availableForSale
                             return (
                                 <Container margin='0 0 5px 3px' key={variant.node.id}>
-                                    <MainBadge color={selected ? 'gold' : 'white'} border={isAvailable ? selected ? '1px solid gold' : null : '1px solid gray'}
+                                    <MainBadge color={selected ? '#A08C5B' : 'white'} border={isAvailable ? selected ? '1px solid #A08C5B' : null : '1px solid gray'}
                                         backgroundColor={isAvailable ? 'black' : 'gray'} hoverBackgroundColor={isAvailable ? null : 'gray'}
+                                        hoverBorder='1px solid gray'
                                         onClick={() => handleVariantClick(variant.node.id)} disabled={isAvailable ? false : true} key={variant.node.title}>
                                         {variant.node.title}
                                     </MainBadge>
@@ -156,7 +163,7 @@ function SingleProduct({ product, notFound, id }) {
 
                 <Container display='flex' flexDirection='row' width='100%' margin='1rem 0' justifyContent='center'>
                     <Container width='50%'>
-                        <MainButton color='white' backgroundColor='black' width='100%' onClick={handleAddToCart} >
+                        <MainButton color='white' backgroundColor='black' width='100%' hoverColor='white' onClick={handleAddToCart} >
                             Add to Cart
                         </MainButton>
                     </Container>

@@ -43,8 +43,6 @@ const user = async (req, res) => {
             await dbConnect();
             const updateData = req.body
             delete updateData.email
-            console.log(updateData)
-            console.log(email)
 
             if (req.body?.history) {
                 const data = await User.findOneAndUpdate({ email: email }, { $push: { history: { $each: [req.body.history], $position: 0 } } })

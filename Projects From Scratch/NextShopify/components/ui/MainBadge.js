@@ -16,15 +16,15 @@ const useStyles = makeStyles((theme) => ({
             border: '1px solid black'
         },
         '& button:hover': {
-            backgroundColor: props => props.hoverBackgroundColor ? props.hoverBackgroundColor : 'rgba(29, 29, 29, 0.5)',
-            border: '1px solid rgba(29, 29, 29, 0.5)',
+            backgroundColor: props => props.hoverBackgroundColor ? props.hoverBackgroundColor : 'rgba(0,0,0, 0.9)',
+            border: props => props.hoverBorder ? props.hoverBorder : '1px solid rgba(29, 29, 29, 0.5)',
         }
     }
 }));
 
 
-function MainBadge({ children, backgroundColor, hoverBackgroundColor, color, border, width, ...rest }) {
-    const classes = useStyles({ backgroundColor, color, hoverBackgroundColor, border, width });
+function MainBadge({ children, hoverBorder, backgroundColor, hoverBackgroundColor, color, border, width, ...rest }) {
+    const classes = useStyles({ backgroundColor, color, hoverBackgroundColor, border, width, hoverBorder });
     return (
         <div className={classes.btnDiv}>
             <button className={classes.btn} {...rest}>
