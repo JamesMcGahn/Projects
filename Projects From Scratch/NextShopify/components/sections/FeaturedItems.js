@@ -4,6 +4,7 @@ import MiniProductCard from '../cards/MiniProductCard'
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Container from '../layout/Container'
 import ProductCarousel from '../ui/ProductCarousel'
+import PageTitle from '../ui/PageTitle'
 const useStyles = makeStyles((theme) => ({
 
 }));
@@ -31,9 +32,9 @@ function FeaturedItems({ data, title }) {
 
     return (
         <Container display='flex' flexDirection='column' height='100%' justifyContent='center' margin="0 0 2rem 0">
-            <Container width='100%' display='flex' flexDirection='row' alignItems='center' justifyContent='center'>
-                <h2>{title}</h2>
-            </Container>
+
+            <PageTitle title={title} />
+
             <ProductCarousel current={current} setCurrent={setCurrent} data={data} maxDisplay={maxDisplay} smMatches={smMatches} matches={matches}>
                 <MiniProductCard />
             </ProductCarousel>

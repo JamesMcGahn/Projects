@@ -1,6 +1,6 @@
 import React from 'react';
 import Container from '../layout/Container'
-
+import PageTitle from '../ui/PageTitle'
 import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
     tileContainer: {
@@ -46,9 +46,9 @@ function ShopbyCollection(props) {
     const length = tiles.length
     const classes = useStyles({ length });
     return (
-        <Container width='100%' display='flex' flexDirection='column' justifyContent='flex-start' alignItems='center'>
-            <h4>Shop by Collections</h4>
-            <Container display='flex' flexDirection='row' margin='0' padding='0' width='100%' color='black' justifyContent='center' alignItems='center' flexWrap='wrap'>
+        <Container width='100%' display='flex' flexDirection='column' justifyContent='flex-start' alignItems='center' margin='2rem 0'>
+            <PageTitle title='Shop by Collections' />
+            <Container display='flex' flexDirection='row' margin='2rem 0' padding='0' width='100%' color='black' justifyContent='center' alignItems='center' flexWrap='wrap'>
                 {tiles.map((tile, key) => {
                     return (<div className={classes.tile} key={key}>
                         <div className={classes.img}>

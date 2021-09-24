@@ -35,7 +35,7 @@ function ProductCarousel({ children, data, current, setCurrent, maxDisplay, smMa
     }
     return (
         <div className={classes.slider}>
-            {length < 4 && !smMatches || !matches ? null : <ChevronLeftIcon onClick={handlePrevious} />}
+            {length < 4 ? (smMatches || matches) ? <ChevronLeftIcon onClick={handlePrevious} /> : null : <ChevronLeftIcon onClick={handlePrevious} />}
             {data.map((item, index) => {
                 if (index >= current.min && index <= current.max) {
                     return (
@@ -49,7 +49,7 @@ function ProductCarousel({ children, data, current, setCurrent, maxDisplay, smMa
             }
             )
             }
-            {length < 4 && !smMatches || !matches ? null : <ChevronRightIcon onClick={handleNext} />}
+            {length < 4 ? (smMatches || matches) ? <ChevronRightIcon onClick={handleNext} /> : null : <ChevronRightIcon onClick={handleNext} />}
 
         </div>
     );

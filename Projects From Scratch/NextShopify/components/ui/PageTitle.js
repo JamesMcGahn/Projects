@@ -4,9 +4,15 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
     title: {
         position: 'relative',
-        display: 'inline-block',
+        display: 'block',
         fontSize: props => props.fontSize ? props.fontSize : '2.2rem',
 
+        [theme.breakpoints.down('sm')]: {
+            fontSize: props => props.smfontSize ? props.smfontSize : '1.2rem',
+        },
+        [theme.breakpoints.down('xs')]: {
+            fontSize: props => props.xsfontSize ? props.xsfontSize : '1.6rem',
+        },
     },
 
     titleDiv: {
@@ -38,8 +44,8 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function PageTitle({ title, fontSize, color }) {
-    const classes = useStyles({ fontSize, color })
+function PageTitle({ title, fontSize, color, xsfontSize, smfontSize }) {
+    const classes = useStyles({ fontSize, color, xsfontSize, smfontSize });
     return (
         <div className={classes.titleDiv} ><span className={classes.title} >{title}</span></div >
     );

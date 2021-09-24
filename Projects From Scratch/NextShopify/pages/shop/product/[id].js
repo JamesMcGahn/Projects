@@ -10,7 +10,7 @@ import DefaultErrorPage from 'next/error'
 import Container from '../../../components/layout/Container'
 import MainButton from '../../../components/ui/MainButton'
 import MainBadge from '../../../components/ui/MainBadge'
-import Loading from '../../../components/sections/Loading'
+import Loading from '../../../components/ui/Loading'
 
 const useStyles = makeStyles((theme) => ({
     title: {
@@ -33,7 +33,7 @@ function SingleProduct({ product, notFound, id }) {
     const classes = useStyles()
 
     if (router.isFallback) {
-        return <Loading></Loading>
+        return <Loading />
     }
     // TODO: Not Found Page - 
     if (notFound || !product) {
@@ -110,12 +110,12 @@ function SingleProduct({ product, notFound, id }) {
         <Container smFlexD='column' display='flex' margin='0' padding='1rem 2rem' width='100%' color='black' justifyContent='center' alignItems='flex-start'>
 
             <Container width='45%' mdWidth='100%' margin='0 1rem 0 0'>
-                <Container xsWidth='100%'>
+                <ImageFeaturedCarousel data={product.images.edges}></ImageFeaturedCarousel>
+                <Container xsWidth='100%' margin='1.5rem 0 10px 0'>
                     <MainButton color='white' backgroundColor='black' width='30%' hoverColor='white' onClick={() => router.back()} >
                         Go Back
                     </MainButton>
                 </Container>
-                <ImageFeaturedCarousel data={product.images.edges}></ImageFeaturedCarousel>
             </Container>
             <Container width='45%' mdWidth='100%' display='flex' flexDirection='column' >
                 <Container>
@@ -164,7 +164,7 @@ function SingleProduct({ product, notFound, id }) {
 
                 <Container display='flex' flexDirection='row' width='100%' margin='1rem 0' justifyContent='center'>
                     <Container width='50%'>
-                        <MainButton color='white' backgroundColor='black' width='100%' hoverColor='white' onClick={handleAddToCart} >
+                        <MainButton color='black' backgroundColor='#A08C5B' width='100%' hoverColor='white' onClick={handleAddToCart} >
                             Add to Cart
                         </MainButton>
                     </Container>

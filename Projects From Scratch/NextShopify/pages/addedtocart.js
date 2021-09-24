@@ -66,7 +66,7 @@ function addedToCart({ products }) {
                         <Container width="25%">
                             <img className={classes.cartProductImage} src={addedToCartItems[0].image} />
                         </Container>
-                        <Container width='40%' display='flex' flexDirection='column' margin='0 0 1rem 2rem' >
+                        <Container width='25%' display='flex' flexDirection='column' margin='0 0 1rem 2rem' >
                             <Container margin='0 0 1rem 0'>
                                 <span className={classes.lineItem}> <h1>{`Added to Cart:`}</h1></span>
                                 <span className={classes.lineItem}><h2>{`${addedToCartItems[0].title} `}</h2></span>
@@ -93,7 +93,10 @@ function addedToCart({ products }) {
                 </Container>
                 : null
             }
+
             <ProductGrid title="More Items" products={products} hasMoreItems={false} getMoreItems={false} />
+
+
         </Container>
     );
 }

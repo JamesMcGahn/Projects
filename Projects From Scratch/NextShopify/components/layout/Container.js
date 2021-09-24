@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
         minHeight: props => props.minHeight,
         border: props => props.border,
         textAlign: props => props.textAlign,
-        boxShadow: props => props.boxShadow,
+        boxShadow: props => props.boxShadow ? props.boxShadow : 'none',
         [theme.breakpoints.down('lg')]: {
             flexDirection: props => props.lgFlexD,
             width: props => props.lgWidth,

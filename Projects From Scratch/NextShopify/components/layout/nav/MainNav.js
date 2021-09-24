@@ -140,7 +140,7 @@ function MainNav() {
 
             {mobile
                 ? <Container display='flex' alignItems="center" flexDirection='column' width='100%' background='#CBB682'>
-                    <IconButton className={classes.svg} aria-label="expand row" size="small" color='black' onClick={() => setOpen(!open)}>
+                    <IconButton className={classes.svg} aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
                         {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                     </IconButton>
                     <Collapse in={open} timeout="auto" unmountOnExit width='100%' classes={{ root: classes.root }}>
