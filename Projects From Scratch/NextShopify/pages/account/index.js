@@ -15,15 +15,19 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: "center",
         margin: '3rem 0',
         '& :hover': {
-            backgroundColor: '#A08C5B',
-            cursor: 'pointer'
+            backgroundColor: '#1d1d1d',
+            cursor: 'pointer',
+            '& h6': {
+                color: 'white'
+            }
+
         },
     },
     accountItem: {
         width: '20%',
         padding: '.5rem 0',
         border: '1px solid black',
-        backgroundColor: 'white',
+        backgroundColor: '#CBB682',
         display: 'flex',
         marginRight: '10px',
         marginBottom: '10px',
@@ -53,7 +57,7 @@ function Account(props) {
                 <Container className={classes.tileDiv}>
                     <Link href='/account/orders'><a className={classes.accountItem}><h6>Orders</h6></a></Link>
                     <Link href='/account/'><a className={classes.accountItem}><h6>Profile</h6></a></Link>
-                    <Link href='/account/'><a className={classes.accountItem}><h6>History</h6></a></Link>
+                    <Link href='/account/history'><a className={classes.accountItem}><h6>History</h6></a></Link>
                     <Link href='/account/'><a className={classes.accountItem}><h6>Addresses</h6></a></Link>
                     <Link href='/account/'><a className={classes.accountItem}><h6>Update Password</h6></a></Link>
                     <Link href='/account/'><a className={classes.accountItem}><h6>Reset Password</h6></a></Link>
