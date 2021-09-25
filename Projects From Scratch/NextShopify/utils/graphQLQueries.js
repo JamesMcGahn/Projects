@@ -496,7 +496,7 @@ export const getArticleExcerptsInital = (number) => {
                 node {
                   handle
                   title
-                  excerpt
+                  content
                   image {
                     originalSrc
                 }
@@ -517,7 +517,7 @@ export const getArticleExcerptsAdditional = (cursor) => {
                 node {
                   handle
                   title
-                  excerpt
+                  content
                   image {
                     originalSrc
                 }

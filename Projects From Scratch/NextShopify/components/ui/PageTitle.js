@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import Link from 'next/link'
 
 const useStyles = makeStyles((theme) => ({
     title: {
@@ -32,22 +33,34 @@ const useStyles = makeStyles((theme) => ({
             left: 0,
             backgroundColor: '#CBB682',
             visibility: 'visible',
-            transform: 'scaleX(1)',
+            transform: props => props.animation ? 'scaleX(1)' : 'none',
             transition: 'all 0.3s ease-in-out',
         },
         '& span:hover:before': {
-            visibility: 'hidden',
-            transform: 'scaleX(0)',
+            visibility: props => props.animation ? 'hidden' : 'visible',
+            transform: props => props.animation ? 'scaleX(0)' : 'none',
         }
     },
 
 
 }));
 
-function PageTitle({ title, fontSize, color, xsfontSize, smfontSize }) {
-    const classes = useStyles({ fontSize, color, xsfontSize, smfontSize });
+function PageTitle({ title, fontSize, color, xsfontSize, smfontSize, animation, href }) {
+    const classes = useStyles({ fontSize, color, xsfontSize, smfontSize, animation });
     return (
-        <div className={classes.titleDiv} ><span className={classes.title} >{title}</span></div >
+
+        <div className={classes.titleDiv} >
+            {href ?
+                <Link href={href}>
+                    <a>
+                        <span className={classes.title} >{title}</span>
+                    </a>
+                </Link>
+                :
+                <span className={classes.title} >{title}</span>
+            }
+        </div >
+
     );
 }
 
