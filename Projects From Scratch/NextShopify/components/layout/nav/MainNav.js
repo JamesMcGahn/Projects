@@ -11,6 +11,7 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Collapse from '@material-ui/core/Collapse';
 import CartBadge from '../../ui/CartBadge'
 import { useRouter } from 'next/router'
+import Loading from '../../../components/ui/Loading'
 
 const useStyles = makeStyles((theme) => ({
     logo: {
@@ -72,6 +73,18 @@ const useStyles = makeStyles((theme) => ({
         borderBottom: '1px solid grey',
         backgroundColor: 'white',
         display: 'flex',
+        boxShadow: '3px 2px 5px rgba(0,0,0, 0.4)',
+        animation: 'fadeIn 0.3s ease-in',
+    },
+    '@global': {
+        "@keyframes fadeIn": {
+            from: {
+                opacity: 0
+            },
+            to: {
+                opacity: 1,
+            }
+        },
     },
     collectionItem: {
         padding: '.5rem',
@@ -121,7 +134,7 @@ function MainNav() {
     const closeMenu = () => {
         timer.current = setTimeout(() => {
             setOpen(false)
-        }, 750)
+        }, 500)
     }
 
     const handleMouseOut = () => {
@@ -197,11 +210,7 @@ function MainNav() {
                                     <a onClick={handleOnClick}>{item.node.title}</a></Link>
                                 </div>
                             ))
-                                : <h1>loading</h1>}
-
-                            {
-                                //TODO add loading component
-                            }
+                                : <Loading />}
                         </Container>
                         <div className={classes.featuredCollections}>
 

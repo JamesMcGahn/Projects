@@ -108,7 +108,7 @@ function ContactPage() {
     return (
         <Container margin='0' minHeight='80vh' padding='2rem' width='100%' color='black' display='flex' flexDirection='column' justifyContent='flex-start' alignItems='center' background='#1d1d1d' >
             <PageTitle title='Contact' color='white' />
-            <Container background='#fff' width='40%' smWidth='100%'>
+            <Container background='#fff' width='40%' smWidth='100%' margin='1rem 0'>
                 {loading ? <Loading />
                     :
                     <ContactForm form={form} handleChange={handleChange} handleSubmit={handleSubmit} errors={errors} success={success} captcha={captcha}>
