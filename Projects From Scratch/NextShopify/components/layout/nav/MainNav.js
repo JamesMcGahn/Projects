@@ -172,7 +172,11 @@ function MainNav() {
                                 <li onMouseOver={handleMouseIn} onMouseOut={handleMouseOut} id="shop">
                                     <Link href={`/shop`} ><a className={onPage === 'shop' ? classes.activeItem : ''} onClick={handleOnClick}>Shop</a></Link>
                                 </li>
-                                <li className={onPage === 'blog' ? classes.activeItem : ''}>Blog</li>
+                                <li >
+                                    <Link href={`/blog`} >
+                                        <a className={onPage === 'blog' ? classes.activeItem : ''}>Blog</a>
+                                    </Link>
+                                </li>
                                 <li className={onPage === 'about' ? classes.activeItem : ''}>About</li>
                                 <li className={onPage === 'contact' ? classes.activeItem : ''}>
                                     <Link href={`/contact`} ><a className={onPage === 'contact' ? classes.activeItem : ''}>

@@ -157,7 +157,7 @@ const cartFragment = `cart {
   id
   createdAt
   updatedAt
-  lines(first:10) {
+  lines(first:100) {
     edges {
       node {
         id
@@ -277,7 +277,7 @@ export const getCustomerCart = (id) => {
       id
       createdAt
       updatedAt
-      lines(first:10) {
+      lines(first:100) {
         edges {
           node {
             id
@@ -483,3 +483,73 @@ export const productReccommendations = (id) => {
   }
   `
 }
+
+export const getArticleExcerptsInital = (number) => {
+  return `query {
+          articles(first: ${number}) {
+            pageInfo {
+              hasNextPage
+              hasPreviousPage
+            }
+              edges {
+                cursor
+                node {
+                  handle
+                  title
+                  excerpt
+                  image {
+                    originalSrc
+                }
+              }
+            }
+          }
+        }`
+}
+export const getArticleExcerptsAdditional = (cursor) => {
+  return `query {
+          articles(first: 3 after: "${cursor}") {
+            pageInfo {
+              hasNextPage
+              hasPreviousPage
+            }
+              edges {
+                cursor
+                node {
+                  handle
+                  title
+                  excerpt
+                  image {
+                    originalSrc
+                }
+              }
+            }
+          }
+        }`
+}
+
+export const articlesByHandle = (handle) => {
+  return `query {
+    blogs(first: 1) {
+      edges {
+        node {
+          articleByHandle(handle: "${handle}") {
+            handle
+          title
+          contentHtml
+          excerpt
+          image {
+            originalSrc
+          }
+          seo {
+            title
+            description
+          }
+          }
+        }
+      }
+    }
+  }
+  `
+}
+
+
