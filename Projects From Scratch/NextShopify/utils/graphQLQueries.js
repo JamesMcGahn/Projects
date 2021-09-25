@@ -535,8 +535,7 @@ export const articlesByHandle = (handle) => {
           articleByHandle(handle: "${handle}") {
             handle
           title
-          contentHtml
-          excerpt
+          content
           image {
             originalSrc
           }

@@ -118,7 +118,7 @@ function BlogPage({ articles, hasNext }) {
                                             </React.Fragment>
                                             :
                                             <React.Fragment>
-                                                <Container width="50%" padding='1.5rem' smWidth="100%" smPadding='1.5rem'>
+                                                <Container width="50%" padding='1.5rem' smWidth="100%" smPadding='0'>
                                                     <Container width="100%" margin='0' padding='0'>
                                                         <span className={classes.title}> {post.title} </span>
                                                     </Container>
@@ -142,8 +142,8 @@ function BlogPage({ articles, hasNext }) {
                 }
                 )}
 
-                <Container display="flex" width="100%" margin='1.5rem 0'>
-                    <Container display="flex" width="100%" padding='1rem'>
+                <Container display="flex" width="100%" margin='1rem 0'>
+                    <Container display="flex" width="100%" padding='0 1rem'>
                         {hasNextPrev.prev ? <MainButton color='black' backgroundColor='#CBB682' width='100%' hoverColor='white' onClick={handlePrevClick}> Prev Page</MainButton> : null}
                     </Container>
                     <Container display="flex" width="100%" justifyContent="flex-end" padding='0 1rem'>
