@@ -62,7 +62,7 @@ function TopNav(props) {
 
                     </Container>
                     <Container width='33%' textAlign='center'>
-                        Store Name
+                        Beyond the Baselines
                     </Container>
                     <Container width='33%' textAlign='right'>
                         {session ?
@@ -110,7 +110,8 @@ function TopNav(props) {
                         <Container display='flex' width='100%' flexWrap='wrap' flexDirection='column' color='black'>
                             <ul className={classes.listCol}>
                                 <li><Link href={`/account`} ><a>Account</a></Link></li>
-                                <li>Wishlist</li>
+                                <li><Link href={`/account/wishlist`} ><a>Wishlist</a></Link></li>
+                                <li><Link href={`/account/history`} ><a>History</a></Link></li>
                             </ul>
                         </Container>
                     </div>

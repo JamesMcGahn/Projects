@@ -133,7 +133,7 @@ function Cart(props) {
                 }
             </Container>
             {savedForLater?.length > 0 ?
-                <Container width='75%' flexDirection="column" display='flex' padding="1rem" margin="2.5rem 0">
+                <Container width='75%' smWidth='100%' flexDirection="column" display='flex' padding="1rem" margin="2.5rem 0">
                     <Container>
                         <PageTitle title='Saved For Later' />
                     </Container>

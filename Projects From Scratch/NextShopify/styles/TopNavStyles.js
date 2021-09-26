@@ -23,12 +23,14 @@ const useStyles = makeStyles((theme) => ({
 
     listCol: {
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: 'row',
         margin: 0,
         justifyContent: 'flex-start',
+        flexWrap: 'wrap',
         listStyle: 'none',
         '& li': {
-            margin: '.2rem 0'
+            margin: '.2rem 0',
+            width: '33.3%',
         }
     },
     list: {
@@ -49,10 +51,22 @@ const useStyles = makeStyles((theme) => ({
         zIndex: 10,
         top: '9.1%',
         left: '70%',
-        padding: '10px',
+        padding: '20px',
         border: '1px solid grey',
         backgroundColor: 'white',
         display: 'flex',
+        boxShadow: '-3px 3px 5px rgba(0,0,0, 0.4)',
+        animation: 'fadeIn 0.3s ease-in',
+    },
+    '@global': {
+        "@keyframes fadeIn": {
+            from: {
+                opacity: 0
+            },
+            to: {
+                opacity: 1,
+            }
+        },
     },
     accountDivName: {
         fontSize: '.8rem',

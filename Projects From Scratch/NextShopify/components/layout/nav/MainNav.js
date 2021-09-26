@@ -12,6 +12,7 @@ import Collapse from '@material-ui/core/Collapse';
 import CartBadge from '../../ui/CartBadge'
 import { useRouter } from 'next/router'
 import Loading from '../../../components/ui/Loading'
+import { navTitles } from '../../../constants'
 
 const useStyles = makeStyles((theme) => ({
     logo: {
@@ -88,7 +89,22 @@ const useStyles = makeStyles((theme) => ({
     },
     collectionItem: {
         padding: '.5rem',
+        width: '33%'
     },
+    collectionTitle: {
+        padding: '.5rem',
+        '& a': {
+            textDecoration: 'underline'
+        }
+
+    },
+    navCatImages: {
+        width: '20%',
+        '& img': {
+            width: '100%'
+        }
+    },
+
     featuredCollections: {
         width: '50%',
     },
@@ -159,14 +175,14 @@ function MainNav() {
                     <Collapse in={open} timeout="auto" unmountOnExit width='100%' classes={{ root: classes.root }}>
                         <Container display='flex' flexDirection='row' justifyContent='center' alignItems='center' width='100%' margin='1rem 0'>
                             <Container display='flex' flexDirection='column' width='50%' alignItems='center' >
-                                <Container><Link href={`/shop`} ><a>Shop</a></Link></Container>
-                                <Container><Link href={`/`} ><a>Home</a></Link></Container>
-                                <Container>Blog</Container>
+                                <Container><Link href={`/shop`} ><a onClick={() => setOpen(!open)}>Shop</a></Link></Container>
+                                <Container><Link href={`/`} ><a onClick={() => setOpen(!open)}>Home</a></Link></Container>
+                                <Container><Link href={`/blog`} ><a onClick={() => setOpen(!open)}>Blog</a></Link></Container>
                             </Container>
                             <Container display='flex' flexDirection='column' width='50%' alignItems='center' >
-                                <Container>About</Container>
-                                <Container>Contact</Container>
-                                <Container>Cart</Container>
+                                <Container><Link href={`/about`} ><a onClick={() => setOpen(!open)}>About</a></Link></Container>
+                                <Container><Link href={`/contact`} ><a onClick={() => setOpen(!open)}>Contact</a></Link></Container>
+                                <Container><Link href={`/cart`} ><a onClick={() => setOpen(!open)}>Cart</a></Link></Container>
                             </Container>
 
                         </Container>
@@ -204,20 +220,34 @@ function MainNav() {
                         </div>
                     </Container>
                     {open && <div className={classes.expandedMenu} onMouseOver={handleMenuIn} onMouseOut={handleMouseOut}>
-                        <div className={classes.collectionItem}><Link href={`/shop/collections/`} >
-                            <a onClick={handleOnClick}>Collections</a></Link>
-                        </div>
-                        <Container display='flex' width='50%' flexWrap='wrap' flexDirection='column'>
-                            {collectionList ? collectionList.map(item => (
-                                <div className={classes.collectionItem} key={item.node.handle}><Link href={`/shop/collections/${item.node.handle}`} >
-                                    <a onClick={handleOnClick}>{item.node.title}</a></Link>
-                                </div>
-                            ))
-                                : <Loading />}
-                        </Container>
-                        <div className={classes.featuredCollections}>
 
-                        </div>
+                        <Container display='flex' width='50%' flexDirection='column'>
+                            <Container display='flex' width='100%' flexDirection='column'>
+                                <div className={classes.collectionTitle}><Link href={`/shop/collections/`} >
+                                    <a onClick={handleOnClick}>COLLECTIONS</a></Link>
+                                </div>
+                            </Container>
+
+                            <Container display='flex' width='100%' flexWrap='wrap' flexDirection='row'>
+                                {collectionList ? collectionList.map(item => (
+                                    <div className={classes.collectionItem} key={item.node.handle}><Link href={`/shop/collections/${item.node.handle}`} >
+                                        <a onClick={handleOnClick}>{item.node.title}</a></Link>
+                                    </div>
+                                ))
+                                    : <Loading />}
+                            </Container>
+                        </Container>
+                        <Container display='flex' width='50%' flexDirection='row' justifyContent='space-between' alignItems='center'>
+                            {navTitles.map(item => (
+                                <div className={classes.navCatImages}>
+                                    <Link href={`/shop/collections/${item.alt}`} >
+                                        <a onClick={handleOnClick}>
+                                            <img src={item.img} alt={item.alt} />
+                                        </a>
+                                    </Link>
+                                </div>
+                            ))}
+                        </Container>
                     </div>
                     }
                 </React.Fragment>
