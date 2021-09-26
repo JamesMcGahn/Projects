@@ -255,6 +255,27 @@ export const addLineToCart = () => {
   `
 }
 
+export const deleteCartLine = () => {
+  return `mutation cartLinesRemove($cartId: ID!, $lineIds: [ID!]!) {
+    cartLinesRemove(cartId: $cartId, lineIds: $lineIds) {
+      ${cartFragment}
+      userErrors {
+        code
+        field
+        message
+      }
+    }
+  }
+  `
+
+
+
+}
+
+
+
+
+
 export const getCustomerToken = () => {
   return `mutation customerAccessTokenCreate($input: CustomerAccessTokenCreateInput!) {
       customerAccessTokenCreate(input: $input) {

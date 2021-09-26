@@ -119,9 +119,37 @@ export function ShopifyContextProvider(props) {
     }
   }
 
+  async function deleteLine(id) {
+    setIsCartLoading(true)
+
+    try {
+      const res = await axios.delete(`${process.env.NEXT_PUBLIC_SERVER}/api/cart/cartLines`,
+
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'XSRF-TOKEN': await getCRSFToken()
+          },
+          data: {
+
+            cartId: cart.id,
+            lineId: `${id}`,
+
+          }
+        }
+      )
+      const { data } = res.data
+      setCart(data)
+      setIsCartLoading(false)
+    } catch (err) {
+      console.log(e)
+    }
+  }
+
+
 
   return (
-    <ShopifyContext.Provider value={{ cart, setCart, collectionList, addedToCartItems, setAddedToCartItems, addToCart, isCartLoading, }} >
+    <ShopifyContext.Provider value={{ cart, setCart, collectionList, addedToCartItems, setAddedToCartItems, addToCart, isCartLoading, deleteLine }} >
       {props.children}
     </ShopifyContext.Provider>
   )

@@ -1,6 +1,6 @@
 import { client, gql } from '../../../utils/appolloClient'
 import csrf from '../../../utils/csrf';
-import { addLineToCart, updateCart } from '../../../utils/graphQLQueries'
+import { addLineToCart, updateCart, deleteCartLine } from '../../../utils/graphQLQueries'
 
 const cartLines = async (req, res) => {
     const validateCSRF = await csrf(req, res)
@@ -48,6 +48,27 @@ const cartLines = async (req, res) => {
                 variables: updatedItems
             })
             const cartData = carts.data.cartLinesUpdate.cart
+            return res.status(200).json({ success: true, errors: false, data: cartData })
+        } catch (err) {
+            console.log(err)
+            return res.status(400).json({ success: 'false' })
+        }
+    }
+    else if (req.method == "DELETE" && validateCSRF) {
+        const { cartId, lineId, } = req.body
+        try {
+            const deleteCartScema = deleteCartLine()
+            const deleteItems = {
+                "cartId": `${cartId}`,
+                "lineIds": [
+                    `${lineId}`
+                ]
+            }
+            const carts = await client.mutate({
+                mutation: gql`${deleteCartScema}`,
+                variables: deleteItems
+            })
+            const cartData = carts.data.cartLinesRemove.cart
             return res.status(200).json({ success: true, errors: false, data: cartData })
         } catch (err) {
             console.log(err)

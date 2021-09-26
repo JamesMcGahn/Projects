@@ -4,6 +4,8 @@ import { ShopifyContext } from '../contexts/shopifyContext'
 import { client, gql } from '../utils/appolloClient'
 import { makeStyles } from '@material-ui/core/styles';
 import MainButton from '../components/ui/MainButton'
+import Loading from '../components/ui/Loading'
+import PageTitle from '../components/ui/PageTitle'
 
 const useStyles = makeStyles((theme) => ({
     lineImage: {
@@ -15,12 +17,17 @@ const useStyles = makeStyles((theme) => ({
             fontSize: '1.2rem',
             margin: '0'
         },
+    },
+    removeItem: {
+        '& span:hover': {
+            cursor: 'pointer'
+        }
     }
 }));
 
 
 function Cart(props) {
-    const { cart, isCartLoading } = useContext(ShopifyContext)
+    const { cart, isCartLoading, deleteLine } = useContext(ShopifyContext)
     const classes = useStyles();
 
     const handleCheckout = async () => {
@@ -49,38 +56,44 @@ function Cart(props) {
             <Container display='flex' flexDirection='row' smFlexD='column'>
                 <Container width="75%" flexDirection="column" padding="1rem" display='flex' margin='0 1.5rem 0 0' smWidth='100%'>
                     <Container>
-                        <h1>Shopping Cart</h1>
+                        <PageTitle title='Shopping Cart' />
                     </Container>
                     <Container width='100%' flexDirection="column" display='flex'>
-                        {!cart ? isCartLoading ?
-                            'loading'
+                        {!cart || isCartLoading ? isCartLoading ?
+                            <Loading />
                             : <h1>add some items</h1>
                             :
                             cart.lines.edges.map(line => {
                                 const lineAmount = line.node.merchandise.priceV2.amount
                                 return (
-                                    <Container display='flex' alignItems="center" key={line.node.id} borderBottom="1px solid black" padding="0.5rem">
-                                        <Container width='15%' >
-                                            <img className={classes.lineImage} src={line.node.merchandise.product.images.edges[0].node.originalSrc} alt={line.node.merchandise.sku} />
+                                    <Container width='100%' flexDirection="column" display='flex' borderBottom="1px solid black">
+                                        <Container display='flex' alignItems="center" key={line.node.id} padding="0.5rem">
+                                            <Container width='15%' >
+                                                <img className={classes.lineImage} src={line.node.merchandise.product.images.edges[0].node.originalSrc} alt={line.node.merchandise.sku} />
+                                            </Container>
+                                            <Container display='flex' width='60%' flexDirection='column' padding="0 1rem">
+                                                <Container>
+                                                    <span className={classes.lineItem}><h6>{line.node.merchandise.product.title}</h6></span>
+                                                </Container>
+                                                <Container>
+                                                    <span className={classes.lineItem}>{`Brand: ${line.node.merchandise.product.vendor}`} </span>
+                                                    <span className={classes.lineItem}>{`Variant: ${line.node.merchandise.title}`}</span>
+                                                    <span className={classes.lineItem}>{`SKU:  ${line.node.merchandise.sku}`}</span>
+                                                </Container>
+                                            </Container>
+                                            <Container display='flex' width='25%' padding="0 1rem" justifyContent="space-between" xsFlexD='column'>
+                                                <Container xsMargin='0 0 5px 0'>
+                                                    <span className={classes.lineItem}>{`Qty: ${line.node.quantity}`}</span>
+                                                </Container>
+                                                <Container>
+                                                    <span className={classes.lineItem}> {`$${Number(lineAmount).toFixed(2)}`}</span>
+                                                </Container>
+                                            </Container >
                                         </Container>
-                                        <Container display='flex' width='60%' flexDirection='column' padding="0 1rem">
-                                            <Container>
-                                                <span className={classes.lineItem}><h6>{line.node.merchandise.product.title}</h6></span>
-                                            </Container>
-                                            <Container>
-                                                <span className={classes.lineItem}>{`Brand: ${line.node.merchandise.product.vendor}`} </span>
-                                                <span className={classes.lineItem}>{`Variant: ${line.node.merchandise.title}`}</span>
-                                                <span className={classes.lineItem}>{`SKU:  ${line.node.merchandise.sku}`}</span>
-                                            </Container>
+                                        <Container display='flex' width='100%' justifyContent='flex-end'>
+
+                                            <div className={classes.removeItem} onClick={() => { deleteLine(line.node.id) }}> <span>Remove From Cart</span></div>
                                         </Container>
-                                        <Container display='flex' width='25%' padding="0 1rem" justifyContent="space-between" xsFlexD='column'>
-                                            <Container xsMargin='0 0 5px 0'>
-                                                <span className={classes.lineItem}>{`Qty: ${line.node.quantity}`}</span>
-                                            </Container>
-                                            <Container>
-                                                <span className={classes.lineItem}> {`$${Number(lineAmount).toFixed(2)}`}</span>
-                                            </Container>
-                                        </Container >
                                     </Container>
                                 )
                             })
