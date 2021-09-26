@@ -2,6 +2,8 @@ import React from 'react';
 import Container from '../layout/Container'
 import PageTitle from '../ui/PageTitle'
 import { makeStyles } from '@material-ui/core/styles';
+import { tiles } from '../../constants'
+import Link from 'next/link'
 const useStyles = makeStyles((theme) => ({
     tileContainer: {
         margin: 0,
@@ -17,7 +19,8 @@ const useStyles = makeStyles((theme) => ({
     },
     tile: {
         width: props => `${(100 / props.length) - 2}%`,
-        marginLeft: '.1rem',
+        padding: '1.5rem',
+        marginLeft: '.5rem',
         '& p': {
             fontWeight: 'bold',
         }
@@ -33,29 +36,28 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-const createTiles = (title, img) => ({ title: title, img: img });
-//TODO: data call ? constants
-const tiles = [
-    createTiles('Title 1', 'https://n.nordstrommedia.com/id/f477f59e-065c-456f-b8b2-80f6a950775a.jpeg?h=365&w=268'),
-    createTiles('Title 1', 'https://n.nordstrommedia.com/id/f477f59e-065c-456f-b8b2-80f6a950775a.jpeg?h=365&w=268'),
-    createTiles('Title 1', 'https://n.nordstrommedia.com/id/f477f59e-065c-456f-b8b2-80f6a950775a.jpeg?h=365&w=268'),
-    createTiles('Title 1', 'https://n.nordstrommedia.com/id/f477f59e-065c-456f-b8b2-80f6a950775a.jpeg?h=365&w=268'),
-]
 
 function ShopbyCollection(props) {
-    const length = tiles.length
+    const catTiles = tiles
+    const length = catTiles.length
     const classes = useStyles({ length });
     return (
         <Container width='100%' display='flex' flexDirection='column' justifyContent='flex-start' alignItems='center' margin='2rem 0'>
             <PageTitle title='Shop by Collections' />
             <Container display='flex' flexDirection='row' margin='2rem 0' padding='0' width='100%' color='black' justifyContent='center' alignItems='center' flexWrap='wrap'>
-                {tiles.map((tile, key) => {
-                    return (<div className={classes.tile} key={key}>
-                        <div className={classes.img}>
-                            <img src={`${tile.img}`} alt={`${tile.title}`} />
+                {catTiles.map((tile, key) => {
+                    return (
+
+                        <div className={classes.tile} key={key}>
+                            <Link href={`/shop/collections/${tile.handle}`}>
+                                <a>
+                                    <div className={classes.img}>
+                                        <img src={`${tile.img}`} alt={`${tile.title}`} />
+                                    </div>
+                                </a>
+                            </Link>
                         </div>
-                        <p>{tile.title}</p>
-                    </div>
+
                     )
                 })}
             </Container>

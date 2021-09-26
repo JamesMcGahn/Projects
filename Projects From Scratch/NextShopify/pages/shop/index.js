@@ -4,6 +4,7 @@ import ProductGrid from '../../components/sections/ProductGrid'
 import { getProducts } from '../../utils/graphQLQueries'
 import Container from '../../components/layout/Container'
 import { makeStyles } from '@material-ui/core/styles';
+import axios from 'axios'
 const useStyles = makeStyles((theme) => ({
 
 }));
@@ -16,56 +17,23 @@ function ShopPage({ products, hasNext, cursor }) {
   const [hasMoreItems, setHasMoreItems] = useState(hasNext)
   const classes = useStyles()
 
-
-  //TODO pull out query & make api call
-  const loadMore = `
-query {
-    products(first: 20, after: "${itemCursor}"){
-    pageInfo{
-      hasNextPage
-      hasPreviousPage
-    }
-      edges {
-        cursor
-        node{
-          id
-          title
-          handle
-          vendor
-          productType
-                priceRange {
-            minVariantPrice{
-              amount
-            }
-            maxVariantPrice{
-              amount
-            }
-          }
-          images(first: 2){
-            edges{
-              node{
-                originalSrc
-              }
-            }
-          }
-        }
-      }
-    }
-  }   
-`
-
   const getMoreItems = async () => {
-    const { data } = await client.query({
-      query: gql`${loadMore}`,
-    });
-    const newProducts = data.products.edges
-    const moreToLoad = data.products.pageInfo.hasNextPage
-
-    setProductsList([...productsList, ...newProducts])
-    setHasMoreItems(moreToLoad)
-    setitemCursor(newProducts[newProducts.length - 1].cursor)
+    try {
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/products/products`, {
+        params: {
+          id: itemCursor
+        }
+      })
+      const { data } = res.data
+      const newProducts = data.products
+      const hasNext = data.hasNextPage
+      setProductsList([...productsList, ...newProducts])
+      setHasMoreItems(hasNext)
+      setitemCursor(newProducts[newProducts.length - 1].cursor)
+    } catch (e) {
+      console.log(e)
+    }
   }
-
 
   return (
     <Container margin='0' padding='2rem' width='100%' color='black' display='flex' flexDirection='column' justifyContent='flex-start' alignItems='center' background='#1d1d1d' >

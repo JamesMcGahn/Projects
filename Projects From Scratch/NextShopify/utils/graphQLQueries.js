@@ -572,4 +572,42 @@ export const articlesByHandle = (handle) => {
   `
 }
 
+export const getAddtlProducts = (itemCursor) => {
+  return `
+    query {
+        products(first: 20, after: "${itemCursor}"){
+        pageInfo{
+          hasNextPage
+          hasPreviousPage
+        }
+          edges {
+            cursor
+            node{
+              id
+              title
+              handle
+              vendor
+              productType
+                    priceRange {
+                minVariantPrice{
+                  amount
+                }
+                maxVariantPrice{
+                  amount
+                }
+              }
+              images(first: 2){
+                edges{
+                  node{
+                    originalSrc
+                  }
+                }
+              }
+            }
+          }
+        }
+      }   
+    `
+
+}
 
