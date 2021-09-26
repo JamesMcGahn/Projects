@@ -50,9 +50,9 @@ function Login(props) {
         <Container margin='0' minHeight='80vh' padding='2rem' width='100%' color='black' display='flex' flexDirection='column' justifyContent='flex-start' alignItems='center' background='#1d1d1d' >
             <PageTitle title='Login' color='white' />
             <Container background='#fff' width='30%' smWidth='100%'>
-                <LoginRegisterForm method="POST"
+                <LoginRegisterForm method="POST" buttonText='Login'
                     handleSubmit={handleSubmit} csrfToken={csrfToken} form={form} handleChange={handleChange} errors={errors}
-                    action={`${process.env.NEXT_PUBLIC_SERVER}/api/auth/callback/credentials`} />
+                    action={`${process.env.NEXT_PUBLIC_SERVER}/api/auth/callback/credentials`} isLogin />
             </Container >
         </Container >
     );

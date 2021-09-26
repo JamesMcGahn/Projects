@@ -7,7 +7,7 @@ import LoginRegisterForm from '../components/forms/LoginRegisterForm';
 import Loading from '../components/ui/Loading'
 import PageTitle from '../components/ui/PageTitle';
 import { useRouter } from 'next/router'
-
+import ReCAPTCHA from "react-google-recaptcha";
 function Register(props) {
     const router = useRouter()
     const [form, setForm] = useState(
@@ -17,13 +17,32 @@ function Register(props) {
     const [errors, setErrors] = useState({ error: false, message: '' })
     const [token, setToken] = useState()
     const { localCartID, setLocalCartId, history } = useContext(UserContext)
-
+    const [captcha, setCaptcha] = useState({ loading: false, captcha: '' })
     useEffect(() => {
         getCRSFToken().then(token => {
             setToken(token)
         })
 
     }, [])
+
+
+    async function onChange(value) {
+        setCaptcha({ loading: true, captcha: '' })
+        try {
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/auth/captcha`, {
+                headers: { "Content-Type": 'application/json' },
+                data: {
+                    response: value
+                }
+            }).then(res => {
+                setCaptcha({ loading: false, captcha: res.data.captcha })
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
 
 
     const handleSubmit = async (e) => {
@@ -39,6 +58,11 @@ function Register(props) {
         }
         if (!regex.test(form.email)) {
             setErrors({ error: true, message: 'Double Check Your Email' })
+            return
+        }
+
+        if (!captcha.captcha) {
+            setErrors({ error: true, message: 'Fill Out Captcha' })
             return
         }
 
@@ -71,9 +95,11 @@ function Register(props) {
                 const message = await res.data.data.customerCreate.customerUserErrors[0].message
                 const code = await res.data.data.customerCreate.customerUserErrors[0].code
                 setErrors({ error: true, message: message })
+                setCaptcha({ loading: false, captcha: '' })
             }
         } catch (e) {
             setLoading(false)
+            setCaptcha({ loading: false, captcha: '' })
             console.error(e)
             setErrors({ error: true, message: 'Something went wrong. Try again' })
         }
@@ -81,6 +107,9 @@ function Register(props) {
 
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value })
+        if (errors.error) {
+            setErrors({ error: false, message: '' })
+        }
     }
 
     return (
@@ -89,7 +118,14 @@ function Register(props) {
             <Container background='#fff' width='30%' smWidth='100%'>
                 {loading ? <Loading />
                     :
-                    <LoginRegisterForm form={form} handleChange={handleChange} handleSubmit={handleSubmit} errors={errors} isRegister />
+                    <LoginRegisterForm form={form} handleChange={handleChange} handleSubmit={handleSubmit} errors={errors} isRegister buttonText='Register' captcha={captcha}>
+                        <ReCAPTCHA
+                            sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                            onChange={onChange}
+                            size='normal'
+                            theme='dark'
+                        />
+                    </LoginRegisterForm>
                 }
             </Container>
         </Container>

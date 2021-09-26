@@ -65,7 +65,7 @@ function Account(props) {
                 </Container>
                 :
                 <div>
-                    <LoginToSee title='Log In To View Your Orders' message="It doesn't appear that you are logged in. Please Log in to view your orders." />
+                    <LoginToSee title='Log In To View Your Account' message="It doesn't appear that you are logged in. Please Log in to view your Account." />
                 </div>
             }
         </Container >

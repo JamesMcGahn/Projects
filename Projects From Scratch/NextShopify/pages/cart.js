@@ -61,13 +61,11 @@ function Cart(props) {
 
         window.open(data.cart.checkoutUrl, '_blank', 'noopener,noreferrer')
     }
-    // FEATURE add save for later?
-
 
     return (
         <Container padding="1rem">
             <Container display='flex' flexDirection='row' smFlexD='column'>
-                <Container width="75%" flexDirection="column" padding="1rem" display='flex' margin='0 1.5rem 0 0' smWidth='100%'>
+                <Container width={!cart ? "100%" : "75%"} flexDirection="column" padding="1rem" display='flex' margin='0 1.5rem 0 0' smWidth='100%'>
                     <Container>
                         <PageTitle title='Shopping Cart' />
                     </Container>

@@ -34,8 +34,6 @@ function ContactPage() {
         } catch (error) {
             console.log(error)
         }
-
-
     }
 
     const handleSubmit = async (e) => {
