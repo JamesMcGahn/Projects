@@ -22,6 +22,12 @@ const UserSchema = new Schema({
     },
     history: {
         type: Array,
+    },
+    saveForLater: {
+        type: Array,
+    },
+    wishList: {
+        type: Array,
     }
 })
 

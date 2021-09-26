@@ -13,6 +13,8 @@ export function UserContextProvider(props) {
     const [localCartID, setLocalCartId] = useLocalStorageState("user_cart", {})
     const [localHistory, setLocalHistory] = useLocalStorageState("browser_history", [])
     const [history, setHistory] = useState(localHistory)
+    const [savedForLater, setSavedForLater] = useState()
+
 
     const updateCartId = async (id) => {
         if (session) {
@@ -63,6 +65,41 @@ export function UserContextProvider(props) {
     }
 
 
+    const addToSaveForLater = async (product) => {
+        console.log(product.node.merchandise)
+
+        setSavedForLater([product.node.merchandise, ...savedForLater])
+        try {
+            await axios.put(`${process.env.NEXT_PUBLIC_SERVER}/api/user/saveForLater`, {
+                email: user.email,
+                saveForLater: product.node.merchandise
+            })
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    const removeFromSaveForLater = async (id) => {
+        const udpatedSaveforLater = savedForLater.filter(item => item.id !== id)
+        setSavedForLater(udpatedSaveforLater)
+        try {
+            await axios.delete(`${process.env.NEXT_PUBLIC_SERVER}/api/user/saveForLater`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'XSRF-TOKEN': await getCRSFToken()
+                },
+                data: {
+                    email: user.email,
+                    id: id,
+                }
+            })
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+
+
 
 
     useEffect(() => {
@@ -82,8 +119,10 @@ export function UserContextProvider(props) {
                         email: data.email,
                         token: data.token,
                         cartId: data.cartId,
+                        wishList: data.wishList,
                     })
                     setHistory(data.history)
+                    setSavedForLater(!data.saveForLater ? [] : data.saveForLater)
                 } catch (e) {
                     console.log(e)
                 }
@@ -94,7 +133,10 @@ export function UserContextProvider(props) {
 
 
     return (
-        <UserContext.Provider value={{ user, updateCartId, getOrdersData, orders, localCartID, setLocalCartId, history, saveCustomerHistory }} >
+        <UserContext.Provider value={{
+            user, updateCartId, getOrdersData, orders, localCartID, setLocalCartId, history,
+            saveCustomerHistory, addToSaveForLater, savedForLater, removeFromSaveForLater
+        }} >
             {props.children}
         </UserContext.Provider>
     )

@@ -5,7 +5,6 @@ import { getSession } from 'next-auth/client'
 
 const user = async (req, res) => {
     const session = await getSession({ req })
-
     if (req.method == "GET" && session) {
         const email = req.query.email;
         try {
@@ -28,6 +27,8 @@ const user = async (req, res) => {
                 token: token,
                 cartId: user.cartId ? user.cartId : null,
                 history: user.history ? user.history : null,
+                saveForLater: user.saveForLater ? user.saveForLater : null,
+                wishList: user.wishList ? user.wishList : null,
             }
 
 
@@ -45,10 +46,13 @@ const user = async (req, res) => {
 
             if (req.body?.history) {
                 const data = await User.findOneAndUpdate({ email: email }, { $push: { history: { $each: [req.body.history], $position: 0 } } })
-            } else {
-                const data = await User.findOneAndUpdate({ email: email }, updateData)
+                return res.status(200).json({ success: true, errors: false, data: [] })
             }
-            return res.status(200).json({ success: true, errors: false, data: [] })
+            else {
+                const data = await User.findOneAndUpdate({ email: email }, updateData)
+                return res.status(200).json({ success: true, errors: false, data: [] })
+            }
+
 
         } catch (err) {
             console.log(err)
