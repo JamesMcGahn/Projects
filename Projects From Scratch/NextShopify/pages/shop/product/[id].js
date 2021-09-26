@@ -45,7 +45,7 @@ function SingleProduct({ product, notFound, id }) {
         </>)
     }
     const { addedToCartItems, setAddedToCartItems, addToCart, } = useContext(ShopifyContext)
-    const { saveCustomerHistory } = useContext(UserContext)
+    const { saveCustomerHistory, addToWishList, user } = useContext(UserContext)
     const [maxDisplay, setMaxDisplay] = useState(2)
     const [current, setCurrent] = useState({
         min: 0,
@@ -62,7 +62,7 @@ function SingleProduct({ product, notFound, id }) {
         setSelectedVariant(...selected)
     }
 
-    const handleAddToCart = () => {
+    const handleAdd = (method) => {
 
         if (!selectedVariant) return setError(true)
         const item = {
@@ -75,10 +75,20 @@ function SingleProduct({ product, notFound, id }) {
             variantTitle: selectedVariant.node.title,
             quantity: 1
         }
-        setAddedToCartItems([item, ...addedToCartItems])
-        addToCart(item.id, item.quantity)
-        router.push('/addedtocart')
+
+        if (method === 'addtocart') {
+            setAddedToCartItems([item, ...addedToCartItems])
+            addToCart(item.id, item.quantity)
+            router.push('/addedtocart')
+        }
+        else if (method === 'addtowishlist') {
+            addToWishList(item)
+            router.push('/account/wishlist')
+        }
     }
+
+
+
 
     useEffect(() => {
         if (variants.length === 1) {
@@ -163,8 +173,14 @@ function SingleProduct({ product, notFound, id }) {
                 {error && <div>Make Sure to Select a Variant Before Adding To Cart</div>}
 
                 <Container display='flex' flexDirection='row' width='100%' margin='1rem 0' justifyContent='center'>
-                    <Container width='50%'>
-                        <MainButton color='black' backgroundColor='#A08C5B' width='100%' hoverColor='white' onClick={handleAddToCart} >
+                    {user ? <Container width='40%'>
+                        <MainButton color='black' backgroundColor='#A08C5B' width='100%' hoverColor='white' onClick={() => handleAdd('addtowishlist')} >
+                            Add to Wish List
+                        </MainButton>
+                    </Container>
+                        : null}
+                    <Container width='40%'>
+                        <MainButton color='black' backgroundColor='#A08C5B' width='100%' hoverColor='white' onClick={() => handleAdd('addtocart')} >
                             Add to Cart
                         </MainButton>
                     </Container>

@@ -2,6 +2,7 @@ import React, { createContext, useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 import useLocalStorageState from '../hooks/useLocalStorage'
 import { useSession } from "next-auth/client"
+import { getCRSFToken } from '../helpers/getCRSFToken'
 
 export const UserContext = createContext()
 export function UserContextProvider(props) {
@@ -14,7 +15,7 @@ export function UserContextProvider(props) {
     const [localHistory, setLocalHistory] = useLocalStorageState("browser_history", [])
     const [history, setHistory] = useState(localHistory)
     const [savedForLater, setSavedForLater] = useState()
-
+    const [wishList, setWishList] = useState()
 
     const updateCartId = async (id) => {
         if (session) {
@@ -98,6 +99,34 @@ export function UserContextProvider(props) {
         }
     }
 
+    const addToWishList = async (item) => {
+        setWishList([item, ...wishList])
+        if (session) {
+            const res = await axios.put(`${process.env.NEXT_PUBLIC_SERVER}/api/user/wishlist`, {
+                email: user.email,
+                wishList: item
+            })
+        }
+    }
+
+    const removeFromWishList = async (id) => {
+        const udpatedWishList = wishList.filter(item => item.id !== id)
+        setWishList(udpatedWishList)
+        try {
+            await axios.delete(`${process.env.NEXT_PUBLIC_SERVER}/api/user/wishlist`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'XSRF-TOKEN': await getCRSFToken()
+                },
+                data: {
+                    email: user.email,
+                    id: id,
+                }
+            })
+        } catch (e) {
+            console.log(e)
+        }
+    }
 
 
 
@@ -119,10 +148,11 @@ export function UserContextProvider(props) {
                         email: data.email,
                         token: data.token,
                         cartId: data.cartId,
-                        wishList: data.wishList,
+
                     })
                     setHistory(data.history)
                     setSavedForLater(!data.saveForLater ? [] : data.saveForLater)
+                    setWishList(!data.wishList ? [] : data.wishList)
                 } catch (e) {
                     console.log(e)
                 }
@@ -135,7 +165,7 @@ export function UserContextProvider(props) {
     return (
         <UserContext.Provider value={{
             user, updateCartId, getOrdersData, orders, localCartID, setLocalCartId, history,
-            saveCustomerHistory, addToSaveForLater, savedForLater, removeFromSaveForLater
+            saveCustomerHistory, addToSaveForLater, savedForLater, removeFromSaveForLater, addToWishList, removeFromWishList, wishList
         }} >
             {props.children}
         </UserContext.Provider>
