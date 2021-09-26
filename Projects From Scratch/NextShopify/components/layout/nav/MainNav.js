@@ -204,9 +204,12 @@ function MainNav() {
                         </div>
                     </Container>
                     {open && <div className={classes.expandedMenu} onMouseOver={handleMenuIn} onMouseOut={handleMouseOut}>
+                        <div className={classes.collectionItem}><Link href={`/shop/collections/`} >
+                            <a onClick={handleOnClick}>Collections</a></Link>
+                        </div>
                         <Container display='flex' width='50%' flexWrap='wrap' flexDirection='column'>
                             {collectionList ? collectionList.map(item => (
-                                <div className={classes.collectionItem} key={item.node.handle}><Link href={`/shop/collection/${item.node.handle}`} >
+                                <div className={classes.collectionItem} key={item.node.handle}><Link href={`/shop/collections/${item.node.handle}`} >
                                     <a onClick={handleOnClick}>{item.node.title}</a></Link>
                                 </div>
                             ))

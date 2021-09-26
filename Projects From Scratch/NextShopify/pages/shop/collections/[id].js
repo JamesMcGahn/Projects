@@ -4,6 +4,7 @@ import { collectionByHandle, allCategories } from '../../../utils/graphQLQueries
 import ProductGrid from '../../../components/sections/ProductGrid';
 import { useRouter } from 'next/router'
 import DefaultErrorPage from 'next/error'
+import Container from '../../../components/layout/Container'
 
 function Collections({ notFound, collection, title }) {
     const router = useRouter()
@@ -20,9 +21,11 @@ function Collections({ notFound, collection, title }) {
     }
 
     return (
-        <div>
-            <ProductGrid title={title} products={collection} />
-        </div>
+        <Container margin='0' padding='2rem' width='100%' color='black' display='flex' flexDirection='column' justifyContent='flex-start' alignItems='center' background='#1d1d1d' >
+            <Container background='#fff'>
+                <ProductGrid title={title} products={collection} />
+            </Container >
+        </Container >
     );
 }
 
