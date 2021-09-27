@@ -2,13 +2,14 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '../layout/Container'
 import MainButton from '../../components/ui/MainButton'
+import Link from 'next/link'
 const useStyles = makeStyles((theme) => ({
     image: {
         width: "100%",
     }
 }));
 
-function FeaturedCollection({ image, title, color, pText }) {
+function FeaturedCollection({ image, title, color, pText, href }) {
     const classes = useStyles({ color });
     return (
         <Container xsFlexD='column' width='100%' minHeight='100%' color='black' display='flex'
@@ -28,7 +29,11 @@ function FeaturedCollection({ image, title, color, pText }) {
                 xsPadding='1rem'>
                 <h3>{title}</h3>
                 <p>{pText}</p>
-                <MainButton backgroundColor='black' color='white' border='1px solid black'>Shop Now</MainButton>
+                <Link href={href} passHref>
+                    <a>
+                        <MainButton backgroundColor='black' color='white' border='1px solid black'>Shop Now</MainButton>
+                    </a>
+                </Link>
             </Container>
         </Container >
     );

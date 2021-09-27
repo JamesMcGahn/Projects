@@ -9,7 +9,8 @@ const useStyles = makeStyles((theme) => ({
         padding: '.5rem',
         '& label': {
             display: 'block',
-            fontSize: '1.2rem'
+            fontSize: '1.2rem',
+            color: 'white'
         },
         '& input': {
             width: '100%',
@@ -37,8 +38,9 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: 'black',
         color: 'white',
         border: '1px solid #CBB682',
-        padding: '5px 100px',
+        padding: '5px 20px',
         margin: '15px 0 15px 0px',
+
     }
 }));
 
@@ -70,7 +72,7 @@ function ContactForm({ action, method, csrfToken, form, handleChange, handleSubm
                 <Container margin='5px 0 0 0' display='flex' justifyContent='center'>
                     {children}
                 </Container>
-                <Container margin='0' display='flex' justifyContent='center'>
+                <Container margin='0' display='flex' justifyContent='center' width='100%'>
                     {!captcha.captcha && !captcha.loading ? <span className={classes.captcha}>Fill out captcha</span> : null}
                     {captcha.loading ? <span className={classes.captcha}>Validating Captcha</span> : null}
                 </Container>

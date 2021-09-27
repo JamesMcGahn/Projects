@@ -43,7 +43,7 @@ function ShopbyCollection(props) {
     const classes = useStyles({ length });
     return (
         <Container width='100%' display='flex' flexDirection='column' justifyContent='flex-start' alignItems='center' margin='2rem 0'>
-            <PageTitle title='Shop by Collections' />
+            <PageTitle title='Shop by Collections' href='/shop/collections' />
             <Container display='flex' flexDirection='row' margin='2rem 0' padding='0' width='100%' color='black' justifyContent='center' alignItems='center' flexWrap='wrap'>
                 {catTiles.map((tile, key) => {
                     return (

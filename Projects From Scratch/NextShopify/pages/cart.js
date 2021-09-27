@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import MainButton from '../components/ui/MainButton'
 import Loading from '../components/ui/Loading'
 import PageTitle from '../components/ui/PageTitle'
+import { useSession } from "next-auth/client"
 
 const useStyles = makeStyles((theme) => ({
     lineImage: {
@@ -32,6 +33,7 @@ function Cart(props) {
     const { cart, isCartLoading, deleteLine, addToCart, } = useContext(ShopifyContext)
     const { addToSaveForLater, savedForLater, removeFromSaveForLater } = useContext(UserContext)
     const classes = useStyles();
+    const [session, loading] = useSession()
 
     const handleSaveForLater = (product) => {
 
@@ -104,7 +106,7 @@ function Cart(props) {
                                         </Container>
                                         <Container display='flex' width='100%' justifyContent='flex-end'>
 
-                                            <div className={classes.removeItem} onClick={() => { handleSaveForLater(line) }}> <span>Save For Later</span></div>
+                                            {session && <div className={classes.removeItem} onClick={() => { handleSaveForLater(line) }}> <span>Save For Later</span></div>}
                                             <div className={classes.removeItem} onClick={() => { deleteLine(line.node.id) }}> <span>Remove From Cart</span></div>
                                         </Container>
                                     </Container>
@@ -132,7 +134,7 @@ function Cart(props) {
                     </Container>
                 }
             </Container>
-            {savedForLater?.length > 0 ?
+            {session && savedForLater?.length > 0 ?
                 <Container width='75%' smWidth='100%' flexDirection="column" display='flex' padding="1rem" margin="2.5rem 0">
                     <Container>
                         <PageTitle title='Saved For Later' />

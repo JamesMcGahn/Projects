@@ -39,6 +39,7 @@ export default function Home({ products, }) {
           eu rhoncus felis pulvinar. In interdum tellus massa, quis tincidunt felis eleifend ac.
           In tempor tellus sit amet nisl tempor bibendum. Ut ultrices dolor eget leo porta, id facilisis velit tempor.
           Curabitur nec luctus arcu, quis euismod leo. Proin ultricies mollis augue id dapibus.'
+        href='/shop/collections/nike'
       />
       <ShopByCollection />
       {history?.length > 3 ?

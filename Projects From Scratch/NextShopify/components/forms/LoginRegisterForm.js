@@ -10,7 +10,8 @@ const useStyles = makeStyles((theme) => ({
         padding: '.5rem',
         '& label': {
             display: 'block',
-            fontSize: '1.2rem'
+            fontSize: '1.2rem',
+            color: 'white'
         },
         '& input': {
             width: '100%',
@@ -36,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: 'black',
         color: 'white',
         border: '1px solid #CBB682',
-        padding: '5px 100px',
+        padding: '5px 20px',
         margin: '15px 0 15px 0px',
     }
 }));

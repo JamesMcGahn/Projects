@@ -8,6 +8,7 @@ import Link from 'next/link'
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { makeStyles } from '@material-ui/core/styles';
 import PageTitle from '../../components/ui/PageTitle'
+import Image from 'next/image'
 const useStyles = makeStyles((theme) => ({
     image: {
         width: '100%',

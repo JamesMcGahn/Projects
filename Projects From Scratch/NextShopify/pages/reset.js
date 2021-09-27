@@ -17,7 +17,6 @@ function Reset(props) {
     const [errors, setErrors] = useState({ error: false, message: '' })
     const [token, setToken] = useState()
 
-    console.log(router.query)
     useEffect(() => {
         getCRSFToken().then(token => {
             setToken(token)
