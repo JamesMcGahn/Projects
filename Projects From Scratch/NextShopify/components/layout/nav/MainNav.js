@@ -206,9 +206,14 @@ function MainNav() {
                                         <a className={onPage === 'blog' ? classes.activeItem : ''}>Blog</a>
                                     </Link>
                                 </li>
-                                <li className={onPage === 'about' ? classes.activeItem : ''}>About</li>
+                                <li className={onPage === 'about' ? classes.activeItem : ''}>
+                                    <Link href={`/about`} ><a>
+                                        About
+                                    </a>
+                                    </Link>
+                                </li>
                                 <li className={onPage === 'contact' ? classes.activeItem : ''}>
-                                    <Link href={`/contact`} ><a className={onPage === 'contact' ? classes.activeItem : ''}>
+                                    <Link href={`/contact`} ><a>
                                         Contact
                                     </a>
                                     </Link>
