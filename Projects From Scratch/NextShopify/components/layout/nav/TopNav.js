@@ -55,7 +55,7 @@ function TopNav(props) {
     let mobile = IsMobile()
 
     return (
-        <Container width='100%' background='black' color='white' minHeight='3vh' color='white' padding='.5rem' display='flex' alignItems='center' justifyContent='center'>
+        <Container width='100%' background='black' minHeight='3vh' color='white' padding='.5rem' display='flex' alignItems='center' justifyContent='center'>
             {mobile ?
                 <React.Fragment>
                     <Container width='33%'>
@@ -66,9 +66,9 @@ function TopNav(props) {
                     </Container>
                     <Container width='33%' textAlign='right'>
                         {session ?
-                            <Container padding='0 1rem'><a href='/' onClick={() => signOut()}>Log Out</a></Container>
+                            <Container padding='0 1rem'><Link href='/'><a onClick={() => signOut()}>Log Out</a></Link></Container>
                             :
-                            <Container padding='0 1rem'> <Link href={`/login`} ><a>Log In</a></Link></Container>
+                            <Container padding='0 1rem'> <Link href={`/login`}><a>Log In</a></Link></Container>
                         }
                     </Container>
                 </React.Fragment>
@@ -96,7 +96,7 @@ function TopNav(props) {
                                             <ArrowDropDownIcon />
                                         </div>
                                     </Container>
-                                    <Container padding='0 1rem'><a href='/' onClick={() => signOut()}>Log Out</a></Container>
+                                    <Container padding='0 1rem'><Link href='/' passHref><a onClick={() => signOut()}>Log Out</a></Link></Container>
                                 </React.Fragment>
                                 :
                                 <React.Fragment>

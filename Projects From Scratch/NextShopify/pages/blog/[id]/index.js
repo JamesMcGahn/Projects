@@ -6,6 +6,9 @@ import PageTitle from '../../../components/ui/PageTitle'
 import MainButton from '../../../components/ui/MainButton'
 import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/core/styles';
+import Loading from '../../../components/ui/Loading'
+import DefaultErrorPage from 'next/error'
+
 const useStyles = makeStyles((theme) => ({
     image: {
         width: '50%',
@@ -24,10 +27,10 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function index({ article, notFound }) {
+function SingleBlog({ article, notFound }) {
     const classes = useStyles();
     const router = useRouter()
-    const p = article.content.split('%newline%')
+    const p = article ? article?.content.split('%newline%') : null
 
     if (router.isFallback) {
         return <Loading />
@@ -70,7 +73,7 @@ function index({ article, notFound }) {
     );
 }
 
-export default index;
+export default SingleBlog;
 
 
 export async function getStaticPaths() {
@@ -82,9 +85,11 @@ export async function getStaticPaths() {
         });
 
         const articles = data.articles.edges
-        const paths = articles.map((prod) => ({
-            params: { id: prod.node.handle },
-        }))
+        const paths = articles.map((prod) => (
+            {
+                params: { id: prod.node.handle },
+            }
+        ))
         return { paths, fallback: true, }
     } catch (e) {
         const paths = []

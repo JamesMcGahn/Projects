@@ -82,14 +82,14 @@ function ImageFeaturedCarousel({ data }) {
         <div className={classes.slider}>
             <div className={classes.featuredImgCont}>
                 <div className={classes.icon}> <ChevronLeftIcon onClick={handlePrevious} /></div>
-                <div className={classes.featuredImg}><img src={`${data[current.current].node.originalSrc}`} /></div>
+                <div className={classes.featuredImg}><img src={`${data[current.current].node.originalSrc}`} alt='feature-product' /></div>
                 <div className={classes.icon}> <ChevronRightIcon onClick={handleNext} />  </div>
             </div>
 
             <div className={classes.imgThumbs}>
                 {data.map((item, index) => {
 
-                    return <div key={index} className={index === current.current ? classes.activeThumb : classes.thumb}><img src={`${item.node.originalSrc}`} onClick={() => handleClick(index)} /></div>
+                    return <div key={index} className={index === current.current ? classes.activeThumb : classes.thumb}><img src={`${item.node.originalSrc}`} onClick={() => handleClick(index)} alt='product-img' /></div>
                 }
                 )
                 }

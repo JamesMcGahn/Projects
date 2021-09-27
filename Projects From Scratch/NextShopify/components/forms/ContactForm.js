@@ -49,7 +49,7 @@ function ContactForm({ action, method, csrfToken, form, handleChange, handleSubm
             {errors.error ? <span className={classes.error}>{errors.message}</span> : null}
             {success.success ? <span className={classes.error}>{success.message}</span> : null}
 
-            <form method={method} action={action} onSubmit={handleSubmit} action={action} noValidate>
+            <form method={method} action={action} onSubmit={handleSubmit} noValidate>
                 <input name='csrfToken' type='hidden' defaultValue={csrfToken} />
                 <div className={classes.inputItem}>
                     <label htmlFor="user_name">Name: </label>

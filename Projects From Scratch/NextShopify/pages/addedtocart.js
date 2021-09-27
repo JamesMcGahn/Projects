@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-function addedToCart({ products }) {
+function AddedToCart({ products }) {
     const { addedToCartItems } = useContext(ShopifyContext)
     const classes = useStyles();
     const [recommendations, setRecommendations] = useState(false)
@@ -101,7 +101,7 @@ function addedToCart({ products }) {
     );
 }
 
-export default addedToCart;
+export default AddedToCart;
 
 
 export async function getStaticProps(context) {

@@ -243,8 +243,8 @@ function MainNav() {
                             </Container>
                         </Container>
                         <Container display='flex' width='50%' flexDirection='row' justifyContent='space-between' alignItems='center'>
-                            {navTitles.map(item => (
-                                <div className={classes.navCatImages}>
+                            {navTitles.map((item, index) => (
+                                <div className={classes.navCatImages} key={index}>
                                     <Link href={`/shop/collections/${item.alt}`} >
                                         <a onClick={handleOnClick}>
                                             <img src={item.img} alt={item.alt} />

@@ -35,3 +35,4 @@ MyDocument.getInitialProps = async (ctx) => {
         styles: [...React.Children.toArray(initialProps.styles), sheets.getStyleElement()],
     };
 };
+Document.displayName = "Document";

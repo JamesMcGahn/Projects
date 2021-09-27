@@ -47,7 +47,7 @@ function LoginRegister({ action, method, csrfToken, form, handleChange, handleSu
         <Container width='100%' padding='2rem' background='#494949' border='2px solid #CBB682'>
             {errors.error ? <span className={classes.error}>{errors.message}</span> : null}
 
-            <form method={method} action={action} onSubmit={handleSubmit} action={action} noValidate>
+            <form method={method} action={action} onSubmit={handleSubmit} noValidate>
                 <input name='csrfToken' type='hidden' defaultValue={csrfToken} />
                 {isRegister ?
                     <React.Fragment>

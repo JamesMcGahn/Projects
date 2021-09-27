@@ -31,6 +31,47 @@ const useStyles = makeStyles((theme) => ({
 function SingleProduct({ product, notFound, id }) {
     const router = useRouter()
     const classes = useStyles()
+    const { addedToCartItems, setAddedToCartItems, addToCart, } = useContext(ShopifyContext)
+    const { saveCustomerHistory, addToWishList, user } = useContext(UserContext)
+    const [maxDisplay, setMaxDisplay] = useState(2)
+    const [current, setCurrent] = useState({
+        min: 0,
+        max: maxDisplay,
+    })
+    const [variants, setVariants] = useState(product?.variants.edges ? product.variants.edges : null)
+    const [selectedVariant, setSelectedVariant] = useState()
+    const [error, setError] = useState(false)
+    const minPrice = product?.priceRange.minVariantPrice.amount
+    const maxPrice = product?.priceRange.maxVariantPrice.amount
+
+    useEffect(() => {
+        if (product) {
+            const productSummary = {
+                node: {
+                    handle: id,
+                    title: product.title,
+                    images: product.images,
+                    vendor: product.vendor,
+                    priceRange: product.priceRange
+                }
+            }
+            saveCustomerHistory(productSummary)
+        }
+        if (variants?.length === 1) {
+            setSelectedVariant(variants[0])
+        }
+
+    }, [])
+
+    useEffect(() => {
+        if (error) {
+            setTimeout(() => setError(false), 3000)
+        }
+    }, [error])
+
+
+
+
 
     if (router.isFallback) {
         return <Loading />
@@ -44,18 +85,8 @@ function SingleProduct({ product, notFound, id }) {
             <DefaultErrorPage statusCode={404} />
         </>)
     }
-    const { addedToCartItems, setAddedToCartItems, addToCart, } = useContext(ShopifyContext)
-    const { saveCustomerHistory, addToWishList, user } = useContext(UserContext)
-    const [maxDisplay, setMaxDisplay] = useState(2)
-    const [current, setCurrent] = useState({
-        min: 0,
-        max: maxDisplay,
-    })
-    const [variants, setVariants] = useState(product.variants.edges)
-    const [selectedVariant, setSelectedVariant] = useState()
-    const [error, setError] = useState(false)
-    const minPrice = product.priceRange.minVariantPrice.amount
-    const maxPrice = product.priceRange.maxVariantPrice.amount
+
+
 
     const handleVariantClick = (id) => {
         const selected = variants.filter(variant => variant.node.id === id)
@@ -90,30 +121,7 @@ function SingleProduct({ product, notFound, id }) {
 
 
 
-    useEffect(() => {
-        if (variants.length === 1) {
-            setSelectedVariant(variants[0])
-        }
-        if (product) {
-            const productSummary = {
-                node: {
-                    handle: id,
-                    title: product.title,
-                    images: product.images,
-                    vendor: product.vendor,
-                    priceRange: product.priceRange
-                }
-            }
-            saveCustomerHistory(productSummary)
-        }
 
-    }, [])
-
-    useEffect(() => {
-        if (error) {
-            setTimeout(() => setError(false), 3000)
-        }
-    }, [error])
 
 
     return (
@@ -172,7 +180,7 @@ function SingleProduct({ product, notFound, id }) {
 
                 {error && <div>Make Sure to Select a Variant Before Adding To Cart</div>}
 
-                <Container display='flex' flexDirection='row' width='100%' margin='1rem 0' justifyContent='center'>
+                <Container display='flex' flexDirection='row' width='100%' margin='1rem 0' justifyContent='space-around'>
                     {user ? <Container width='40%'>
                         <MainButton color='black' backgroundColor='#A08C5B' width='100%' hoverColor='white' onClick={() => handleAdd('addtowishlist')} >
                             Add to Wish List
