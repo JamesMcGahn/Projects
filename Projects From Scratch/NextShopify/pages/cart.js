@@ -8,6 +8,7 @@ import MainButton from '../components/ui/MainButton'
 import Loading from '../components/ui/Loading'
 import PageTitle from '../components/ui/PageTitle'
 import { useSession } from "next-auth/client"
+import axios from 'axios'
 
 const useStyles = makeStyles((theme) => ({
     lineImage: {
@@ -30,8 +31,8 @@ const useStyles = makeStyles((theme) => ({
 
 
 function Cart(props) {
-    const { cart, isCartLoading, deleteLine, addToCart, } = useContext(ShopifyContext)
-    const { addToSaveForLater, savedForLater, removeFromSaveForLater } = useContext(UserContext)
+    const { setCart, cart, isCartLoading, deleteLine, addToCart, setIsCartLoading } = useContext(ShopifyContext)
+    const { addToSaveForLater, savedForLater, removeFromSaveForLater, updateCartId } = useContext(UserContext)
     const classes = useStyles();
     const [session, loading] = useSession()
 
@@ -47,25 +48,30 @@ function Cart(props) {
     }
 
 
-
     const handleCheckout = async () => {
-        //TODO Make API
-        // TODO pull query out 
-
-        const { data } = await client.query({
-            query: gql`query checkoutURL {
-            cart(id: "Z2lkOi8vc2hvcGlmeS9DYXJ0L2YxMzRlYzUyNGYwNDExYzU2ZDU3YTBlZDI3Zjg5M2Ri") {
-                checkoutUrl
+        setIsCartLoading(true)
+        if (cart.id) {
+            try {
+                const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/cart/checkout`, {
+                    params: {
+                        cartId: cart.id
+                    }
+                })
+                console.log(res.data)
+                const checkoutUrl = res.data.data
+                setIsCartLoading(false)
+                window.open(checkoutUrl, '_blank', 'noopener,noreferrer')
+                updateCartId('')
+                setCart('')
+            } catch (error) {
+                setIsCartLoading(false)
+                console.log(error)
             }
-        }`,
-        });
-
-
-        window.open(data.cart.checkoutUrl, '_blank', 'noopener,noreferrer')
+        }
     }
 
     return (
-        <Container padding="1rem">
+        <Container padding="1rem" minHeight="70vh">
             <Container display='flex' flexDirection='row' smFlexD='column'>
                 <Container width={!cart ? "100%" : "75%"} flexDirection="column" padding="1rem" display='flex' margin='0 1.5rem 0 0' smWidth='100%'>
                     <Container>

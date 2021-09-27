@@ -152,7 +152,7 @@ export function ShopifyContextProvider(props) {
 
 
   return (
-    <ShopifyContext.Provider value={{ cart, setCart, collectionList, addedToCartItems, setAddedToCartItems, addToCart, isCartLoading, deleteLine }} >
+    <ShopifyContext.Provider value={{ cart, setCart, collectionList, addedToCartItems, setAddedToCartItems, addToCart, isCartLoading, deleteLine, setIsCartLoading }} >
       {props.children}
     </ShopifyContext.Provider>
   )
