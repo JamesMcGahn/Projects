@@ -30,28 +30,20 @@ export const config = {
 const upload = pify(multer({ storage }).array('imageUrl'))
 
 export default async function projectPost(req, res) {
-    const { method } = req
     const session = await getSession({ req })
-    if (session) {
-        switch (method) {
-            case 'POST':
-                try {
-                    await dbConnect()
-                    await upload(req, res)
+    if (session && req.method === 'POST') {
+        try {
+            await dbConnect()
+            await upload(req, res)
 
-                    const project = await Project.create(req.body)
-                    project.imageUrl = req.files.map(image => ({ url: image.path, filename: image.filename }))
-                    project.stack = req.body.stack.split(',').map(item => item.trim().toLowerCase())
-                    await project.save()
-                    res.status(201).send({ project: project.id })
+            const project = await Project.create(req.body)
+            project.imageUrl = req.files.map(image => ({ url: image.path, filename: image.filename }))
+            project.stack = req.body.stack.split(',').map(item => item.trim().toLowerCase())
+            await project.save()
+            res.status(201).send({ project: project.id })
 
-                } catch (err) {
-                    res.status(400).json({ success: false })
-                }
-                break;
-            default:
-                res.status(400).json({ success: false })
-                break;
+        } catch (err) {
+            res.status(400).json({ success: false, message: err })
         }
     } else {
         res.status(401).json({ message: "Access Denied" })
