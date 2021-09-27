@@ -57,7 +57,6 @@ function Cart(props) {
                         cartId: cart.id
                     }
                 })
-                console.log(res.data)
                 const checkoutUrl = res.data.data
                 setIsCartLoading(false)
                 window.open(checkoutUrl, '_blank', 'noopener,noreferrer')
