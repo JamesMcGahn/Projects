@@ -75,7 +75,7 @@ function ContactForm({ action, method, csrfToken, form, handleChange, handleSubm
                     {captcha.loading ? <span className={classes.captcha}>Validating Captcha</span> : null}
                 </Container>
                 <Container padding='.5rem'>
-                    <MainButton backgroundColor='#CBB682' width="100%" hoverColor='white'>Log In</MainButton>
+                    <MainButton backgroundColor='#CBB682' width="100%" hoverColor='white'>Contact</MainButton>
                 </Container>
 
             </form>
