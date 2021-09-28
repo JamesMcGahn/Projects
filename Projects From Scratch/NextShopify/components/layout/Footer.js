@@ -31,6 +31,18 @@ const useStyles = makeStyles((theme) => ({
             position: 'relative',
             color: 'white'
         },
+        [theme.breakpoints.down('sm')]: {
+            '& li': {
+                fontSize: '1rem'
+            },
+        },
+        [theme.breakpoints.down('xs')]: {
+            marginTop: '1rem',
+            flexDirection: 'column',
+            '& li': {
+                fontSize: '1rem'
+            },
+        }
     },
     activeItem: {
         fontWeight: 'bold',
