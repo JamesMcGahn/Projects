@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 function CollectionsPage({ collections }) {
     const classes = useStyles();
     return (
-        <Container margin='0' padding='2rem' width='100%' color='black' display='flex' flexDirection='column' justifyContent='flex-start' alignItems='center' background='#1d1d1d' >
+        <Container minHeight='70vh' margin='0' padding='2rem' width='100%' color='black' display='flex' flexDirection='column' justifyContent='flex-start' alignItems='center' background='#1d1d1d' >
 
             <Container background='#fff' margin='1rem 0' padding='1rem'>
                 <PageTitle title='Collections' color='black' />

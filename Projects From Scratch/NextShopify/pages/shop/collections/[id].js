@@ -21,7 +21,7 @@ function Collections({ notFound, collection, title }) {
     }
 
     return (
-        <Container margin='0' padding='2rem' width='100%' color='black' display='flex' flexDirection='column' justifyContent='flex-start' alignItems='center' background='#1d1d1d' >
+        <Container minHeigh='70vh' margin='0' padding='2rem' width='100%' color='black' display='flex' flexDirection='column' justifyContent='flex-start' alignItems='center' background='#1d1d1d' >
             <Container background='#fff'>
                 <ProductGrid title={title} products={collection} />
             </Container >
