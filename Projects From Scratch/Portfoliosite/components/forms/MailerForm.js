@@ -28,7 +28,7 @@ function MailerForm({ validated, handleSubmit, handleChange, children }) {
             <Form.Group className="mb-3" controlId="message">
                 <Form.Label>Message</Form.Label>
                 <Form.Control as="textarea" rows={3} placeholder="Your Message" name='message' onChange={handleChange} required />
-                <Form.Control.Feedback type="invalid">
+                <Form.Control.Feedback type="invalid" id='error'>
                     Enter a Message
                 </Form.Control.Feedback>
             </Form.Group>

@@ -41,7 +41,6 @@ function ContactPage() {
 
             e.stopPropagation();
             setValidated(true)
-            if (!captcha) console.log('no capthca')
         } else {
             try {
                 setLoading(true)
@@ -58,6 +57,8 @@ function ContactPage() {
                             subject: '',
                             message: ''
                         })
+                        setCaptcha(false)
+                        window.scrollTo(0, 0)
                     } else if (res.data.mailer === 400) {
                         setLoading(false)
                         setError(true)

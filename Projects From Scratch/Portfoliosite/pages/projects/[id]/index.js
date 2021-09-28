@@ -7,7 +7,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import ProjectBadge from '../../../components/ui/ProjectBadge';
-import Button from 'react-bootstrap/Button';
 import ViewButton from '../../../components/ui/ViewButton'
 import { useRouter } from 'next/router'
 import DefaultErrorPage from 'next/error'
@@ -32,7 +31,7 @@ function SingleProject({ project, notFound }) {
 
 
     const img = <a><Card.Img variant="top" src="/img/headshot.jpg" /></a>
-
+    const p = project ? project?.description.split('%newline%') : null
     return (
         <Container className={classes.outerContainer} fluid>
             <Container className={classes.container} fluid>
@@ -66,7 +65,7 @@ function SingleProject({ project, notFound }) {
                                         </div>
                                         <div className={classes.description}>
                                             <strong>Description:</strong>
-                                            <p>{project.description}</p>
+                                            <p>{p.map((des, i) => (<p key={i}>{des}</p>))}</p>
                                         </div>
                                         <div className={classes.challenges}>
                                             <strong>Challenges:</strong> <p>{project.challenges}</p>
