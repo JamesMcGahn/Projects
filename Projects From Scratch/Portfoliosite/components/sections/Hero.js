@@ -15,6 +15,7 @@ function Hero({ h1, h2 }) {
                     alt="hero"
                     layout="fill"
                     objectFit="cover"
+                    priority={true}
                 />
                 <div className={classes.chevron}><a href="#about"><FontAwesomeIcon icon={faChevronDown} /></a></div>
             </Container>
