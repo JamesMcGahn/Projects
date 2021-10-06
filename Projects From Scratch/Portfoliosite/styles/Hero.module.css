@@ -1,11 +1,12 @@
 .hero {
   height: 100vh;
+  position: relative;
   background-color: black;
-  background-image: url('/img/jmlogo3.jpg');
+  /* background-image: url('/img/jmlogo3.jpg');
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -24,6 +25,10 @@
   font-size: 1.7rem;
   margin-top: 0.1rem;
   text-shadow: -0.5px -0.5px 2px #990000, 3px 3px 0px #000000;
+}
+
+.chevron {
+  z-index: 10;
 }
 
 .chevron svg {
