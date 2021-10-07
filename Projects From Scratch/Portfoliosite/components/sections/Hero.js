@@ -6,7 +6,7 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import Image from 'next/image'
 function Hero({ h1, h2 }) {
     return (
-        <React.Fragment>
+        <div className={classes.heroCont}>
             <Container className={classes.hero} fluid>
                 <h1 id={classes.h1}>{h1}</h1>
                 <h2 id={classes.h2}>{h2}</h2>
@@ -19,7 +19,7 @@ function Hero({ h1, h2 }) {
                 />
                 <div className={classes.chevron}><a href="#about"><FontAwesomeIcon icon={faChevronDown} /></a></div>
             </Container>
-        </React.Fragment >
+        </div>
     );
 }
 
