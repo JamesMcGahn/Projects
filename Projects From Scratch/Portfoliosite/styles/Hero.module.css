@@ -1,11 +1,9 @@
 .heroCont {
   background-color: #0c1114;
-  height: 100vh;
   overflow: hidden;
 }
 
 .hero {
-  height: 100vh;
   position: relative;
   background-color: #0c1114;
   /* background-image: url('/img/jmlogo3.jpg');
@@ -17,18 +15,20 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  animation: slide-left 2s;
+  animation: appear 3s;
   margin-top: 0%;
   overflow: hidden;
+  height: 100vh;
+  opacity: 1;
 }
 
-@keyframes slide-left {
+@keyframes appear {
   from {
-    margin-left: 100%;
+    opacity: 0;
   }
 
   to {
-    margin-left: 0%;
+    opacity: 1;
   }
 }
 
