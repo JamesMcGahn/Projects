@@ -3,6 +3,12 @@
   overflow: hidden;
 }
 
+.heroLoading {
+  position: relative;
+  height: 100vh;
+  opacity: 0;
+}
+
 .hero {
   position: relative;
   background-color: #0c1114;
