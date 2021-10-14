@@ -11,9 +11,7 @@ import Image from 'next/image'
 function Hero({ h1, h2 }) {
     const [loading, setLoading] = useState(false)
 
-    useEffect(() => {
-        setLoading(true)
-    }, [])
+
 
 
     return (
@@ -27,6 +25,7 @@ function Hero({ h1, h2 }) {
                     layout="fill"
                     objectFit="cover"
                     priority={true}
+                    onLoadingComplete={() => setLoading(true)}
                 />
                 <div className={classes.chevron}><a href="#about"><FontAwesomeIcon icon={faChevronDown} /></a></div>
             </Container>
