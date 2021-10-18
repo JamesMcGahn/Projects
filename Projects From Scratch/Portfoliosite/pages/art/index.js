@@ -7,6 +7,7 @@ import Modal from 'react-bootstrap/Modal';
 import classes from '../../styles/art.module.css'
 import Image from 'next/image';
 import BootImage from 'react-bootstrap/Image'
+import PageHead from '../../components/layout/PageHead'
 
 function ArtPage({ art }) {
     const [show, setShow] = useState(false);
@@ -21,6 +22,7 @@ function ArtPage({ art }) {
 
     return (
         <Container className={classes.art} id="projects" fluid>
+            <PageHead title='James McGahn | Art' />
             <div className={classes.header}><h2>Art.</h2></div>
             <div className={classes.artDiv}>
 

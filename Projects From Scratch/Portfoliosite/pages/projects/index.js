@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router'
-import axios from 'axios'
+import PageHead from '../../components/layout/PageHead';
 import ProjectsSection from '../../components/sections/ProjectsSection'
 
 function Projects({ projects }) {
@@ -12,6 +12,7 @@ function Projects({ projects }) {
 
     return (
         <div>
+            <PageHead title="James McGahn | Projects" />
             <ProjectsSection projects={projects} mainPage={false} />
         </div >
     );

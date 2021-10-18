@@ -9,12 +9,13 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { useSession } from 'next-auth/client'
 import classes from '../styles/index.module.css'
 import LinkWrapper from '../components/utils/LinkWrapper'
+import PageHead from '../components/layout/PageHead'
 
-import axios from 'axios'
 export default function Home({ projects }) {
   const [session, loading] = useSession()
   return (
     <div>
+      <PageHead title='James McGahn | Home' />
       <Hero h1='' h2='' />
 
       <AboutSection />

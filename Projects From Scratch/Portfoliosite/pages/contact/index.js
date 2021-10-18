@@ -4,6 +4,7 @@ import axios from 'axios'
 import classes from '../../styles/RegLogSignForm.module.css'
 import MailerForm from '../../components/forms/MailerForm'
 import ReactLoading from 'react-loading';
+import PageHead from '../../components/layout/PageHead'
 
 function ContactPage() {
     const [validated, setValidated] = useState(false);
@@ -81,6 +82,7 @@ function ContactPage() {
 
     return (
         <div className={classes.formDiv} >
+            <PageHead title='James McGahn | Contact' />
             <h1>Contact</h1>
             {success ? <span className={classes.success}>Successfully Submitted</span> : null}
             {error ? <span className={classes.success}>Opps...Looks Like There Was An Error</span> : null}
