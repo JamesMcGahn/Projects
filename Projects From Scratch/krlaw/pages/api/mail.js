@@ -1,6 +1,7 @@
 import axios from 'axios'
+import { csrf } from '../../lib/csrf';
 
-export default async function mail(req, res) {
+const mail = async (req, res) => {
     const { method } = req
 
     switch (method) {
@@ -10,16 +11,17 @@ export default async function mail(req, res) {
                 const token = process.env.MAILER_TOKEN
                 const user = process.env.MAILER_USER
                 const service = process.env.MAILER_SERVICE
-
-                const mailer = await axios.post('https://api.emailjs.com/api/v1.0/email/send',
-                    {
-                        service_id: `${service}`,
-                        template_id: 'template_6qk0m3v',
-                        user_id: `${user}`,
-                        accessToken: `${token}`,
-                        template_params: value
-                    }
-                )
+                console.log('hiiiii')
+                const mailer = { status: 'taco' }
+                // const mailer = await axios.post('https://api.emailjs.com/api/v1.0/email/send',
+                //     {
+                //         service_id: `${service}`,
+                //         template_id: 'template_6qk0m3v',
+                //         user_id: `${user}`,
+                //         accessToken: `${token}`,
+                //         template_params: value
+                //     }
+                // )
                 res.status(200).json({ success: true, mailer: mailer.status })
 
             } catch (err) {
@@ -32,3 +34,5 @@ export default async function mail(req, res) {
 
     }
 }
+
+export default csrf(mail)

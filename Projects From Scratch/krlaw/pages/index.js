@@ -1,14 +1,15 @@
-import PageHead from '../Components/layout/PageHead'
-import ContactForm from '../Components/forms/ContactForm'
+import PageHead from '../components/layout/PageHead'
+import ContactSection from '../components/sections/ContactSection'
 
-export default function Home() {
+
+export default function Home({ csrfToken }) {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-blue font-andada">
+    <div className="flex flex-col items-center justify-start min-h-screen py-2 pb-6 bg-blue font-andada">
       <PageHead title='Kellie Reyes, Esq.' />
-      <div className='mb-4'>
+      <div className='m-7 text-center'>
         <h1 className='text-3xl text-white'>Kellie Reyes, Esq.</h1>
       </div>
-      <ContactForm />
+      <ContactSection csrfToken={csrfToken} />
     </div >
   )
 }
