@@ -61,7 +61,7 @@ function ContactForm({ form, handleChange, handleSubmit, errors, captcha, childr
                         </div>
                         <div className="px-4 py-3 text-right sm:px-6">
                             <button type="submit" className="bg-greyBlue inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md hover:bg-greyBlue hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-greyBlue">
-                                Save
+                                Send
                             </button>
                         </div>
 

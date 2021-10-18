@@ -5,6 +5,8 @@ class MyDocument extends Document {
         return (
             <Html>
                 <Head>
+                    <meta name="description" itemProp="description" content="Kellie Reyes"></meta>
+                    <meta name="keywords" itemProp="keywords" content="kellie reyes, lawyer, kellie reyes law, law, new jersey, law nj"></meta>
                     <link rel="icon" href="/favicon.ico" />
                     <link rel="preconnect" href="https://fonts.googleapis.com" />
                     <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin='true' />

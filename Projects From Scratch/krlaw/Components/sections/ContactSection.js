@@ -3,7 +3,6 @@ import ReCAPTCHA from "react-google-recaptcha";
 import axios from 'axios'
 import ContactForm from '../forms/ContactForm'
 import Loading from '../ui/Loading'
-import Alert from '../ui/Alert'
 
 
 function ContactSection({ csrfToken }) {
@@ -115,13 +114,14 @@ function ContactSection({ csrfToken }) {
                 : success.success ?
                     <div className="p-10 bg-white rounded">
                         <p>Your message has been successfully sent!</p>
+                        <p>We will get back to you as soon as possible.</p>
                     </div>
                     :
                     <ContactForm form={form} handleChange={handleChange} handleSubmit={handleSubmit} errors={errors} captcha={captcha} validated={validated}>
                         <div className="flex flex-col items-center justify-center mt-0">
 
                             <ReCAPTCHA
-                                sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                                sitekey="6LccfNscAAAAALCI7lIvqsY2c5U_IhLCRNAkkuRh"
                                 onChange={onChange}
                                 size='normal'
                                 theme='dark'
