@@ -10,6 +10,7 @@ import ViewButton from '../ui/ViewButton';
 import classes from '../../styles/projectsSection.module.css'
 import LinkWrapper from '../utils/LinkWrapper';
 import Image from 'react-bootstrap/Image';
+import { stackOptions } from '../../constants/projectStackOpts'
 
 function ProjectsSection({ projects, mainPage }) {
     const reverse = [...projects].reverse();
@@ -19,7 +20,7 @@ function ProjectsSection({ projects, mainPage }) {
     function handleChange(val) {
         if (val === 'all') return setProjectData(initialProjects)
 
-        const data = projects.filter(project => project.stack.includes(val))
+        const data = projects.filter(project => project.stack.includes(val)).reverse()
         return setProjectData(data)
     }
 
@@ -29,7 +30,7 @@ function ProjectsSection({ projects, mainPage }) {
         return `${str.substring(0, 200)}...`
     }
 
-    const options = ['All', 'Bootstrap', 'Material-UI', 'MongoDb', 'Next.Js', 'React', 'PHP']
+    const options = stackOptions
 
 
     return (
