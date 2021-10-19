@@ -20,9 +20,10 @@ function Hero({ h1, h2 }) {
                 <h1 id={classes.h1}>{h1}</h1>
                 <h2 id={classes.h2}>{h2}</h2>
                 <Image
-                    src="/img/jmlogo3.jpg"
+                    src="/img/jmlogo4.jpg"
                     alt="hero"
                     layout="fill"
+                    quality='100'
                     objectFit="cover"
                     priority={true}
                     onLoadingComplete={() => setLoading(true)}
