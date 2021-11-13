@@ -12,15 +12,9 @@ app.use((req, res, next) => {
     next()
 })
 
-
 //routes
 
 app.use('/api/v1/tours', tourRouter)
 app.use('/api/v1/users', userRouter)
 
-// start server    
-const port = 3000;
-app.listen(port, () => {
-    console.log(`app firing on ${port}`);
-})
-
+module.exports = app
