@@ -1,10 +1,19 @@
 const fs = require('fs');
 const express = require('express');
+const morgan = require('morgan');
 
 const app = express();
+
+//middleware
+app.use(morgan('dev'))
 app.use(express.json());
+app.use((req, res, next) => {
+    console.log('middleware')
+    next()
+})
 
 
+// route handlers
 const tours = JSON.parse(fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`))
 
 const getAllTours = (req, res) => {
@@ -54,6 +63,46 @@ const deleteTour = (req, res) => {
     })
 }
 
+const getAllUsers = (req, res) => {
+    res.status(500).json(
+        {
+            status: 'error',
+            message: 'not yet defined'
+        })
+}
+const createUser = (req, res) => {
+    res.status(500).json(
+        {
+            status: 'error',
+            message: 'not yet defined'
+        })
+}
+const getUser = (req, res) => {
+    res.status(500).json(
+        {
+            status: 'error',
+            message: 'not yet defined'
+        })
+}
+const updateUser = (req, res) => {
+    res.status(500).json(
+        {
+            status: 'error',
+            message: 'not yet defined'
+        })
+}
+const deleteUser = (req, res) => {
+    res.status(500).json(
+        {
+            status: 'error',
+            message: 'not yet defined'
+        })
+}
+
+
+
+//routes
+
 app.route('/api/v1/tours')
     .get(getAllTours)
     .post(createTours)
@@ -63,6 +112,16 @@ app.route('/api/v1/tours/:id')
     .patch(updateTour)
     .delete(deleteTour)
 
+app.route('/api/v1/users')
+    .get(getAllUsers)
+    .post(createUser)
+
+app.route('/api/v1/users/:id')
+    .get(getUser)
+    .patch(updateUser)
+    .delete(deleteUser)
+
+// start server    
 const port = 3000;
 app.listen(port, () => {
     console.log(`app firing on ${port}`);
