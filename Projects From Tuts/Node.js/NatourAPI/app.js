@@ -5,12 +5,11 @@ const tourRouter = require('./routes/tourRoutes')
 const app = express();
 
 //middleware
-app.use(morgan('dev'))
+if (process.env.NODE_ENV === 'development') {
+    app.use(morgan('dev'))
+}
 app.use(express.json());
-app.use((req, res, next) => {
-    console.log('middleware')
-    next()
-})
+app.use(express.static(`${__dirname}/public`))
 
 //routes
 
