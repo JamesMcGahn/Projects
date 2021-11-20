@@ -33,7 +33,7 @@ exports.createTour = async (req, res) => {
         res.status(400).json({
             status: 'failure',
             data: {
-                message: 'There was a problem creating the tour',
+                message: err,
             },
         });
     }
