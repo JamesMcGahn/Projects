@@ -2,14 +2,6 @@ const mongoose = require('mongoose');
 const slugify = require('slugify');
 const validator = require('validator');
 
-const DB = process.env.DB_CONNECT.replace('<PASSWORD>', process.env.DB_PASSWORD);
-
-mongoose.connect(DB, {
-    useNewUrlParser: true,
-}).then(() => {
-    console.log('connected to DB');
-});
-
 const tourSchema = new mongoose.Schema({
     name: {
         type: String,
