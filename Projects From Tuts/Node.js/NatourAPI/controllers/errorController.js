@@ -2,7 +2,12 @@ const AppError = require('../utils/appError');
 
 const handleCastError = (err) => {
     const message = `Invalid ${err.path}: ${err.value}`;
-    console.log('imaewew', message);
+    return new AppError(message, 400);
+};
+
+const handleDuplicateFields = (err) => {
+    const value = err.errmsg.match(/(["'])(\\?.)*?\1/)[0];
+    const message = `Duplicate field value: ${value}. Please use another value!`;
     return new AppError(message, 400);
 };
 
@@ -36,6 +41,7 @@ module.exports = (err, req, res, next) => {
     if (process.env.NODE_ENV === 'production') {
         let error = Object.assign(err);
         if (error.name === 'CastError') error = handleCastError(error);
+        if (error.code === 11000) error = handleDuplicateFields(error);
         sendErrorProd(error, res);
     } else if (process.env.NODE_ENV === 'development') {
         sendErrorDev(err, res);
