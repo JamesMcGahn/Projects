@@ -1,3 +1,11 @@
+const AppError = require('../utils/appError');
+
+const handleCastError = (err) => {
+    const message = `Invalid ${err.path}: ${err.value}`;
+    console.log('imaewew', message);
+    return new AppError(message, 400);
+};
+
 const sendErrorDev = (err, res) => {
     res.status(err.statusCode).json({
         status: err.status,
@@ -26,7 +34,9 @@ module.exports = (err, req, res, next) => {
     err.status = err.status || 'error';
 
     if (process.env.NODE_ENV === 'production') {
-        sendErrorProd(err, res);
+        let error = Object.assign(err);
+        if (error.name === 'CastError') error = handleCastError(error);
+        sendErrorProd(error, res);
     } else if (process.env.NODE_ENV === 'development') {
         sendErrorDev(err, res);
     }
