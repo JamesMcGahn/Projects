@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
         required: [true, 'A user must have a name'],
         trim: true,
-        unique: true,
         maxLength: [20, 'A name must have a less or equal then 20 characters'],
         minLength: [3, 'A name must have a minimum of 3 characters'],
         validate: {
@@ -30,15 +30,28 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: [true, 'A user must have a password'],
-        trim: true,
-        unique: true,
         minLength: [8, 'A password must have a minimum of 8 characters'],
     },
     passwordConfirm: {
         type: String,
-        required: [true, 'A user must have a password'],
-        trim: true,
+        required: [true, 'A user confirm their password'],
+        validate: {
+            // only works on save and create
+            validator: function (val) {
+                return val === this.password;
+            },
+            message: 'looks like your passwords do not match',
+        },
     },
+});
+
+userSchema.pre('save', async function (next) {
+    //only run if pw is modified
+    if (!this.isModified('password')) return next();
+    // hash 12 and delete confirm
+    this.password = await bcrypt.hash(this.password, 12);
+    this.passwordConfirm = undefined;
+    next();
 });
 
 const User = mongoose.model('User', userSchema);
