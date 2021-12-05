@@ -17,6 +17,8 @@ const handleDBValidationError = (err) => {
     return new AppError(message, 400);
 };
 
+const handleJsonWebtTokenError = () => new AppError('Invalid Token. Please Login', 401);
+
 const sendErrorDev = (err, res) => {
     res.status(err.statusCode).json({
         status: err.status,
@@ -49,6 +51,7 @@ module.exports = (err, req, res, next) => {
         if (error.name === 'CastError') error = handleCastError(error);
         if (error.name === 'ValidationError') error = handleDBValidationError(error);
         if (error.code === 11000) error = handleDuplicateFields(error);
+        if (error.name === 'JsonWebTokenError' || error.name === 'TokenExpiredError') error = handleJsonWebtTokenError(error);
         sendErrorProd(error, res);
     } else if (process.env.NODE_ENV === 'development') {
         sendErrorDev(err, res);

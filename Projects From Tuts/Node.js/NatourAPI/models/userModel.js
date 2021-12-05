@@ -27,6 +27,7 @@ const userSchema = new mongoose.Schema({
             message: 'hmmm..seems your email is a little weird. try again',
         },
     },
+    passwordChangedAt: Date,
     password: {
         type: String,
         required: [true, 'A user must have a password'],
@@ -45,6 +46,7 @@ const userSchema = new mongoose.Schema({
         },
         select: false,
     },
+
 });
 
 userSchema.pre('save', async function (next) {
@@ -58,6 +60,13 @@ userSchema.pre('save', async function (next) {
 
 userSchema.methods.correctPassword = async function (passwordAttempt, userPassword) {
     return await bcrypt.compare(passwordAttempt, userPassword);
+};
+userSchema.methods.changedPassword = async function (JWTTimestamp) {
+    if (this.passwordChangedAt) {
+        const changedTimeStamp = Number(this.passwordChangedAt.getTime() / 1000);
+        return (JWTTimestamp < changedTimeStamp);
+    }
+    return false;
 };
 
 const User = mongoose.model('User', userSchema);
