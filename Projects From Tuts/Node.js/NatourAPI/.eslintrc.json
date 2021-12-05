@@ -17,6 +17,7 @@
     "no-unused-vars": ["error", { "argsIgnorePattern": "req|res|next|val" }],
     "indent": "off",
     "eslint-disable-next-line": "off",
-    "arrow-parens": "off"
+    "arrow-parens": "off",
+    "arrow-body-style": "off"
   }
 }
