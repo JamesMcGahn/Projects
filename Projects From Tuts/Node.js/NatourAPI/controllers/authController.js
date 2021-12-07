@@ -67,3 +67,12 @@ exports.protect = catchAsync(async (req, res, next) => {
     req.user = checkUser;
     next();
 });
+
+exports.restrictTo = (...roles) => {
+    return function (req, res, next) {
+        if (!roles.includes(req.user.role)) {
+            return next(new AppError('You do not have permission to access this', 403));
+        }
+        next();
+    };
+};

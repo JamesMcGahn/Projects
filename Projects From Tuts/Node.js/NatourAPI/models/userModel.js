@@ -27,6 +27,11 @@ const userSchema = new mongoose.Schema({
             message: 'hmmm..seems your email is a little weird. try again',
         },
     },
+    role: {
+        type: String,
+        enum: ['admin', 'guide', 'lead-guide', 'user'],
+        default: 'user',
+    },
     passwordChangedAt: Date,
     password: {
         type: String,
