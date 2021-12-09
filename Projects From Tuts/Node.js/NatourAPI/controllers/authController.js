@@ -19,6 +19,16 @@ const signToken = userId => {
     );
 };
 
+const createToken = (user, statusCode, data, res) => {
+    const token = signToken(user._id);
+
+    res.status(statusCode).json({
+        status: 'success',
+        token,
+        data: data,
+    });
+};
+
 exports.signup = catchAsync(async (req, res, next) => {
     const newUser = await User.create({
         name: req.body.name,
@@ -27,18 +37,10 @@ exports.signup = catchAsync(async (req, res, next) => {
         passwordConfirm: req.body.passwordConfirm,
         passwordChangedAt: req.body.passwordChangedAt,
     });
-    const token = signToken(newUser._id);
 
-    res.status(201).json({
-        status: 'success',
-        token,
-        data: {
-            user: {
-                name: newUser.name,
-                email: newUser.email,
-            },
-        },
-    });
+    createToken(newUser._id, 201, {
+        user: { name: newUser.name, email: newUser.email },
+    }, res);
 });
 
 exports.login = catchAsync(async (req, res, next) => {
@@ -49,12 +51,7 @@ exports.login = catchAsync(async (req, res, next) => {
 
     if (!user || !(await user.correctPassword(password, user.password))) return next(new AppError('password or email is incorrect', 401));
 
-    const token = signToken(user._id);
-
-    res.status(201).json({
-        status: 'success',
-        token,
-    });
+    createToken(user._id, 200, null, res);
 });
 
 exports.protect = catchAsync(async (req, res, next) => {
@@ -103,7 +100,7 @@ exports.forgotPassowrd = catchAsync(async (req, res, next) => {
             subject: 'Your password has been reset',
             message,
         });
-        res.status(201).json({
+        res.status(200).json({
             status: 'success',
             message: 'Token sent via email',
         });
@@ -132,12 +129,7 @@ exports.resetPassowrd = catchAsync(async (req, res, next) => {
     user.passwordResetExpires = undefined;
     await user.save();
     // log the user in
-    const token = signToken(user._id);
-
-    res.status(201).json({
-        status: 'success',
-        token,
-    });
+    createToken(user._id, 200, null, res);
 });
 
 exports.updatePassword = catchAsync(async (req, res, next) => {
@@ -152,10 +144,5 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
     user.passwordConfirm = req.body.passwordConfirm;
     await user.save();
     // log in user, send jwt
-    const token = signToken(user._id);
-
-    res.status(201).json({
-        status: 'success',
-        token,
-    });
+    createToken(user._id, 200, null, res);
 });
