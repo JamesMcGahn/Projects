@@ -7,9 +7,16 @@ const AppError = require('../utils/appError');
 const sendEmail = require('../utils/email');
 
 const signToken = userId => {
-    return jwt.sign({ id: userId }, process.env.JWT_SECRET_KEY, {
-        expiresIn: process.env.JWT_EXPIRES,
-    });
+    return jwt.sign(
+        {
+            id: userId,
+            iat: Math.floor(Date.now() / 1000),
+        },
+        process.env.JWT_SECRET_KEY,
+        {
+            expiresIn: process.env.JWT_EXPIRES,
+        },
+    );
 };
 
 exports.signup = catchAsync(async (req, res, next) => {
@@ -41,6 +48,7 @@ exports.login = catchAsync(async (req, res, next) => {
     const user = await User.findOne({ email }).select('+password');
 
     if (!user || !(await user.correctPassword(password, user.password))) return next(new AppError('password or email is incorrect', 401));
+
     const token = signToken(user._id);
 
     res.status(201).json({
@@ -124,6 +132,26 @@ exports.resetPassowrd = catchAsync(async (req, res, next) => {
     user.passwordResetExpires = undefined;
     await user.save();
     // log the user in
+    const token = signToken(user._id);
+
+    res.status(201).json({
+        status: 'success',
+        token,
+    });
+});
+
+exports.updatePassword = catchAsync(async (req, res, next) => {
+    // get user
+    const user = await User.findById(req.user.id).select('+password');
+    // check password
+    if (!user || !(await user.correctPassword(req.body.passwordCurrent, user.password))) {
+        return next(new AppError('user or password incorrect', 401));
+    }
+    // if correct, update pw
+    user.password = req.body.password;
+    user.passwordConfirm = req.body.passwordConfirm;
+    await user.save();
+    // log in user, send jwt
     const token = signToken(user._id);
 
     res.status(201).json({
