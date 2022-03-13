@@ -1,8 +1,14 @@
 import axios from 'axios';
-import { User } from './models/User';
-const user = new User({ id: 2, name: 'newer name2', age: 36 });
-user.on('save', () => {
-  console.log(user);
-});
+import { User, UserProps } from './models/User';
 
-user.save();
+// const user = User.buildUser({ id: 2 });
+// user.on('change', () => {
+//   console.log(user);
+// });
+
+import { Collection } from './models/Collection';
+const collection = User.buildUserCollection();
+collection.on('change', () => {
+  console.log(collection);
+});
+collection.fetch();
