@@ -1,0 +1,35 @@
+.grid {
+  width: 400px;
+  height: 600px;
+  background-color: grey;
+  position: relative;
+  background-image: url('./assets/background.png');
+}
+
+.doodler {
+  width: 87px;
+  height: 85px;
+  background-image: url('./assets/doodler.png');
+  position: absolute;
+}
+
+.platform {
+  width: 85px;
+  height: 15px;
+  background-image: url('./assets/platform.png');
+
+  position: absolute;
+}
+
+#gameover {
+  padding-top: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+.game-over-title {
+  font-weight: bold;
+  font-size: 1.5em;
+}
