@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const gameOverContainer = document.querySelector('.gameover-container');
     const scoreboard = document.querySelector('.scoreboard');
     const doodler = document.createElement('div');
+    let jumpSound = new Audio('./assets/jump.wav');
     let isGameOver = false;
     let doodlerLeftSpace = 50;
     let doodlerStartPoint = 150;
@@ -59,7 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (platform.bottom < 10) {
                     let firstPlatform = platforms[0].visual;
                     firstPlatform.classList.remove('platform');
-                    console.log(firstPlatform)
                     grid.removeChild(firstPlatform);
                     platforms.shift();
                     if (!isGameOver) {
@@ -73,12 +73,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+
+
     function doodlerJump() {
+        if (!isDoodlerJumping) jumpSound.play();
         isDoodlerJumping = true;
         clearInterval(jumpDownTimerId);
         jumpUpTimerId = setInterval(function () {
+
             doodlerBottomSpace += 20;
             doodler.style.bottom = doodlerBottomSpace + 'px';
+
             if (doodlerBottomSpace > doodlerStartPoint + 200) {
                 doodlerFall();
             }
@@ -206,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
         clearParentNodes(grid);
         clearParentNodes(gameOverContainer);
         score = 0;
-        level = 30;
+        level = 1;
         doodlerLeftSpace = 50;
         doodlerStartPoint = 150;
         doodlerBottomSpace = 150;
@@ -216,29 +221,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }
 
-    function gameOver(winLose) {
-        isGameOver = true;
-        clearAllIntervals()
+    function gameOverDisplayed(outcome) {
         const gameOver = document.createElement('div');
         const reset = document.createElement('div');
         reset.innerHTML = '<div class="reset-hidden"><button id="reset-button">Play Again?</button></div>'
+        let message = outcome === 'win' ? 'You Won' : 'You Lost';
+        clearParentNodes(grid);
+        gameOver.innerHTML = `<div id="gameover"><h1 class="game-over-title">Game Over: ${message} </h1><h2 class="score">Level: ${level}</h2> <h2 class="score">Score: ${score}</h2>`;
+        gameOverContainer.appendChild(gameOver);
+        scoreboard.removeChild(scoreboard.firstChild)
+        gameOver.appendChild(reset);
+    }
 
+
+
+    function gameOver(winLose) {
+        isGameOver = true;
+        clearAllIntervals()
         if (winLose === 'lose') {
-            clearParentNodes(grid);
-            gameOver.innerHTML = `<div id="gameover"><h1 class="game-over-title">Game Over: You Lost</h1><h2 class="score">Level: ${level}</h2> <h2 class="score">Score: ${score}</h2>`;
-            gameOverContainer.appendChild(gameOver);
-            scoreboard.removeChild(scoreboard.firstChild)
+            gameOverDisplayed(winLose);
         } else if (winLose === 'win') {
-            grid.removeChild(doodler);
+            gameOverDisplayed(winLose);
             isMovingPlatforms = true;
             movePlatsTimer = setInterval(movePlatforms, 30)
-            gameOver.innerHTML = `<div id="gameover"><h1 class="game-over-title">Game Over: You Won</h1><h2 class="score">Level: ${level}</h2> <h2 class="score">Score: ${score}</h2>`;
-            gameOverContainer.appendChild(gameOver);
-            scoreboard.removeChild(scoreboard.firstChild)
         }
-        gameOver.appendChild(reset);
+
         document.querySelector('#reset-button').addEventListener('click', (e) => {
-            console.log('reset clicked');
             resetGame()
         })
     }
