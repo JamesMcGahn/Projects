@@ -1,9 +1,16 @@
 .grid {
   width: 400px;
   height: 600px;
+  top: 0;
   background-color: grey;
-  position: relative;
+  position: absolute;
   background-image: url('./assets/background.png');
+}
+
+.gameover-container {
+  position: absolute;
+  width: 400px;
+  z-index: 20;
 }
 
 .doodler {
@@ -32,4 +39,42 @@
 .game-over-title {
   font-weight: bold;
   font-size: 1.5em;
+}
+
+.score {
+  margin-top: 0;
+}
+
+.scoreboard {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 100px;
+  z-index: 10;
+  border: 1px solid red;
+}
+
+#score-board-display {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  padding-left: 0.8rem;
+}
+
+#score-board-display h6 {
+  margin: 0;
+}
+
+.reset-hidden {
+  z-index: 20;
+}
+
+#reset-button {
+  position: absolute;
+  background-color: green;
+  width: 100%;
+  z-index: 20;
 }
