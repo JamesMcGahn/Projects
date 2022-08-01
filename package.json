@@ -1,0 +1,31 @@
+{
+  "name": "projects",
+  "version": "1.0.0",
+  "description": "Monorepo of All Projects, Demos and Tutorials",
+  "main": "svgo.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JamesMcGahn/Projects.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JamesMcGahn/Projects/issues"
+  },
+  "homepage": "https://github.com/JamesMcGahn/Projects#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
+    "@typescript-eslint/parser": "^5.31.0",
+    "eslint": "^8.20.0",
+    "eslint-plugin-mocha": "^10.1.0",
+    "eslint-plugin-react": "^7.30.1"
+  },
+  "dependencies": {
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-react-hooks": "^4.6.0"
+  }
+}

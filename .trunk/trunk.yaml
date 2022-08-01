@@ -9,6 +9,10 @@ lint:
     - gitleaks@8.9.0
     - isort@5.10.1
     - markdownlint@0.32.1
-    - prettier@2.7.1
+    - eslint@8.20.0
     - svgo@2.8.0
     - taplo@release-taplo-cli-0.6.8
+    - stylelint@14.9.1
+    - clang-format@13.0.0
+    - clang-tidy@13.0.0
+    - prettier@2.7.1
