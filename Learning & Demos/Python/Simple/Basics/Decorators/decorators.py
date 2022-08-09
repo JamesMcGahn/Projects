@@ -1,3 +1,6 @@
+from functools import wraps
+
+
 def be_polite(fn):
     def wrapper():
         print("nice to meet you")
@@ -28,9 +31,11 @@ rage()
 
 ## decorators patterns
 def shout(fn):
+    @wraps(fn)  # preverses metadata
     def wrapper(
         *args, **kwargs
     ):  # gives the us the most flexibility to pass whatever through
+
         return fn(*args, **kwargs).upper()
 
     return wrapper
