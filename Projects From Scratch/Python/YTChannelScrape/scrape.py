@@ -52,19 +52,20 @@ def write_html_file(filename, source):
     print("Completed Html Data Writing")
 
 
-def scrape_html(filename):
+def scrape_html(filename, ignore_shorts):
     data = open(f"./{filename}.html", "r")
     soup = BeautifulSoup(data, "html.parser")
     all_videos = soup.find_all("ytd-grid-video-renderer")
     video_collection = []
     print("Starting Parsing Html Data...")
     for video in all_videos:
+        vid_length = video.find(id="thumbnail").find(id="text").get_text("", strip=True)
+        if "shorts" in vid_length.lower() and ignore_shorts is True:
+            continue
         vid = {
             "Title": video.find("h3").get_text(),
             "Video Url": f"www.youtube.com{video.find(id='thumbnail')['href']}",
-            "Length": video.find(id="thumbnail")
-            .find(id="text")
-            .get_text("", strip=True),
+            "Length": vid_length,
         }
         video_collection.append(vid)
     try:
@@ -98,6 +99,7 @@ def restart():
 
 def start():
     url_choice = ""
+    ignore_shorts = False
     valid_choices = ("1", "2", "quit")
     while url_choice.lower() not in valid_choices:
         print("Which Url structure is the channel?: ")
@@ -111,6 +113,9 @@ def start():
         else:
             channel_name = input("Write the channel name: ")
             file_name = input("What should we name the .csv file?: ")
+            ignore_shorts = input("Do you want to ignore Shorts? y/n: ")
+            if ignore_shorts.lower() not in ("no", "n"):
+                ignore_shorts = True
 
     if url_choice.lower() == "quit":
         return
@@ -122,7 +127,7 @@ def start():
     try:
         source = run_webdriver(url_format[url_choice])
         write_html_file("html-file", source)
-        video_collection = scrape_html("html-file")
+        video_collection = scrape_html("html-file", ignore_shorts)
         write_to_file(video_collection, file_name)
         restart()
     except Exception as e:
