@@ -6,8 +6,9 @@
 #ignoring tool config files
 .vscode
 
-#API key file for vanilla js 
+#API key file for vanilla js / python
 keys.js
+keys.py
 
 # ignorning build folders for reactive
 build/
