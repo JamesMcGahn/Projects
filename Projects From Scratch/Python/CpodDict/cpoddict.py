@@ -1,25 +1,9 @@
 from csv import DictWriter
-from time import sleep
 from urllib.parse import unquote
 
 import regex
-import requests
-from bs4 import BeautifulSoup
 from keys import keys
-
-
-def get_session():
-    session = requests.Session()
-    payload = {"email": keys["email"], "password": keys["password"]}
-    session.post(f"{keys['url']}/accounts/signin", data=payload)
-    return session
-
-
-def get_html(session, word):
-    req = session.get(f"{keys['url']}/dictionary/english-chinese/{word}")
-    soup = BeautifulSoup(req.text, "html.parser")
-    sleep(10)
-    return soup
+from session import Session
 
 
 def get_defintion(soup):
@@ -53,6 +37,7 @@ def strip_string(sentence):
 
 def get_sentences(soup, levels, word):
     reg_pattern = regex.compile(r"[\p{Han}，。？：！‘\"\\s]+")
+    print(soup)
     all_sample_sentences = soup.find("table", class_="table-grossary").find_all("tr")
     word_example_sentences = []
     for sentence in all_sample_sentences:
@@ -84,7 +69,7 @@ def get_sentences(soup, levels, word):
 
 
 def write_to_csv(data, filename):
-    if data.len() == 0:
+    if len(data) == 0:
         print("No sentences are available. Try Selecting More Levels.")
         return None
     with open(f"{filename}.csv", "w") as file:
@@ -105,12 +90,18 @@ def open_word_list(filename):
 def start(filename):
     print(keys["email"])
     words_list = open_word_list(filename)
-    session = get_session()
+    new_session = Session(
+        f"{keys['url']}accounts/signin", keys["email"], keys["password"]
+    )
+    new_session.get_session()
     finished_words = []
     finished_sentences = []
     levels = ("Elementary", "Pre-Intermediate", "Intermediate")
     for word in words_list:
-        soup_res = get_html(session, word)
+        soup_res = new_session.get_html(
+            f"{keys['url']}/dictionary/english-chinese/", word
+        )
+        print()
         defined_word = get_defintion(soup_res)
         example_sentences = get_sentences(soup_res, levels, word)
         defined_word["chinese"] = word
@@ -119,8 +110,8 @@ def start(filename):
 
     finished_sentences = [val for sublist in finished_sentences for val in sublist]
     print(finished_words)
-    write_to_csv(finished_words, "words1", "word")
-    write_to_csv(finished_sentences, "sentences1", "sentence")
+    write_to_csv(finished_words, "words1")
+    write_to_csv(finished_sentences, "sentences1")
 
 
 start("./words.txt")

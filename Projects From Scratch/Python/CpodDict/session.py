@@ -15,11 +15,11 @@ class Session:
         return f"session for {self.ses_url}"
 
     def get_session(self):
-        self.session.post(self.ses_url, data=self.payload)
+        Session.session.post(self.ses_url, data=self.payload)
         return self.session
 
     def get_html(self, url, word):
-        req = self.session.get(f"{url}{word}")
+        req = Session.session.get(f"{url}{word}")
         soup = BeautifulSoup(req.text, "html.parser")
         sleep(10)
         return soup
