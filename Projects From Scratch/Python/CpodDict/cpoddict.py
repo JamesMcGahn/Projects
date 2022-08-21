@@ -83,8 +83,10 @@ def get_sentences(soup, levels, word):
     return word_example_sentences
 
 
-def write_to_csv(data, filename, type):
-    print(data)
+def write_to_csv(data, filename):
+    if data.len() == 0:
+        print("No sentences are available. Try Selecting More Levels.")
+        return None
     with open(f"{filename}.csv", "w") as file:
         csv_writer = DictWriter(file, fieldnames=data[0].keys())
         csv_writer.writeheader()
@@ -116,7 +118,7 @@ def start(filename):
         finished_sentences.append(example_sentences)
 
     finished_sentences = [val for sublist in finished_sentences for val in sublist]
-
+    print(finished_words)
     write_to_csv(finished_words, "words1", "word")
     write_to_csv(finished_sentences, "sentences1", "sentence")
 
