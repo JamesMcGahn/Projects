@@ -19,6 +19,14 @@ def write_to_csv(data, filename):
             csv_writer.writerow(dat)
 
 
+# TODO: add CLI
+# TODO: add option for scraping lessons dialogues, words, expansions
+# TODO: Write CSV Class
+# TODO: Download audio class from link and if audio is missing from definition
+# TODO: filter by levels for example sentences
+# TODO: allow for option to go back if there are sentences but the level selected filtered them out
+
+
 def start(filepath):
     try:
         words_list = OpenFile.open_word_list(filepath, "\n")
@@ -36,7 +44,7 @@ def start(filepath):
             )
             cpod = ScrapeCpod(soup_res, word)
             defined_word = cpod.get_defintion()
-            example_sentences = cpod.get_sentences(levels)
+            example_sentences = cpod.get_sentences()
             dictionary.add_word(defined_word)
             dictionary.add_sentences(example_sentences)
 

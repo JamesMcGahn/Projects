@@ -42,26 +42,26 @@ class ScrapeCpod:
 
         return Word(self.word, pinyin, definition, audio_file)
 
-    def get_sentences(self, levels):
+    def get_sentences(self):
         reg_pattern = regex.compile(r"[\p{Han}，。？：！‘\"\\s]+")
-        # TODO: add check to make sure there are actually sentences
-        all_sample_sentences = self.soup.find(
-            "table", class_="table-grossary"
-        ).find_all("tr")
         word_example_sentences = []
+        sample_sentences_table = self.soup.find("table", class_="table-grossary")
+        if sample_sentences_table is None:
+            return []
+
+        all_sample_sentences = sample_sentences_table.find_all("tr")
         for sentence in all_sample_sentences:
             level = sentence.find(class_="badge").string
-            if level in levels:
-                sent_cont = sentence.find(class_="click-to-add")
-                sentence_all = sent_cont.get_text()
-                char_sent = reg_pattern.findall(sentence_all)[0]
-                pinyin_sent = sent_cont.find(class_="dict-pinyin-cont").get_text()
-                english_sent = sent_cont.find(class_="dict-pinyin-cont").next_sibling
-                audio = self.get_audio(sentence)
-                english_sent = Dictionary.strip_string(english_sent)
-                pinyin_sent = Dictionary.strip_string(pinyin_sent)
-                example_sentence = Sentence(
-                    self.word, char_sent, english_sent, pinyin_sent, level, audio
-                )
-                word_example_sentences.append(example_sentence)
+            sent_cont = sentence.find(class_="click-to-add")
+            sentence_all = sent_cont.get_text()
+            char_sent = reg_pattern.findall(sentence_all)[0]
+            pinyin_sent = sent_cont.find(class_="dict-pinyin-cont").get_text()
+            english_sent = sent_cont.find(class_="dict-pinyin-cont").next_sibling
+            audio = self.get_audio(sentence)
+            english_sent = Dictionary.strip_string(english_sent)
+            pinyin_sent = Dictionary.strip_string(pinyin_sent)
+            example_sentence = Sentence(
+                self.word, char_sent, english_sent, pinyin_sent, level, audio
+            )
+            word_example_sentences.append(example_sentence)
         return word_example_sentences
