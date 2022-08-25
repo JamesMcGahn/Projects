@@ -14,25 +14,32 @@ class WriteFile:
             return False
 
     @staticmethod
-    def write_to_csv(data, filename):
-        if len(data) == 0:
-            return False
+    def check_dup(folderpath, filename, ext):
         # if folder path doesnt exist - create it
-        WriteFile.path_exists("./out", True)
+        WriteFile.path_exists(folderpath, True)
         # remove linux illegal characters
+        if isinstance(filename, int):
+            filename = str(filename)
         filename = filename.replace("/", "-").replace("\0", "")
-        path = f"./out/{filename}.csv"
+        path = f"{folderpath}/{filename}{ext}"
         # check if filename exists
         if WriteFile.path_exists(path, False):
             count = 1
-            newpath = f"./out/{filename}-({count}).csv"
+            newpath = f"{folderpath}/{filename}-({count}){ext}"
             # if filename exists append -(count) to make unique filename
             # check to see if filename already exists - if it does increase count in filename
             while WriteFile.path_exists(newpath, False):
                 print(WriteFile.path_exists(newpath, False))
-                newpath = f"./out/{filename}-({count}).csv"
+                newpath = f"{folderpath}/{filename}-({count}){ext}"
                 count += 1
             path = newpath
+        return path
+
+    @staticmethod
+    def write_to_csv(data, filename):
+        if len(data) == 0:
+            return False
+        path = WriteFile.check_dup("./out", filename, ".csv")
         with open(path, "w") as file:
             csv_writer = DictWriter(file, fieldnames=data[0].keys())
             csv_writer.writeheader()

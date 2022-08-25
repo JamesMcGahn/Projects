@@ -7,7 +7,7 @@ from write_file import WriteFile
 
 # TODO: add CLI
 # TODO: add option for scraping lessons dialogues, words, expansions
-# TODO: Download audio class from link and if audio is missing from definition
+# TODO: add CLI option to download audio of words and/or sentences or dialogues
 # TODO: filter by levels for example sentences
 # TODO: allow for option to go back if there are sentences but the level selected filtered them out
 
