@@ -29,7 +29,6 @@ class WriteFile:
             # if filename exists append -(count) to make unique filename
             # check to see if filename already exists - if it does increase count in filename
             while WriteFile.path_exists(newpath, False):
-                print(WriteFile.path_exists(newpath, False))
                 newpath = f"{folderpath}/{filename}-({count}){ext}"
                 count += 1
             path = newpath
@@ -37,9 +36,11 @@ class WriteFile:
 
     @staticmethod
     def write_to_csv(data, filename):
+        
         if len(data) == 0:
             return False
         path = WriteFile.check_dup("./out", filename, ".csv")
+        print(f"Saving {path}")
         with open(path, "w") as file:
             csv_writer = DictWriter(file, fieldnames=data[0].keys())
             csv_writer.writeheader()

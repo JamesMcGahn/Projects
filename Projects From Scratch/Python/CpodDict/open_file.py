@@ -13,6 +13,7 @@ class OpenFile:
 
     @staticmethod
     def open_csv(filepath):
+        print(f"Opening {filepath}")
         if OpenFile.check_file(filepath):
             with open(filepath, "r") as file:
                 csv_reader = DictReader(file)
@@ -20,6 +21,7 @@ class OpenFile:
 
     @staticmethod
     def open_word_list(filepath, split):
+        print(f"Opening {filepath}")
         if OpenFile.check_file(filepath):
             with open(filepath) as file:
                 words = file.read().split(split)

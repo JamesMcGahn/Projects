@@ -39,6 +39,7 @@ class ScrapeMdgb:
             return None
 
     def get_defintion(self):
+        print(f"Getting Definition for {self.word} - MDGB")
         results_table = self.soup.find("td", class_="resultswrap")
         if results_table is None:
             return None
@@ -54,6 +55,5 @@ class ScrapeMdgb:
                 "definition": definition,
                 "audio": "",
             }
-            print(word)
             self.result_words.append(word)
         return self.def_selection()

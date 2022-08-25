@@ -18,7 +18,7 @@ class ScrapeCpod:
         return audio_file
 
     def get_defintion(self):
-        print(f"Getting Definition for {self.word}")
+        print(f"Getting Definition for {self.word} - cpod")
         search_table = self.soup.find("div", class_="sample-search")
         if search_table is None:
             return None

@@ -19,6 +19,7 @@ class Session:
         return self.session
 
     def get_html(self, url, word):
+        print(f"Getting HTML for {word}...")
         req = Session.session.get(f"{url}{word}")
         soup = BeautifulSoup(req.text, "html.parser")
         sleep(10)
