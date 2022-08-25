@@ -1,4 +1,5 @@
 from dictionary import Word
+from idecontroller import IDEController
 
 
 class ScrapeMdgb:
@@ -9,25 +10,17 @@ class ScrapeMdgb:
 
     def def_selection(self):
         if len(self.result_words) > 1:
-            count = 1
-            print("There are mulitple results:")
-            for word in self.result_words:
-                print(
-                    f"{count}:{word['chinese']}({word['pinyin']}) - {word['definition']}"
-                )
-                count += 1
-            selection = None
-            while selection not in range(1, len(self.result_words) + 1):
-                try:
-                    selection = int(input("Enter the number the correct definition: "))
-                    if selection not in range(1, len(self.result_words) + 1):
-                        print(
-                            "Thats not a valid selection. Enter a number listed above."
-                        )
-                except ValueError:
-                    print("What you entered is not a number. Please try again.")
-                    continue
-            sel_word = self.result_words[selection - 1]
+            IDEController.list_options(
+                self.result_words,
+                "There are multiple results:",
+                lambda x, count: print(
+                    f"{count}:{x['chinese']}({x['pinyin']}) - {x['definition']}"
+                ),
+            )
+            selection = IDEController.make_selection(
+                self.result_words, "Enter the number the correct definition"
+            )
+            sel_word = self.result_words[selection]
             return Word(
                 sel_word["chinese"],
                 sel_word["pinyin"],
