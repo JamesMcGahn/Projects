@@ -13,7 +13,6 @@ class ScrapeCpod:
         audio_table = element.find(class_="jp-type-single")
         if audio_table is None:
             return ""
-            # TODO: find another source for words
         audio_file = unquote(audio_table.find("a", class_="download-link")["href"])
         audio_file = audio_file.replace("/redirect/?url=", "")
         return audio_file
@@ -22,8 +21,7 @@ class ScrapeCpod:
         print(f"Getting Definition for {self.word}")
         search_table = self.soup.find("div", class_="sample-search")
         if search_table is None:
-            return Word(self.word, "N/A", "N/A", "N/A")
-            # TODO: find other source
+            return None
 
         pinyin_def = self.soup.find("div", class_="sample-search")
         audio_file = self.get_audio(search_table)
