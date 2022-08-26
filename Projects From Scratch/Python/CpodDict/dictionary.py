@@ -17,8 +17,11 @@ class Dictionary:
     def get_words(self):
        return [vars(words) for words in self.dictionary]
 
-    def get_sentences(self):
+    def get_all_sentences(self):
        return [vars(sents) for sents in self.ex_sentences]
+
+    def get_sentences(self, levels):
+        return [vars(sents) for sents in self.ex_sentences if sents.level in levels]
 
 class Word:
     def __init__(self, chinese, pinyin, definition, audio):

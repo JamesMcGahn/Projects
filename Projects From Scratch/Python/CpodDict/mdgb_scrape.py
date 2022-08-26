@@ -1,6 +1,5 @@
 from dictionary import Word
-from idecontroller import IDEController
-
+from simple_term_menu import TerminalMenu
 
 class ScrapeMdgb:
     def __init__(self, soup, word):
@@ -10,17 +9,9 @@ class ScrapeMdgb:
 
     def def_selection(self):
         if len(self.result_words) > 1:
-            IDEController.list_options(
-                self.result_words,
-                "There are multiple results:",
-                lambda x, count: print(
-                    f"{count}:{x['chinese']}({x['pinyin']}) - {x['definition']}"
-                ),
-            )
-            selection = IDEController.make_selection(
-                self.result_words, "Enter the number the correct definition"
-            )
-            sel_word = self.result_words[selection]
+            terminal_menu = TerminalMenu([f"{x['chinese']}({x['pinyin']}) - {x['definition']}" for x in self.result_words], title="Select the Definition You Want to Use")
+            menu_entry_index = terminal_menu.show()
+            sel_word = self.result_words[menu_entry_index]
             return Word(
                 sel_word["chinese"],
                 sel_word["pinyin"],

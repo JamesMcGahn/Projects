@@ -1,13 +1,12 @@
 from cpod_scrape import ScrapeCpod
 from dictionary import Dictionary
-from idecontroller import IDEController
 from keys import keys
 from mdgb_scrape import ScrapeMdgb
 from open_file import OpenFile
 from session import Session
 from write_file import WriteFile
+from simple_term_menu import TerminalMenu
 
-# TODO: add CLI
 # TODO: add option for scraping lessons dialogues, words, expansions
 # TODO: add CLI option to download audio of words and/or sentences or dialogues
 # TODO: filter by levels for example sentences
@@ -17,25 +16,26 @@ from write_file import WriteFile
 
 def start(filepath):
     try:
-        print("Where is the file to open?")
-        definition_options = ["Use Cpod Definitions", "Use Mdgb Definitions"]
+        definition_options = TerminalMenu(["Use Cpod Definitions", "Use Mdgb Definitions"], title="Where should we grab defintions from?")
+        definition_source = definition_options.show()
 
-        IDEController.list_options(
-            definition_options,
-            "Where should we grab defintions from?",
-            lambda x, count: print(f"{count}:{x}"),
-        )
-        definition_source = IDEController.make_selection(
-                definition_options, "Enter the number of the source you want to use"
-            )
         words_list = OpenFile.open_word_list(filepath, "\n")
         new_session = Session(
             f"{keys['url']}accounts/signin", keys["email"], keys["password"]
         )
         new_session.get_session()
         dictionary = Dictionary()
+        save_sentences = TerminalMenu(["Yes","No"], title="Do you want Example Sentences?")
+        save_sent_yes = save_sentences.show()
+        if save_sent_yes == "Yes":
+            terminal_level_menu = TerminalMenu(
+                ["Newbie","Elementary", "Pre-Intermediate", "Intermediate","Advanced"],
+                multi_select=True,
+                show_multi_select_hint=True,
+            )
+            terminal_level_menu.show()
+            levels = terminal_level_menu.chosen_menu_entries
 
-        levels = ("Elementary", "Pre-Intermediate", "Intermediate")
 
         for word in words_list:
             c_soup_res = new_session.get_html(
@@ -58,7 +58,8 @@ def start(filepath):
             dictionary.add_sentences(example_sentences)
 
         WriteFile.write_to_csv(dictionary.get_words(), "words")
-        # WriteFile.write_to_csv(dictionary.get_sentences(), "ex_sentences")
+        if save_sent_yes == "Yes":            
+            WriteFile.write_to_csv(dictionary.get_sentences(levels), "ex_sentences")
     except ValueError as e:
         print(e)
 
