@@ -62,8 +62,10 @@ function get_rss_feed_as_html($feed_url, $max_item_cnt = 10, $show_date = true, 
         $title = str_replace(' & ', ' &amp; ', $feed[$x]['title']);
         $titleLink = str_replace('NJ ', '', $title);
         $link = $feed[$x]['link'];
+        $ham = "/\/bill\/.+\/([0-9]{4})/";
+        preg_match($ham,$link,$matches);
         $result .= '<div class="col"><div class="card h-100"><div class="card-body">';
-        $result .= '<div class="card-title legifeedtitle"><strong><a href="https://www.njleg.state.nj.us/bills/BillView.asp?BillNumber='.$titleLink.'"  title="'.$title.'"  target="_blank">'.$title.'</a></strong></div>';
+        $result .= '<div class="card-title legifeedtitle"><strong><a href="https://www.njleg.state.nj.us/bill-search'.'/'.$matches[1].'/'.$titleLink.'"  title="'.$title.'"  target="_blank">'.$title.'</a></strong></div>';
 
 
         
@@ -95,7 +97,7 @@ function get_rss_feed_as_html($feed_url, $max_item_cnt = 10, $show_date = true, 
                 $description = '<img class="feed-item-image" src="' . $image['src'] . '" />' . $description;
             }
             $result .= '<p class="card-text">' . $description;
-            $result .= ' </br> <a href="https://www.njleg.state.nj.us/bills/BillView.asp?BillNumber='.$titleLink.'" title="'.$title.'" target="_blank">Continue Reading &raquo;</a>'.'</p>';
+            $result .= ' </br> <a href="https://www.njleg.state.nj.us/bill-search'.'/'.$matches[1].'/'.$titleLink.'" title="'.$title.'" target="_blank">Continue Reading &raquo;</a>'.'</p>';
 
 
             if ($show_date) {
