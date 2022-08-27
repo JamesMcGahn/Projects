@@ -2,11 +2,15 @@ from simple_term_menu import TerminalMenu
 
 
 class TerminalOptions:
-    def __init__(self, options, multi):
+    def __init__(self, options, title, multi):
         self.options = options
         self.isMulti = multi
+        self.title = title
         self.start = TerminalMenu(
-            self.options, multi_select=self.isMulti, show_multi_select_hint=self.isMulti
+            self.options,
+            title=self.title,
+            multi_select=self.isMulti,
+            show_multi_select_hint=self.isMulti,
         )
         self.indexes = self.show()
         self.chosen = self.start.chosen_menu_entries
