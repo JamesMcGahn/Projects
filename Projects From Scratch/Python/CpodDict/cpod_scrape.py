@@ -11,6 +11,7 @@ class ScrapeCpod:
         self.soup = soup
         self.word_example_sentences = []
         self.dialogue = []
+        self.expand_sentences = []
         self.definition = None
 
     def get_sentences(self):
@@ -93,6 +94,22 @@ class ScrapeCpod:
         ).indexes
         self.dialogue = [self.dialogue[i] for i in term_selection]
 
+    def expansion_selection(self):
+        keepAll = TerminalOptions(
+            ["Yes", "No"],
+            "Do you want to Keep All the Dialogue Sentences?",
+            False,
+        ).get_selected()
+        if keepAll == "Yes":
+            print("Keeping All")
+            return
+        term_selection = TerminalOptions(
+            [f"{x.word} - {x.chinese} - {x.english}" for x in self.expand_sentences],
+            "Which the Sentences Do You Want to Keep?",
+            True,
+        ).indexes
+        self.expand_sentences = [self.expand_sentences[i] for i in term_selection]
+
     def scrape_dialogues(self):
         dialogue_cont = self.soup.find("div", id="dialogue")
         dialogue = dialogue_cont.find_all("tr")
@@ -112,9 +129,33 @@ class ScrapeCpod:
             self.dialogue.append(dialogue_sent)
         return self.dialogue_selection()
 
+    def scrape_expansion(self):
+        expansion = self.soup.find(id="expansion")
+        expand_cards = expansion.find_all("div", class_="cpod-card")
+        title_cont = self.soup.find("h1", class_="lesson-page-title")
+        badge = title_cont.find("a", class_="badge").get_text()
+        for card in expand_cards:
+            title = card.find("div", class_="panel-body").find_next().string
+            table = card.find_all("tr")
+            for sent in table:
+                chinese = sent.find("p", class_="click-to-add").get_text()
+                pinyin = sent.find("p", class_="show-pinyin").get_text()
+                english = sent.find("p", class_="translation-container").get_text()
+                audio = self.scrape_audio(sent)
+                pinyin = Dictionary.strip_string(pinyin)
+                chinese = Dictionary.strip_string(chinese)
+                english = Dictionary.strip_string(english)
+                print(title, chinese, pinyin, english, audio)
+                expand_sentence = Sentence(
+                    title, chinese, english, pinyin, badge, audio
+                )
+                self.expand_sentences.append(expand_sentence)
+        return self.expansion_selection()
+
 
 data = open("./test.html", "r")
 soup = BeautifulSoup(data, "html.parser")
-print(soup)
+# print(soup)
 s = ScrapeCpod(soup)
-s.scrape_dialogues()
+s.scrape_expansion()
+print(len(s.expand_sentences))
