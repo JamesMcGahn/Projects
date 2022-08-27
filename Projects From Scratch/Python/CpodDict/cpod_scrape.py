@@ -1,7 +1,9 @@
 from urllib.parse import unquote
 
 import regex
+from bs4 import BeautifulSoup
 from dictionary import Dictionary, Sentence, Word
+from terminal_opts import TerminalOptions
 
 
 class ScrapeCpod:
@@ -75,6 +77,22 @@ class ScrapeCpod:
             )
             self.word_example_sentences.append(example_sentence)
 
+    def dialogue_selection(self):
+        keepAll = TerminalOptions(
+            ["Yes", "No"],
+            "Do you want to Keep the Whole Dialogue?",
+            False,
+        ).get_selected()
+        if keepAll == "Yes":
+            print("Keeping All")
+            return
+        term_selection = TerminalOptions(
+            [f"{x.chinese} - {x.english}" for x in self.dialogue],
+            "Which the Sentences Do You Want to Keep?",
+            True,
+        ).indexes
+        self.dialogue = [self.dialogue[i] for i in term_selection]
+
     def scrape_dialogues(self):
         dialogue_cont = self.soup.find("div", id="dialogue")
         dialogue = dialogue_cont.find_all("tr")
@@ -92,3 +110,11 @@ class ScrapeCpod:
             english = Dictionary.strip_string(english)
             dialogue_sent = Sentence(title, chinese, english, pinyin, badge, audio)
             self.dialogue.append(dialogue_sent)
+        return self.dialogue_selection()
+
+
+data = open("./test.html", "r")
+soup = BeautifulSoup(data, "html.parser")
+print(soup)
+s = ScrapeCpod(soup)
+s.scrape_dialogues()
