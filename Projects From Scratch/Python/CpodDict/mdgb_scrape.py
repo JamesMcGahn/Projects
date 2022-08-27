@@ -1,17 +1,23 @@
 from dictionary import Word
-from simple_term_menu import TerminalMenu
+from terminal_opts import TerminalOptions
+
 
 class ScrapeMdgb:
-    def __init__(self, soup, word):
+    def __init__(self, soup):
         self.soup = soup
-        self.word = word
         self.result_words = []
 
     def def_selection(self):
         if len(self.result_words) > 1:
-            terminal_menu = TerminalMenu([f"{x['chinese']}({x['pinyin']}) - {x['definition']}" for x in self.result_words], title="Select the Definition You Want to Use")
-            menu_entry_index = terminal_menu.show()
-            sel_word = self.result_words[menu_entry_index]
+            term_selection = TerminalOptions(
+                [
+                    f"{x['chinese']}({x['pinyin']}) - {x['definition']}"
+                    for x in self.result_words
+                ],
+                "Select the Definition You Want to Use",
+                False,
+            ).indexes
+            sel_word = self.result_words[term_selection]
             return Word(
                 sel_word["chinese"],
                 sel_word["pinyin"],
@@ -30,7 +36,6 @@ class ScrapeMdgb:
             return None
 
     def get_defintion(self):
-        print(f"Getting Definition for {self.word} - MDGB")
         results_table = self.soup.find("td", class_="resultswrap")
         if results_table is None:
             return None
