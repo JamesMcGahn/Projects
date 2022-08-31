@@ -12,6 +12,11 @@ class WebScrape:
         self.session = session
         self.cookies = session.get_cookies()
         self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+        self.not_available = []
+        self.source = None
+
+    def get_source(self):
+        return {"source": self.source, "not_available": self.not_available}
 
     def init_driver(self):
         cookies = self.cookies
@@ -33,19 +38,23 @@ class WebScrape:
 
     def run_webdriver(self, url):
         try:
-            print("Starting Scrape......")
-            self.driver.get(f"{url}#dialogue-tab")
+            print(f"Starting Scrape......{url}")
+            self.not_available = []
+            self.driver.get(url)
             sleep(3)
-            for link in ("Vocabulary", "Expansion", "Grammar"):
+            for link in ("Dialogue", "Vocabulary", "Expansion", "Grammar"):
                 try:
-                    self.driver.find_element(By.LINK_TEXT, link).click()
+                    self.driver.find_element(
+                        By.CSS_SELECTOR, f"a[title='{link}']"
+                    ).click()
                     sleep(3)
                 except NoSuchElementException:
+                    self.not_available.append(link)
                     print(f"Lesson doesn't have a {link} section")
 
             page_source = self.driver.page_source
             print("Completed Scrape .....")
-            return page_source
+            self.source = page_source
         except Exception as e:
             print(e)
             raise RuntimeError("An error has occurred")
