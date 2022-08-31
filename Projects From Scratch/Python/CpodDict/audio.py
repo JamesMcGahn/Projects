@@ -47,5 +47,6 @@ class Audio:
                 folder_path = "./out/audios/dialogues"
             path = WriteFile.check_dup(folder_path, count, ".mp3")
             urllib.request.urlretrieve(dat["audio"], path)
+            print(f'Audio content written to file "{count}.mp3"')
             count += 1
             sleep(10)

@@ -2,7 +2,7 @@ from simple_term_menu import TerminalMenu
 
 
 class TerminalOptions:
-    def __init__(self, options, title, multi):
+    def __init__(self, options, title, multi=False):
         self.options = options
         self.isMulti = multi
         self.title = title
