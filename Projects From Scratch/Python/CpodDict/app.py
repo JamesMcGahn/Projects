@@ -12,12 +12,20 @@ from terminal_opts import TerminalOptions
 from web_scrape import WebScrape
 from write_file import WriteFile
 
-# TODO: add option for scraping lessons dialogues, words, expansions
-# TODO: add CLI option to download audio of words and/or sentences or dialogues
-# TODO: allow for option to go back if there are sentences but the level selected filtered them out
+# FEATURE: add option for scraping lessons dialogues, words, expansions
+#           - # FEATURE: based on lesson sections - allow user to save additional expansion sentences or words
+# FEATURE: add CLI option to download audio of words and/or sentences or dialogues
+# FEATURE: allow for option to go back if there are sentences but the level selected filtered them out
+# FEATURE: Quitting the APP
+# FEATURE: Add ability to check current word list vs new words from Lessons, add ability to scrape words etc
+# TODO: save session state in pickle - minimize logging in
+#           - # TODO: check expiration of cookies - if expired request new session
+# TODO: Remove temp.html files from selinium scrape
 # TODO: handle case if definition of word is NONE for cpod or md
-# TODO: Clean up Start code
-# TODO: Clean up code accross app
+# TODO: close webdriver
+# TODO: APP Clean up
+#   - # TODO: Start code
+#   - # TODO: Clean up code accross app
 
 
 def start():
