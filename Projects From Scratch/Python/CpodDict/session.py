@@ -14,13 +14,19 @@ class Session:
     def __repr__(self):
         return f"session for {self.ses_url}"
 
+    def get_session_url(self):
+        return f"{self.ses_url}"
+
     def get_session(self):
         Session.session.post(self.ses_url, data=self.payload)
         return self.session
 
-    def get_html(self, url, word):
-        print(f"Getting HTML for {word}...")
-        req = Session.session.get(f"{url}{word}")
+    def get_cookies(self):
+        return self.session.cookies
+
+    def get_html(self, url):
+        print("Getting HTML...")
+        req = Session.session.get(f"{url}")
         soup = BeautifulSoup(req.text, "html.parser")
         sleep(10)
         return soup
