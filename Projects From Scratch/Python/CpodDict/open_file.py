@@ -12,18 +12,16 @@ class OpenFile:
             raise ValueError("Filepath does not exist")
 
     @staticmethod
-    def open_csv(filepath):
+    def open_file(filepath, csv=False, split=False):
         print(f"Opening {filepath}")
         if OpenFile.check_file(filepath):
             with open(filepath, "r") as file:
-                csv_reader = DictReader(file)
-                return list(csv_reader)
-
-    @staticmethod
-    def open_word_list(filepath, split):
-        print(f"Opening {filepath}")
-        if OpenFile.check_file(filepath):
-            with open(filepath) as file:
-                words = file.read().split(split)
-                print(f"Word List: {words}")
-                return words
+                if csv:
+                    csv_reader = DictReader(file)
+                    return list(csv_reader)
+                elif split:
+                    data = file.read().split(split)
+                    print(f"List: {data}")
+                    return data
+                else:
+                    return file
