@@ -36,11 +36,14 @@ class WriteFile:
         return path
 
     @staticmethod
-    def write_to_csv(path, data):
+    def write_to_csv(path, data, overwrite=False):
         if len(data) == 0:
             return False
         match = WriteFile.regex_path(path)
-        path = WriteFile.check_dup(match["path"], match["filename"], match["ext"])
+        if not overwrite:
+            path = WriteFile.check_dup(match["path"], match["filename"], match["ext"])
+        else:
+            WriteFile.path_exists(match["path"], True)
         print(f"Saving {path}")
         with open(path, "w") as file:
             csv_writer = DictWriter(file, fieldnames=data[0].keys())
@@ -60,10 +63,13 @@ class WriteFile:
         }
 
     @staticmethod
-    def write_file(path, source, write_type="w"):
+    def write_file(path, source, write_type="w", overwrite=False):
         print("Writing Data to File")
         match = WriteFile.regex_path(path)
-        path = WriteFile.check_dup(match["path"], match["filename"], match["ext"])
+        if not overwrite:
+            path = WriteFile.check_dup(match["path"], match["filename"], match["ext"])
+        else:
+            WriteFile.path_exists(match["path"], True)
         with open(path, write_type) as out:
             out.write(source)
             print(f"Completed Writing {match['filename']}{match['ext']}")
