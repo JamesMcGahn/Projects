@@ -1,6 +1,10 @@
-./out
+out/
+data/
 words.txt
 lessons.txt
 key.json
+
+#test files
 test.html
 test-gram.html
+test.py

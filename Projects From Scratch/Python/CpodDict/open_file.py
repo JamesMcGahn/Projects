@@ -1,4 +1,5 @@
 import os
+import pickle
 from csv import DictReader
 
 
@@ -10,6 +11,12 @@ class OpenFile:
         else:
             print("Filepath does not exist")
             raise ValueError("Filepath does not exist")
+
+    def open_pickle(path):
+        if OpenFile.check_file(path):
+            with open(path, "rb") as infile:
+                dill = pickle.load(infile)
+            return dill
 
     @staticmethod
     def open_file(filepath, csv=False, split=False):
