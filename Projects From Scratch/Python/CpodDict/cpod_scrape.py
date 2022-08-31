@@ -7,12 +7,13 @@ from terminal_opts import TerminalOptions
 
 
 class ScrapeCpod:
-    def __init__(self, soup):
+    def __init__(self, soup, word=""):
         self.soup = soup
         self.word_example_sentences = []
         self.dialogue = []
         self.expand_sentences = []
         self.definition = None
+        self.word = word
 
     def get_sentences(self):
         return self.word_example_sentences
@@ -22,6 +23,9 @@ class ScrapeCpod:
 
     def get_dialogues(self):
         return self.dialogue
+
+    def get_definition(self):
+        return self.definition
 
     def scrape_audio(self, element):
         audio_table = element.find(class_="jp-type-single")
@@ -37,12 +41,10 @@ class ScrapeCpod:
             return None
 
         audio_file = ""
-        word = ""
         pinyin = ""
         definition = ""
 
         if search_table is not None:
-            word = Dictionary.strip_string(search_table.find("h2").next_element)
             audio_file = self.scrape_audio(search_table)
             pinyin_def = search_table.find("p").get_text()
             pinyin_def = (
@@ -53,7 +55,7 @@ class ScrapeCpod:
             pinyin = pinyin_def[0]
             definition = pinyin_def[1]
 
-        self.definition = Word(word, pinyin, definition, audio_file)
+        self.definition = Word(self.word, pinyin, definition, audio_file)
 
     def scrape_sentences(self):
         reg_pattern = regex.compile(r"[\p{Han}，。？：！‘\"\\s]+")
@@ -88,7 +90,7 @@ class ScrapeCpod:
             print("Keeping All")
             return
         term_selection = TerminalOptions(
-            [f"{x.chinese} - {x.english}" for x in self.dialogue],
+            [f"{x.chinese}" for x in self.dialogue],
             "Which the Sentences Do You Want to Keep?",
             True,
         ).indexes
@@ -112,6 +114,8 @@ class ScrapeCpod:
 
     def scrape_dialogues(self):
         dialogue_cont = self.soup.find("div", id="dialogue")
+        if dialogue_cont is None:
+            return None
         dialogue = dialogue_cont.find_all("tr")
         title_cont = self.soup.find("h1", class_="lesson-page-title")
         title = title_cont.find("span", attrs={"itemprop": "name"}).string
@@ -121,6 +125,7 @@ class ScrapeCpod:
             chinese = sentence.find("p", class_="click-to-add").get_text()
             pinyin = sentence.find("p", class_="show-pinyin").get_text()
             english = sentence.find("p", class_="translation-container").get_text()
+            title = Dictionary.strip_string(title)
             audio = self.scrape_audio(sentence)
             chinese = Dictionary.strip_string(chinese)
             pinyin = Dictionary.strip_string(pinyin)
@@ -131,6 +136,8 @@ class ScrapeCpod:
 
     def scrape_expansion(self):
         expansion = self.soup.find(id="expansion")
+        if expansion is None:
+            return None
         expand_cards = expansion.find_all("div", class_="cpod-card")
         title_cont = self.soup.find("h1", class_="lesson-page-title")
         badge = title_cont.find("a", class_="badge").get_text()
@@ -145,7 +152,6 @@ class ScrapeCpod:
                 pinyin = Dictionary.strip_string(pinyin)
                 chinese = Dictionary.strip_string(chinese)
                 english = Dictionary.strip_string(english)
-                print(title, chinese, pinyin, english, audio)
                 expand_sentence = Sentence(
                     title, chinese, english, pinyin, badge, audio
                 )

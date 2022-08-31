@@ -2,7 +2,7 @@ from dictionary import Word
 from terminal_opts import TerminalOptions
 
 
-class ScrapeMdgb:
+class ScrapeMd:
     def __init__(self, soup):
         self.soup = soup
         self.result_words = []
@@ -42,9 +42,10 @@ class ScrapeMdgb:
         results = results_table.find_all("tr", class_="row")
 
         for result in results:
-            hanzi = result.find("div", class_="hanzi").find("span").string
-            pinyin = result.find("div", class_="pinyin").find("span").string
+            hanzi = result.find("div", class_="hanzi").find("a").get_text()
+            pinyin = result.find("div", class_="pinyin").find("a").get_text()
             definition = result.find("div", class_="defs").get_text()
+            pinyin = pinyin.replace("\u200b", "")
             word = {
                 "chinese": hanzi,
                 "pinyin": pinyin,
