@@ -1,7 +1,10 @@
-from time import sleep
+import pickle
+from time import sleep, time
 
 import requests
 from bs4 import BeautifulSoup
+from open_file import OpenFile
+from write_file import WriteFile
 
 
 class Session:
@@ -20,6 +23,29 @@ class Session:
     def get_session(self):
         Session.session.post(self.ses_url, data=self.payload)
         return self.session
+
+    def load_session(self):
+        try:
+            cookies = OpenFile.open_pickle("./data/session.pickle")
+            print("cookie length", len(cookies))
+            expired = False
+            for cookie in cookies:
+                if cookie.expires < time():
+                    expired = True
+            if expired or len(cookies) == 0:
+                return self.get_session()
+            else:
+                self.set_cookies(cookies)
+        except ValueError:
+            return self.get_session()
+
+    def save_session(self):
+        WriteFile.write_file(
+            "./data/session.pickle", pickle.dumps(self.get_cookies()), "wb", True
+        )
+
+    def set_cookies(self, cookies):
+        self.session.cookies = cookies
 
     def get_cookies(self):
         return self.session.cookies
