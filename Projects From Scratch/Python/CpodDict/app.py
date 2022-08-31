@@ -18,8 +18,6 @@ from write_file import WriteFile
 # FEATURE: allow for option to go back if there are sentences but the level selected filtered them out
 # FEATURE: Quitting the APP
 # FEATURE: Add ability to check current word list vs new words from Lessons, add ability to scrape words etc
-# TODO: save session state in pickle - minimize logging in
-#           - # TODO: check expiration of cookies - if expired request new session
 # TODO: Remove temp.html files from selinium scrape
 # TODO: handle case if definition of word is NONE for cpod or md
 # TODO: close webdriver
@@ -33,7 +31,8 @@ def start():
         new_session = Session(
             f"{keys['url']}accounts/signin", keys["email"], keys["password"]
         )
-        new_session.get_session()
+        new_session.load_session()
+        new_session.save_session()
         dictionary = Dictionary()
 
         start_options = TerminalOptions(
@@ -122,7 +121,6 @@ def start():
                 if len(dialogues) > 0:
                     dictionary.add_sentences(dialogues)
             WriteFile.write_to_csv("./out/dialogs.csv", dictionary.get_all_sentences())
-
     except ValueError as e:
         print(e)
 
