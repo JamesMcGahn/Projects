@@ -1,5 +1,6 @@
 import os
 
+from audio import Audio
 from bs4 import BeautifulSoup
 from cpod_scrape import ScrapeCpod
 from dictionary import Dictionary
@@ -19,6 +20,7 @@ from write_file import WriteFile
 # FEATURE: Quitting the APP
 # FEATURE: Add ability to check current word list vs new words from Lessons, add ability to scrape words etc
 # TODO: Remove temp.html files from selinium scrape
+# TODO: change remaning terminal menus to terminal options
 # TODO: handle case if definition of word is NONE for cpod or md
 # TODO: close webdriver
 # TODO: APP Clean up
@@ -32,13 +34,15 @@ def start():
             f"{keys['url']}accounts/signin", keys["email"], keys["password"]
         )
         new_session.load_session()
-        new_session.save_session()
+
         dictionary = Dictionary()
 
         start_options = TerminalOptions(
-            ["Words", "Lessons"], "Do You Want to Scrape Words or Lessons?"
+            ["Words", "Lessons", "Quit"], "Do You Want to Scrape Words or Lessons?"
         ).get_selected()
 
+        if start_options == "Quit":
+            quit()
         filepath = input("Where is the file located?: ")
         while not WriteFile.path_exists(filepath, False):
             filepath = input("File path doesn't exist. Try again: ")
@@ -97,11 +101,18 @@ def start():
                         m_defined_word.audio = c_defined_word.audio
                     dictionary.add_word(m_defined_word)
                 dictionary.add_sentences(example_sentences)
-            print(dictionary.get_words())
-            WriteFile.write_to_csv(
+            word_csv_path = WriteFile.write_to_csv(
                 "./out/words.csv",
                 dictionary.get_words(),
             )
+            word_audio = TerminalOptions(
+                ["Yes", "No"], "Do You Download the Audio for the Words?"
+            ).get_selected()
+            if word_audio == "Yes":
+                start_number = input(
+                    "What Number should we start the naming of the audio file at?"
+                )
+                Audio(word_csv_path, "word", int(start_number))
             if save_sent_yes == "Yes":
                 WriteFile.write_to_csv(
                     "./out/ex_sentences.csv", dictionary.get_sentences(levels)
@@ -121,6 +132,7 @@ def start():
                 if len(dialogues) > 0:
                     dictionary.add_sentences(dialogues)
             WriteFile.write_to_csv("./out/dialogs.csv", dictionary.get_all_sentences())
+        new_session.save_session()
     except ValueError as e:
         print(e)
 

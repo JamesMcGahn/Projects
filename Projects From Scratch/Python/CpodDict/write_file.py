@@ -50,6 +50,7 @@ class WriteFile:
             csv_writer.writeheader()
             for dat in data:
                 csv_writer.writerow(dat)
+        return path
 
     def regex_path(path):
         path_reg = re.compile(

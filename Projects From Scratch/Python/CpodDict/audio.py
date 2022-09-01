@@ -2,10 +2,17 @@ import urllib.request
 from time import sleep
 
 from google.cloud import texttospeech
+from open_file import OpenFile
 from write_file import WriteFile
 
 
 class Audio:
+    def __init__(self, path, type, start_number):
+        self.path = path
+        self.type = type
+        self.start_number = start_number
+        self.download_audio()
+
     def google_audio(text, filename):
         client = texttospeech.TextToSpeechClient.from_service_account_json("./key.json")
 
@@ -29,19 +36,19 @@ class Audio:
             out.write(response.audio_content)
             print(f'Audio content written to file "{filename}.mp3"')
 
-    @staticmethod
-    def download_audio(data, type, start_num):
-        count = start_num
+    def download_audio(self):
+        count = self.start_number
+        data = OpenFile.open_file(self.path, True)
         folder_path = ""
         for dat in data:
-            if type == "word":
+            if self.type == "word":
                 folder_path = "./out/audios/words/"
 
                 if dat["audio"] == "":
                     Audio.google_audio(dat["chinese"], count)
                     count += 1
                     continue
-            elif type == "example":
+            elif self.type == "example":
                 folder_path = "./out/audios/examples"
             else:
                 folder_path = "./out/audios/dialogues"

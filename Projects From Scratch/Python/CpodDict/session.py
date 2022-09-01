@@ -21,13 +21,14 @@ class Session:
         return f"{self.ses_url}"
 
     def get_session(self):
+        print("Getting New Session...")
         Session.session.post(self.ses_url, data=self.payload)
         return self.session
 
     def load_session(self):
         try:
+            print("Loading Session...")
             cookies = OpenFile.open_pickle("./data/session.pickle")
-            print("cookie length", len(cookies))
             expired = False
             for cookie in cookies:
                 if cookie.expires < time():
@@ -37,9 +38,11 @@ class Session:
             else:
                 self.set_cookies(cookies)
         except ValueError:
+            print("Error loading session")
             return self.get_session()
 
     def save_session(self):
+        print("Saving Session...")
         WriteFile.write_file(
             "./data/session.pickle", pickle.dumps(self.get_cookies()), "wb", True
         )
