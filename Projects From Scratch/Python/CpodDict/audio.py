@@ -30,7 +30,7 @@ class Audio:
         response = client.synthesize_speech(
             request={"input": input_text, "voice": voice, "audio_config": audio_config}
         )
-        path = WriteFile.check_dup("./out/audios/words", filename, ".mp3")
+        path = WriteFile.check_dup("./out/audios/words/", filename, ".mp3")
 
         with open(path, "wb") as out:
             out.write(response.audio_content)
@@ -49,9 +49,9 @@ class Audio:
                     count += 1
                     continue
             elif self.type == "example":
-                folder_path = "./out/audios/examples"
+                folder_path = "./out/audios/examples/"
             else:
-                folder_path = "./out/audios/dialogues"
+                folder_path = "./out/audios/dialogues/"
             path = WriteFile.check_dup(folder_path, count, ".mp3")
             urllib.request.urlretrieve(dat["audio"], path)
             print(f'Audio content written to file "{count}.mp3"')

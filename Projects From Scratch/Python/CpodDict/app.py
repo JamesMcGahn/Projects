@@ -23,6 +23,7 @@ from write_file import WriteFile
 # TODO: change remaning terminal menus to terminal options
 # TODO: handle case if definition of word is NONE for cpod or md
 # TODO: close webdriver
+# TODO: error handling for audio download
 # TODO: APP Clean up
 #   - # TODO: Start code
 #   - # TODO: Clean up code accross app
@@ -92,7 +93,6 @@ def start():
                 example_sentences = cpod.get_sentences()
                 if definition_source == 0 and c_defined_word is not None:
                     dictionary.add_word(c_defined_word)
-                    print(dictionary.dictionary)
                 else:
                     m_soup_res = new_session.get_html(f"{keys['murl']}{word}")
                     md = ScrapeMd(m_soup_res)

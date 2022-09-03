@@ -31,7 +31,7 @@ class Session:
             cookies = OpenFile.open_pickle("./data/session.pickle")
             expired = False
             for cookie in cookies:
-                if cookie.expires < time():
+                if cookie.expires and cookie.expires < time():
                     expired = True
             if expired or len(cookies) == 0:
                 return self.get_session()
