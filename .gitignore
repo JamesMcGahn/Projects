@@ -16,7 +16,7 @@ build/
 
 # Ignoring - env Files
 **/.env
-
+**/env.local
 
 # Ignoring - DS Store Files
 **/.DS_Store
