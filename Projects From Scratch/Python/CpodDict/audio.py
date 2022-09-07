@@ -1,4 +1,5 @@
 import urllib.request
+from random import randint
 from time import sleep
 
 from google.cloud import texttospeech
@@ -53,7 +54,13 @@ class Audio:
             else:
                 folder_path = "./out/audios/dialogues/"
             path = WriteFile.check_dup(folder_path, count, ".mp3")
-            urllib.request.urlretrieve(dat["audio"], path)
-            print(f'Audio content written to file "{count}.mp3"')
+            try:
+                urllib.request.urlretrieve(dat["audio"], path)
+                print(f'Audio content written to file "{count}.mp3"')
+            except Exception as e:
+                print(e)
+                print("Trying to Get Audio from Google...")
+                Audio.google_audio(dat["chinese"], count)
+
             count += 1
-            sleep(10)
+            sleep(randint(5, 15))

@@ -39,7 +39,8 @@ def start():
         dictionary = Dictionary()
 
         start_options = TerminalOptions(
-            ["Words", "Lessons", "Quit"], "Do You Want to Scrape Words or Lessons?"
+            ["Words", "Lessons", "Download Audio From Saved File", "Quit"],
+            "Do You Want to Scrape Words or Lessons?",
         ).get_selected()
 
         if start_options == "Quit":
@@ -47,15 +48,14 @@ def start():
         filepath = input("Where is the file located?: ")
         while not WriteFile.path_exists(filepath, False):
             filepath = input("File path doesn't exist. Try again: ")
+        if start_options == "Words" or start_options == "Lessons":
+            term_selection = TerminalOptions(
+                ["newline", "comma - (,)", "semi-colon - (;)", "colon - (:)"],
+                "How is the data is separated?",
+            ).indexes
+            seperator = ("\n", ",", ";", ":")
 
-        term_selection = TerminalOptions(
-            ["newline", "comma - (,)", "semi-colon - (;)", "colon - (:)"],
-            "How is the data is separated?",
-        ).indexes
-        seperator = ("\n", ",", ";", ":")
-
-        file_list = OpenFile.open_file(filepath, False, seperator[term_selection])
-
+            file_list = OpenFile.open_file(filepath, False, seperator[term_selection])
         if start_options == "Words":
             definition_options = TerminalMenu(
                 ["Use Cpod Definitions", "Use Mdgb Definitions"],
@@ -110,7 +110,7 @@ def start():
             ).get_selected()
             if word_audio == "Yes":
                 start_number = input(
-                    "What Number should we start the naming of the audio file at?"
+                    "What Number should we start the naming of the audio file at? "
                 )
                 Audio(word_csv_path, "word", int(start_number))
             if save_sent_yes == "Yes":
@@ -132,6 +132,11 @@ def start():
                 if len(dialogues) > 0:
                     dictionary.add_sentences(dialogues)
             WriteFile.write_to_csv("./out/dialogs.csv", dictionary.get_all_sentences())
+        elif start_options == "Download Audio From Saved File":
+            start_number = input(
+                "What Number should we start the naming of the audio file at? "
+            )
+            Audio(filepath, "word", int(start_number))
         new_session.save_session()
     except ValueError as e:
         print(e)

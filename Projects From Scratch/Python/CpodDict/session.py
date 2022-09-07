@@ -1,4 +1,5 @@
 import pickle
+from random import randint
 from time import sleep, time
 
 import requests
@@ -57,5 +58,5 @@ class Session:
         print("Getting HTML...")
         req = Session.session.get(f"{url}")
         soup = BeautifulSoup(req.text, "html.parser")
-        sleep(10)
+        sleep(randint(6, 15))
         return soup
