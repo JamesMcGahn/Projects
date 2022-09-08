@@ -37,7 +37,7 @@ def start():
         new_session.load_session()
 
         dictionary = Dictionary()
-
+        dictionary.load_dictionary()
         start_options = TerminalOptions(
             ["Words", "Lessons", "Download Audio From Saved File", "Quit"],
             "Do You Want to Scrape Words or Lessons?",
@@ -83,6 +83,7 @@ def start():
                 levels = terminal_level_menu.chosen_menu_entries
 
             for word in file_list:
+                print(f"Word: {word}...")
                 c_soup_res = new_session.get_html(
                     f"{keys['url']}/dictionary/english-chinese/{word}"
                 )
@@ -109,10 +110,7 @@ def start():
                 ["Yes", "No"], "Do You Download the Audio for the Words?"
             ).get_selected()
             if word_audio == "Yes":
-                start_number = input(
-                    "What Number should we start the naming of the audio file at? "
-                )
-                Audio(word_csv_path, "word", int(start_number))
+                Audio(word_csv_path, "word")
             if save_sent_yes == "Yes":
                 WriteFile.write_to_csv(
                     "./out/ex_sentences.csv", dictionary.get_sentences(levels)
@@ -133,10 +131,8 @@ def start():
                     dictionary.add_sentences(dialogues)
             WriteFile.write_to_csv("./out/dialogs.csv", dictionary.get_all_sentences())
         elif start_options == "Download Audio From Saved File":
-            start_number = input(
-                "What Number should we start the naming of the audio file at? "
-            )
-            Audio(filepath, "word", int(start_number))
+            Audio(filepath, "word")
+        dictionary.save_dictionary()
         new_session.save_session()
     except ValueError as e:
         print(e)
