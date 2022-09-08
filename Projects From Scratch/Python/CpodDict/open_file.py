@@ -22,7 +22,7 @@ class OpenFile:
     def open_file(filepath, csv=False, split=False):
         print(f"Opening {filepath}")
         if OpenFile.check_file(filepath):
-            with open(filepath, "r") as file:
+            with open(filepath, "r", encoding="utf-8-sig") as file:
                 if csv:
                     csv_reader = DictReader(file)
                     return list(csv_reader)

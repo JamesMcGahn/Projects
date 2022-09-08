@@ -20,16 +20,16 @@ class ScrapeMd:
             sel_word = self.result_words[term_selection]
             return Word(
                 sel_word["chinese"],
-                sel_word["pinyin"],
                 sel_word["definition"],
+                sel_word["pinyin"],
                 sel_word["audio"],
             )
         elif len(self.result_words) == 1:
             sel_word = self.result_words[0]
             return Word(
                 sel_word["chinese"],
-                sel_word["pinyin"],
                 sel_word["definition"],
+                sel_word["pinyin"],
                 sel_word["audio"],
             )
         else:
@@ -48,8 +48,8 @@ class ScrapeMd:
             pinyin = pinyin.replace("\u200b", "")
             word = {
                 "chinese": hanzi,
-                "pinyin": pinyin,
                 "definition": definition,
+                "pinyin": pinyin,
                 "audio": "",
             }
             self.result_words.append(word)

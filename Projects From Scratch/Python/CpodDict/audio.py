@@ -8,10 +8,9 @@ from write_file import WriteFile
 
 
 class Audio:
-    def __init__(self, path, type, start_number):
+    def __init__(self, path, type):
         self.path = path
         self.type = type
-        self.start_number = start_number
         self.download_audio()
 
     def google_audio(text, filename):
@@ -38,7 +37,6 @@ class Audio:
             print(f'Audio content written to file "{filename}.mp3"')
 
     def download_audio(self):
-        count = self.start_number
         data = OpenFile.open_file(self.path, True)
         folder_path = ""
         for dat in data:
@@ -46,21 +44,18 @@ class Audio:
                 folder_path = "./out/audios/words/"
 
                 if dat["audio"] == "":
-                    Audio.google_audio(dat["chinese"], count)
-                    count += 1
+                    Audio.google_audio(dat["chinese"], dat["id"])
                     continue
             elif self.type == "example":
                 folder_path = "./out/audios/examples/"
             else:
                 folder_path = "./out/audios/dialogues/"
-            path = WriteFile.check_dup(folder_path, count, ".mp3")
+            path = WriteFile.check_dup(folder_path, dat["id"], ".mp3")
             try:
                 urllib.request.urlretrieve(dat["audio"], path)
-                print(f'Audio content written to file "{count}.mp3"')
+                print(f'Audio content written to file "{dat["id"]}.mp3"')
             except Exception as e:
                 print(e)
                 print("Trying to Get Audio from Google...")
-                Audio.google_audio(dat["chinese"], count)
-
-            count += 1
+                Audio.google_audio(dat["chinese"], dat["id"])
             sleep(randint(5, 15))

@@ -55,7 +55,7 @@ class ScrapeCpod:
             pinyin = pinyin_def[0]
             definition = pinyin_def[1]
 
-        self.definition = Word(self.word, pinyin, definition, audio_file)
+        self.definition = Word(self.word, definition, pinyin, audio_file)
 
     def scrape_sentences(self):
         reg_pattern = regex.compile(r"[\p{Han}，。？：！‘\"\\s]+")
