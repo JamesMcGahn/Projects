@@ -4,6 +4,7 @@ from time import sleep, time
 
 import requests
 from bs4 import BeautifulSoup
+from logger import Logger
 from open_file import OpenFile
 from write_file import WriteFile
 
@@ -22,13 +23,14 @@ class Session:
         return f"{self.ses_url}"
 
     def get_session(self):
-        print("Getting New Session...")
+        Logger().insert("Getting New Session...", "INFO")
         Session.session.post(self.ses_url, data=self.payload)
         return self.session
 
     def load_session(self):
         try:
-            print("Loading Session...")
+            Logger().insert("Loading Session...", "INFO")
+
             cookies = OpenFile.open_pickle("./data/session.pickle")
             expired = False
             for cookie in cookies:
@@ -39,11 +41,11 @@ class Session:
             else:
                 self.set_cookies(cookies)
         except ValueError:
-            print("Error loading session")
+            Logger().insert("Error loading session", "ERROR")
             return self.get_session()
 
     def save_session(self):
-        print("Saving Session...")
+        Logger().insert("Saving Session...", "INFO")
         WriteFile.write_file(
             "./data/session.pickle", pickle.dumps(self.get_cookies()), "wb", True
         )

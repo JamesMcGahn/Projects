@@ -1,3 +1,4 @@
+from logger import Logger
 from simple_term_menu import TerminalMenu
 
 
@@ -16,6 +17,7 @@ class TerminalOptions:
         self.chosen = self.start.chosen_menu_entries
 
     def show(self):
+        Logger().insert(self.title, "INFO", False)
         return self.start.show()
 
     def get_selected(self, arry=False):
