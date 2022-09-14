@@ -39,7 +39,7 @@ class Audio:
     def download_audio(self):
         data = OpenFile.open_file(self.path, True)
         folder_path = ""
-        for dat in data:
+        for i, dat in enumerate(data):
             if self.type == "word":
                 folder_path = "./out/audios/words/"
 
@@ -53,9 +53,11 @@ class Audio:
             path = WriteFile.check_dup(folder_path, dat["id"], ".mp3")
             try:
                 urllib.request.urlretrieve(dat["audio"], path)
-                print(f'Audio content written to file "{dat["id"]}.mp3"')
+                print(
+                    f'({i+1}/{len(data)}) Audio content written to file "{dat["id"]}.mp3"'
+                )
             except Exception as e:
                 print(e)
-                print("Trying to Get Audio from Google...")
+                print(f"({i + 1}/{len(data)} Trying to Get Audio from Google...")
                 Audio.google_audio(dat["chinese"], dat["id"])
             sleep(randint(5, 15))

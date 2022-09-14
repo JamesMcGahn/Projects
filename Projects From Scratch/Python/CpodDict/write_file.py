@@ -52,6 +52,7 @@ class WriteFile:
                 csv_writer.writerow(dat)
         return path
 
+    @staticmethod
     def regex_path(path):
         path_reg = re.compile(
             r"^(?P<path>(\.*[\/[\d\w\s-]+\/]*)|\.+\/)(?P<filename>[\d\w\s-]*)(?P<ext>\.[\w]+)$"

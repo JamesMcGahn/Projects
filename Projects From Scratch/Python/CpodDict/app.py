@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 from cpod_scrape import ScrapeCpod
 from dictionary import Dictionary
 from keys import keys
+from logger import Logger
 from md_scrape import ScrapeMd
 from open_file import OpenFile
 from session import Session
@@ -13,12 +14,24 @@ from terminal_opts import TerminalOptions
 from web_scrape import WebScrape
 from write_file import WriteFile
 
-# FEATURE: add option for scraping lessons dialogues, words, expansions
-#           - # FEATURE: based on lesson sections - allow user to save additional expansion sentences or words
+# FEATURE: add option for scraping lessons
+#           - ✅ dialogues
+#           - words
+#           - expansions
+#           - grammar
 # FEATURE: add CLI option to download audio of words and/or sentences or dialogues
 # FEATURE: allow for option to go back if there are sentences but the level selected filtered them out
 # FEATURE: Quitting the APP
+#          - ✅ Quit Option on initial run
+#          - Quit option on keyboard interrupt
+#               - any time during a scrape or audio dl loop
+#               - any time the main app runs
 # FEATURE: Add ability to check current word list vs new words from Lessons, add ability to scrape words etc
+#           - ✅ Check file word list vs stored dictionary for duplicates
+#           - Check Words from the Expansion, Lesson for unique new words
+#           - Add ability to then go back and scrape unique words
+# TODO: Replace print with Logger
+#       - add logger for terminal options for selection
 # TODO: Remove temp.html files from selinium scrape
 # TODO: change remaning terminal menus to terminal options
 # TODO: handle case if definition of word is NONE for cpod or md
@@ -30,6 +43,7 @@ from write_file import WriteFile
 
 
 def start():
+
     try:
         new_session = Session(
             f"{keys['url']}accounts/signin", keys["email"], keys["password"]
@@ -44,6 +58,7 @@ def start():
         ).get_selected()
 
         if start_options == "Quit":
+            new_session.save_session()
             quit()
         filepath = input("Where is the file located?: ")
         while not WriteFile.path_exists(filepath, False):
@@ -82,8 +97,8 @@ def start():
                 terminal_level_menu.show()
                 levels = terminal_level_menu.chosen_menu_entries
 
-            for word in file_list:
-                print(f"Word: {word}...")
+            for i, word in enumerate(file_list):
+                print(f"Word: {word}...({i +1}/{len(file_list)})")
                 c_soup_res = new_session.get_html(
                     f"{keys['url']}/dictionary/english-chinese/{word}"
                 )
