@@ -3,8 +3,17 @@ import logging
 from write_file import WriteFile
 
 
-class Logger:
-    def __init__(self, filename):
+class Singleton(object):
+    _instances = {}
+
+    def __new__(cls):
+        if cls not in cls._instances:
+            cls._instances[cls] = super(Singleton, cls).__new__(cls)
+        return cls._instances[cls]
+
+
+class Logger(Singleton):
+    def __init__(self, filename="./logs/file.log"):
         self.filename = filename
         self.format = logging.Formatter("%(asctime)s %(levelname)s %(message)s")
 
@@ -29,6 +38,3 @@ class Logger:
 
         logfile.close()
         log.removeHandler(logfile)
-
-
-logs = Logger("./logs/file.log")
