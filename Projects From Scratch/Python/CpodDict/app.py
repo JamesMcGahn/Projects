@@ -121,6 +121,7 @@ def start():
                 "./out/words.csv",
                 dictionary.get_words(),
             )
+            dictionary.save_dictionary()
             word_audio = TerminalOptions(
                 ["Yes", "No"], "Do You Download the Audio for the Words?"
             ).get_selected()

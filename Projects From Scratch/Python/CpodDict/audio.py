@@ -91,7 +91,7 @@ class Audio:
             except Exception as e:
                 Logger().insert(e, "ERROR", False)
                 Logger().insert(
-                    "Something went wrong...Trying to Get Audio from Google..."
+                    "Something went wrong...Trying to Get Audio from Google...", "ERROR"
                 )
                 success = self.google_audio(dat["chinese"], dat["id"])
                 if success:
