@@ -4,14 +4,20 @@ import Spinner from '../components/layouts/Spinner';
 import RepoList from '../components/repos/ReposList';
 import { useParams, Link } from 'react-router-dom';
 import GithubContext from '../context/GithubContext';
+import { searchUserAndRepos } from '../context/GithubActions';
 
 function User() {
   const params = useParams();
-  const { user, repos, loading, searchUser, searchUserRepo, dispatch } = useContext(GithubContext);
+  const { user, repos, loading, dispatch } = useContext(GithubContext);
 
   useEffect(() => {
-    searchUser(params.login);
-    searchUserRepo(params.login);
+    const getUserData = async () => {
+      const user = await searchUserAndRepos(params.login);
+
+      dispatch({ type: 'GET_USER', payload: user.user });
+      dispatch({ type: 'GET_REPOS', payload: user.repos });
+    };
+    getUserData();
   }, [dispatch, params.login]);
 
   const { name, type, avatar_url, location, bio, blog, twitter_username, login, html_url, followers, following, public_repos, public_gists, hireable } = user;
