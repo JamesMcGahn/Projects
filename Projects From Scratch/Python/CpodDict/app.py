@@ -9,7 +9,6 @@ from logger import Logger
 from md_scrape import ScrapeMd
 from open_file import OpenFile
 from session import Session
-from simple_term_menu import TerminalMenu
 from terminal_opts import TerminalOptions
 from web_scrape import WebScrape
 from write_file import WriteFile
@@ -30,10 +29,11 @@ from write_file import WriteFile
 #           - ✅ Check file word list vs stored dictionary for duplicates
 #           - Check Words from the Expansion, Lesson for unique new words
 #           - Add ability to then go back and scrape unique words
+# FEATURE: option to select from example sentences scraped
+# TODO: check example sentences chinese, english and audio not null or empty string
 # TODO: Replace print with Logger
 #       - add logger for terminal options for selection
 # TODO: Remove temp.html files from selinium scrape
-# TODO: change remaning terminal menus to terminal options
 # TODO: handle case if definition of word is NONE for cpod or md
 # TODO: close webdriver
 # TODO: error handling for audio download
@@ -72,18 +72,17 @@ def start():
 
             file_list = OpenFile.open_file(filepath, False, seperator[term_selection])
         if start_options == "Words":
-            definition_options = TerminalMenu(
+            definition_source = TerminalOptions(
                 ["Use Cpod Definitions", "Use Mdgb Definitions"],
-                title="Where should we grab defintions from?",
-            )
-            definition_source = definition_options.show()
+                "Where should we grab defintions from?",
+            ).get_selected()
 
-            save_sentences = TerminalMenu(
-                ["Yes", "No"], title="Do you want Example Sentences?"
-            )
-            save_sent_yes = save_sentences.show()
-            if save_sent_yes == "Yes":
-                terminal_level_menu = TerminalMenu(
+            save_sentences = TerminalOptions(
+                ["Yes", "No"], "Do you want Example Sentences?"
+            ).get_selected()
+            print(save_sentences)
+            if save_sentences == "Yes":
+                terminal_level_menu = TerminalOptions(
                     [
                         "Newbie",
                         "Elementary",
@@ -91,12 +90,11 @@ def start():
                         "Intermediate",
                         "Advanced",
                     ],
-                    multi_select=True,
-                    show_multi_select_hint=True,
-                )
-                terminal_level_menu.show()
-                levels = terminal_level_menu.chosen_menu_entries
-
+                    "Please Select the Levels:",
+                    True,
+                ).get_selected()
+                levels = terminal_level_menu
+                print(levels)
             for i, word in enumerate(file_list):
                 print(f"Word: {word}...({i +1}/{len(file_list)})")
                 c_soup_res = new_session.get_html(
@@ -127,7 +125,7 @@ def start():
             ).get_selected()
             if word_audio == "Yes":
                 Audio(word_csv_path, "word")
-            if save_sent_yes == "Yes":
+            if save_sentences == "Yes":
                 WriteFile.write_to_csv(
                     "./out/ex_sentences.csv", dictionary.get_sentences(levels)
                 )
