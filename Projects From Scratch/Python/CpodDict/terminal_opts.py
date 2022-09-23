@@ -22,10 +22,15 @@ class TerminalOptions:
 
     def get_selected(self, arry=False):
         if not self.isMulti and arry:
+            Logger().insert(
+                f"You selected: {[self.options[self.indexes]]}", "INFO", True
+            )
             return [self.options[self.indexes]]
         elif not self.isMulti:
+            Logger().insert(f"You selected: {self.options[self.indexes]}", "INFO", True)
             return self.options[self.indexes]
         elif self.isMulti and arry:
+            Logger().insert(f"You selected: {list(self.chosen)}", "INFO", True)
             return list(self.chosen)
         else:
             return self.chosen
