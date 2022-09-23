@@ -30,9 +30,7 @@ from write_file import WriteFile
 #           - Check Words from the Expansion, Lesson for unique new words
 #           - Add ability to then go back and scrape unique words
 # FEATURE: option to select from example sentences scraped
-# TODO: check example sentences chinese, english and audio not null or empty string
 # TODO: Replace print with Logger
-#       - add logger for terminal options for selection
 # TODO: Remove temp.html files from selinium scrape
 # TODO: handle case if definition of word is NONE for cpod or md
 # TODO: close webdriver
@@ -75,26 +73,30 @@ def start():
             definition_source = TerminalOptions(
                 ["Use Cpod Definitions", "Use Mdgb Definitions"],
                 "Where should we grab defintions from?",
-            ).get_selected()
+            ).indexes
 
             save_sentences = TerminalOptions(
                 ["Yes", "No"], "Do you want Example Sentences?"
             ).get_selected()
-            print(save_sentences)
             if save_sentences == "Yes":
-                terminal_level_menu = TerminalOptions(
-                    [
-                        "Newbie",
-                        "Elementary",
-                        "Pre-Intermediate",
-                        "Intermediate",
-                        "Advanced",
-                    ],
-                    "Please Select the Levels:",
-                    True,
+                filter_by_level = TerminalOptions(
+                    ["Yes", "No"], "Do you want to filter sentences by level?: "
                 ).get_selected()
-                levels = terminal_level_menu
-                print(levels)
+                if filter_by_level == "Yes":
+                    level_selection = TerminalOptions(
+                        [
+                            "Newbie",
+                            "Elementary",
+                            "Pre-Intermediate",
+                            "Intermediate",
+                            "Advanced",
+                        ],
+                        "Please Select the Levels:",
+                        True,
+                    ).get_selected()
+
+                else:
+                    level_selection = False
             for i, word in enumerate(file_list):
                 print(f"Word: {word}...({i +1}/{len(file_list)})")
                 c_soup_res = new_session.get_html(
@@ -102,7 +104,7 @@ def start():
                 )
                 cpod = ScrapeCpod(c_soup_res, word)
                 cpod.scrape_defintion()
-                cpod.scrape_sentences()
+                cpod.scrape_sentences(level_selection)
                 c_defined_word = cpod.get_defintion()
                 example_sentences = cpod.get_sentences()
                 if definition_source == 0 and c_defined_word is not None:
@@ -127,7 +129,7 @@ def start():
                 Audio(word_csv_path, "word")
             if save_sentences == "Yes":
                 WriteFile.write_to_csv(
-                    "./out/ex_sentences.csv", dictionary.get_sentences(levels)
+                    "./out/ex_sentences.csv", dictionary.get_sentences()
                 )
         elif start_options == "Lessons":
             wb = WebScrape(new_session)

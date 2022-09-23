@@ -57,7 +57,7 @@ class ScrapeCpod:
 
         self.definition = Word(self.word, definition, pinyin, audio_file)
 
-    def scrape_sentences(self):
+    def scrape_sentences(self, level_selection):
         reg_pattern = regex.compile(r"[\p{Han}，。？：！‘\"\\s]+")
 
         sample_sentences_table = self.soup.find("table", class_="table-grossary")
@@ -78,7 +78,18 @@ class ScrapeCpod:
             example_sentence = Sentence(
                 self.word, char_sent, english_sent, pinyin_sent, level, audio
             )
-            self.word_example_sentences.append(example_sentence)
+            if (
+                audio != ""
+                and audio != "null"
+                and english_sent != ""
+                and english_sent != "null"
+                and pinyin_sent != ""
+                and pinyin_sent != "null"
+                and char_sent != ""
+                and char_sent != "null"
+            ):
+                self.word_example_sentences.append(example_sentence)
+        return self.example_selection(level_selection)
 
     def dialogue_selection(self):
         keepAll = TerminalOptions(
@@ -96,17 +107,55 @@ class ScrapeCpod:
         ).indexes
         self.dialogue = [self.dialogue[i] for i in term_selection]
 
+    def example_selection(self, level_selection):
+        sentence_display = None
+        if level_selection is False:
+
+            for i, x in enumerate(self.word_example_sentences):
+                print(f"{i+1}. {x.chinese} \n{x.english}\n{x.level}")
+            sentence_display = [
+                f"{i+1}-{x.chinese}"[0:30]
+                for i, x in enumerate(self.word_example_sentences)
+            ]
+        else:
+            for i, x in enumerate(
+                [x for x in self.word_example_sentences if x.level in level_selection]
+            ):
+                print(f"{i+1}. {x.chinese} \n{x.english}\n{x.level}")
+            sentence_display = [
+                f"{i+1} - {x.chinese}"[0:30]
+                for i, x in enumerate(
+                    [
+                        x
+                        for x in self.word_example_sentences
+                        if x.level in level_selection
+                    ]
+                )
+            ]
+
+        term_selection = TerminalOptions(
+            sentence_display,
+            "Which the Sentences Do You Want to Keep?",
+            True,
+        ).indexes
+        self.word_example_sentences = [
+            self.word_example_sentences[i] for i in term_selection
+        ]
+
     def expansion_selection(self):
         keepAll = TerminalOptions(
             ["Yes", "No"],
-            "Do you want to Keep All the Dialogue Sentences?",
+            "Do You Want to Keep All the Dialogue Sentences?",
             False,
         ).get_selected()
         if keepAll == "Yes":
             print("Keeping All")
             return
         term_selection = TerminalOptions(
-            [f"{x.word} - {x.chinese} - {x.english}" for x in self.expand_sentences],
+            [
+                f"{x.word} - {x.chinese} - {x.english}"[0:30]
+                for x in self.expand_sentences
+            ],
             "Which the Sentences Do You Want to Keep?",
             True,
         ).indexes
@@ -159,9 +208,9 @@ class ScrapeCpod:
         return self.expansion_selection()
 
 
-data = open("./test.html", "r")
-soup = BeautifulSoup(data, "html.parser")
-# print(soup)
-s = ScrapeCpod(soup)
-s.scrape_expansion()
-print(len(s.expand_sentences))
+# data = open("./test.html", "r")
+# soup = BeautifulSoup(data, "html.parser")
+# # print(soup)
+# s = ScrapeCpod(soup)
+# s.scrape_expansion()
+# print(len(s.expand_sentences))

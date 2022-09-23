@@ -10,6 +10,7 @@ class Dictionary:
         self.masterdict = []
         self.sess_dictionary = []
         self.ex_sentences = []
+        self.sess_sentences = []
         self.word_id = 1
 
     @staticmethod
@@ -44,15 +45,18 @@ class Dictionary:
     def add_sentences(self, sentences):
         for sentence in sentences:
             self.ex_sentences.append(sentence)
+            self.sess_sentences.append(sentence)
 
     def get_words(self):
         return [vars(words) for words in self.sess_dictionary]
 
-    def get_all_sentences(self):
-        return [vars(sents) for sents in self.ex_sentences]
-
-    def get_sentences(self, levels):
+    def get_all_sentences(self, levels=False):
+        if levels is False:
+            return [vars(sents) for sents in self.ex_sentences]
         return [vars(sents) for sents in self.ex_sentences if sents.level in levels]
+
+    def get_sentences(self):
+        return [vars(sents) for sents in self.sess_sentences]
 
     def save_dictionary(self):
         self.sess_dictionary = []
