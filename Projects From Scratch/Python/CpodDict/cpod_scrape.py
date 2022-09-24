@@ -207,10 +207,27 @@ class ScrapeCpod:
                 self.expand_sentences.append(expand_sentence)
         return self.expansion_selection()
 
+    def scrape_lesson_vocab(self):
+        key_vocab = self.soup.find(id="key_vocab")
+        if key_vocab is None:
+            return None
+        vocabs = key_vocab.find_all("tr")
+        words = []
+        for vocab in vocabs:
+            tds = vocab.find_all("td")
+            chinese = tds[1].get_text()
+            pinyin = tds[2].get_text()
+            chinese = Dictionary.strip_string(chinese)
+            chinese = chinese.replace(" ", "")
+            pinyin = Dictionary.strip_string(pinyin)
+
+            word = Word(chinese, "", pinyin, "")
+            words.append(word)
+        return words
+
 
 # data = open("./test.html", "r")
 # soup = BeautifulSoup(data, "html.parser")
 # # print(soup)
 # s = ScrapeCpod(soup)
-# s.scrape_expansion()
-# print(len(s.expand_sentences))
+# s.scrape_lesson_vocab()

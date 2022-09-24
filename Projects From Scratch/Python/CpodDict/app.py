@@ -73,16 +73,21 @@ def start():
             seperator = ("\n", ",", ";", ":")
 
             file_list = OpenFile.open_file(filepath, False, seperator[term_selection])
+
         if start_options == "Words":
             WordScrape(new_session, dictionary, file_list)
 
         elif start_options == "Lessons":
             wb = WebScrape(new_session)
             wb.init_driver()
-            for lesson in file_list:
-                wb.run_webdriver(lesson)
+
+            for c_lesson in file_list:
+                word_expansion = []
+                wb.run_webdriver(c_lesson)
                 lesson = wb.get_source()
-                tempfile_path = WriteFile.write_file("./temp.html", lesson["source"])
+                tempfile_path = WriteFile.write_file(
+                    "./data/temp/temp.html", lesson["source"]
+                )
                 data = open(tempfile_path, "r")
                 soup = BeautifulSoup(data, "html.parser")
                 wcpod = ScrapeCpod(soup)
@@ -90,7 +95,40 @@ def start():
                 dialogues = wcpod.get_dialogues()
                 if len(dialogues) > 0:
                     dictionary.add_sentences(dialogues)
+
+                if "Vocabulary" not in lesson["not_available"]:
+                    words = wcpod.scrape_lesson_vocab()
+                    non_dup_words = [
+                        word.chinese
+                        for word in words
+                        if not dictionary.check_for_dup(word, False)
+                    ]
+                    word_expansion.extend(non_dup_words)
+                try:
+                    os.remove(tempfile_path)
+                except OSError as error:
+                    raise RuntimeError(error)
+            wb.close()
             WriteFile.write_to_csv("./out/dialogs.csv", dictionary.get_all_sentences())
+            if len(word_expansion) > 0:
+                save_exp_vocab = TerminalOptions(
+                    ["Yes", "No"], "Do you want add the Lesson Vocabs?"
+                ).get_selected()
+                if save_exp_vocab == "Yes":
+                    keepAll = TerminalOptions(
+                        ["Yes", "No"], "Keep All of the Words?"
+                    ).get_selected()
+                    if keepAll == "No":
+                        word_list = TerminalOptions(
+                            [word for word in word_expansion],
+                            "Select the Words You Want to Keep:",
+                            True,
+                        ).get_selected()
+                        WordScrape(new_session, dictionary, word_list)
+                    else:
+                        WordScrape(new_session, dictionary, word_expansion)
+            else:
+                Logger().insert("There are no new words from these Lessons", "INFO")
         elif start_options == "Download Audio From Saved File":
             Audio(filepath, "word")
         dictionary.save_dictionary()
