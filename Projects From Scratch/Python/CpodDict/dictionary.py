@@ -18,20 +18,23 @@ class Dictionary:
     def strip_string(string):
         return string.replace("\n", "").replace("\t", "").strip()
 
-    def check_for_dup(self, word):
+    def check_for_dup(self, word, ask_user=True):
         if any(
             (k.chinese == word.chinese and (wordmatch := k)) for k in self.masterdict
         ):
-            print(
-                # trunk-ignore(flake8/F821)
-                f"In Dictionary: {wordmatch.chinese} - {wordmatch.pinyin} - {wordmatch.definition}"
-            )
-            keepword = TerminalOptions(
-                ["Yes", "No"],
-                f"Keep Potential Duplicate? - {word.chinese} - {word.pinyin} - {word.definition}",
-            ).get_selected()
-            if keepword == "No":
-                print(f"{word.chinese} not saved to the dictionary.")
+            if ask_user:
+                print(
+                    # trunk-ignore(flake8/F821)
+                    f"In Dictionary: {wordmatch.chinese} - {wordmatch.pinyin} - {wordmatch.definition}"
+                )
+                keepword = TerminalOptions(
+                    ["Yes", "No"],
+                    f"Keep Potential Duplicate? - {word.chinese} - {word.pinyin} - {word.definition}",
+                ).get_selected()
+                if keepword == "No":
+                    print(f"{word.chinese} not saved.")
+                    return True
+            else:
                 return True
         else:
             return False
