@@ -6,11 +6,11 @@ from cpod_scrape import ScrapeCpod
 from dictionary import Dictionary
 from keys import keys
 from logger import Logger
-from md_scrape import ScrapeMd
 from open_file import OpenFile
 from session import Session
 from terminal_opts import TerminalOptions
 from web_scrape import WebScrape
+from word_scrape import WordScrape
 from write_file import WriteFile
 
 # FEATURE: add option for scraping lessons
@@ -30,6 +30,10 @@ from write_file import WriteFile
 #           - Check Words from the Expansion, Lesson for unique new words
 #           - Add ability to then go back and scrape unique words
 # FEATURE: option to select from example sentences scraped
+# FEATURE: Load initial sentences and words
+#           - 🔨 words
+#                - working but needs to be improved
+#           - sentences
 # TODO: Replace print with Logger
 # TODO: Remove temp.html files from selinium scrape
 # TODO: handle case if definition of word is NONE for cpod or md
@@ -70,67 +74,8 @@ def start():
 
             file_list = OpenFile.open_file(filepath, False, seperator[term_selection])
         if start_options == "Words":
-            definition_source = TerminalOptions(
-                ["Use Cpod Definitions", "Use Mdgb Definitions"],
-                "Where should we grab defintions from?",
-            ).indexes
+            WordScrape(new_session, dictionary, file_list)
 
-            save_sentences = TerminalOptions(
-                ["Yes", "No"], "Do you want Example Sentences?"
-            ).get_selected()
-            if save_sentences == "Yes":
-                filter_by_level = TerminalOptions(
-                    ["Yes", "No"], "Do you want to filter sentences by level?: "
-                ).get_selected()
-                if filter_by_level == "Yes":
-                    level_selection = TerminalOptions(
-                        [
-                            "Newbie",
-                            "Elementary",
-                            "Pre-Intermediate",
-                            "Intermediate",
-                            "Advanced",
-                        ],
-                        "Please Select the Levels:",
-                        True,
-                    ).get_selected()
-
-                else:
-                    level_selection = False
-            for i, word in enumerate(file_list):
-                print(f"Word: {word}...({i +1}/{len(file_list)})")
-                c_soup_res = new_session.get_html(
-                    f"{keys['url']}/dictionary/english-chinese/{word}"
-                )
-                cpod = ScrapeCpod(c_soup_res, word)
-                cpod.scrape_defintion()
-                cpod.scrape_sentences(level_selection)
-                c_defined_word = cpod.get_defintion()
-                example_sentences = cpod.get_sentences()
-                if definition_source == 0 and c_defined_word is not None:
-                    dictionary.add_word(c_defined_word)
-                else:
-                    m_soup_res = new_session.get_html(f"{keys['murl']}{word}")
-                    md = ScrapeMd(m_soup_res)
-                    m_defined_word = md.get_defintion()
-                    if c_defined_word is not None:
-                        m_defined_word.audio = c_defined_word.audio
-                    dictionary.add_word(m_defined_word)
-                dictionary.add_sentences(example_sentences)
-            word_csv_path = WriteFile.write_to_csv(
-                "./out/words.csv",
-                dictionary.get_words(),
-            )
-            dictionary.save_dictionary()
-            word_audio = TerminalOptions(
-                ["Yes", "No"], "Do You Download the Audio for the Words?"
-            ).get_selected()
-            if word_audio == "Yes":
-                Audio(word_csv_path, "word")
-            if save_sentences == "Yes":
-                WriteFile.write_to_csv(
-                    "./out/ex_sentences.csv", dictionary.get_sentences()
-                )
         elif start_options == "Lessons":
             wb = WebScrape(new_session)
             wb.init_driver()
