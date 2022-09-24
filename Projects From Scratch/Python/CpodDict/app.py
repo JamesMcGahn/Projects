@@ -15,7 +15,7 @@ from write_file import WriteFile
 
 # FEATURE: add option for scraping lessons
 #           - ✅ dialogues
-#           - words
+#           - ✅ words
 #           - expansions
 #           - grammar
 # FEATURE: add CLI option to download audio of words and/or sentences or dialogues
@@ -35,9 +35,7 @@ from write_file import WriteFile
 #                - working but needs to be improved
 #           - sentences
 # TODO: Replace print with Logger
-# TODO: Remove temp.html files from selinium scrape
 # TODO: handle case if definition of word is NONE for cpod or md
-# TODO: close webdriver
 # TODO: error handling for audio download
 # TODO: APP Clean up
 #   - # TODO: Start code

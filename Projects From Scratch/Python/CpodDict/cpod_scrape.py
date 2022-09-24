@@ -3,6 +3,7 @@ from urllib.parse import unquote
 import regex
 from bs4 import BeautifulSoup
 from dictionary import Dictionary, Sentence, Word
+from logger import Logger
 from terminal_opts import TerminalOptions
 
 
@@ -14,6 +15,22 @@ class ScrapeCpod:
         self.expand_sentences = []
         self.definition = None
         self.word = word
+
+    def __getitem__(self, key):
+        if key == "word_example_sentences":
+            return self.word_example_sentences
+        elif key == "dialogue":
+            return self.dialogue
+        elif key == "expand_sentences":
+            return self.expand_sentences
+
+    def __setitem__(self, key, value):
+        if key == "word_example_sentences":
+            self.word_example_sentences = value
+        elif key == "dialogue":
+            self.dialogue = value
+        elif key == "expand_sentences":
+            self.expand_sentences = value
 
     def get_sentences(self):
         return self.word_example_sentences
@@ -89,18 +106,37 @@ class ScrapeCpod:
                 and char_sent != "null"
             ):
                 self.word_example_sentences.append(example_sentence)
-        return self.example_selection(level_selection)
+        return self.selection("Examples", level_selection)
 
-    def example_selection(self, level_selection):
-        sentence_display = None
+    def selection(self, type_select, level_selection=False):
+
+        select = {
+            "Expansion": "expand_sentences",
+            "Dialogue": "dialogue",
+            "Examples": "word_example_sentences",
+        }
+
+        keepAll = TerminalOptions(
+            ["Yes", "No"],
+            f"Do You Want to Keep All the {type_select} Sentences?",
+            False,
+        ).get_selected()
+        if keepAll == "Yes":
+            Logger().insert("Keeping All", "INFO")
+            return
         if level_selection is False:
+            for i, x in enumerate(self[select[type_select]]):
+                if type_select == "Dialogue":
+                    print(f"{i+1}. \n{x.chinese} \n{x.english}")
+                elif type_select == "Expansion":
+                    print(f"{i+1}. {x.word} \n{x.chinese} \n{x.english}")
+                elif type_select == "Examples":
+                    print(f"{i+1}. {x.level} \n{x.chinese} \n{x.english}")
 
-            for i, x in enumerate(self.word_example_sentences):
-                print(f"{i+1}. {x.chinese} \n{x.english}\n{x.level}")
-            sentence_display = [
-                f"{i+1}-{x.chinese}"[0:30]
-                for i, x in enumerate(self.word_example_sentences)
-            ]
+                sentence_display = [
+                    f"{i+1}-{x.chinese}"[0:30]
+                    for i, x in enumerate(self[select[type_select]])
+                ]
         else:
             for i, x in enumerate(
                 [x for x in self.word_example_sentences if x.level in level_selection]
@@ -122,39 +158,10 @@ class ScrapeCpod:
             "Which the Sentences Do You Want to Keep?",
             True,
         ).indexes
-        self.word_example_sentences = [
-            self.word_example_sentences[i] for i in term_selection
+
+        self[select[type_select]] = [
+            self[select[type_select]][i] for i in term_selection
         ]
-
-    def selection(self, type_select):
-
-        select = {"Expansion": self.expand_sentences, "Dialogue": self.dialogue}
-
-        keepAll = TerminalOptions(
-            ["Yes", "No"],
-            f"Do You Want to Keep All the {type_select} Sentences?",
-            False,
-        ).get_selected()
-        if keepAll == "Yes":
-            print("Keeping All")
-            return
-
-        for i, x in enumerate(select[type_select]):
-            if type_select == "Dialogue":
-                print(f"{i+1}. \n{x.chinese} \n{x.english}")
-            elif type_select == "Expansion":
-                print(f"{i+1}. {x.word} \n{x.chinese} \n{x.english}")
-        sentence_display = [
-            f"{i+1}-{x.chinese}"[0:30] for i, x in enumerate(select[type_select])
-        ]
-
-        term_selection = TerminalOptions(
-            sentence_display,
-            "Which the Sentences Do You Want to Keep?",
-            True,
-        ).indexes
-
-        select[type_select] = [select[type_select][i] for i in term_selection]
 
     def scrape_dialogues(self):
         dialogue_cont = self.soup.find("div", id="dialogue")
@@ -223,9 +230,13 @@ class ScrapeCpod:
 
 data = open("./test1.html", "r")
 soup = BeautifulSoup(data, "html.parser")
-# print(soup)
+# # print(soup)
 s = ScrapeCpod(soup)
+# s.scrape_sentences(False)
+# print(s.word_example_sentences, "after")
+
 # s.scrape_lesson_vocab()
-s.scrape_expansion()
-# print(s.expand_sentences)
+# s.scrape_expansion()
+# print(len(s.expand_sentences))
+# print(s.expand_sentences[0].chinese)
 # s.scrape_dialogues()
