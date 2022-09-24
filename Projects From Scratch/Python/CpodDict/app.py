@@ -16,7 +16,7 @@ from write_file import WriteFile
 # FEATURE: add option for scraping lessons
 #           - ✅ dialogues
 #           - ✅ words
-#           - expansions
+#           - ✅ expansions
 #           - grammar
 # FEATURE: add CLI option to download audio of words and/or sentences or dialogues
 # FEATURE: allow for option to go back if there are sentences but the level selected filtered them out
@@ -78,9 +78,9 @@ def start():
         elif start_options == "Lessons":
             wb = WebScrape(new_session)
             wb.init_driver()
+            word_expansion = []
 
             for c_lesson in file_list:
-                word_expansion = []
                 wb.run_webdriver(c_lesson)
                 lesson = wb.get_source()
                 tempfile_path = WriteFile.write_file(
@@ -102,12 +102,16 @@ def start():
                         if not dictionary.check_for_dup(word, False)
                     ]
                     word_expansion.extend(non_dup_words)
+                if "Expansion" not in lesson["not_available"]:
+                    wcpod.scrape_expansion()
+                    expand = wcpod.get_expansion()
+                    dictionary.add_sentences(expand)
                 try:
                     os.remove(tempfile_path)
                 except OSError as error:
                     raise RuntimeError(error)
             wb.close()
-            WriteFile.write_to_csv("./out/dialogs.csv", dictionary.get_all_sentences())
+            WriteFile.write_to_csv("./out/lessons.csv", dictionary.get_all_sentences())
             if len(word_expansion) > 0:
                 save_exp_vocab = TerminalOptions(
                     ["Yes", "No"], "Do you want add the Lesson Vocabs?"

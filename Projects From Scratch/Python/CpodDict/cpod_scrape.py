@@ -35,6 +35,9 @@ class ScrapeCpod:
     def get_sentences(self):
         return self.word_example_sentences
 
+    def get_expansion(self):
+        return self.expand_sentences
+
     def get_defintion(self):
         return self.definition
 
