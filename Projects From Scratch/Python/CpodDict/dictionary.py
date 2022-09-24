@@ -12,6 +12,7 @@ class Dictionary:
         self.ex_sentences = []
         self.sess_sentences = []
         self.word_id = 1
+        self.sent_id = 1
 
     @staticmethod
     def strip_string(string):
@@ -19,14 +20,15 @@ class Dictionary:
 
     def check_for_dup(self, word):
         if any(
-            (k.chinese == word.chinese and k.pinyin == word.pinyin and (wordmatch := k))
-            for k in self.masterdict
+            (k.chinese == word.chinese and (wordmatch := k)) for k in self.masterdict
         ):
-            # trunk-ignore(flake8/F821)
-            print(f"In Dictionary: {wordmatch.chinese} - {wordmatch.definition}")
+            print(
+                # trunk-ignore(flake8/F821)
+                f"In Dictionary: {wordmatch.chinese} - {wordmatch.pinyin} - {wordmatch.definition}"
+            )
             keepword = TerminalOptions(
                 ["Yes", "No"],
-                f"Keep Potential Duplicate? - {word.chinese} - {word.definition}",
+                f"Keep Potential Duplicate? - {word.chinese} - {word.pinyin} - {word.definition}",
             ).get_selected()
             if keepword == "No":
                 print(f"{word.chinese} not saved to the dictionary.")
@@ -44,8 +46,10 @@ class Dictionary:
 
     def add_sentences(self, sentences):
         for sentence in sentences:
+            sentence.id = self.sent_id
             self.ex_sentences.append(sentence)
             self.sess_sentences.append(sentence)
+            self.sent_id += 1
 
     def get_words(self):
         return [vars(words) for words in self.sess_dictionary]
@@ -90,6 +94,7 @@ class Word:
 
 class Sentence:
     def __init__(self, word, chinese, english, pinyin, level, audio):
+        self.id = 0
         self.word = word
         self.chinese = chinese
         self.english = english
