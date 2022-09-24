@@ -77,10 +77,9 @@ class Audio:
                             "INFO",
                         )
                     continue
-            elif self.type == "example":
-                folder_path = "./out/audios/examples/"
-            else:
-                folder_path = "./out/audios/dialogues/"
+            elif self.type == "sentences":
+                folder_path = "./out/audios/sentences/"
+
             path = WriteFile.check_dup(folder_path, dat["id"], ".mp3")
             try:
                 urllib.request.urlretrieve(dat["audio"], path)
