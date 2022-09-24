@@ -91,22 +91,6 @@ class ScrapeCpod:
                 self.word_example_sentences.append(example_sentence)
         return self.example_selection(level_selection)
 
-    def dialogue_selection(self):
-        keepAll = TerminalOptions(
-            ["Yes", "No"],
-            "Do you want to Keep the Whole Dialogue?",
-            False,
-        ).get_selected()
-        if keepAll == "Yes":
-            print("Keeping All")
-            return
-        term_selection = TerminalOptions(
-            [f"{x.chinese}" for x in self.dialogue],
-            "Which the Sentences Do You Want to Keep?",
-            True,
-        ).indexes
-        self.dialogue = [self.dialogue[i] for i in term_selection]
-
     def example_selection(self, level_selection):
         sentence_display = None
         if level_selection is False:
@@ -142,24 +126,35 @@ class ScrapeCpod:
             self.word_example_sentences[i] for i in term_selection
         ]
 
-    def expansion_selection(self):
+    def selection(self, type_select):
+
+        select = {"Expansion": self.expand_sentences, "Dialogue": self.dialogue}
+
         keepAll = TerminalOptions(
             ["Yes", "No"],
-            "Do You Want to Keep All the Dialogue Sentences?",
+            f"Do You Want to Keep All the {type_select} Sentences?",
             False,
         ).get_selected()
         if keepAll == "Yes":
             print("Keeping All")
             return
+
+        for i, x in enumerate(select[type_select]):
+            if type_select == "Dialogue":
+                print(f"{i+1}. \n{x.chinese} \n{x.english}")
+            elif type_select == "Expansion":
+                print(f"{i+1}. {x.word} \n{x.chinese} \n{x.english}")
+        sentence_display = [
+            f"{i+1}-{x.chinese}"[0:30] for i, x in enumerate(select[type_select])
+        ]
+
         term_selection = TerminalOptions(
-            [
-                f"{x.word} - {x.chinese} - {x.english}"[0:30]
-                for x in self.expand_sentences
-            ],
+            sentence_display,
             "Which the Sentences Do You Want to Keep?",
             True,
         ).indexes
-        self.expand_sentences = [self.expand_sentences[i] for i in term_selection]
+
+        select[type_select] = [select[type_select][i] for i in term_selection]
 
     def scrape_dialogues(self):
         dialogue_cont = self.soup.find("div", id="dialogue")
@@ -181,19 +176,21 @@ class ScrapeCpod:
             english = Dictionary.strip_string(english)
             dialogue_sent = Sentence(title, chinese, english, pinyin, badge, audio)
             self.dialogue.append(dialogue_sent)
-        return self.dialogue_selection()
+        return self.selection("Dialogue")
 
     def scrape_expansion(self):
         expansion = self.soup.find(id="expansion")
+
         if expansion is None:
             return None
         expand_cards = expansion.find_all("div", class_="cpod-card")
         title_cont = self.soup.find("h1", class_="lesson-page-title")
         badge = title_cont.find("a", class_="badge").get_text()
         for card in expand_cards:
-            title = card.find("div", class_="panel-body").find_next().string
+            word = card.find("div", class_="font-chinese title-font").get_text()
             table = card.find_all("tr")
             for sent in table:
+
                 chinese = sent.find("p", class_="click-to-add").get_text()
                 pinyin = sent.find("p", class_="show-pinyin").get_text()
                 english = sent.find("p", class_="translation-container").get_text()
@@ -201,11 +198,9 @@ class ScrapeCpod:
                 pinyin = Dictionary.strip_string(pinyin)
                 chinese = Dictionary.strip_string(chinese)
                 english = Dictionary.strip_string(english)
-                expand_sentence = Sentence(
-                    title, chinese, english, pinyin, badge, audio
-                )
+                expand_sentence = Sentence(word, chinese, english, pinyin, badge, audio)
                 self.expand_sentences.append(expand_sentence)
-        return self.expansion_selection()
+        return self.selection("Expansion")
 
     def scrape_lesson_vocab(self):
         key_vocab = self.soup.find(id="key_vocab")
@@ -226,8 +221,11 @@ class ScrapeCpod:
         return words
 
 
-# data = open("./test.html", "r")
-# soup = BeautifulSoup(data, "html.parser")
-# # print(soup)
-# s = ScrapeCpod(soup)
+data = open("./test1.html", "r")
+soup = BeautifulSoup(data, "html.parser")
+# print(soup)
+s = ScrapeCpod(soup)
 # s.scrape_lesson_vocab()
+s.scrape_expansion()
+# print(s.expand_sentences)
+# s.scrape_dialogues()
