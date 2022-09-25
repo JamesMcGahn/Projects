@@ -2,6 +2,8 @@ import os
 import re
 from csv import DictWriter
 
+import logger
+
 
 class WriteFile:
     @staticmethod
@@ -44,7 +46,7 @@ class WriteFile:
             path = WriteFile.check_dup(match["path"], match["filename"], match["ext"])
         else:
             WriteFile.path_exists(match["path"], True)
-        print(f"Saving {path}")
+        logger.Logger().insert(f"Saving {path}", "INFO")
         with open(path, "w") as file:
             csv_writer = DictWriter(file, fieldnames=data[0].keys())
             csv_writer.writeheader()
@@ -65,8 +67,8 @@ class WriteFile:
         }
 
     @staticmethod
-    def write_file(path, source, write_type="w", overwrite=False):
-        print("Writing Data to File")
+    def write_file(path, source, write_type="w", overwrite=False, print_to_user=True):
+        logger.Logger().insert("Writing Data to File", "INFO")
         match = WriteFile.regex_path(path)
         if not overwrite:
             path = WriteFile.check_dup(match["path"], match["filename"], match["ext"])
@@ -74,5 +76,9 @@ class WriteFile:
             WriteFile.path_exists(match["path"], True)
         with open(path, write_type) as out:
             out.write(source)
-            print(f"Completed Writing {match['filename']}{match['ext']}")
+            logger.Logger().insert(
+                f"Completed Writing {match['filename']}{match['ext']}",
+                "INFO",
+                print_to_user,
+            )
         return path

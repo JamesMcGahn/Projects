@@ -2,6 +2,8 @@ import os
 import pickle
 from csv import DictReader
 
+from logger import Logger
+
 
 class OpenFile:
     @staticmethod
@@ -9,7 +11,7 @@ class OpenFile:
         if os.path.exists(filepath):
             return True
         else:
-            print("Filepath does not exist")
+            Logger().insert("Filepath does not exist", "WARN")
             raise ValueError("Filepath does not exist")
 
     def open_pickle(path):
@@ -20,7 +22,7 @@ class OpenFile:
 
     @staticmethod
     def open_file(filepath, csv=False, split=False):
-        print(f"Opening {filepath}")
+        Logger().insert(f"Opening {filepath}", "INFO")
         if OpenFile.check_file(filepath):
             with open(filepath, "r", encoding="utf-8-sig") as file:
                 if csv:
@@ -28,7 +30,7 @@ class OpenFile:
                     return list(csv_reader)
                 elif split:
                     data = file.read().split(split)
-                    print(f"List: {data}")
+                    Logger().insert(f"List: {data}", "INFO")
                     return data
                 else:
                     return file

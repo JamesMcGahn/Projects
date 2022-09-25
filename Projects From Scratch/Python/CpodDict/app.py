@@ -24,7 +24,6 @@ from write_file import WriteFile
 #           - 🔨 words
 #                - working but needs to be improved
 #           - sentences
-# TODO: Replace print with Logger
 # TODO: handle case if definition of word is NONE for cpod or md
 # TODO: error handling for audio download
 # TODO: APP Clean up

@@ -1,5 +1,6 @@
 import pickle
 
+from logger import Logger
 from open_file import OpenFile
 from terminal_opts import TerminalOptions
 from write_file import WriteFile
@@ -23,16 +24,17 @@ class Dictionary:
             (k.chinese == word.chinese and (wordmatch := k)) for k in self.masterdict
         ):
             if ask_user:
-                print(
+                Logger().insert(
                     # trunk-ignore(flake8/F821)
-                    f"In Dictionary: {wordmatch.chinese} - {wordmatch.pinyin} - {wordmatch.definition}"
+                    f"In Dictionary: {wordmatch.chinese} - {wordmatch.pinyin} - {wordmatch.definition}",
+                    "INFO",
                 )
                 keepword = TerminalOptions(
                     ["Yes", "No"],
                     f"Keep Potential Duplicate? - {word.chinese} - {word.pinyin} - {word.definition}",
                 ).get_selected()
                 if keepword == "No":
-                    print(f"{word.chinese} not saved.")
+                    Logger().insert(f"{word.chinese} not saved.", "INFO")
                     return True
             else:
                 return True
@@ -68,21 +70,25 @@ class Dictionary:
     def save_dictionary(self):
         self.sess_dictionary = []
         WriteFile.write_file(
-            "./data/dictionary_words.pickle", pickle.dumps(self.masterdict), "wb", True
+            "./data/dictionary_words.pickle",
+            pickle.dumps(self.masterdict),
+            "wb",
+            True,
+            False,
         )
         WriteFile.write_file(
-            "./data/dictionary_id.pickle", pickle.dumps(self.word_id), "wb", True
+            "./data/dictionary_id.pickle", pickle.dumps(self.word_id), "wb", True, False
         )
 
     def load_dictionary(self):
         try:
-            print("Loading Dictionary...")
+            Logger().insert("Loading Dictionary...", "INFO")
             dictionary = OpenFile.open_pickle("./data/dictionary_words.pickle")
             dictionary_id = OpenFile.open_pickle("./data/dictionary_id.pickle")
             self.masterdict = dictionary
             self.word_id = dictionary_id
         except ValueError:
-            print("Error loading Dictionary - No File Exists")
+            Logger().insert("Error loading Dictionary - No File Exists", "ERROR")
             return self
 
 

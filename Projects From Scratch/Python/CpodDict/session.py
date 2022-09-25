@@ -47,7 +47,7 @@ class Session:
     def save_session(self):
         Logger().insert("Saving Session...", "INFO")
         WriteFile.write_file(
-            "./data/session.pickle", pickle.dumps(self.get_cookies()), "wb", True
+            "./data/session.pickle", pickle.dumps(self.get_cookies()), "wb", True, False
         )
 
     def set_cookies(self, cookies):
@@ -57,7 +57,7 @@ class Session:
         return self.session.cookies
 
     def get_html(self, url):
-        print("Getting HTML...")
+        Logger().insert("Getting HTML...", "INFO")
         req = Session.session.get(f"{url}")
         soup = BeautifulSoup(req.text, "html.parser")
         sleep(randint(6, 15))
