@@ -1,7 +1,6 @@
 from urllib.parse import unquote
 
 import regex
-from bs4 import BeautifulSoup
 from dictionary import Dictionary, Sentence, Word
 from logger import Logger
 from terminal_opts import TerminalOptions
@@ -13,6 +12,7 @@ class ScrapeCpod:
         self.word_example_sentences = []
         self.dialogue = []
         self.expand_sentences = []
+        self.grammar_sentences = []
         self.definition = None
         self.word = word
 
@@ -23,6 +23,8 @@ class ScrapeCpod:
             return self.dialogue
         elif key == "expand_sentences":
             return self.expand_sentences
+        elif key == "grammar_sentences":
+            return self.grammar_sentences
 
     def __setitem__(self, key, value):
         if key == "word_example_sentences":
@@ -31,9 +33,14 @@ class ScrapeCpod:
             self.dialogue = value
         elif key == "expand_sentences":
             self.expand_sentences = value
+        elif key == "grammar_sentences":
+            self.grammar_sentences = value
 
     def get_sentences(self):
         return self.word_example_sentences
+
+    def get_grammar(self):
+        return self.grammar_sentences
 
     def get_expansion(self):
         return self.expand_sentences
@@ -117,6 +124,7 @@ class ScrapeCpod:
             "Expansion": "expand_sentences",
             "Dialogue": "dialogue",
             "Examples": "word_example_sentences",
+            "Grammar": "grammar_sentences",
         }
 
         keepAll = TerminalOptions(
@@ -130,12 +138,13 @@ class ScrapeCpod:
         if level_selection is False:
             for i, x in enumerate(self[select[type_select]]):
                 if type_select == "Dialogue":
-                    print(f"{i+1}. \n{x.chinese} \n{x.english}")
+                    print(f"{i+1}. \n{x.chinese} \n{x.english}\n")
                 elif type_select == "Expansion":
-                    print(f"{i+1}. {x.word} \n{x.chinese} \n{x.english}")
+                    print(f"{i+1}. {x.word} \n{x.chinese} \n{x.english}\n")
                 elif type_select == "Examples":
-                    print(f"{i+1}. {x.level} \n{x.chinese} \n{x.english}")
-
+                    print(f"{i+1}. {x.level}\n{x.chinese} \n{x.english}\n")
+                elif type_select == "Grammar":
+                    print(f"{i+1}. {x.word}\n\n{x.chinese} \n{x.english}\n")
                 sentence_display = [
                     f"{i+1}-{x.chinese}"[0:30]
                     for i, x in enumerate(self[select[type_select]])
@@ -230,16 +239,29 @@ class ScrapeCpod:
             words.append(word)
         return words
 
+    def scrape_lesson_grammar(self):
+        cont = self.soup.find("div", id="grammar")
+        gram_card = cont.find_all("div", id="grammar_introduction")
+        title_cont = self.soup.find("h1", class_="lesson-page-title")
+        badge = title_cont.find("a", class_="badge").get_text()
+        for gram in gram_card:
+            # title = gram.find("h3", class_="panel-title").get_text()
+            description = gram.find("div", class_="panel-body").find("p").get_text()
+            title_n_des = Dictionary.strip_string(description)
+            sent_cont = gram.find("div", id="grammar_sentence")
+            sents = sent_cont.find_all("tr")
+            for sent in sents:
 
-data = open("./test1.html", "r")
-soup = BeautifulSoup(data, "html.parser")
-# # print(soup)
-s = ScrapeCpod(soup)
-# s.scrape_sentences(False)
-# print(s.word_example_sentences, "after")
+                chinese = sent.find("p", class_="click-to-add").get_text()
+                pinyin = sent.find("p", class_="show-pinyin").get_text()
+                english = sent.find("p", class_="translation-container").get_text()
+                audio = self.scrape_audio(sent)
+                pinyin = Dictionary.strip_string(pinyin)
+                chinese = Dictionary.strip_string(chinese)
+                english = Dictionary.strip_string(english)
 
-# s.scrape_lesson_vocab()
-# s.scrape_expansion()
-# print(len(s.expand_sentences))
-# print(s.expand_sentences[0].chinese)
-# s.scrape_dialogues()
+                grammar_sent = Sentence(
+                    title_n_des, chinese, english, pinyin, badge, audio
+                )
+                self.grammar_sentences.append(grammar_sent)
+        return self.selection("Grammar")

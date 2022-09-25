@@ -17,7 +17,7 @@ from write_file import WriteFile
 #           - ✅ dialogues
 #           - ✅ words
 #           - ✅ expansions
-#           - grammar
+#           - ✅ grammar
 # FEATURE: add CLI option to download audio of words and/or sentences or dialogues
 # FEATURE: allow for option to go back if there are sentences but the level selected filtered them out
 # FEATURE: Quitting the APP
@@ -106,12 +106,25 @@ def start():
                     wcpod.scrape_expansion()
                     expand = wcpod.get_expansion()
                     dictionary.add_sentences(expand)
+
+                if "Grammar" not in lesson["not_available"]:
+                    wcpod.scrape_lesson_grammar()
+                    grammar = wcpod.get_grammar()
+                    dictionary.add_sentences(grammar)
+
                 try:
                     os.remove(tempfile_path)
                 except OSError as error:
                     raise RuntimeError(error)
             wb.close()
-            WriteFile.write_to_csv("./out/lessons.csv", dictionary.get_all_sentences())
+            sent_csv_path = WriteFile.write_to_csv(
+                "./out/lessons.csv", dictionary.get_all_sentences()
+            )
+            sent_audio = TerminalOptions(
+                ["Yes", "No"], "Do You Download the Audio for the Sentences?"
+            ).get_selected()
+            if sent_audio == "Yes":
+                Audio(sent_csv_path, "sentences")
             if len(word_expansion) > 0:
                 save_exp_vocab = TerminalOptions(
                     ["Yes", "No"], "Do you want add the Lesson Vocabs?"
