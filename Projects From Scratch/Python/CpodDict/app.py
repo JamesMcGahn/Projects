@@ -9,22 +9,20 @@ from word_scrape import WordScrape
 from write_file import WriteFile
 
 # FEATURE: add CLI option to download audio of words and/or sentences or dialogues
-# FEATURE: allow for option to go back if there are sentences but the level selected filtered them out
+# FEATURE: ✅ - allow for option to go back if there are sentences but the level selected filtered them out
 # FEATURE: Quitting the APP
 #          - ✅ Quit Option on initial run
 #          - Quit option on keyboard interrupt
 #               - any time during a scrape or audio dl loop
 #               - any time the main app runs
-# FEATURE: Add ability to check current word list vs new words from Lessons, add ability to scrape words etc
-#           - ✅ Check file word list vs stored dictionary for duplicates
-#           - Check Words from the Expansion, Lesson for unique new words
-#           - Add ability to then go back and scrape unique words
-# FEATURE: option to select from example sentences scraped
 # FEATURE: Load initial sentences and words
 #           - 🔨 words
 #                - working but needs to be improved
 #           - sentences
 # TODO: handle case if definition of word is NONE for cpod or md
+#       - ✅ cpod - will check md
+#       - md - ask user to retype word?
+# TODO: handle if there are no sentences
 # TODO: error handling for audio download
 # TODO: APP Clean up
 #   - # TODO: 🔨 Start code

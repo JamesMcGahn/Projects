@@ -127,14 +127,21 @@ class ScrapeCpod:
             "Grammar": "grammar_sentences",
         }
 
-        keepAll = TerminalOptions(
-            ["Yes", "No"],
-            f"Do You Want to Keep All the {type_select} Sentences?",
-            False,
-        ).get_selected()
-        if keepAll == "Yes":
-            Logger().insert("Keeping All", "INFO")
-            return
+        if level_selection is not False:
+            level = [
+                x for x in self.word_example_sentences if x.level in level_selection
+            ]
+
+        if level_selection is False or level_selection is not False and len(level) > 0:
+            keepAll = TerminalOptions(
+                ["Yes", "No"],
+                f"Do You Want to Keep All the {type_select} Sentences?",
+                False,
+            ).get_selected()
+            if keepAll == "Yes":
+                Logger().insert("Keeping All", "INFO")
+                return
+
         if level_selection is False:
             for i, x in enumerate(self[select[type_select]]):
                 if type_select == "Dialogue":
@@ -149,20 +156,35 @@ class ScrapeCpod:
                     f"{i+1}-{x.chinese}"[0:30]
                     for i, x in enumerate(self[select[type_select]])
                 ]
-        else:
-            for i, x in enumerate(
-                [x for x in self.word_example_sentences if x.level in level_selection]
-            ):
+
+        elif level_selection is not False:
+            print(len(level), "len")
+            if len(level) == 0:
+                add_levels = TerminalOptions(
+                    ["Yes", "No"],
+                    "There arent sentences for the level(s) selected. Add more levels?:",
+                ).get_selected()
+                if add_levels == "Yes":
+                    level_new_selection = TerminalOptions(
+                        [
+                            "Newbie",
+                            "Elementary",
+                            "Pre-Intermediate",
+                            "Intermediate",
+                            "Advanced",
+                        ],
+                        "Please Select More Levels:",
+                        True,
+                    ).get_selected()
+                    return self.selection("Examples", level_new_selection)
+                else:
+                    self[select[type_select]] = []
+                    return
+
+            for i, x in enumerate(level):
                 print(f"{i+1}. {x.chinese} \n{x.english}\n{x.level}")
             sentence_display = [
-                f"{i+1} - {x.chinese}"[0:30]
-                for i, x in enumerate(
-                    [
-                        x
-                        for x in self.word_example_sentences
-                        if x.level in level_selection
-                    ]
-                )
+                f"{i+1} - {x.chinese}"[0:30] for i, x in enumerate(level)
             ]
 
         term_selection = TerminalOptions(
