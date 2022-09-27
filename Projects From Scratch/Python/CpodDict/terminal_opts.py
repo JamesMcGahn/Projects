@@ -17,20 +17,31 @@ class TerminalOptions:
         self.chosen = self.start.chosen_menu_entries
 
     def show(self):
-        Logger().insert(self.title, "INFO", False)
-        return self.start.show()
+        try:
+            Logger().insert(self.title, "INFO", False)
+            return self.start.show()
+        except AttributeError:
+            raise KeyboardInterrupt
 
     def get_selected(self, arry=False):
         if not self.isMulti and arry:
+            if self.options[self.indexes] is None:
+                raise KeyboardInterrupt
             Logger().insert(
                 f"You selected: {[self.options[self.indexes]]}", "INFO", True
             )
             return [self.options[self.indexes]]
         elif not self.isMulti:
+            if self.options[self.indexes] is None:
+                raise KeyboardInterrupt
             Logger().insert(f"You selected: {self.options[self.indexes]}", "INFO", True)
             return self.options[self.indexes]
         elif self.isMulti and arry:
+            if self.chosen is None:
+                raise KeyboardInterrupt
             Logger().insert(f"You selected: {list(self.chosen)}", "INFO", True)
             return list(self.chosen)
         else:
+            if self.chosen is None:
+                raise KeyboardInterrupt
             return self.chosen

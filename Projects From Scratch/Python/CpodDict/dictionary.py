@@ -69,6 +69,7 @@ class Dictionary:
 
     def save_dictionary(self):
         self.sess_dictionary = []
+        Logger().insert("Saving Dictionary...", "INFO")
         WriteFile.write_file(
             "./data/dictionary_words.pickle",
             pickle.dumps(self.masterdict),

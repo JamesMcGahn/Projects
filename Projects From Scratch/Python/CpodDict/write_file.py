@@ -68,7 +68,11 @@ class WriteFile:
 
     @staticmethod
     def write_file(path, source, write_type="w", overwrite=False, print_to_user=True):
-        logger.Logger().insert("Writing Data to File", "INFO")
+        logger.Logger().insert(
+            "Writing Data to File",
+            "INFO",
+            print_to_user,
+        )
         match = WriteFile.regex_path(path)
         if not overwrite:
             path = WriteFile.check_dup(match["path"], match["filename"], match["ext"])

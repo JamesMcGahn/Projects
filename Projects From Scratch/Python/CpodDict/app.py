@@ -2,6 +2,7 @@ from audio import Audio
 from dictionary import Dictionary
 from keys import keys
 from lesson_scrape import LessonScrape
+from logger import Logger
 from open_file import OpenFile
 from session import Session
 from terminal_opts import TerminalOptions
@@ -9,6 +10,11 @@ from word_scrape import WordScrape
 from write_file import WriteFile
 
 # FEATURE: add CLI option to download audio of words and/or sentences or dialogues
+# FEATURE: Get definition for single word
+#           - check dictionary for word, if found return the definition
+#           - if word not found, ask to scrape word
+#           - ask to save word etc.
+# FEATURE: option to just get example sentences for a word
 # FEATURE: ✅ - allow for option to go back if there are sentences but the level selected filtered them out
 # FEATURE: Quitting the APP
 #          - ✅ Quit Option on initial run
@@ -30,6 +36,20 @@ from write_file import WriteFile
 
 
 def start():
+    def quit_app(e):
+        if e:
+            Logger().insert(e, "ERROR", False)
+        Logger().insert("\nQuitting App...", "INFO")
+        quit_options = TerminalOptions(
+            ["Yes", "No"],
+            "Do you want to Save?",
+        ).get_selected()
+        if quit_options == "Yes":
+            dictionary.save_dictionary()
+            new_session.save_session()
+
+        Logger().insert("Good Bye...", "INFO")
+        quit()
 
     try:
         new_session = Session(
@@ -45,8 +65,8 @@ def start():
         ).get_selected()
 
         if start_options == "Quit":
-            new_session.save_session()
-            quit()
+            quit_app(False)
+
         filepath = input("Where is the file located?: ")
         while not WriteFile.path_exists(filepath, False):
             filepath = input("File path doesn't exist. Try again: ")
@@ -69,8 +89,11 @@ def start():
             Audio(filepath, "word")
         dictionary.save_dictionary()
         new_session.save_session()
-    except ValueError as e:
-        print(e)
+
+    except KeyboardInterrupt:
+        quit_app(False)
+    except Exception as e:
+        quit_app(e)
 
 
 start()
