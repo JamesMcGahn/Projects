@@ -8,7 +8,7 @@ while not WriteFile.path_exists(filepath, False):
 file_list = OpenFile.open_file(filepath, True)
 
 dictionary = Dictionary()
-id = 0
+id = 1
 for x in file_list:
     if x["chinese"] and x["definition"] and x["pinyin"]:
         word = Word(x["chinese"], x["definition"], x["pinyin"], "")
