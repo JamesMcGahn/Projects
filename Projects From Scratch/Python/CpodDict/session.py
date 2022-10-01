@@ -23,9 +23,16 @@ class Session:
         return f"{self.ses_url}"
 
     def get_session(self):
-        Logger().insert("Getting New Session...", "INFO")
-        Session.session.post(self.ses_url, data=self.payload)
-        return self.session
+        try:
+            Logger().insert("Getting New Session...", "INFO")
+            ses = Session.session.post(self.ses_url, data=self.payload)
+
+            if not any(c.name == "lang" for c in ses.cookies):
+                raise requests.exceptions.RequestException
+
+            return self.session
+        except requests.exceptions.RequestException as e:
+            print(e)
 
     def load_session(self):
         try:

@@ -9,31 +9,6 @@ from terminal_opts import TerminalOptions
 from word_scrape import WordScrape
 from write_file import WriteFile
 
-# FEATURE: add CLI option to download audio of words and/or sentences or dialogues
-# FEATURE: Get definition for single word
-#           - check dictionary for word, if found return the definition
-#           - if word not found, ask to scrape word
-#           - ask to save word etc.
-# FEATURE: option to just get example sentences for a word
-# FEATURE: ✅ - allow for option to go back if there are sentences but the level selected filtered them out
-# FEATURE: Quitting the APP
-#          - ✅ Quit Option on initial run
-#          - Quit option on keyboard interrupt
-#               - any time during a scrape or audio dl loop
-#               - any time the main app runs
-# FEATURE: Load initial sentences and words
-#           - 🔨 words
-#                - working but needs to be improved
-#           - sentences
-# TODO: handle case if definition of word is NONE for cpod or md
-#       - ✅ cpod - will check md
-#       - md - ask user to retype word?
-# TODO: handle if there are no sentences
-# TODO: error handling for audio download
-# TODO: APP Clean up
-#   - # TODO: 🔨 Start code
-#   - # TODO: 🔨 Clean up code accross app
-
 
 def start():
     def quit_app(e):
