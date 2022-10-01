@@ -14,8 +14,10 @@ for x in file_list:
         word = Word(x["chinese"], x["definition"], x["pinyin"], "")
         word.id = int(x["id"])
         id = int(x["id"])
-        print(id)
+        print(id, word.chinese)
         dictionary.masterdict.append(word)
 
-dictionary.word_id = id
+dictionary.word_id = id + 1
+print(f"Words in Dictionary: {len(dictionary.masterdict)}")
+print(f"Next Id: {dictionary.word_id}")
 dictionary.save_dictionary()

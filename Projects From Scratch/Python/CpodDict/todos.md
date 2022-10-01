@@ -1,6 +1,7 @@
 # TO-DOS and FEATURES
 
 FEATURE: add CLI option to download audio of words and/or sentences or dialogues
+
 FEATURE: Get definition for single word
 
     - check dictionary for word, if found return the definition
@@ -8,11 +9,13 @@ FEATURE: Get definition for single word
     - ask to save word etc.
 
 FEATURE: print dictionary to file
+
 FEATURE: option to just get example sentences for a word
 
 FEATURE: Quitting the APP
 
-    - ✅ Quit Option on initial run - Quit option on keyboard interrupt - any time during a scrape or audio dl loop
+    - ✅ Quit Option on initial run - Quit option on keyboard interrupt
+    - any time during a scrape or audio dl loop
     - any time the main app runs
 
 FEATURE: Load initial sentences and words
@@ -22,7 +25,8 @@ FEATURE: Load initial sentences and words
 
 FEATURE: ask user for creds on init of app
 
-    - save them as pickle - check on load of app for creds
+    - save them as pickle
+    - check on load of app for creds
 
 TODO: bad sign in/session
 
@@ -34,7 +38,9 @@ TODO: handle case if definition of word is NONE for cpod or md
     - md - ask user to retype word?
 
 TODO: handle if there are no sentences
+
 TODO: error handling for audio download
+
 TODO: APP Clean up
 
     - TODO: 🔨 Start code

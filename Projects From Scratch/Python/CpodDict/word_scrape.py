@@ -88,6 +88,11 @@ class WordScrape:
         if self.cpod_word is not None:
             m_defined_word.audio = self.cpod_word.audio
             self.dictionary.add_word(m_defined_word)
+        elif m_defined_word is not None:
+            self.dictionary.add_word(m_defined_word)
+        else:
+            print("not in mgdb")
+            # TODO handle this
 
     def word_list(self):
         for i, word in enumerate(self.file_list):
