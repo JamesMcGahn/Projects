@@ -11,9 +11,10 @@ import React from 'react';
 interface AboutMe {
   reverse?: boolean;
   data: AboutMeProps;
+  backgroundColor?: string;
 }
 
-function AboutMe({ reverse = false, data }: AboutMe) {
+function AboutMe({ reverse = false, data, backgroundColor }: AboutMe) {
   const { item, image } = data;
 
   const { title } = item.fields;
@@ -35,9 +36,9 @@ function AboutMe({ reverse = false, data }: AboutMe) {
   );
 
   return (
-    <div className={classes.container}>
-      <div className={classes.innerContainer}>
-        <Card className={reverse ? `${classes.box} ${classes.overlay}` : classes.box}>{reverse ? textCont : imageCont}</Card>
+    <div className={classes.container} style={{ backgroundColor: backgroundColor }}>
+      <div className={reverse ? classes.innerReverse : classes.innerContainer}>
+        <Card className={reverse ? `${classes.box} ${classes.overlayReverse}` : classes.box}>{reverse ? textCont : imageCont}</Card>
         <Card className={reverse ? classes.box : `${classes.box} ${classes.overlay}`}>{reverse ? imageCont : textCont}</Card>
       </div>
     </div>

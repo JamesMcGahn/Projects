@@ -1,4 +1,4 @@
-import { Item, Asset } from './AboutMeEntries';
+import { Item, Asset } from './ContentfulEntries';
 
 export interface AboutMeProps {
   item: Item;
