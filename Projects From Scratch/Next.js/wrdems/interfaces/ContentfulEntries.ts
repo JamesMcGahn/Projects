@@ -80,7 +80,11 @@ export interface ItemFields {
   title: string;
   aboutMeImage: AboutMeImage;
   aboutMeText: string;
-  subtitle?: string;
+  subtitle: string;
+  author: string;
+  testimonial: string;
+  heroimage: AboutMeImage;
+  heroText: string;
 }
 
 export interface ContentfulEntriesSys {

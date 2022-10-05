@@ -1,19 +1,24 @@
-import type { NextPage, GetStaticProps } from 'next';
+import type { GetStaticProps } from 'next';
+import React from 'react';
 import Layout from '../components/layout/Layout';
 import Head from 'next/head';
-import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import axios from 'axios';
 import Hero from '../components/sections/Hero';
 import AboutMe from '../components/sections/AboutMe';
+import Markdown from 'markdown-to-jsx';
 import { AboutMeProps } from '../interfaces/AboutMeProps';
+import { ItemFields } from '../interfaces/ContentfulEntries';
+import Testominal from '../components/sections/Testimonial';
+import { ContentfulEntries } from '../interfaces/ContentfulEntries';
 
 type Props = {
   aboutMe: AboutMeProps[];
   homeHero: AboutMeProps[];
+  testimonial: ItemFields;
 };
 
-const Home = ({ aboutMe, homeHero }: Props) => {
+const Home = ({ aboutMe, homeHero, testimonial }: Props) => {
   const heroImg = homeHero[0].image[0].fields;
   const heroText = homeHero[0].item.fields;
   return (
@@ -26,10 +31,16 @@ const Home = ({ aboutMe, homeHero }: Props) => {
         </Head>
         <main className={styles.main}>
           <Hero imgLink={`https:${heroImg.file.url}`}>
-            <h1>{heroText.title}</h1>
-            <h2>{heroText.subtitle}</h2>
+            <Markdown options={{ wrapper: React.Fragment }}>{heroText.heroText}</Markdown>
           </Hero>
-          <AboutMe data={aboutMe[1]} />
+          <div id="about-michele" className={styles.container}>
+            <AboutMe data={aboutMe[1]} />
+          </div>
+          <div id="about-mike" className={styles.container}>
+            <AboutMe data={aboutMe[0]} reverse backgroundColor="#0576bc" />
+          </div>
+
+          <Testominal author={testimonial.author} quote={testimonial.testimonial} />
         </main>
       </div>
     </Layout>
@@ -47,12 +58,16 @@ export const getStaticProps: GetStaticProps = async (context) => {
   );
   const heros = hero.data;
 
-  function getDataNImages(data, fieldname) {
+  const testominal = await axios(
+    `https://cdn.contentful.com/spaces/nc2tb1hvkxx7/entries/2cqEfvEhTOLklRw3cFRZ0h?access_token=${process.env.CONTENTFUL_TOKEN}`
+  );
+
+  type FieldName = 'aboutMeImage' | 'heroimage';
+
+  function getDataNImages(data: ContentfulEntries, fieldname: FieldName) {
     const newArr = data.items.map((item) => {
       const image_id = item.fields[fieldname].sys.id;
-      const image = data.includes.Asset.filter((img) => {
-        return img.sys.id === image_id;
-      });
+      const image = data.includes.Asset.filter((img) => img.sys.id === image_id);
       return { item, image };
     });
 
@@ -62,5 +77,5 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const aboutMeData = getDataNImages(data, 'aboutMeImage');
   const heroData = getDataNImages(heros, 'heroimage');
 
-  return { props: { aboutMe: aboutMeData, homeHero: heroData } };
+  return { props: { aboutMe: aboutMeData, homeHero: heroData, testimonial: testominal.data.fields } };
 };
