@@ -1,14 +1,15 @@
 div.container {
-  background-color: #fff;
-  position: sticky;
-  margin-bottom: 1px;
-  top: 0px;
-  z-index: 99999999;
+  background-color: #0576bc !important;
+}
+
+#innerCont {
+  font-family: 'Source Sans Pro', sans-serif !important;
+  font-size: 1.3rem;
 }
 
 #nav {
-  /* z-index: 1; */
-
+  width: 100%;
+  background-color: #0576bc !important;
   /* top: 0; */
 }
 
@@ -17,6 +18,11 @@ div.container {
   font-size: 1.3rem;
 }
 
+.container svg {
+  padding-left: 1rem;
+  font-size: 1.5rem;
+  color: white;
+}
 /* @media (max-width: 991px) {
   #nav {
     left: 80%;
