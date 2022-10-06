@@ -1,26 +1,28 @@
 import type { GetStaticProps } from 'next';
 import React from 'react';
-import Layout from '../components/layout/Layout';
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
+import Markdown from 'markdown-to-jsx';
 import axios from 'axios';
+import Layout from '../components/layout/Layout';
+import styles from '../styles/Home.module.css';
 import Hero from '../components/sections/Hero';
 import AboutMe from '../components/sections/AboutMe';
-import Markdown from 'markdown-to-jsx';
-import { AboutMeProps } from '../interfaces/AboutMeProps';
-import { ItemFields } from '../interfaces/ContentfulEntries';
+import { ContentDataProps } from '../interfaces/ContentDataProps';
+import { ItemFields, AssetFields, ContentfulEntries } from '../interfaces/ContentfulEntries';
 import Testominal from '../components/sections/Testimonial';
-import { ContentfulEntries } from '../interfaces/ContentfulEntries';
+import FeatureImage from '../components/sections/FeatureImage';
 
 type Props = {
-  aboutMe: AboutMeProps[];
-  homeHero: AboutMeProps[];
+  aboutMe: ContentDataProps[];
+  homeHero: ContentDataProps[];
   testimonial: ItemFields;
+  featureImage: AssetFields;
 };
 
-const Home = ({ aboutMe, homeHero, testimonial }: Props) => {
+const Home = ({ aboutMe, homeHero, testimonial, featureImage }: Props) => {
   const heroImg = homeHero[0].image[0].fields;
-  const heroText = homeHero[0].item.fields;
+  const heroText = homeHero[0].fields;
+
   return (
     <Layout>
       <div className={styles.container}>
@@ -30,16 +32,16 @@ const Home = ({ aboutMe, homeHero, testimonial }: Props) => {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <main className={styles.main}>
-          <Hero imgLink={`https:${heroImg.file.url}`}>
+          <Hero imgLink={`https:${heroImg.file.url}`} altText={heroImg.title}>
             <Markdown options={{ wrapper: React.Fragment }}>{heroText.heroText}</Markdown>
           </Hero>
           <div id="about-michele" className={styles.container}>
             <AboutMe data={aboutMe[1]} />
           </div>
           <div id="about-mike" className={styles.container}>
-            <AboutMe data={aboutMe[0]} reverse backgroundColor="#0576bc" />
+            <AboutMe data={aboutMe[0]} reverse backgroundColored="#0576bc" />
           </div>
-
+          <FeatureImage imgLink={`https:${featureImage.file.url}`} altText={featureImage.title} />
           <Testominal author={testimonial.author} quote={testimonial.testimonial} />
         </main>
       </div>
@@ -49,7 +51,7 @@ const Home = ({ aboutMe, homeHero, testimonial }: Props) => {
 
 export default Home;
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async () => {
   const res = await axios(`https://cdn.contentful.com/spaces/nc2tb1hvkxx7/entries?access_token=${process.env.CONTENTFUL_TOKEN}&content_type=aboutMe`);
   const { data } = res;
 
@@ -61,14 +63,18 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const testominal = await axios(
     `https://cdn.contentful.com/spaces/nc2tb1hvkxx7/entries/2cqEfvEhTOLklRw3cFRZ0h?access_token=${process.env.CONTENTFUL_TOKEN}`
   );
+  const featureImage = await axios(
+    `https://cdn.contentful.com/spaces/nc2tb1hvkxx7/assets/21BVaK2SMNL68GLjsdNYyY?access_token=${process.env.CONTENTFUL_TOKEN}`
+  );
 
   type FieldName = 'aboutMeImage' | 'heroimage';
 
-  function getDataNImages(data: ContentfulEntries, fieldname: FieldName) {
-    const newArr = data.items.map((item) => {
-      const image_id = item.fields[fieldname].sys.id;
-      const image = data.includes.Asset.filter((img) => img.sys.id === image_id);
-      return { item, image };
+  function getDataNImages(contData: ContentfulEntries, fieldname: FieldName) {
+    const newArr = contData.items.map((item) => {
+      const imageId = item.fields[fieldname].sys.id;
+      const image = contData.includes.Asset.filter((img) => img.sys.id === imageId);
+      const { fields } = item;
+      return { fields, image };
     });
 
     return newArr;
@@ -77,5 +83,5 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const aboutMeData = getDataNImages(data, 'aboutMeImage');
   const heroData = getDataNImages(heros, 'heroimage');
 
-  return { props: { aboutMe: aboutMeData, homeHero: heroData, testimonial: testominal.data.fields } };
+  return { props: { aboutMe: aboutMeData, homeHero: heroData, testimonial: testominal.data.fields, featureImage: featureImage.data.fields } };
 };
