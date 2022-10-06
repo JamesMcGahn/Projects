@@ -1,6 +1,10 @@
 {
   "root": true,
-  "settings": {},
+  "settings": {
+    "node": {
+      "tryExtensions": [".js", ".json", ".node", ".ts"]
+    }
+  },
   "env": {
     "browser": true, // Enables browser globals like window and document
     "amd": true, // Enables require() and define() as global variables as per the amd spec.
@@ -13,9 +17,10 @@
     "ecmaFeatures": {
       "jsx": true // Enable JSX since we're using React
     },
-    "project": "./Projects From Scratch/Next.js/wrdems/tsconfig.json"
+    "project": "tsconfig.json",
+    "tsconfigRootDir": "Projects From Scratch/Next.js/wrdems/"
   },
-  "ignorePatterns": ["next.config.js"],
+  "ignorePatterns": ["next.config.js", ".eslintrc.json"],
   "extends": [
     "eslint:recommended",
     "next/core-web-vitals",
@@ -47,6 +52,8 @@
         "namedComponents": ["function-declaration", "arrow-function"],
         "unnamedComponents": "arrow-function"
       }
-    ]
+    ],
+    "react/jsx-props-no-spreading": "off",
+    "node/no-unsupported-features/es-syntax": ["error", { "ignores": ["modules"] }]
   }
 }
