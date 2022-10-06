@@ -1,7 +1,7 @@
-import classes from '../../styles/Testimonial.module.css';
 import React from 'react';
 import Markdown from 'markdown-to-jsx';
 import Card from 'react-bootstrap/Card';
+import classes from '../../styles/Testimonial.module.css';
 
 interface TestimonialProps {
   quote: string;

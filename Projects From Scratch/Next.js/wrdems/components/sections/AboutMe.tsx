@@ -1,24 +1,21 @@
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Card from 'react-bootstrap/Card';
-import classes from '../../styles/AboutMe.module.css';
-import Markdown from 'markdown-to-jsx';
-import Link from 'next/link';
-import { AboutMeProps } from '../../interfaces/AboutMeProps';
-import Image from 'next/future/image';
 import React from 'react';
+import Image from 'next/future/image';
+import Card from 'react-bootstrap/Card';
+import Markdown from 'markdown-to-jsx';
+import classes from '../../styles/AboutMe.module.css';
 
-interface AboutMe {
+import { ContentDataProps } from '../../interfaces/ContentDataProps';
+
+interface AboutMeProps {
   reverse?: boolean;
-  data: AboutMeProps;
-  backgroundColor?: string;
+  data: ContentDataProps;
+  backgroundColored?: string;
 }
 
-function AboutMe({ reverse = false, data, backgroundColor }: AboutMe) {
-  const { item, image } = data;
+function AboutMe({ reverse = false, data, backgroundColored }: AboutMeProps) {
+  const { fields, image } = data;
 
-  const { title } = item.fields;
-  const { aboutMeText } = item.fields;
+  const { title, aboutMeText } = fields;
 
   const cardImg = image[0].fields.file;
   const cardImgAlt = image[0].fields.title;
@@ -36,7 +33,7 @@ function AboutMe({ reverse = false, data, backgroundColor }: AboutMe) {
   );
 
   return (
-    <div className={classes.container} style={{ backgroundColor: backgroundColor }}>
+    <div className={classes.container} style={backgroundColored ? { backgroundColor: backgroundColored } : {}}>
       <div className={reverse ? classes.innerReverse : classes.innerContainer}>
         <Card className={reverse ? `${classes.box} ${classes.overlayReverse}` : classes.box}>{reverse ? textCont : imageCont}</Card>
         <Card className={reverse ? classes.box : `${classes.box} ${classes.overlay}`}>{reverse ? imageCont : textCont}</Card>

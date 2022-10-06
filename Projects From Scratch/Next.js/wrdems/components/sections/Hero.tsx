@@ -1,22 +1,20 @@
-import classes from '../../styles/Hero.module.css';
-import Link from 'next/link';
-import { AboutMeProps } from '../../interfaces/AboutMeProps';
-import Image from 'next/future/image';
 import React from 'react';
+import Image from 'next/future/image';
+import classes from '../../styles/Hero.module.css';
 
 interface HeroProps {
-  children?: React.ReactNode;
-  imgLink: String;
-  altText?: String;
+  children: React.ReactNode;
+  imgLink: string;
+  altText: string;
 }
 
-function Hero({ imgLink, children }: HeroProps) {
+function Hero({ imgLink, children, altText }: HeroProps) {
   return (
     <div className={classes.container}>
       <div className={classes.innercontainer}>
         <div className={classes.heroText}>{children}</div>
         <div className={classes.image}>
-          <Image src={`${imgLink}`} alt="" fill />
+          <Image src={imgLink} alt={altText} fill />
         </div>
       </div>
     </div>
