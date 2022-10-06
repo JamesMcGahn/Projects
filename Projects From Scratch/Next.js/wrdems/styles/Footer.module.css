@@ -1,0 +1,29 @@
+.container {
+  width: 100%;
+  padding: 3rem 3rem 1rem 3rem;
+  display: flex;
+  justify-content: center;
+  background-color: #dcdcdc;
+}
+
+.innercontainer {
+  padding: 0 3rem;
+  max-width: 1200px;
+  display: flex;
+  width: 100%;
+  min-height: 10vh;
+  color: black;
+}
+
+.left,
+.middle,
+.right {
+  width: 33.3%;
+  display: flex;
+}
+
+.middle {
+  justify-content: center;
+  align-items: end;
+  font-weight: bold;
+}

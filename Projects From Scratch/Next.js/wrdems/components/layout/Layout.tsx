@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import Nav from './Nav';
 import Head from 'next/head';
+import Footer from './Footer';
 import classes from '../../styles/Layout.module.css';
 
 type Props = {
@@ -19,10 +20,7 @@ const Layout = ({ children, title = '' }: Props) => (
       <Nav />
     </header>
     <div className={classes.main}>{children}</div>
-    <footer>
-      <hr />
-      <span>I'm here to stay (Footer)</span>
-    </footer>
+    <Footer />
   </>
 );
 
