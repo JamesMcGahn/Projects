@@ -15,18 +15,21 @@
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "axios": "^0.27.2",
+    "blurhash": "^2.0.3",
     "bootstrap": "^5.2.2",
     "contentful": "^9.2.5",
     "markdown-to-jsx": "^7.1.7",
     "next": "12.3.1",
     "react": "18.2.0",
     "react-bootstrap": "^2.5.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "sharp": "^0.31.1"
   },
   "devDependencies": {
     "@types/node": "18.8.0",
     "@types/react": "18.0.21",
     "@types/react-dom": "18.0.6",
+    "@types/sharp": "^0.31.0",
     "@typescript-eslint/eslint-plugin": "^5.31.0",
     "@typescript-eslint/parser": "^5.31.0",
     "eslint": "^8.24.0",

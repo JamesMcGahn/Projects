@@ -29,7 +29,6 @@
     "airbnb/hooks",
     "plugin:import/recommended",
     "plugin:import/typescript",
-    "plugin:node/recommended",
     "plugin:mocha/recommended",
     "plugin:react/recommended",
     "prettier"
@@ -53,7 +52,6 @@
         "unnamedComponents": "arrow-function"
       }
     ],
-    "react/jsx-props-no-spreading": "off",
-    "node/no-unsupported-features/es-syntax": ["error", { "ignores": ["modules"] }]
+    "react/jsx-props-no-spreading": "off"
   }
 }

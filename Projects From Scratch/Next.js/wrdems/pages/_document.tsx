@@ -1,7 +1,5 @@
-import NextDocument, { Html, Head, Main, NextScript } from 'next/document';
+import { Html, Head, Main, NextScript } from 'next/document';
 import React from 'react';
-
-type Props = {};
 
 export default function Document() {
   return (
