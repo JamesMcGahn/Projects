@@ -7,8 +7,8 @@ import Layout from '../components/layout/Layout';
 import styles from '../styles/Home.module.css';
 import Hero from '../components/sections/Hero';
 import AboutMe from '../components/sections/AboutMe';
-import { ContentDataProps } from '../interfaces/ContentDataProps';
-import { ItemFields, AssetFields, ContentfulEntries } from '../interfaces/ContentfulEntries';
+import { ContentDataProps, ImageProps } from '../interfaces/ContentDataProps';
+import { ItemFields, ContentfulEntries } from '../interfaces/ContentfulEntries';
 import Testominal from '../components/sections/Testimonial';
 import FeatureImage from '../components/sections/FeatureImage';
 import encodeImg2hash from '../utils/encodeImg2hash';
@@ -17,7 +17,7 @@ type Props = {
   aboutMe: ContentDataProps[];
   homeHero: ContentDataProps[];
   testimonial: ItemFields;
-  featureImage: AssetFields;
+  featureImage: ImageProps;
 };
 
 const Home = ({ aboutMe, homeHero, testimonial, featureImage }: Props) => {
@@ -42,7 +42,7 @@ const Home = ({ aboutMe, homeHero, testimonial, featureImage }: Props) => {
           <div id="about-mike" className={styles.container}>
             <AboutMe data={aboutMe[0]} reverse backgroundColored="#0576bc" />
           </div>
-          <FeatureImage imgLink={`https:${featureImage.file.url}`} altText={featureImage.title} />
+          <FeatureImage imgLink={`https:${featureImage.url}`} altText={featureImage.title} imgHash={featureImage.encoded} />
           <Testominal author={testimonial.author} quote={testimonial.testimonial} />
         </main>
       </div>
@@ -64,8 +64,17 @@ export const getStaticProps: GetStaticProps = async () => {
   const testominal = await axios(
     `https://cdn.contentful.com/spaces/nc2tb1hvkxx7/entries/2cqEfvEhTOLklRw3cFRZ0h?access_token=${process.env.CONTENTFUL_TOKEN}`
   );
-  const fI = await axios(`https://cdn.contentful.com/spaces/nc2tb1hvkxx7/assets/21BVaK2SMNL68GLjsdNYyY?access_token=${process.env.CONTENTFUL_TOKEN}`);
-  const featureImage = await encodeImg2hash(`https:${fI}`);
+
+  const featureImageData = await axios(
+    `https://cdn.contentful.com/spaces/nc2tb1hvkxx7/assets/21BVaK2SMNL68GLjsdNYyY?access_token=${process.env.CONTENTFUL_TOKEN}`
+  );
+  const fiFields = featureImageData.data.fields;
+
+  const featureImage = {
+    url: fiFields.file.url,
+    title: fiFields.title,
+    encoded: await encodeImg2hash(`https:${fiFields.file.url}`),
+  };
 
   type FieldName = 'aboutMeImage' | 'heroimage';
 
