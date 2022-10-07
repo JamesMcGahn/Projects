@@ -15,10 +15,10 @@
     "ecmaVersion": 2020, // Use the latest ecmascript standard
     "sourceType": "module", // Allows using import/export statements
     "ecmaFeatures": {
-      "jsx": true // Enable JSX since we're using React
+      "jsx": true
     },
     "project": "tsconfig.json",
-    "tsconfigRootDir": "Projects From Scratch/Next.js/wrdems/"
+    "tsconfigRootDir": "Projects From Scratch/Next.js/wrdems/" // to work with root trunk, comment out when deploying
   },
   "ignorePatterns": ["next.config.js", ".eslintrc.json"],
   "extends": [

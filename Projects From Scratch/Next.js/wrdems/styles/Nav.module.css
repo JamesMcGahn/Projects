@@ -70,7 +70,7 @@ div.container {
   }
 }
 
-@media (min-width: 768px) and (max-width: 796px) {
+@media (min-width: 768px) and (max-width: 812px) {
   #nav {
     display: flex;
   }
