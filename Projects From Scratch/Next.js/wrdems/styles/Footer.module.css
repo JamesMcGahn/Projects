@@ -16,9 +16,8 @@
 }
 
 .left,
-.middle,
 .right {
-  width: 33.3%;
+  width: 20%;
   display: flex;
 }
 
@@ -26,4 +25,8 @@
   justify-content: center;
   align-items: end;
   font-weight: bold;
+  width: 60%;
+}
+.middle p {
+  text-align: center;
 }

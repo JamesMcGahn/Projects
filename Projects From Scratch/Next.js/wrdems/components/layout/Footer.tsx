@@ -11,6 +11,7 @@ function Footer() {
         <div className={classes.left} />
         <div className={classes.middle}>
           <p>Paid for by Wood-Ridge Democrats {year}</p>
+          <p>&copy;{year} Wood-Ridge Democrats</p>
         </div>
         <div className={classes.right} />
       </div>

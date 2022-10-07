@@ -35,10 +35,10 @@ function MainNav() {
               </div>
             </Nav>
           </Navbar.Collapse>
-          <a href="https://www.facebook.com/WRDems" target="_blank" rel="noopener noreferrer">
-            <FontAwesomeIcon icon={faSquareFacebook} />
-          </a>
         </Container>
+        <a href="https://www.facebook.com/WRDems" target="_blank" rel="noopener noreferrer">
+          <FontAwesomeIcon icon={faSquareFacebook} />
+        </a>
       </Navbar>
     </Container>
   );
