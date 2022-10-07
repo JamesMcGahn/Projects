@@ -11,6 +11,7 @@ import { ContentDataProps } from '../interfaces/ContentDataProps';
 import { ItemFields, AssetFields, ContentfulEntries } from '../interfaces/ContentfulEntries';
 import Testominal from '../components/sections/Testimonial';
 import FeatureImage from '../components/sections/FeatureImage';
+import encodeImg2hash from '../utils/encodeImg2hash';
 
 type Props = {
   aboutMe: ContentDataProps[];
@@ -20,7 +21,7 @@ type Props = {
 };
 
 const Home = ({ aboutMe, homeHero, testimonial, featureImage }: Props) => {
-  const heroImg = homeHero[0].image[0].fields;
+  const heroImg = homeHero[0].image;
   const heroText = homeHero[0].fields;
 
   return (
@@ -32,7 +33,7 @@ const Home = ({ aboutMe, homeHero, testimonial, featureImage }: Props) => {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <main className={styles.main}>
-          <Hero imgLink={`https:${heroImg.file.url}`} altText={heroImg.title}>
+          <Hero imgLink={`https:${heroImg.url}`} altText={heroImg.title} imgHash={heroImg.encoded}>
             <Markdown options={{ wrapper: React.Fragment }}>{heroText.heroText}</Markdown>
           </Hero>
           <div id="about-michele" className={styles.container}>
@@ -63,25 +64,34 @@ export const getStaticProps: GetStaticProps = async () => {
   const testominal = await axios(
     `https://cdn.contentful.com/spaces/nc2tb1hvkxx7/entries/2cqEfvEhTOLklRw3cFRZ0h?access_token=${process.env.CONTENTFUL_TOKEN}`
   );
-  const featureImage = await axios(
-    `https://cdn.contentful.com/spaces/nc2tb1hvkxx7/assets/21BVaK2SMNL68GLjsdNYyY?access_token=${process.env.CONTENTFUL_TOKEN}`
-  );
+  const fI = await axios(`https://cdn.contentful.com/spaces/nc2tb1hvkxx7/assets/21BVaK2SMNL68GLjsdNYyY?access_token=${process.env.CONTENTFUL_TOKEN}`);
+  const featureImage = await encodeImg2hash(`https:${fI}`);
 
   type FieldName = 'aboutMeImage' | 'heroimage';
 
-  function getDataNImages(contData: ContentfulEntries, fieldname: FieldName) {
-    const newArr = contData.items.map((item) => {
-      const imageId = item.fields[fieldname].sys.id;
-      const image = contData.includes.Asset.filter((img) => img.sys.id === imageId);
-      const { fields } = item;
-      return { fields, image };
-    });
+  async function getDataNImages(contData: ContentfulEntries, fieldname: FieldName) {
+    return Promise.all(
+      contData.items.map(async (item) => {
+        const imageId = item.fields[fieldname].sys.id;
+        const imageInfo = contData.includes.Asset.find((img) => img.sys.id === imageId);
+        const imageURL = imageInfo?.fields.file.url;
 
-    return newArr;
+        const encodedImg = await encodeImg2hash(`https:${imageURL}`);
+        const { fields } = item;
+
+        const image = {
+          url: imageURL || '',
+          title: imageInfo?.fields.title || '',
+          encoded: encodedImg,
+        };
+
+        return { fields, image };
+      })
+    );
   }
 
-  const aboutMeData = getDataNImages(data, 'aboutMeImage');
-  const heroData = getDataNImages(heros, 'heroimage');
+  const aboutMeData = await getDataNImages(data, 'aboutMeImage');
+  const heroData = await getDataNImages(heros, 'heroimage');
 
-  return { props: { aboutMe: aboutMeData, homeHero: heroData, testimonial: testominal.data.fields, featureImage: featureImage.data.fields } };
+  return { props: { aboutMe: aboutMeData, homeHero: heroData, testimonial: testominal.data.fields, featureImage } };
 };
