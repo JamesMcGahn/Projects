@@ -41,3 +41,26 @@
   align-self: end;
   padding: 1rem 5rem 1rem 1rem;
 }
+
+/*  Large devices (desktops, 992px and up) */
+
+@media (max-width: 1200px) {
+  .container {
+    padding: 4rem 1rem;
+  }
+
+  .innercontainer {
+    padding: 0 2rem;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (max-width: 750px) {
+  .container {
+    padding: 1rem 1rem;
+  }
+
+  .innercontainer {
+    padding: 0 1rem;
+  }
+}

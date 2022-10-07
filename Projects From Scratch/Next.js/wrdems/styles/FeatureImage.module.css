@@ -28,3 +28,24 @@
   min-height: 100%;
   position: relative !important;
 }
+
+@media (max-width: 1200px) {
+  .container {
+    padding: 4rem 0 0 0;
+  }
+
+  .innercontainer {
+    padding: 0 3rem;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (max-width: 750px) {
+  .container {
+    padding: 0;
+  }
+
+  .innercontainer {
+    padding: 0 0rem;
+  }
+}

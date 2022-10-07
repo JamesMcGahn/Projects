@@ -88,3 +88,53 @@
   margin-bottom: 0.5rem;
   font-size: 1rem;
 }
+
+/*  Large devices (desktops, 992px and up) */
+
+@media (max-width: 1200px) {
+  .innerContainer {
+    margin: 15px;
+  }
+
+  .innerReverse {
+    margin: 15px;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (max-width: 750px) {
+  .container {
+    padding: 0 2rem;
+  }
+
+  .innerContainer {
+    flex-direction: column;
+    margin: 15px;
+    width: 100%;
+  }
+
+  .innerReverse {
+    margin: 15px;
+    flex-direction: column-reverse;
+    transform: none;
+    width: 100%;
+  }
+
+  .box,
+  .overlay,
+  .overlayReverse {
+    width: 100%;
+    transform: none;
+  }
+}
+/*  Small devices (desktops, 576px and up) */
+@media (max-width: 768px) {
+  .container {
+    padding: 3rem 2rem;
+  }
+}
+@media (max-width: 576px) {
+  .container {
+    padding: 1rem 1rem;
+  }
+}
