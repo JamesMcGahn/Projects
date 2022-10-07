@@ -17,12 +17,9 @@ function AboutMe({ reverse = false, data, backgroundColored }: AboutMeProps) {
 
   const { title, aboutMeText } = fields;
 
-  const cardImg = image[0].fields.file;
-  const cardImgAlt = image[0].fields.title;
-
   const imageCont = (
     <div className={classes.cardImg}>
-      <Image fill src={`https:${cardImg.url}`} quality="100" alt={cardImgAlt} />
+      <Image fill src={`https:${image.url}`} quality="100" alt={image.title} priority placeholder="blur" blurDataURL={image.encoded} />
     </div>
   );
   const textCont = (

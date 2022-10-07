@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
-import Nav from './Nav';
 import Head from 'next/head';
+import Nav from './Nav';
 import Footer from './Footer';
 import classes from '../../styles/Layout.module.css';
 
