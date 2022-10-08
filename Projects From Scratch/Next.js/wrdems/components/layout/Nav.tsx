@@ -36,7 +36,7 @@ function MainNav() {
             </Nav>
           </Navbar.Collapse>
         </Container>
-        <a href="https://www.facebook.com/WRDems" target="_blank" rel="noopener noreferrer">
+        <a id={classes.fbLink} href="https://www.facebook.com/WRDems" target="_blank" rel="noopener noreferrer">
           <FontAwesomeIcon icon={faSquareFacebook} />
         </a>
       </Navbar>

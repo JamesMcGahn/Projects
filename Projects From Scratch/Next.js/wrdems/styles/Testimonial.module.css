@@ -64,3 +64,12 @@
     padding: 0 1rem;
   }
 }
+
+@media (max-width: 375px) {
+  .container {
+    padding: 0rem 0rem;
+  }
+  .innercontainer {
+    padding: 0 0rem;
+  }
+}

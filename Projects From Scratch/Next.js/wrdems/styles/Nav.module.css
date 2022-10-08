@@ -89,3 +89,51 @@ div.container {
     width: 87%;
   }
 }
+@media (max-width: 431px) {
+  #nav {
+    display: flex;
+  }
+
+  #innerCont {
+    width: 75%;
+    margin: 0;
+  }
+
+  #nav a {
+    margin: 0;
+  }
+}
+@media (max-width: 402px) {
+  #nav {
+    display: flex;
+  }
+
+  #innerCont {
+    width: 80%;
+    margin: 0;
+  }
+
+  #nav a {
+    margin: 0;
+  }
+}
+@media (max-width: 381px) {
+  #nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #innerCont {
+    width: 100%;
+    margin: 0;
+  }
+
+  #nav a {
+    margin: 0;
+  }
+
+  #fbLink {
+    display: none !important;
+  }
+}

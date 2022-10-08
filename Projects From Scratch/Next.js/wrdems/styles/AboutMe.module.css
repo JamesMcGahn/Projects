@@ -135,3 +135,13 @@
     padding: 1rem 1rem;
   }
 }
+@media (max-width: 375px) {
+  .container {
+    padding: 0rem 0rem;
+  }
+
+  .innerContainer,
+  .innerReverse {
+    margin: 0;
+  }
+}

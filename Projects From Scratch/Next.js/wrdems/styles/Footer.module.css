@@ -15,10 +15,17 @@
   color: black;
 }
 
+.container svg {
+  padding-top: 0.2rem;
+  padding-left: 1rem;
+  font-size: 1.5rem;
+}
+
 .left,
 .right {
   width: 20%;
   display: flex;
+  justify-content: flex-start;
 }
 
 .middle {
@@ -29,4 +36,23 @@
 }
 .middle p {
   text-align: center;
+}
+
+.left svg:hover {
+  text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.1), 1px 1px 1px rgba(0, 0, 0, 0.5);
+  color: #cbb682;
+}
+@media (max-width: 450px) {
+  .container {
+    width: 100%;
+    padding: 3rem 1rem 1rem 1rem;
+    display: flex;
+    justify-content: center;
+    background-color: #dcdcdc;
+  }
+  .innercontainer {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 0.5rem;
+  }
 }
