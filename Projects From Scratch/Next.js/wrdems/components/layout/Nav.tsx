@@ -33,6 +33,11 @@ function MainNav() {
                   <Nav.Link>About Mike</Nav.Link>
                 </Link>
               </div>
+              <div className={classes.navLinks}>
+                <Link href="/literature" passHref>
+                  <Nav.Link>Literature</Nav.Link>
+                </Link>
+              </div>
             </Nav>
           </Navbar.Collapse>
         </Container>

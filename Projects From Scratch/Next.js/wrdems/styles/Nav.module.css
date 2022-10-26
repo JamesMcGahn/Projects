@@ -23,7 +23,7 @@ div.container {
 
 #nav a:hover {
   text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.1), 1px 1px 1px rgba(0, 0, 0, 0.5);
-  color: #cbb682;
+  color: #ffdb40;
 }
 
 #nav .navLinks a:after {
@@ -33,7 +33,7 @@ div.container {
   height: 3px;
   bottom: 0;
   left: 0;
-  background-color: #cbb682;
+  background-color: #ffdb40;
   visibility: none;
   transform: scaleX(0);
   transition: all 0.3s ease-in-out;
@@ -52,7 +52,7 @@ div.container {
 
 .container svg:hover {
   text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.1), 1px 1px 1px rgba(0, 0, 0, 0.5);
-  color: #cbb682;
+  color: #ffdb40;
 }
 
 @media (max-width: 990px) {
