@@ -21,7 +21,7 @@
 }
 
 .heroText h2 {
-  font-size: 5.5rem;
+  font-size: 4rem;
   margin: 0;
   font-weight: 800;
   font-family: 'Source Sans Pro', sans-serif;
@@ -72,7 +72,7 @@ h1.hero-h1 {
 /* Medium devices (tablets, 768px and up) */
 @media (max-width: 992px) {
   .heroText h2 {
-    font-size: 2.7rem;
+    font-size: 3rem;
   }
   .heroText h1 {
     font-size: 1.5rem;
@@ -139,7 +139,7 @@ h1.hero-h1 {
   }
 
   .heroText {
-    padding: 0 2rem;
+    padding: 0 1rem;
     width: 100%;
   }
 
@@ -157,8 +157,8 @@ h1.hero-h1 {
   }
 
   .heroText h1 {
-    margin-top: 1rem;
-    padding: 0 2rem 1rem 2rem;
+    padding: 0 2rem 0rem 2rem;
     text-align: center;
+    font-size: 1.3rem;
   }
 }
