@@ -56,7 +56,7 @@ function Listing() {
         scrollbar={{ draggable: true }}
       >
         {listing.imgUrls.map((url, index) => (
-          <SwiperSlide>
+          <SwiperSlide key={`${index}-a`}>
             <div
               style={{
                 background: `url(${listing.imgUrls[index]}) center no-repeat`,
