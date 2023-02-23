@@ -8,7 +8,11 @@ FEATURE: Get definition for single word
     - if word not found, ask to scrape word
     - ask to save word etc.
 
-FEATURE: print dictionary to file
+FEATURE: print dictionary to file - done -- needs to be cleaned up
+
+FEATURE: update dictionary - delete words
+
+FEATURE: print sentences to file
 
 FEATURE: option to just get example sentences for a word
 
@@ -31,11 +35,6 @@ FEATURE: ask user for creds on init of app
 TODO: bad sign in/session
 
     - let user know and ask them to re-enter credentials
-
-TODO: handle case if definition of word is NONE for cpod or md
-
-    - ✅ cpod - will check md
-    - md - ask user to retype word?
 
 TODO: handle if there are no sentences
 

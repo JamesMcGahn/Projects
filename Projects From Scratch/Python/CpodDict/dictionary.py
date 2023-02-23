@@ -56,6 +56,9 @@ class Dictionary:
             self.sess_sentences.append(sentence)
             self.sent_id += 1
 
+    def get_master_dict(self):
+        return [vars(words) for words in self.masterdict]
+
     def get_words(self):
         return [vars(words) for words in self.sess_dictionary]
 
