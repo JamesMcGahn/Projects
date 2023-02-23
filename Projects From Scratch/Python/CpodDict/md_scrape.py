@@ -9,21 +9,28 @@ class ScrapeMd:
 
     def def_selection(self):
         if len(self.result_words) > 1:
+            words = [
+                f"{x['chinese']}({x['pinyin']}) - {x['definition']}"
+                for x in self.result_words
+            ]
+            words.append("None of these")
+
             term_selection = TerminalOptions(
-                [
-                    f"{x['chinese']}({x['pinyin']}) - {x['definition']}"
-                    for x in self.result_words
-                ],
+                words,
                 "Select the Definition You Want to Use",
                 False,
             ).indexes
-            sel_word = self.result_words[term_selection]
-            return Word(
-                sel_word["chinese"],
-                sel_word["definition"],
-                sel_word["pinyin"],
-                sel_word["audio"],
-            )
+            if term_selection == len(self.result_words):
+                print("true")
+                return None
+            else:
+                sel_word = self.result_words[term_selection]
+                return Word(
+                    sel_word["chinese"],
+                    sel_word["definition"],
+                    sel_word["pinyin"],
+                    sel_word["audio"],
+                )
         elif len(self.result_words) == 1:
             sel_word = self.result_words[0]
             return Word(

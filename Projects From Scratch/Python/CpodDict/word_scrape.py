@@ -85,14 +85,25 @@ class WordScrape:
         m_soup_res = self.session.get_html(f"{keys['murl']}{word}")
         md = ScrapeMd(m_soup_res)
         m_defined_word = md.get_defintion()
-        if self.cpod_word is not None:
+
+        if self.cpod_word and m_defined_word is not None:
             m_defined_word.audio = self.cpod_word.audio
             self.dictionary.add_word(m_defined_word)
         elif m_defined_word is not None:
             self.dictionary.add_word(m_defined_word)
+        elif m_defined_word is None and self.cpod_word is not None:
+            print(f"{self.cpod_word.chinese} - {self.cpod_word.definition}")
+            use_cpod_instead = TerminalOptions(
+                ["Yes", "No"], "Would you like to use Cpod's Definition instead?"
+            ).get_selected()
+            if use_cpod_instead == "Yes":
+                self.dictionary.add_word(self.cpod_word)
+            else:
+                Logger().insert("Skipping Word", "INFO")
+                return
         else:
-            print("not in mgdb")
-            # TODO handle this
+            Logger().insert("Skipping Word", "INFO")
+            return
 
     def word_list(self):
         for i, word in enumerate(self.file_list):
