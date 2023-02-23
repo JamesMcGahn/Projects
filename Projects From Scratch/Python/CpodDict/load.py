@@ -11,7 +11,10 @@ dictionary = Dictionary()
 id = 1
 for x in file_list:
     if x["chinese"] and x["definition"] and x["pinyin"]:
-        word = Word(x["chinese"], x["definition"], x["pinyin"], "")
+        if x["audio"]:
+            word = Word(x["chinese"], x["definition"], x["pinyin"], x["audio"])
+        else:
+            word = Word(x["chinese"], x["definition"], x["pinyin"], "")
         word.id = int(x["id"])
         id = int(x["id"])
         print(id, word.chinese)
