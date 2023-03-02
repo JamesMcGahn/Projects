@@ -25,7 +25,6 @@ class Dictionary:
         ):
             if ask_user:
                 Logger().insert(
-                    # trunk-ignore(flake8/F821)
                     f"In Dictionary: {wordmatch.chinese} - {wordmatch.pinyin} - {wordmatch.definition}",
                     "INFO",
                 )

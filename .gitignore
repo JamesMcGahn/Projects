@@ -155,3 +155,6 @@ dist
 
 # __pycache__
 *.pyc
+
+# java
+*.class
