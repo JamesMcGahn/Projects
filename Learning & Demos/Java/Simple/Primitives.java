@@ -1,4 +1,4 @@
-class Primitives {
+public class Primitives {
 
     int id = 1000; // -2,147,483,648-2,147,483,647
     byte age = 18; // -128- 127
