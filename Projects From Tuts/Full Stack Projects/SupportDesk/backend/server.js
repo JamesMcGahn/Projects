@@ -1,5 +1,6 @@
-const userRouter = require('./routes/userRoutes');
 const express = require('express');
+const userRouter = require('./routes/userRoutes');
+const ticketRouter = require('./routes/ticketRoutes');
 const colors = require('colors');
 const { errorHandler } = require('./middleware/errorMiddleWare');
 const dotenv = require('dotenv').config();
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/api/users', userRouter);
+app.use('/api/tickets', ticketRouter);
 app.use(errorHandler);
 
 app.get('/', (req, res) => {
