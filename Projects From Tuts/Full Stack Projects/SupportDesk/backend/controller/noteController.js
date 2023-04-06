@@ -10,7 +10,6 @@ const Note = require('../models/noteModel');
 
 const getNotes = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user.id);
-  console.log(req.user);
   if (!user) {
     res.status(401);
     throw new Error('User not found');
@@ -32,7 +31,6 @@ const getNotes = asyncHandler(async (req, res) => {
 
 const addNote = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user.id);
-  console.log(req.user);
   if (!user) {
     res.status(401);
     throw new Error('User not found');
