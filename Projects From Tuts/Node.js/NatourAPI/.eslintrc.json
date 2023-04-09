@@ -1,5 +1,9 @@
 {
-  "extends": ["plugin:prettier/recommended", "airbnb", "plugin:node/recommended"],
+  "extends": [
+    "plugin:prettier/recommended",
+    "airbnb",
+    "plugin:node/recommended"
+  ],
   "plugins": ["prettier"],
   "rules": {
     "prettier/prettier": "off",
@@ -18,6 +22,7 @@
     "indent": "off",
     "eslint-disable-next-line": "off",
     "arrow-parens": "off",
-    "arrow-body-style": "off"
+    "arrow-body-style": "off",
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
   }
 }
