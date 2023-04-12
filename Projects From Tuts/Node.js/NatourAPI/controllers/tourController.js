@@ -1,19 +1,21 @@
 const Tour = require('../models/toursModel');
 
-exports.checkID = (req, res, next, val) => {
-  // console.log(`Tour id is: ${val}`);
-
-  // if (req.params.id * 1 > tours.length) {
-  //   return res.status(404).json({
-  //     status: 'fail',
-  //     message: 'Invalid ID',
-  //   });
-  // }
-  next();
-};
-
 exports.getAllTours = async (req, res) => {
-  const tours = await Tour.find();
+  // query build
+  const queryObject = { ...req.query };
+  const excludedFields = ['page', 'sort', 'limit', 'fields'];
+  excludedFields.forEach((field) => delete queryObject[field]);
+
+  let queryString = JSON.stringify(queryObject);
+  queryString = queryString.replace(
+    /\b(gte|gt|lte|lt)\b/g,
+    (match) => `$${match}`,
+  );
+
+  const query = Tour.find(JSON.parse(queryString));
+
+  // execute query
+  const tours = await query;
 
   res.status(200).json({
     status: 'success',
