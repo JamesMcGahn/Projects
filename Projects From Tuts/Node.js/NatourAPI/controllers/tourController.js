@@ -1,47 +1,65 @@
 const Tour = require('../models/toursModel');
 
 exports.getAllTours = async (req, res) => {
-  // query build
-  const queryObject = { ...req.query };
-  const excludedFields = ['page', 'sort', 'limit', 'fields'];
-  excludedFields.forEach((field) => delete queryObject[field]);
-  // Filter query
-  let queryString = JSON.stringify(queryObject);
-  queryString = queryString.replace(
-    /\b(gte|gt|lte|lt)\b/g,
-    (match) => `$${match}`,
-  );
+  try {
+    // query build
+    const queryObject = { ...req.query };
+    const excludedFields = ['page', 'sort', 'limit', 'fields'];
+    excludedFields.forEach((field) => delete queryObject[field]);
+    // Filter query
+    let queryString = JSON.stringify(queryObject);
+    queryString = queryString.replace(
+      /\b(gte|gt|lte|lt)\b/g,
+      (match) => `$${match}`,
+    );
 
-  let query = Tour.find(JSON.parse(queryString));
+    let query = Tour.find(JSON.parse(queryString));
 
-  // Sort Query
-  if (req.query.sort) {
-    const sortBy = req.query.sort.split(',').join(' ');
+    // Sort Query
+    if (req.query.sort) {
+      const sortBy = req.query.sort.split(',').join(' ');
 
-    query = query.sort(sortBy);
-  } else {
-    query = query.sort('-createAt');
+      query = query.sort(sortBy);
+    } else {
+      query = query.sort('-createAt');
+    }
+
+    // Field Limitings
+    if (req.query.fields) {
+      const fields = req.query.fields.split(',').join(' ');
+      query = query.select(fields);
+    } else {
+      query = query.select('-__v');
+    }
+
+    // Pagination
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 100;
+    const skip = (page - 1) * limit;
+
+    query = query.skip(skip).limit(limit);
+
+    if (req.query.page) {
+      const numTours = await Tour.countDocuments();
+      if (skip >= numTours) throw new Error('Page does not exist');
+    }
+    // execute query
+    const tours = await query;
+
+    res.status(200).json({
+      status: 'success',
+      requestedAt: req.requestTime,
+      results: tours.length,
+      data: {
+        tours,
+      },
+    });
+  } catch (e) {
+    res.status(404).json({
+      status: 'failure',
+      message: e,
+    });
   }
-
-  // Field Limitings
-  if (req.query.fields) {
-    const fields = req.query.fields.split(',').join(' ');
-    query = query.select(fields);
-  } else {
-    query = query.select('-__v');
-  }
-
-  // execute query
-  const tours = await query;
-
-  res.status(200).json({
-    status: 'success',
-    requestedAt: req.requestTime,
-    results: tours.length,
-    data: {
-      tours,
-    },
-  });
 };
 
 exports.getTour = async (req, res) => {
