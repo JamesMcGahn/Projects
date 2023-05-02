@@ -50,7 +50,7 @@ userSchema.methods.correctPassword = async function (pwAttempt, userPassword) {
   return await bcrypt.compare(pwAttempt, userPassword);
 };
 
-userSchema.method.changedPwAfter = async function (JWTTimeStamp) {
+userSchema.methods.changedPwAfter = async function (JWTTimeStamp) {
   if (this.passwordChangedAt) {
     const changedTime = parseInt(this.passwordChangedAt.getTime() / 1000, 10);
     return JWTTimeStamp < changedTime;

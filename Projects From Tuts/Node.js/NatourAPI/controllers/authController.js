@@ -69,7 +69,7 @@ exports.protect = catchAsync(async (req, res, next) => {
     return next(new AppError('User does not exist. Token invalid', 401));
   }
 
-  if (isUserActive.changedPasswordAfter(decoded.iat)) {
+  if (await isUserActive.changedPwAfter(decoded.iat)) {
     return next(new AppError('Password changed password. Token invalid', 401));
   }
   req.user = isUserActive;
