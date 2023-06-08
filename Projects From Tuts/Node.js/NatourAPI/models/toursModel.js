@@ -107,6 +107,12 @@ const tourSchema = new mongoose.Schema(
       },
     ],
     startDates: [Date],
+    guides: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: 'User',
+      },
+    ],
   },
 
   {
@@ -129,6 +135,13 @@ tourSchema.pre('save', function (next) {
 // query mw
 tourSchema.pre(/^find/, function (next) {
   this.find({ secretTour: { $ne: true } });
+  next();
+});
+tourSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: 'guides',
+    select: '-__v -passwordChangedAt',
+  });
   next();
 });
 
