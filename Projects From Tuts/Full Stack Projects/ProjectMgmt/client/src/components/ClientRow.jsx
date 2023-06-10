@@ -2,6 +2,7 @@ import { FaTrash } from 'react-icons/fa';
 import { useMutation } from '@apollo/client';
 import { DELETE_CLIENT } from '../mutations/clientMutations';
 import { GET_CLIENTS } from '../queries/clientQuery';
+import { GET_PROJECTS } from '../queries/projectQuery';
 
 function ClientRow({ client }) {
   const [deleteClient] = useMutation(DELETE_CLIENT, {
@@ -12,10 +13,23 @@ function ClientRow({ client }) {
         query: GET_CLIENTS,
       });
 
+      const { projects } = cache.readQuery({
+        query: GET_PROJECTS,
+      });
+
       cache.writeQuery({
         query: GET_CLIENTS,
         data: {
           clients: clients.filter((client) => client.id !== deleteClient.id),
+        },
+      });
+
+      cache.writeQuery({
+        query: GET_PROJECTS,
+        data: {
+          projects: projects.filter(
+            (project) => project.client.id !== deleteClient.id,
+          ),
         },
       });
     },
