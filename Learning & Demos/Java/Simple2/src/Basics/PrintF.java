@@ -24,6 +24,16 @@ public class PrintF {
         // [precision]
         // set number of digits of precision for floating point values
         System.out.printf("This is a %.2f formatted", 12.456);
+
+        // [flags]
+        // adds an effect to output based on the flag added
+        // - : left justified
+        // + : output plus or minus sign for numeric value
+        // - : numeric valies are zero padded
+        // , : comma grouping separator for numbers
+
+        System.out.printf("This is a %+,.2f formatted", 1200.456);
+
     }
 
 }
