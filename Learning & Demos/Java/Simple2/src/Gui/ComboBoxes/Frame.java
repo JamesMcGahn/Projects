@@ -16,7 +16,10 @@ public class Frame extends JFrame implements ActionListener {
     Frame() {
         String[] animals = { "dog", "cat", "bird" };
         comboBox = new JComboBox(animals);
-
+        comboBox.setEditable(true);
+        comboBox.addItem("fish");
+        comboBox.insertItemAt("snake", 0);
+        comboBox.setSelectedIndex(2);
         button.setBounds(100, 160, 200, 40);
         button.setFocusable(false);
         button.addActionListener(this);
