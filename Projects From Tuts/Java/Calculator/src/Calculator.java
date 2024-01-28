@@ -7,11 +7,12 @@ public class Calculator implements ActionListener {
     JFrame frame;
     JTextField textfield;
     JButton[] numberButtons = new JButton[10];
-    JButton[] functionButtons = new JButton[9];
+    JButton[] functionButtons = new JButton[13];
     JButton addButton, subButton, mulButton, divButton;
     JButton decButton, equButton, delButton, clrButton, negButton;
+    JButton percentButton, expontButton, squareRButton, piButton;
     JPanel panel;
-    String[] symbols = { "x", "+", "/", "-", "-" };
+    String[] symbols = { "x", "+", "/", "-", "-", "%", "^" };
 
     Font myFont = new Font("Arial", Font.BOLD, 20);
     double num1 = 0, num2 = 0, result = 0;
@@ -20,7 +21,7 @@ public class Calculator implements ActionListener {
     Calculator() {
         frame = new JFrame("Calculator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(420, 550);
+        frame.setSize(600, 550);
         frame.setLayout(null);
 
         textfield = new JTextField();
@@ -37,6 +38,10 @@ public class Calculator implements ActionListener {
         delButton = new JButton("Delete");
         clrButton = new JButton("Clear");
         negButton = new JButton("(-)");
+        percentButton = new JButton("%");
+        expontButton = new JButton("EXP");
+        squareRButton = new JButton("√");
+        piButton = new JButton("π");
 
         functionButtons[0] = addButton;
         functionButtons[1] = subButton;
@@ -47,8 +52,12 @@ public class Calculator implements ActionListener {
         functionButtons[6] = delButton;
         functionButtons[7] = clrButton;
         functionButtons[8] = negButton;
+        functionButtons[9] = percentButton;
+        functionButtons[10] = expontButton;
+        functionButtons[11] = squareRButton;
+        functionButtons[12] = piButton;
 
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < functionButtons.length; i++) {
             functionButtons[i].addActionListener(this);
             functionButtons[i].setFont(myFont);
             functionButtons[i].setFocusable(false);
@@ -65,22 +74,26 @@ public class Calculator implements ActionListener {
         clrButton.setBounds(250, 430, 100, 50);
 
         panel = new JPanel();
-        panel.setBounds(50, 100, 300, 300);
-        panel.setLayout(new GridLayout(4, 4, 10, 10));
+        panel.setBounds(50, 100, 500, 350);
+        panel.setLayout(new GridLayout(4, 5, 10, 10));
         panel.setBackground(Color.gray);
 
+        panel.add(percentButton);
         panel.add(numberButtons[1]);
         panel.add(numberButtons[2]);
         panel.add(numberButtons[3]);
         panel.add(addButton);
+        panel.add(expontButton);
         panel.add(numberButtons[4]);
         panel.add(numberButtons[5]);
         panel.add(numberButtons[6]);
         panel.add(subButton);
+        panel.add(squareRButton);
         panel.add(numberButtons[7]);
         panel.add(numberButtons[8]);
         panel.add(numberButtons[9]);
         panel.add(mulButton);
+        panel.add(piButton);
         panel.add(decButton);
         panel.add(numberButtons[0]);
         panel.add(equButton);
@@ -162,6 +175,43 @@ public class Calculator implements ActionListener {
             operator = '/';
             textfield.setText("/");
         }
+
+        if (e.getSource() == expontButton) {
+            num1 = getTextFieldValue();
+            operator = '^';
+            textfield.setText("^");
+        }
+
+        if (e.getSource() == piButton) {
+            if (operator == ' ') {
+                num1 = Math.PI;
+                textfield.setText(String.valueOf(num1));
+            } else {
+                num2 = Math.PI;
+                textfield.setText(String.valueOf(num2));
+            }
+        }
+
+        if (e.getSource() == percentButton) {
+            if (operator == ' ') {
+                num1 = getTextFieldValue() * 0.01;
+                textfield.setText(String.valueOf(num1));
+            } else {
+                num2 = getTextFieldValue() * 0.01;
+                textfield.setText(String.valueOf(num2));
+            }
+        }
+
+        if (e.getSource() == squareRButton) {
+            if (operator == ' ') {
+                num1 = Math.sqrt(getTextFieldValue());
+                textfield.setText(String.valueOf(num1));
+            } else {
+                num2 = Math.sqrt(getTextFieldValue());
+                textfield.setText(String.valueOf(num2));
+            }
+        }
+
         if (e.getSource() == equButton) {
             num2 = getTextFieldValue();
 
@@ -189,6 +239,9 @@ public class Calculator implements ActionListener {
                     } else {
                         result = num1 / num2;
                     }
+                case '^':
+                    result = Math.pow(num1, num2);
+                    break;
             }
             textfield.setText(String.valueOf(result));
             num1 = result;
