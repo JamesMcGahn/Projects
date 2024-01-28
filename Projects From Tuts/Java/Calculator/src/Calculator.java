@@ -92,9 +92,20 @@ public class Calculator implements ActionListener {
         frame.setVisible(true);
     }
 
+    public void clear() {
+        num1 = 0;
+        num2 = 0;
+        result = 0;
+        textfield.setText("CLEAR");
+        new Timer(1000, (ae) -> {
+            textfield.setText("");
+            ((Timer) ae.getSource()).stop();
+        }).start();
+
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-
         for (int i = 0; i < 10; i++) {
             if (e.getSource() == numberButtons[i]) {
                 textfield.setText(textfield.getText().concat(String.valueOf(i)));
@@ -144,13 +155,14 @@ public class Calculator implements ActionListener {
             num1 = result;
         }
         if (e.getSource() == clrButton) {
-            textfield.setText("");
+            clear();
         }
         if (e.getSource() == delButton) {
             String string = textfield.getText();
-            textfield.setText("");
-            for (int i = 0; i < string.length() - 1; i++) {
-                textfield.setText(textfield.getText() + string.charAt(i));
+
+            if (string.length() > 0) {
+                textfield.setText(string.substring(0, string.length() - 1));
+
             }
         }
         if (e.getSource() == negButton) {
