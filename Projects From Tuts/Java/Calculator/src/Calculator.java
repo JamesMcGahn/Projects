@@ -153,8 +153,19 @@ public class Calculator implements ActionListener {
                     result = num1 * num2;
                     break;
                 case '/':
-                    result = num1 / num2;
-                    break;
+                    if (num2 == 0) {
+                        textfield.setText("Error: Division By 0");
+                        num1 = 0;
+                        num2 = 0;
+                        result = 0;
+                        new Timer(1000, (ae) -> {
+                            clear();
+                            ((Timer) ae.getSource()).stop();
+                        }).start();
+                        return;
+                    } else {
+                        result = num1 / num2;
+                    }
             }
             textfield.setText(String.valueOf(result));
             num1 = result;
