@@ -11,6 +11,7 @@ public class Calculator implements ActionListener {
     JButton addButton, subButton, mulButton, divButton;
     JButton decButton, equButton, delButton, clrButton, negButton;
     JPanel panel;
+    String[] symbols = { "x", "+", "/", "-", "-" };
 
     Font myFont = new Font("Arial", Font.BOLD, 20);
     double num1 = 0, num2 = 0, result = 0;
@@ -104,8 +105,17 @@ public class Calculator implements ActionListener {
         }).start();
     }
 
-    public Double add(Double num1, Double num2) {
-        return num1 + num2;
+    public Double getTextFieldValue() {
+        if (textfield.getText().length() == 0 || textfield.getText().length() == 1
+                && Arrays.stream(symbols).anyMatch(textfield.getText()::contains)) {
+            if (num1 != 0) {
+                return num1;
+            }
+            return 0.0;
+        } else {
+            System.out.println(textfield.getText());
+            return Double.parseDouble(textfield.getText());
+        }
     }
 
     @Override
@@ -113,31 +123,39 @@ public class Calculator implements ActionListener {
 
         String[] nums = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
         if (Arrays.stream(nums).anyMatch(e.getActionCommand()::contains)) {
-            textfield.setText(textfield.getText().concat(e.getActionCommand()));
+            if ((textfield.getText().length() == 1
+                    && Arrays.stream(symbols).anyMatch(textfield.getText()::contains))) {
+                textfield.setText(
+                        textfield.getText().substring(1, textfield.getText().length())
+                                .concat(e.getActionCommand()));
+            } else {
+                textfield.setText(textfield.getText().concat(e.getActionCommand()));
+            }
+
         }
 
         if (e.getSource() == decButton) {
             textfield.setText(textfield.getText().concat("."));
         }
         if (e.getSource() == addButton) {
-            num1 = Double.parseDouble(textfield.getText());
+            num1 = getTextFieldValue();
             operator = '+';
-            textfield.setText("");
+            textfield.setText("+");
         }
         if (e.getSource() == subButton) {
-            num1 = Double.parseDouble(textfield.getText());
+            num1 = getTextFieldValue();
             operator = '-';
             textfield.setText("");
         }
         if (e.getSource() == mulButton) {
-            num1 = Double.parseDouble(textfield.getText());
+            num1 = getTextFieldValue();
             operator = '*';
-            textfield.setText("");
+            textfield.setText("x");
         }
         if (e.getSource() == divButton) {
-            num1 = Double.parseDouble(textfield.getText());
+            num1 = getTextFieldValue();
             operator = '/';
-            textfield.setText("");
+            textfield.setText("/");
         }
         if (e.getSource() == equButton) {
             num2 = Double.parseDouble(textfield.getText());
@@ -169,6 +187,8 @@ public class Calculator implements ActionListener {
             }
             textfield.setText(String.valueOf(result));
             num1 = result;
+            num2 = 0.0;
+            operator = ' ';
         }
         if (e.getSource() == clrButton) {
             clear();
