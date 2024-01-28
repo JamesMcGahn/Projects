@@ -106,16 +106,12 @@ public class Calculator implements ActionListener {
     }
 
     public Double getTextFieldValue() {
-        if (textfield.getText().length() == 0 || textfield.getText().length() == 1
-                && Arrays.stream(symbols).anyMatch(textfield.getText()::contains)) {
-            if (num1 != 0) {
-                return num1;
-            }
-            return 0.0;
-        } else {
-            System.out.println(textfield.getText());
+        try {
             return Double.parseDouble(textfield.getText());
+        } catch (NumberFormatException error) {
+            return 0.0;
         }
+
     }
 
     @Override
@@ -164,7 +160,7 @@ public class Calculator implements ActionListener {
             textfield.setText("/");
         }
         if (e.getSource() == equButton) {
-            num2 = Double.parseDouble(textfield.getText());
+            num2 = getTextFieldValue();
 
             switch (operator) {
                 case '+':
@@ -211,7 +207,7 @@ public class Calculator implements ActionListener {
             if (textfield.getText().length() == 0 || textfield.getText().charAt(0) == '-') {
                 textfield.setText("-");
             } else {
-                double temp = Double.parseDouble(textfield.getText());
+                double temp = getTextFieldValue();
                 temp *= -1;
                 textfield.setText(String.valueOf(temp));
             }
