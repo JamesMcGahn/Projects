@@ -15,7 +15,7 @@ public class Calculator implements ActionListener {
 
     Font myFont = new Font("Arial", Font.BOLD, 20);
     double num1 = 0, num2 = 0, result = 0;
-    char operator;
+    char operator = ' ';
 
     Calculator() {
         frame = new JFrame("Calculator");
@@ -125,9 +125,15 @@ public class Calculator implements ActionListener {
         if (Arrays.stream(nums).anyMatch(e.getActionCommand()::contains)) {
             if ((textfield.getText().length() == 1
                     && Arrays.stream(symbols).anyMatch(textfield.getText()::contains))) {
-                textfield.setText(
-                        textfield.getText().substring(1, textfield.getText().length())
-                                .concat(e.getActionCommand()));
+
+                if (textfield.getText().contains("-")) {
+                    textfield.setText("-" + e.getActionCommand());
+                } else {
+                    textfield.setText(
+                            textfield.getText().substring(1, textfield.getText().length())
+                                    .concat(e.getActionCommand()));
+                }
+
             } else {
                 textfield.setText(textfield.getText().concat(e.getActionCommand()));
             }
@@ -145,7 +151,7 @@ public class Calculator implements ActionListener {
         if (e.getSource() == subButton) {
             num1 = getTextFieldValue();
             operator = '-';
-            textfield.setText("");
+            textfield.setText("-");
         }
         if (e.getSource() == mulButton) {
             num1 = getTextFieldValue();
@@ -202,9 +208,14 @@ public class Calculator implements ActionListener {
             }
         }
         if (e.getSource() == negButton) {
-            double temp = Double.parseDouble(textfield.getText());
-            temp *= -1;
-            textfield.setText(String.valueOf(temp));
+            if (textfield.getText().length() == 0 || textfield.getText().charAt(0) == '-') {
+                textfield.setText("-");
+            } else {
+                double temp = Double.parseDouble(textfield.getText());
+                temp *= -1;
+                textfield.setText(String.valueOf(temp));
+            }
+
         }
     }
 }
