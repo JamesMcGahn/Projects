@@ -7,10 +7,11 @@ public class Calculator implements ActionListener {
     JFrame frame;
     JTextField textfield;
     JButton[] numberButtons = new JButton[10];
-    JButton[] functionButtons = new JButton[13];
+    JButton[] functionButtons = new JButton[16];
     JButton addButton, subButton, mulButton, divButton;
     JButton decButton, equButton, delButton, clrButton, negButton;
     JButton percentButton, expontButton, squareRButton, piButton;
+    JButton eButton;
     JPanel panel;
     String[] symbols = { "x", "+", "/", "-", "-", "%", "^" };
 
@@ -25,9 +26,10 @@ public class Calculator implements ActionListener {
         frame.setLayout(null);
 
         textfield = new JTextField();
-        textfield.setBounds(50, 25, 300, 50);
-        textfield.setFont(myFont);
+        textfield.setBounds(50, 25, 500, 75);
+        textfield.setFont(new Font("Arial", Font.BOLD, 35));
         textfield.setEditable(false);
+        textfield.setHorizontalAlignment(SwingConstants.RIGHT);
 
         addButton = new JButton("+");
         subButton = new JButton("-");
@@ -39,7 +41,8 @@ public class Calculator implements ActionListener {
         clrButton = new JButton("Clear");
         negButton = new JButton("(-)");
         percentButton = new JButton("%");
-        expontButton = new JButton("EXP");
+        expontButton = new JButton("^");
+        eButton = new JButton("E");
         squareRButton = new JButton("√");
         piButton = new JButton("π");
 
@@ -56,6 +59,9 @@ public class Calculator implements ActionListener {
         functionButtons[10] = expontButton;
         functionButtons[11] = squareRButton;
         functionButtons[12] = piButton;
+        functionButtons[13] = negButton;
+        functionButtons[14] = delButton;
+        functionButtons[15] = clrButton;
 
         for (int i = 0; i < functionButtons.length; i++) {
             functionButtons[i].addActionListener(this);
@@ -69,40 +75,49 @@ public class Calculator implements ActionListener {
             numberButtons[i].setFont(myFont);
             numberButtons[i].setFocusable(false);
         }
-        negButton.setBounds(50, 430, 100, 50);
-        delButton.setBounds(150, 430, 100, 50);
-        clrButton.setBounds(250, 430, 100, 50);
 
         panel = new JPanel();
         panel.setBounds(50, 100, 500, 350);
-        panel.setLayout(new GridLayout(4, 5, 10, 10));
+        panel.setLayout(new GridLayout(5, 6, 10, 10));
         panel.setBackground(Color.gray);
 
+        panel.add(piButton);
+        panel.add(new JButton());
+        panel.add(negButton);
         panel.add(percentButton);
-        panel.add(numberButtons[1]);
-        panel.add(numberButtons[2]);
-        panel.add(numberButtons[3]);
-        panel.add(addButton);
-        panel.add(expontButton);
-        panel.add(numberButtons[4]);
-        panel.add(numberButtons[5]);
-        panel.add(numberButtons[6]);
-        panel.add(subButton);
-        panel.add(squareRButton);
+        panel.add(delButton);
+        panel.add(clrButton);
+
+        panel.add(new JButton());
+        panel.add(new JButton());
         panel.add(numberButtons[7]);
         panel.add(numberButtons[8]);
         panel.add(numberButtons[9]);
-        panel.add(mulButton);
-        panel.add(piButton);
-        panel.add(decButton);
-        panel.add(numberButtons[0]);
-        panel.add(equButton);
         panel.add(divButton);
 
+        panel.add(new JButton());
+        panel.add(new JButton());
+        panel.add(numberButtons[4]);
+        panel.add(numberButtons[5]);
+        panel.add(numberButtons[6]);
+        panel.add(mulButton);
+
+        panel.add(new JButton());
+        panel.add(squareRButton);
+        panel.add(numberButtons[1]);
+        panel.add(numberButtons[2]);
+        panel.add(numberButtons[3]);
+        panel.add(subButton);
+
+        panel.add(new JButton());
+        panel.add(panel.add(expontButton));
+        panel.add(numberButtons[0]);
+        panel.add(decButton);
+        panel.add(equButton);
+        panel.add(addButton);
+
         frame.add(panel);
-        frame.add(negButton);
-        frame.add(delButton);
-        frame.add(clrButton);
+
         frame.add(textfield);
         frame.setVisible(true);
     }
