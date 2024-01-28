@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Arrays;
 
 public class Calculator implements ActionListener {
     JFrame frame;
@@ -101,16 +102,20 @@ public class Calculator implements ActionListener {
             textfield.setText("");
             ((Timer) ae.getSource()).stop();
         }).start();
+    }
 
+    public Double add(Double num1, Double num2) {
+        return num1 + num2;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        for (int i = 0; i < 10; i++) {
-            if (e.getSource() == numberButtons[i]) {
-                textfield.setText(textfield.getText().concat(String.valueOf(i)));
-            }
+
+        String[] nums = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+        if (Arrays.stream(nums).anyMatch(e.getActionCommand()::contains)) {
+            textfield.setText(textfield.getText().concat(e.getActionCommand()));
         }
+
         if (e.getSource() == decButton) {
             textfield.setText(textfield.getText().concat("."));
         }
