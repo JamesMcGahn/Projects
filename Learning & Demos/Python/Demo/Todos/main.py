@@ -1,13 +1,4 @@
-def get_todos(filename="todos.txt"):
-    with open(filename, "r") as f:
-        file_todos = f.readlines()
-    return file_todos
-
-
-def write_todos(todos, filename="todos.txt"):
-    with open(filename, "w") as file:
-        file.writelines(todos)
-
+from fns import get_todos, write_todos
 
 while True:
     user_action = input("Type add, show, complete or exit: ")
