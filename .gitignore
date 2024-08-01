@@ -155,6 +155,7 @@ dist
 
 # __pycache__
 *.pyc
+.venv
 
 # java
 bin/
