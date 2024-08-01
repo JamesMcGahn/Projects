@@ -3,6 +3,7 @@
 !/**/
 !*.*
 
+
 #ignoring tool config files
 .vscode
 
@@ -156,6 +157,7 @@ dist
 # __pycache__
 *.pyc
 .venv
+!Pipfile
 
 # java
 bin/
