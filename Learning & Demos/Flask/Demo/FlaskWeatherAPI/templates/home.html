@@ -2,21 +2,31 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Test Page</title>
+    <title>Weather Data API</title>
   </head>
   <body>
-    <nav>
-      <a href="/about">About</a>
-      <a href="/contact-us">Contact Us</a>
-      <a href="/store">Store</a>
-    </nav>
-    <h1>Welcome</h1>
-    <h2>This is a test page</h2>
-    <p>Hello this is a test page</p>
-    <img
-      src="{{url_for('static', filename='cat.png')}}"
-      alt=""
-      style="width: 500px"
-    />
+    <h1>Weather Data API</h1>
+    <p>URL format: http://127.0.0.1:5000/api/v1/station/date</p>
+    <p>URL format: http://127.0.0.1:5000/api/v1/station</p>
+    <p>URL format: http://127.0.0.1:5000/api/v1/yearly/station/year</p>
+    <p>
+      URL example:
+      <a href="http://127.0.0.1:5000/api/v1/5"
+        >http://127.0.0.1:5000/api/v1/5</a
+      >
+    </p>
+    <p>
+      URL example:
+      <a href="http://127.0.0.1:5000/api/v1/5/1988-10-25"
+        >http://127.0.0.1:5000/api/v1/5/1988-10-25</a
+      >
+    </p>
+    <p>
+      URL example:
+      <a href="http://127.0.0.1:5000/api/v1/yearly/5/1988"
+        >http://127.0.0.1:5000/api/v1/yearly/5/1988</a
+      >
+    </p>
+    <p>{{data|safe}}</p>
   </body>
 </html>
