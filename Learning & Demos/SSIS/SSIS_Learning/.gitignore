@@ -1,0 +1,83 @@
+# ---- OS cruft ----
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---- Visual Studio / SSDT ----
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.VC.db
+*.VC.VC.opendb
+
+# ---- Build artifacts ----
+[Bb]in/
+[Oo]bj/
+[Bb]uild[Ll]og.*
+Debug*/
+Release*/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+
+# ---- Packages / NuGet ----
+packages/
+**/packages/*
+*.nupkg
+*.snupkg
+# If you use PackageReference, you can ignore the next line
+# *.lock.json
+
+# ---- Logs / caches / misc ----
+*.log
+*.tlog
+*.cache
+ipch/
+*.opendb
+*.dbmdl
+
+# ---- Test results ----
+[Tt]est[Rr]esult*/
+*.trx
+*.coverage
+*.coveragexml
+
+# ---- JetBrains Rider / ReSharper (optional) ----
+_ReSharper*/
+*.DotSettings.user
+.idea/
+
+# ---- VS Code (optional to share minimal workspace files) ----
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# ---- SSIS-specific ----
+# Built deployment artifacts
+*.ispac
+
+# Old-style package configurations (often contain secrets)
+# Commit a redacted template as *.dtsConfig.sample
+*.dtsConfig
+!*.dtsConfig.sample
+
+# Script Task/Component build output lives under project subfolders; covered by bin/obj above
+
+# Backups (SSIS & SQL)
+*.backup
+*.bak
+
+# Local DB files (if you attach sample DBs locally)
+*.mdf
+*.ldf
+
+# Env/secrets (if you store local parameters outside Project.params)
+*.env
+*.secrets.json
+
+# ---- Keep these tracked (documentation note) ----
+# Keep: *.sln, *.dtproj, Project.params, *.dtsx, *.conmgr, *.ds
+# (No rules needed; just a reminder not to add them above)

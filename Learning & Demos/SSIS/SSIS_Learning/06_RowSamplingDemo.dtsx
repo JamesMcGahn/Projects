@@ -5,36 +5,36 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="WIN-4CMOE2HNK1B"
   DTS:CreatorName="WIN-4CMOE2HNK1B\Taco"
-  DTS:DTSID="{87E91846-6424-4F14-A490-2E8C6788CFDB}"
+  DTS:DTSID="{08FCB0F5-D9F6-4702-BB6C-6ED1C26814BA}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="16.0.5685.2"
   DTS:LocaleID="1033"
   DTS:ObjectName="06_RowSamplingDemo"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="19"
-  DTS:VersionGUID="{EF30F161-E2E7-4E8B-A8B0-5592B1799792}">
+  DTS:VersionBuild="20"
+  DTS:VersionGUID="{6A9E2AE0-9DFB-48D7-97FC-4DDB79B027A3}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[192.168.1.2.AdventureWorks2022.sa]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{8442E18F-A0F1-4FDC-86E8-8B91AC07EB09}"
+      DTS:DTSID="{30CB6BED-7DAD-440E-AD20-C4541ABA6F8F}"
       DTS:ObjectName="192.168.1.2.AdventureWorks2022.sa">
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=192.168.1.2;User ID=sa;Initial Catalog=AdventureWorks2022;Provider=SQLOLEDB.1;Persist Security Info=True;Application Name=SSIS-01_ExportToFlatFileDemo-{8442E18F-A0F1-4FDC-86E8-8B91AC07EB09}192.168.1.2.AdventureWorks2022.sa;Auto Translate=False;">
+          DTS:ConnectionString="Data Source=192.168.1.2;User ID=sa;Initial Catalog=AdventureWorks2022;Provider=SQLOLEDB.1;Persist Security Info=True;Application Name=SSIS-01_ExportToFlatFileDemo-{30CB6BED-7DAD-440E-AD20-C4541ABA6F8F}192.168.1.2.AdventureWorks2022.sa;Auto Translate=False;">
           <EncryptedData
             Type="http://www.w3.org/2001/04/xmlenc#Element"
-            Salt="6KBV878Xc1o="
-            IV="WlTFGe53r8xBkErj6JFdfQ==" xmlns="http://www.w3.org/2001/04/xmlenc#">
+            Salt="Aqcp4YvSUUM="
+            IV="VyLvtTQRui3y4TL3V+ZxkQ==" xmlns="http://www.w3.org/2001/04/xmlenc#">
             <EncryptionMethod
               Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" />
             <CipherData>
-              <CipherValue>WlTFGe53r8xBkErj6JFdfWB/mNV2OgISkZoZiIUR9y66dcmPLE64mADoD4CC8PI1RA9a65zaSkYHgxTAAH/q83T6UqKzOrd+7LjRfpBRHR84vjIImblVBAavyDslP6fOcjjFoyB/uChtVuwG9Any+SyyOZZFqtPi3rEles3wJZeNd3BuBGzTDpSlLsi2uy9o</CipherValue>
+              <CipherValue>VyLvtTQRui3y4TL3V+ZxkY9Eq1oWaO7gKSGMxmAGAYguAr+rLhJknyfxpmk35PasevBu17dPcqwPI72U0x4Lb6Gt6qzVhptRjMDrtCpz9bVxx0pRpa88CW7D982gy+ofsDxeyEi6PVP8kDex7sExIZhmSZBsaDdZq95KON8Hr8yJEYyBI4bF8d/fPkwLO/Yk</CipherValue>
             </CipherData>
           </EncryptedData>
         </DTS:ConnectionManager>
@@ -43,7 +43,7 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
       DTS:CreationName="EXCEL"
-      DTS:DTSID="{874E40B8-0BAF-49C8-AC79-AEC2355763BC}"
+      DTS:DTSID="{E7D67037-223E-4C04-BCF2-5A5CB26610B5}"
       DTS:ObjectName="Excel Connection Manager">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -55,7 +55,7 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[Flat File Connection Manager]"
       DTS:CreationName="FLATFILE"
-      DTS:DTSID="{7D2C7E65-B866-46D3-B29A-F3539500C3D9}"
+      DTS:DTSID="{4EBB7585-876D-4A02-9168-B25AB01F0F30}"
       DTS:ObjectName="Flat File Connection Manager">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -74,7 +74,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="Title"
-              DTS:DTSID="{F16351C3-6A38-410E-BEBE-281CD012F3F5}"
+              DTS:DTSID="{5FF311E9-E508-413B-A1FC-2E0DFFDB9F78}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -83,7 +83,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="FirstName"
-              DTS:DTSID="{4EC877B4-C96A-41EB-85AE-F225624B5DBD}"
+              DTS:DTSID="{250DDD0C-31C6-4F22-BA21-BC5E284CE5DD}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -92,7 +92,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="MiddleName"
-              DTS:DTSID="{C954E2A2-818D-488D-8717-B25AFA46FD24}"
+              DTS:DTSID="{04C24D65-A275-4AC7-8995-947933822C60}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -101,7 +101,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="LastName"
-              DTS:DTSID="{9DA97346-0F86-475A-8C02-7C046F71B4F3}"
+              DTS:DTSID="{EBA1649F-1F74-4976-A5D8-090B358DB4AE}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -110,7 +110,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="Suffix"
-              DTS:DTSID="{82523FCE-C221-43D6-AF9B-2EBAE25612E7}"
+              DTS:DTSID="{BD11F422-B7CC-485E-BDAA-DFBEDA2AE7F7}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
@@ -123,7 +123,7 @@
       DTS:refId="Package\Data Flow Task"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:DTSID="{DB5DA92A-0ADE-4073-A333-25C73CD1FB6F}"
+      DTS:DTSID="{C9C3A222-C82F-4022-9371-84BFF8C8FAC9}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
       DTS:ObjectName="Data Flow Task">

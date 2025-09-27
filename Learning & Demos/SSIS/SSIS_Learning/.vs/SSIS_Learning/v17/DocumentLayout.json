@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\Taco\\Documents\\GitHub\\Projects\\Learning \u0026 Demos\\SSIS\\SSIS_Learning\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6550F222-9D55-3CD5-B4F1-176E22716011}|SSIS_Learning.dtproj|C:\\Users\\Taco\\Documents\\GitHub\\Projects\\Learning \u0026 Demos\\SSIS\\SSIS_Learning\\06_RowSamplingDemo.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design",
-      "RelativeMoniker": "D:0:0:{6550F222-9D55-3CD5-B4F1-176E22716011}|SSIS_Learning.dtproj|solutionrelative:06_RowSamplingDemo.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design"
+      "AbsoluteMoniker": "D:0:0:{6550F222-9D55-3CD5-B4F1-176E22716011}|SSIS_Learning.dtproj|C:\\Users\\Taco\\Documents\\GitHub\\Projects\\Learning \u0026 Demos\\SSIS\\SSIS_Learning\\10_ConditionalSplitDemo.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design",
+      "RelativeMoniker": "D:0:0:{6550F222-9D55-3CD5-B4F1-176E22716011}|SSIS_Learning.dtproj|solutionrelative:10_ConditionalSplitDemo.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6550F222-9D55-3CD5-B4F1-176E22716011}|SSIS_Learning.dtproj|C:\\Users\\Taco\\Documents\\GitHub\\Projects\\Learning \u0026 Demos\\SSIS\\SSIS_Learning\\09_MulticastDemo.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design",
+      "RelativeMoniker": "D:0:0:{6550F222-9D55-3CD5-B4F1-176E22716011}|SSIS_Learning.dtproj|solutionrelative:09_MulticastDemo.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6550F222-9D55-3CD5-B4F1-176E22716011}|SSIS_Learning.dtproj|C:\\Users\\Taco\\Documents\\GitHub\\Projects\\Learning \u0026 Demos\\SSIS\\SSIS_Learning\\08_UnionAllDemo.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design",
+      "RelativeMoniker": "D:0:0:{6550F222-9D55-3CD5-B4F1-176E22716011}|SSIS_Learning.dtproj|solutionrelative:08_UnionAllDemo.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,13 +31,37 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "06_RowSamplingDemo.dtsx [Design]",
-              "DocumentMoniker": "C:\\Users\\Taco\\Documents\\GitHub\\Projects\\Learning \u0026 Demos\\SSIS\\SSIS_Learning\\06_RowSamplingDemo.dtsx",
-              "RelativeDocumentMoniker": "06_RowSamplingDemo.dtsx",
-              "ToolTip": "C:\\Users\\Taco\\Documents\\GitHub\\Projects\\Learning \u0026 Demos\\SSIS\\SSIS_Learning\\06_RowSamplingDemo.dtsx [Design]",
-              "RelativeToolTip": "06_RowSamplingDemo.dtsx [Design]",
+              "Title": "10_ConditionalSplitDemo.dtsx [Design]",
+              "DocumentMoniker": "C:\\Users\\Taco\\Documents\\GitHub\\Projects\\Learning \u0026 Demos\\SSIS\\SSIS_Learning\\10_ConditionalSplitDemo.dtsx",
+              "RelativeDocumentMoniker": "10_ConditionalSplitDemo.dtsx",
+              "ToolTip": "C:\\Users\\Taco\\Documents\\GitHub\\Projects\\Learning \u0026 Demos\\SSIS\\SSIS_Learning\\10_ConditionalSplitDemo.dtsx [Design]",
+              "RelativeToolTip": "10_ConditionalSplitDemo.dtsx [Design]",
               "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFkSURBVDhPjVO/S8NAGH2RtvSPaPeSwUVchS6CexYRJCBYUJC6SEFBBIXiIigKEYRSCC4unQTXDsVipkpbUJHSRTQ2/oimNCTnkOTMXdrqg4Pv\u002B\u002B69ly933wkAoFaqBGPQezdx9/CYO9xZOWU2CPF0aqVKXMcZuY7Kl2R6bomsbZ8sMwYAJvjCKOxtraNW1xTe5N8Gm7sHAIBaXVPC9Vg4KZSaNC7KIs0/jQQW5yUAQPn8gnIwrAM7nYGdzjB5cnIGqwuzDC9AxCDebSPebUdyc8DQWPx1Cx\u002BWQzrG722EtZEOeJgDwOgDukUQSyT5bdagUGrSBU6sW4A7ZNwiHQSHGBa/fANvFuDafZ4eNQgOLSx\u002B/gK06xa6dgpZKY\u002BNswbBlELAz0FRFumXjT7Bq\u002BXFpu31XpRFdJ5M3N73sO9rqMGxehWEI5Ci4puWTqsx\u002BK\u002BNnzAeWSlPxWEDgWGNg//PDLSc8AOMxO8cPcnGpQAAAABJRU5ErkJggg==",
-              "WhenOpened": "2025-09-26T01:15:43.09Z",
+              "WhenOpened": "2025-09-27T01:42:05.597Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "09_MulticastDemo.dtsx [Design]",
+              "DocumentMoniker": "C:\\Users\\Taco\\Documents\\GitHub\\Projects\\Learning \u0026 Demos\\SSIS\\SSIS_Learning\\09_MulticastDemo.dtsx",
+              "RelativeDocumentMoniker": "09_MulticastDemo.dtsx",
+              "ToolTip": "C:\\Users\\Taco\\Documents\\GitHub\\Projects\\Learning \u0026 Demos\\SSIS\\SSIS_Learning\\09_MulticastDemo.dtsx [Design]",
+              "RelativeToolTip": "09_MulticastDemo.dtsx [Design]",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFkSURBVDhPjVO/S8NAGH2RtvSPaPeSwUVchS6CexYRJCBYUJC6SEFBBIXiIigKEYRSCC4unQTXDsVipkpbUJHSRTQ2/oimNCTnkOTMXdrqg4Pv\u002B\u002B69ly933wkAoFaqBGPQezdx9/CYO9xZOWU2CPF0aqVKXMcZuY7Kl2R6bomsbZ8sMwYAJvjCKOxtraNW1xTe5N8Gm7sHAIBaXVPC9Vg4KZSaNC7KIs0/jQQW5yUAQPn8gnIwrAM7nYGdzjB5cnIGqwuzDC9AxCDebSPebUdyc8DQWPx1Cx\u002BWQzrG722EtZEOeJgDwOgDukUQSyT5bdagUGrSBU6sW4A7ZNwiHQSHGBa/fANvFuDafZ4eNQgOLSx\u002B/gK06xa6dgpZKY\u002BNswbBlELAz0FRFumXjT7Bq\u002BXFpu31XpRFdJ5M3N73sO9rqMGxehWEI5Ci4puWTqsx\u002BK\u002BNnzAeWSlPxWEDgWGNg//PDLSc8AOMxO8cPcnGpQAAAABJRU5ErkJggg==",
+              "WhenOpened": "2025-09-27T01:38:31.018Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "08_UnionAllDemo.dtsx [Design]",
+              "DocumentMoniker": "C:\\Users\\Taco\\Documents\\GitHub\\Projects\\Learning \u0026 Demos\\SSIS\\SSIS_Learning\\08_UnionAllDemo.dtsx",
+              "RelativeDocumentMoniker": "08_UnionAllDemo.dtsx",
+              "ToolTip": "C:\\Users\\Taco\\Documents\\GitHub\\Projects\\Learning \u0026 Demos\\SSIS\\SSIS_Learning\\08_UnionAllDemo.dtsx [Design]",
+              "RelativeToolTip": "08_UnionAllDemo.dtsx [Design]",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFkSURBVDhPjVO/S8NAGH2RtvSPaPeSwUVchS6CexYRJCBYUJC6SEFBBIXiIigKEYRSCC4unQTXDsVipkpbUJHSRTQ2/oimNCTnkOTMXdrqg4Pv\u002B\u002B69ly933wkAoFaqBGPQezdx9/CYO9xZOWU2CPF0aqVKXMcZuY7Kl2R6bomsbZ8sMwYAJvjCKOxtraNW1xTe5N8Gm7sHAIBaXVPC9Vg4KZSaNC7KIs0/jQQW5yUAQPn8gnIwrAM7nYGdzjB5cnIGqwuzDC9AxCDebSPebUdyc8DQWPx1Cx\u002BWQzrG722EtZEOeJgDwOgDukUQSyT5bdagUGrSBU6sW4A7ZNwiHQSHGBa/fANvFuDafZ4eNQgOLSx\u002B/gK06xa6dgpZKY\u002BNswbBlELAz0FRFumXjT7Bq\u002BXFpu31XpRFdJ5M3N73sO9rqMGxehWEI5Ci4puWTqsx\u002BK\u002BNnzAeWSlPxWEDgWGNg//PDLSc8AOMxO8cPcnGpQAAAABJRU5ErkJggg==",
+              "WhenOpened": "2025-09-27T01:33:47.77Z",
               "EditorCaption": " [Design]"
             }
           ]
