@@ -1,0 +1,104 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/24/2025 8:48:43 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WIN-4CMOE2HNK1B"
+  DTS:CreatorName="WIN-4CMOE2HNK1B\Taco"
+  DTS:DTSID="{FD54F0F5-C284-4C03-9197-E3383FF117B8}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.2"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="33_FileSystemTaskDemo"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="45"
+  DTS:VersionGUID="{24BE9A38-7DEA-4FAA-88B7-344C81195185}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[192.168.1.2.AdventureWorks2022.sa]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{2E3EC14A-5CB1-4CCF-A6B2-B17526D51FA2}"
+      DTS:ObjectName="192.168.1.2.AdventureWorks2022.sa">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=192.168.1.2;User ID=sa;Initial Catalog=AdventureWorks2022;Provider=SQLOLEDB.1;Persist Security Info=True;Application Name=SSIS-01_ExportToFlatFileDemo-{2E3EC14A-5CB1-4CCF-A6B2-B17526D51FA2}192.168.1.2.AdventureWorks2022.sa;Auto Translate=False;">
+          <EncryptedData
+            Type="http://www.w3.org/2001/04/xmlenc#Element"
+            Salt="+6vkMzfTuoc="
+            IV="aZfTJ8/IDBHMlH3YNEjyEA==" xmlns="http://www.w3.org/2001/04/xmlenc#">
+            <EncryptionMethod
+              Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" />
+            <CipherData>
+              <CipherValue>aZfTJ8/IDBHMlH3YNEjyEGOsBmA4/iKl3SLKdEmLr+9mzk5Vjc3VTkv25197NFvLh+3R77jd8URu24+fdFodbvwa5RTNb1pd9eDU9D/muADn2gTLCgXLZzptHOI4uk446+HwhLaPlPktA++Q3wo7+mP9OQYJujN12nNFn12cH6R6QSvC9NdQt8QbAHaYFoqV</CipherValue>
+            </CipherData>
+          </EncryptedData>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[audit_transformation.csv]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{E29255F2-B8FF-4D19-8CD6-C921EE54F00C}"
+      DTS:ObjectName="audit_transformation.csv">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\Taco\Documents\GitHub\Projects\Learning &amp; Demos\SSIS\SSIS_Learning\output\audit_transformation.csv" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[audit_transformation_copy.csv]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{F482A945-6D7C-49F7-B122-2551896EB963}"
+      DTS:ObjectName="audit_transformation_copy.csv">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:FileUsageType="1"
+          DTS:ConnectionString="C:\Users\Taco\Documents\GitHub\Projects\Learning &amp; Demos\SSIS\SSIS_Learning\output\audit_transformation_copy.csv" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\File System Task"
+      DTS:CreationName="Microsoft.FileSystemTask"
+      DTS:Description="File System Task"
+      DTS:DTSID="{8109E03D-6C12-4C86-8EE9-CF38C286E2A7}"
+      DTS:ExecutableType="Microsoft.FileSystemTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="File System Task"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <FileSystemData
+          TaskSourcePath="{E29255F2-B8FF-4D19-8CD6-C921EE54F00C}"
+          TaskDestinationPath="{F482A945-6D7C-49F7-B122-2551896EB963}" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="163,42"
+          Id="Package\File System Task"
+          TopLeft="455,235" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

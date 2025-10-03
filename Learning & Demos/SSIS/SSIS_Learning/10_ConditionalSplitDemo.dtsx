@@ -5,36 +5,36 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="WIN-4CMOE2HNK1B"
   DTS:CreatorName="WIN-4CMOE2HNK1B\Taco"
-  DTS:DTSID="{795652AC-6C8E-46F9-BE84-3795C52E5B87}"
+  DTS:DTSID="{58C73F99-6A09-4681-9B7E-699491143462}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="16.0.5685.2"
   DTS:LocaleID="1033"
   DTS:ObjectName="10_ConditionalSplitDemo"
   DTS:PackageType="5"
   DTS:ProtectionLevel="2"
-  DTS:VersionBuild="28"
-  DTS:VersionGUID="{22C82EF9-669F-4CB9-A202-E6E357D0B25B}">
+  DTS:VersionBuild="29"
+  DTS:VersionGUID="{A99E3336-17DB-4CF8-8A60-1B60204516EB}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[192.168.1.2.AdventureWorks2022.sa]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{0C3D1B75-A375-4CE1-BBE0-5838F3D3AC29}"
+      DTS:DTSID="{6D33B384-79FA-45FA-9C47-40517BCE8D8C}"
       DTS:ObjectName="192.168.1.2.AdventureWorks2022.sa">
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=192.168.1.2;User ID=sa;Initial Catalog=AdventureWorks2022;Provider=SQLOLEDB.1;Persist Security Info=True;Application Name=SSIS-01_ExportToFlatFileDemo-{0C3D1B75-A375-4CE1-BBE0-5838F3D3AC29}192.168.1.2.AdventureWorks2022.sa;Auto Translate=False;">
+          DTS:ConnectionString="Data Source=192.168.1.2;User ID=sa;Initial Catalog=AdventureWorks2022;Provider=SQLOLEDB.1;Persist Security Info=True;Application Name=SSIS-01_ExportToFlatFileDemo-{6D33B384-79FA-45FA-9C47-40517BCE8D8C}192.168.1.2.AdventureWorks2022.sa;Auto Translate=False;">
           <EncryptedData
             Type="http://www.w3.org/2001/04/xmlenc#Element"
-            Salt="bv26VUM5ciM="
-            IV="ldAPzYXqX/IXnrbEo9gcIg==" xmlns="http://www.w3.org/2001/04/xmlenc#">
+            Salt="lTA/O4QezNw="
+            IV="OVybeoHJq5HhKh8ZI8IyUw==" xmlns="http://www.w3.org/2001/04/xmlenc#">
             <EncryptionMethod
               Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" />
             <CipherData>
-              <CipherValue>ldAPzYXqX/IXnrbEo9gcIt7p/PcfDNOFBxl/Xydvc8+1Wud59ZxyGxximx0kubQd2Z5tcZHI36jv2Bd9FbkXi+Vaa6MmmixvLV5GDSX7nKXckMcFahc7NLHepaBSmFaWdUbkye2jVn0xn1PxYL/JrFGF1sLvurR3TWgBKc6TTUVg/vFhn2cjVnS1+Hb6x1xS</CipherValue>
+              <CipherValue>OVybeoHJq5HhKh8ZI8IyU6eNu3cFImm0YKrSB/ec+gqKlOVXQf8xpTkatrcDAKhComh0xsOI5yWyXtV6AXEPgYTtF3LBA1s1JT1mjIImzlb3I5dUatPOkffsLsqbNkFaa7plBKK4Wk5n0nQGH10S11ZXDjSlEzExjxagHjIAsvhYvx3OV9UQZi0COspPwnEf</CipherValue>
             </CipherData>
           </EncryptedData>
         </DTS:ConnectionManager>
@@ -43,7 +43,7 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[Flat File Connection Manager]"
       DTS:CreationName="FLATFILE"
-      DTS:DTSID="{BB73D3D5-6C9E-4835-AA66-BD4349751876}"
+      DTS:DTSID="{D2A1E5FB-9F61-4F0C-8190-82AB8857966A}"
       DTS:ObjectName="Flat File Connection Manager">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -62,7 +62,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="SalesOrderID"
-              DTS:DTSID="{9396599A-8C6D-405A-8F92-B822E31FA45E}"
+              DTS:DTSID="{90769326-E137-42F9-A14D-AA51CB8B5CCA}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -70,7 +70,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="SalesOrderDetailID"
-              DTS:DTSID="{48F97F0B-09AA-40DB-9822-636505294EA6}"
+              DTS:DTSID="{1B7DEA39-413E-436D-A637-23369AAC5218}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -78,7 +78,7 @@
               DTS:DataType="2"
               DTS:TextQualified="True"
               DTS:ObjectName="OrderQty"
-              DTS:DTSID="{BA146CEA-DF60-48DD-8924-55D5A8DB8535}"
+              DTS:DTSID="{F56A6511-63FB-43E3-A040-76832F6A8053}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -86,7 +86,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="ProductID"
-              DTS:DTSID="{DA823977-8116-48A3-86A3-EB727E938C5C}"
+              DTS:DTSID="{2825B9C9-C4C7-4DC3-9980-BC487D68F6EB}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -96,7 +96,7 @@
               DTS:DataScale="6"
               DTS:TextQualified="True"
               DTS:ObjectName="LineTotal"
-              DTS:DTSID="{62DE4B32-F37E-4539-A564-A568685DE7D4}"
+              DTS:DTSID="{A603D529-32F7-4443-BCF6-EAF63D4A8C73}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
@@ -105,7 +105,7 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[Flat File Connection Manager 1]"
       DTS:CreationName="FLATFILE"
-      DTS:DTSID="{DAB70D08-B1FB-4311-A89F-4B39F37AB973}"
+      DTS:DTSID="{2CBCB7B7-6C8C-4780-ACF1-A9FDCAD99C68}"
       DTS:ObjectName="Flat File Connection Manager 1">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -124,7 +124,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="SalesOrderID"
-              DTS:DTSID="{B682C6CE-41F9-45BD-8F40-39B65809FE34}"
+              DTS:DTSID="{ABD262AD-97F7-4A08-8212-C52D932B9E81}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -132,7 +132,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="SalesOrderDetailID"
-              DTS:DTSID="{8D29F460-A0EA-4CCF-97AA-D7579CFB1A83}"
+              DTS:DTSID="{F1E5EDD0-E07D-435B-B303-58A460BC602E}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -140,7 +140,7 @@
               DTS:DataType="2"
               DTS:TextQualified="True"
               DTS:ObjectName="OrderQty"
-              DTS:DTSID="{A271F561-53C7-4333-A604-29752CCE4E6C}"
+              DTS:DTSID="{597E822D-5BC4-495C-B922-1CA168F4B25C}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -148,7 +148,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="ProductID"
-              DTS:DTSID="{3D463BE9-B90E-48F0-87DC-5795C42C36BF}"
+              DTS:DTSID="{AC192282-B634-4D09-A2D3-C08F7790837B}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -158,7 +158,7 @@
               DTS:DataScale="6"
               DTS:TextQualified="True"
               DTS:ObjectName="LineTotal"
-              DTS:DTSID="{AF01DD22-511A-4BA3-8F23-F3C588E0565D}"
+              DTS:DTSID="{FA2B5802-AB33-498E-BE24-0280F609469D}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
@@ -167,7 +167,7 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[Flat File Connection Manager 2]"
       DTS:CreationName="FLATFILE"
-      DTS:DTSID="{B5BD75F8-ADAE-4219-9B41-BD50A5822148}"
+      DTS:DTSID="{B3E8D623-173F-4E45-A21F-137E90C4FB4D}"
       DTS:ObjectName="Flat File Connection Manager 2">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -186,7 +186,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="SalesOrderID"
-              DTS:DTSID="{E9AF9FC1-BF28-48DC-B64E-BA841BF111F0}"
+              DTS:DTSID="{0E6E56E9-B37B-4C2A-8FB4-C762FCAA266E}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -194,7 +194,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="SalesOrderDetailID"
-              DTS:DTSID="{C2DFBA45-076D-4114-BB38-727B714AD3F3}"
+              DTS:DTSID="{13AA370E-A5A4-4BF3-99DE-812F9B33509D}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -202,7 +202,7 @@
               DTS:DataType="2"
               DTS:TextQualified="True"
               DTS:ObjectName="OrderQty"
-              DTS:DTSID="{F2364A73-BA11-4908-97BB-7D18D227EA54}"
+              DTS:DTSID="{3014E268-EE20-4678-B55D-2DC24EFDADE6}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -210,7 +210,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="ProductID"
-              DTS:DTSID="{16D1D76A-3932-4307-B438-129C3BA278D8}"
+              DTS:DTSID="{422FAB4A-BC71-4707-8E9D-3C4F53A28AA5}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -220,7 +220,7 @@
               DTS:DataScale="6"
               DTS:TextQualified="True"
               DTS:ObjectName="LineTotal"
-              DTS:DTSID="{C6F31D52-5255-47B3-8486-373B51AD4089}"
+              DTS:DTSID="{C643637A-06F2-47F2-ACF1-917A3E22E9F8}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
@@ -229,7 +229,7 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[Flat File Connection Manager 3]"
       DTS:CreationName="FLATFILE"
-      DTS:DTSID="{3CF740F4-264B-41D8-82E9-EBA7D091B32A}"
+      DTS:DTSID="{0EB4CDFD-9B8D-457D-A86C-875518DB17C9}"
       DTS:ObjectName="Flat File Connection Manager 3">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -248,7 +248,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="SalesOrderID"
-              DTS:DTSID="{798F79DD-831B-441C-BDE2-8042D4962FAC}"
+              DTS:DTSID="{577E52FC-34A9-4E82-8094-717629D5F5B5}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -256,7 +256,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="SalesOrderDetailID"
-              DTS:DTSID="{59716BA1-5353-4700-A1F2-0C65F088E42A}"
+              DTS:DTSID="{C67B26AD-4123-4006-B920-3DB96EC8E3A2}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -264,7 +264,7 @@
               DTS:DataType="2"
               DTS:TextQualified="True"
               DTS:ObjectName="OrderQty"
-              DTS:DTSID="{BC4F68E4-9D0C-4E30-B08F-0CE240F31FE5}"
+              DTS:DTSID="{BDD5A09B-6FEE-447C-B44E-E38FCCD273AF}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -272,7 +272,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="ProductID"
-              DTS:DTSID="{30C5CEA3-2E3B-4BE9-826A-A1C787D527AB}"
+              DTS:DTSID="{FA8E4CFA-1266-480B-A6A4-27F7E752722B}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -282,7 +282,7 @@
               DTS:DataScale="6"
               DTS:TextQualified="True"
               DTS:ObjectName="LineTotal"
-              DTS:DTSID="{C725807A-C515-4600-9400-FD3D6A2A15C7}"
+              DTS:DTSID="{A39EFB8C-9919-4A63-9885-C5E683ED1C51}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
@@ -295,7 +295,7 @@
       DTS:refId="Package\Data Flow Task"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:DTSID="{6C725CBE-3E79-4C37-9874-41F0709B2D8D}"
+      DTS:DTSID="{4FAD2A96-96C8-4D4C-933D-BB344FA300C6}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
       DTS:ObjectName="Data Flow Task">

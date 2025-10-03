@@ -1,0 +1,4 @@
+C:\Users\Taco\Documents\GitHub\Projects\Learning & Demos\SSIS\SSIS_Learning\import\test1.png
+C:\Users\Taco\Documents\GitHub\Projects\Learning & Demos\SSIS\SSIS_Learning\import\test2.png
+C:\Users\Taco\Documents\GitHub\Projects\Learning & Demos\SSIS\SSIS_Learning\import\test3.png
+C:\Users\Taco\Documents\GitHub\Projects\Learning & Demos\SSIS\SSIS_Learning\import\test4.png
