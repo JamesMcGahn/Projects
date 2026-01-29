@@ -1,9 +1,14 @@
+import java.util.Scanner;
+
 public class NumberDemo {
     public static void main(String[] args) {
-
-        double exam1 = 87.5;
-        double exam2 = 100.0;
-        double exam3 = 66.50;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter Exam one grade: ");
+        double exam1 = scanner.nextDouble();
+        System.out.println("Enter Exam two grade: ");
+        double exam2 = scanner.nextDouble();
+        System.out.println("Enter Exam three grade: ");
+        double exam3 = scanner.nextDouble();
 
         double gradeAverage = (exam1 + exam2 + exam3) / 3;
 
